@@ -34,11 +34,15 @@ input{
     color: white;
     border-radius: 10px;
     background-color: #2A3647;
-    font-family: 'Inter';
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .button-clear{
     border-radius: 10px;
     background-color: #F6F7F8;
-    font-family: 'Inter';
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
