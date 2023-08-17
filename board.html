@@ -1,11 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/board.js"></script>
+    <link rel="stylesheet" href="css/board.css">
     <title>Document</title>
+
+    <!-- Bootstrap file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="js/storage.js"></script>
+    <link rel="stylesheet" href="css/loginForm.css">
 </head>
+
 <body>
-    
+    <div class="bodyContainer">
+        <div class="headlineBoard">
+            <h1>Board</h1>
+            <div class="headlineBoard1">
+                <div class="searchContainer">
+                    <input class="inputBoard" placeholder="Find Task">
+                    <img class="search" src="assets/img/search-icon.svg" alt="">
+                </div>
+                <button type="button" class="btn btn-primary headlineButton">Add Task +</button>
+            </div>
+        </div>
+        <div class="headlineBoard2">
+            <div class="hlB">
+                <p>To do</p>
+                <img class="addheadlineButton" src="assets/img/plus-icon.svg" alt="">
+            </div>
+            <div class="hlB">
+                <p> In progress</p>
+                <img class="addheadlineButton" src="assets/img/plus-icon.svg" alt="">
+            </div>
+            <div class="hlB">
+                <p> Await feedback</p>
+                <img class="addheadlineButton" src="assets/img/plus-icon.svg" alt="">
+            </div>
+            <div class="hlB">
+                <p>Done</p>
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
