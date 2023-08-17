@@ -1,50 +1,76 @@
 <!-- edited by Markus -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/add_task.css">
+    <link rel="stylesheet" href="css/fonts.css">
     <title>Add Task</title>
 </head>
+
 <body>
     <h1>Add Task</h1>
+    <div class="content">
+        <div class="panel">
+            <div class="left-side-of-panel">
+                <div class="property">
+                    <div class="property-name">Title</div>
+                    <input type="text" placeholder="Enter a title">
+                </div>
+                <div class="property">
+                    <div class="property-name">Description</div>
+                    <textarea name="" id="" cols="30" rows="3" placeholder="Enter a Description"></textarea>
+                </div>
+                <div class="property">
+                    <div class="property-name">Assigned to</div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select contacts to assign</option>
+                        <option value="1">Steve</option>
+                        <option value="2">Joseph</option>
+                        <option value="3">Robert</option>
+                    </select>
+                </div>
+            </div>
 
-    <input type="text" placeholder="Enter a title">
+            <div class="separator"></div>
 
-    <div class="input-group mb-3">
-  <span class="input-group-text" id="basic-addon1">@</span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-</div>
+            <div class="right-side-of-panel">
+                <div class="property">
+                    <div class="property-name">Due date</div>
+                    <input type="text" placeholder="dd/mm/yyyy">
+                </div>
+                <div class="property">
+                    <div class="property-name">Prio</div>
+                    <button>Urgent</button>
+                    <button>Medium</button>
+                    <button>Low</button>
+                </div>
+                <div class="property">
+                    <div class="property-name">Category</div>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select task category</option>
+                        <option value="1">To do</option>
+                        <option value="2">Progress</option>
+                        <option value="3">Finished</option>
+                    </select>
+                </div>
+                <div class="property">
+                    <div class="property-name">Subtasks</div>
+                    <input type="text" name="" id="" placeholder="Add with Plus symbol to be done">
+                </div>
+                <div class="buttons">
+                    <button class="button-clear">Clear</button>
+                    <button class="button-create-task">Create Task</button>
+                </div>
+            </div>
+        </div>
 
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <span class="input-group-text" id="basic-addon2">@example.com</span>
-</div>
+    </div>
 
-<div class="mb-3">
-  <label for="basic-url" class="form-label">Your vanity URL</label>
-  <div class="input-group">
-    <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-    <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
-  </div>
-  <div class="form-text" id="basic-addon4">Example help text goes outside the input group.</div>
-</div>
-
-<div class="input-group mb-3">
-  <span class="input-group-text">$</span>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-  <span class="input-group-text">.00</span>
-</div>
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-  <span class="input-group-text">@</span>
-  <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-</div>
-
-<div class="input-group">
-  <span class="input-group-text">With textarea</span>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
-</div>
 </body>
+
 </html>
