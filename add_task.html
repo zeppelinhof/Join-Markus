@@ -14,12 +14,18 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="./css/global.css">
+
+    <!-- import js -->
+    <script src="./js/include_html.js"></script>
 </head>
 
-<body>
-    <h1>Add Task</h1>
+<body onload="includeHTML()">
+
+
     <div class="content">
         <div class="panel">
+            <div w3-include-html="./template/sidebar_template.html"></div>
+            <h1>Add Task</h1>
             <div class="left-side-of-panel">
                 <div class="property">
                     <div class="property-name">Title</div>
