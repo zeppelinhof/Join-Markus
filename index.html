@@ -13,16 +13,29 @@
         crossorigin="anonymous"></script>
         <script src="js/storage.js"></script>
         <link rel="stylesheet" href="css/loginForm.css">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
         <form class="form-signin">
-            <h1 class="headlineLogin">Log in</h1>
-            <div class="form-group">
+            <h1 class="signin-headline">Log in</h1>
+            <div class="headlineUnderline"></div>
+            <div class="form-group mb-3">
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group mb-3">
               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-            </div>
+            </div> -->
+            <div class="form-group mb-3">
+                <div class="input-group">
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <div class="input-group-append">
+                    <span class="input-group-text">
+                      <i class="bi bi-lock"></i> <!-- Hier ersetzt du "bi bi-lock" mit dem entsprechenden Icon-Tag oder Klassen für dein gewünschtes Icon -->
+                    </span>
+                  </div>
+                </div>
+              </div>
+
             <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Remember me</label>
