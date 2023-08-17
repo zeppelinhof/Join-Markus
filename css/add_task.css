@@ -1,0 +1,44 @@
+.panel{
+    display: flex;
+    justify-content: center;
+}
+
+.separator{
+    height: 424px;
+    width: 1px;
+    background-color: #D1D1D1;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+input{
+    border-radius: 5px;
+}
+
+.property{
+    padding: 12px;
+}
+
+.property-name{
+    margin-bottom: 6px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 148px;
+    gap: 16px;
+}
+
+.button-create-task{
+    color: white;
+    border-radius: 10px;
+    background-color: #2A3647;
+    font-family: 'Inter';
+}
+
+.button-clear{
+    border-radius: 10px;
+    background-color: #F6F7F8;
+    font-family: 'Inter';
+}
