@@ -6,11 +6,42 @@
 
 
 
-/* sidebar area */
+/* topbar area */
 
 .topbar-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 96px;
-    width: 1440px;
+    width: calc(1440px - 232px - 384px - 40px);
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 4px rgba(0 0 0 / 10%);
+    padding-left: calc(384px - 232px);
+    padding-right: 40px;
+}
+
+.topbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.topbar-icon {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+}
+
+.topbar-user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 56px;
+    border: 3px solid rgb(42,54,71);
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(41,170,227);
 }
