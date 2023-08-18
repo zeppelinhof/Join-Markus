@@ -58,6 +58,8 @@ body {
   background-repeat: no-repeat;
   background-position: 378px;
   margin-bottom: 32px;
+  border-color: #D1D1D1 !important;
+  box-shadow: none !important;
 }
 
 .input_password {
@@ -65,6 +67,14 @@ body {
   background-repeat: no-repeat;
   background-position: 378px;
   margin-bottom: 32px;
+}
+
+.input_password:focus {
+  background: url("/assets/img/visibility.svg");
+  background-repeat: no-repeat;
+  background-position: 378px;
+  box-shadow: none !important;
+  border-color: #29ABE2;
 }
 
 .password_warning {
