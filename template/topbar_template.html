@@ -9,19 +9,33 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/fonts.css">
     <link rel="stylesheet" href="../css/topbar_template.css">
+
+    <!-- scripts -->
+    <script src="../js/topbar.js"></script>
 </head>
 
 <body>
 
-    <div class="topbar-panel d-flex-col">
-        <h3>Kanban Project Management Tool</h3>
-        <nav class="topbar-nav">
-            <img class="topbar-icon" src="../assets/img/icon_help.png" alt="">
-            <div class="topbar-user-profile">
-                <span id="topbar-user-profile-letter">SS</span>
-            </div>
-        </nav>
+    <div class="topbar-area">
+        <div class="topbar-panel">
+            <h3>Kanban Project Management Tool</h3>
+            <nav class="topbar-nav">
+                <a href="#">
+                    <img class="topbar-icon" src="../assets/img/icon_help.png" alt="">
+                </a>
+                <div class="topbar-user-profile" onclick="showOrHideContextMenu()">
+                    <span id="topbar-user-profile-letter">SS</span>
+                </div>
+            </nav>
+        </div>
+
+        <div id="context-menu" class="topbar-d-none">
+            <a href="#" class="context-menu-member topbar-t-d-none">Legal Notice</a>
+            <a href="#" class="context-menu-member topbar-t-d-none">Privacy Police</a>
+            <a href="#" class="context-menu-member topbar-t-d-none">Log out</a>
+        </div>
     </div>
 
 </body>

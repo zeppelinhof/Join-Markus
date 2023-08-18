@@ -1,10 +1,10 @@
 /* default */
 
-.t-d-none {
+.sidebar-t-d-none {
     text-decoration: none;
 }
 
-.t-d-none:hover {
+.sidebar-t-d-none:hover {
     color: rgb(255, 255, 255);
     background-color: rgb(10, 25, 49);
 
