@@ -19,35 +19,18 @@
   <link rel="stylesheet" href="css/index.css">
 </head>
 
-<body>
-
+<body onload="init()">
+  <div class="not-a-user-box">
+    <span class="not-a-user">Not a Join user?</span>
+    <button type="submit" class="btn_filled btn_join btn_signup">Sign up</button>
+  </div>
   <img class="join_logo" src="assets/img/join_logo.svg" alt="">
-  <div class="login_form">
-    <div class="login_headline">Log in</div>
-    <div class="login_blueLine"></div>
-    <div class="form-group">
-      <input type="email" class="form-control input_login input_mail" id="inputEmail" aria-describedby="emailHelp"
-        placeholder="Email">
-    </div>
-    <div class="form-group">
-      <input type="password" class="form-control input_login input_password" id="inputPassword" placeholder="Password">
-      <div class="password_warning d-none" id="password_warning">Wrong password Ups! Try again.</div>
-    </div>
-    <div class="loginOptions">
-      <div class="rememberMe">
-        <div id="checkBox_rememberMe" onclick="toggleRememberMe()">
-          <div id="checkBox_empty"></div>
-          <div id="checkBox_cutted" class="d-none"></div>
-          <div id="checkBox_mark" class="d-none"></div>
-        </div>
-        <p>Remember me</p>
-      </div>
-      <p class="password_forgotten" onclick="forgotPassword()">I forgot my password</p>
-    </div>
-    <div class="loginButtonContainer">
-      <button type="submit" class="btn btn-dark btn_login">Log in</button>
-      <button type="submit" class="btn btn-outline-dark btn_login">Guest Log in</button>
-    </div>
+
+  <div id="formElement"></div>
+
+  <div class="legal_container">
+    <span>Privacy Policy</span>
+    <span>Legal notice</span>
   </div>
 </body>
 
