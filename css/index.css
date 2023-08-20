@@ -106,6 +106,12 @@ body {
   padding: 48px 88px;
 }
 
+.form_signup {
+  height: 630px;
+  width: 598px;
+  padding: 48px 88px;
+}
+
 .form_group_container {
   height: 152px;
   margin-bottom: 16px;
@@ -128,7 +134,17 @@ body {
   box-shadow: none !important;
 }
 
+.input_name {
+  background: url("/assets/img/person.svg");
+  background-repeat: no-repeat;
+  background-position: 378px;
+  margin-bottom: 32px;
+  border-color: #D1D1D1 !important;
+  box-shadow: none !important;
+}
+
 .input_password {
+  border-color: #D1D1D1 !important;
   margin-bottom: 32px;
 }
 
@@ -137,7 +153,7 @@ body {
   border-color: #29ABE2;
 }
 
-#btn_reveal {
+.btn_reveal {
   cursor: pointer;
   position: absolute;
   top: 264px;
@@ -159,6 +175,13 @@ body {
   display: flex;
   justify-content: space-around;
   margin-bottom: 32px;
+}
+
+.consent_container {
+  width: 231px;
+  height: 24px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .rememberMe {
@@ -257,4 +280,36 @@ body {
 
 .invisible {
   visibility: hidden !important;
+}
+
+/* Verstecke die standardmäßige Checkbox */
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  background-size: contain;
+}
+
+/* SVG für den nicht ausgewählten Zustand */
+.custom-checkbox .checkbox-icon {
+  background: url("../assets/img/checkbox_empty.svg") no-repeat;
+}
+
+/* SVG für den ausgewählten Zustand */
+.custom-checkbox input[type="checkbox"]:checked+.checkbox-icon {
+  background: url("../assets/img/checkbox_cutted.svg"), url("../assets/img/checkbox_mark.svg") no-repeat;
+  background-size: contain, 15px;
+  background-position: top left, top right;
+  background-repeat: no-repeat, no-repeat;
 }

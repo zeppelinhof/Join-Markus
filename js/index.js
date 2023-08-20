@@ -12,6 +12,7 @@ function loadHTML(destinationId, fileName) {
         .then(htmlContent => {
             destinationElement.innerHTML = "";
             destinationElement.innerHTML = htmlContent;
+            toggleUiElements(fileName);
         })
         .catch(error => {
             console.error("Error loading HTML file:", error);
@@ -19,25 +20,30 @@ function loadHTML(destinationId, fileName) {
 }
 
 
-function forgotPassword() {
-    loadHTML('formElement', "forgotPassword.html");
-}
-
-function toggleRememberMe() {
-    const checkBox_empty = document.getElementById("checkBox_empty");
-    const checkBox_cutted = document.getElementById("checkBox_cutted");
-    const checkBox_mark = document.getElementById("checkBox_mark");
-
-    if (checkBox_empty.classList.length == 0) {
-        checkBox_empty.classList.add('d-none');
-        checkBox_cutted.classList.remove('d-none');
-        checkBox_mark.classList.remove('d-none');
+function toggleUiElements(filename) {
+    if (filename != 'login.html') {
+        document.getElementById('not-a-user-box').classList.add('d-none');
     } else {
-        checkBox_empty.classList.remove('d-none');
-        checkBox_cutted.classList.add('d-none');
-        checkBox_mark.classList.add('d-none');
+        document.getElementById('not-a-user-box').classList.remove('d-none');
     }
 }
+
+
+// function toggleChkBox(element) {
+//     const checkBox_empty = document.getElementById("checkBox_empty");
+//     const checkBox_cutted = document.getElementById("checkBox_cutted");
+//     const checkBox_mark = document.getElementById("checkBox_mark");
+
+//     if (checkBox_empty.classList.length == 0) {
+//         checkBox_empty.classList.add('d-none');
+//         checkBox_cutted.classList.remove('d-none');
+//         checkBox_mark.classList.remove('d-none');
+//     } else {
+//         checkBox_empty.classList.remove('d-none');
+//         checkBox_cutted.classList.add('d-none');
+//         checkBox_mark.classList.add('d-none');
+//     }
+// }
 
 
 // document.addEventListener("DOMContentLoaded", function () {
@@ -57,29 +63,29 @@ function toggleRememberMe() {
 // });
 
 
-class InputState {
-    constructor() {
-        this.state = "normal";
-    }
+// class InputState {
+//     constructor() {
+//         this.state = "normal";
+//     }
 
-    setState(newState) {
-        if (["normal", "focused", "disabled", "error"].includes(newState)) {
-            this.state = newState;
-        } else {
-            console.error("Invalid state:", newState);
-        }
-    }
+//     setState(newState) {
+//         if (["normal", "focused", "disabled", "error"].includes(newState)) {
+//             this.state = newState;
+//         } else {
+//             console.error("Invalid state:", newState);
+//         }
+//     }
 
-    getState() {
-        return this.state;
-    }
-}
+//     getState() {
+//         return this.state;
+//     }
+// }
 
-const myInput = new InputState();
-console.log(myInput.getState()); // Ausgabe: "normal"
+// const myInput = new InputState();
+// console.log(myInput.getState()); // Ausgabe: "normal"
 
-myInput.setState("focused");
-console.log(myInput.getState()); // Ausgabe: "focused"
+// myInput.setState("focused");
+// console.log(myInput.getState()); // Ausgabe: "focused"
 
-myInput.setState("invalidState"); // Ausgabe: "Invalid state: invalidState"
-console.log(myInput.getState()); // Ausgabe: "focused" (unverändert)
+// myInput.setState("invalidState"); // Ausgabe: "Invalid state: invalidState"
+// console.log(myInput.getState()); // Ausgabe: "focused" (unverändert)
