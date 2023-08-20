@@ -100,6 +100,12 @@ body {
   top: 71px;
 }
 
+.form_resetPassword {
+  height: 511px;
+  width: 826px;
+  padding: 48px 88px;
+}
+
 .form_group_container {
   height: 152px;
   margin-bottom: 16px;
