@@ -29,63 +29,53 @@ function toggleUiElements(filename) {
 }
 
 
-// function toggleChkBox(element) {
-//     const checkBox_empty = document.getElementById("checkBox_empty");
-//     const checkBox_cutted = document.getElementById("checkBox_cutted");
-//     const checkBox_mark = document.getElementById("checkBox_mark");
-
-//     if (checkBox_empty.classList.length == 0) {
-//         checkBox_empty.classList.add('d-none');
-//         checkBox_cutted.classList.remove('d-none');
-//         checkBox_mark.classList.remove('d-none');
-//     } else {
-//         checkBox_empty.classList.remove('d-none');
-//         checkBox_cutted.classList.add('d-none');
-//         checkBox_mark.classList.add('d-none');
-//     }
-// }
+function updateInputState(element, idToToggle) {
+    const password = element;
+    if (password.value == "") {
+        inputState.setState("empty");
+        document.getElementById(idToToggle).src = "../assets/img/lock.svg";
+        password.type = "password";
+    } else {
+        inputState.setState("filled");
+        if (password.value.length == 1) {
+            document.getElementById(idToToggle).src = "../assets/img/eye.svg";
+        }
+    }
+}
 
 
-// document.addEventListener("DOMContentLoaded", function () {
-//     const inputElement = document.getElementById("inputPassword");
+class InputState {
 
-//     inputElement.addEventListener("input", function (event) {
-//         const inputValue = event.target.value;
-//         const btn = document.getElementById("btn_reveal");
-//         if (btn.src == "assets/img/eye.svg") {
-//             btn.src = "assets/img/eye_close.svg";
-//             input.type = "password";
-//         } else {
-//             btn.src = "assets/img/eye.svg";
-//             input.type = "text";
-//         }
-//     });
-// });
+    constructor() {
+        this.state = "empty";
+    }
+
+    setState(newState) {
+        if (["empty", "filled"].includes(newState)) {
+            this.state = newState;
+        } else {
+            console.error("Invalid state:", newState);
+        }
+    }
+
+    getState() {
+        return this.state;
+    }
+}
+const inputState = new InputState();
 
 
-// class InputState {
-//     constructor() {
-//         this.state = "normal";
-//     }
-
-//     setState(newState) {
-//         if (["normal", "focused", "disabled", "error"].includes(newState)) {
-//             this.state = newState;
-//         } else {
-//             console.error("Invalid state:", newState);
-//         }
-//     }
-
-//     getState() {
-//         return this.state;
-//     }
-// }
-
-// const myInput = new InputState();
-// console.log(myInput.getState()); // Ausgabe: "normal"
-
-// myInput.setState("focused");
-// console.log(myInput.getState()); // Ausgabe: "focused"
-
-// myInput.setState("invalidState"); // Ausgabe: "Invalid state: invalidState"
-// console.log(myInput.getState()); // Ausgabe: "focused" (unverändert)
+function toggleReveal(img, id) {
+    const password = document.getElementById(id);
+    if (inputState.getState() == "filled") {
+        if (password.type == "password") {
+            img.src = "../assets/img/eye_close.svg";
+            password.type = "text";
+        }
+        else {
+            img.src = "../assets/img/eye.svg";
+            password.type = "password";
+        }
+    }
+    password.focus();
+}

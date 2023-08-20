@@ -1,4 +1,4 @@
-<form class="form_container form_signup" style="gap: 35px;">
+<form class="form_container form_signup">
     <a href="index.html" class="backToLogin"><img src="assets/img/arrowLeft.svg"></a>
     <div class="login_headline">Sign up</div>
     <i class="blueLine"></i>
@@ -9,15 +9,17 @@
         aria-describedby="emailHelp" placeholder="Email">
     <div class="form-group">
         <input type="password" class="form-control input_login input_password" style="margin-bottom: -16px !important;"
-            placeholder="Password">
-        <img src="/assets/img/lock.svg" style="top: 324px; right: 112px;" class="btn_reveal" id="btn_reveal_2"
-            onclick="togglePasswordReveal()">
+            id="inputPassword2" placeholder="Password" onkeyup="updateInputState(this, 'btn_reveal2')"
+            onkeypress="updateInputState(this, 'btn_reveal2')">
+        <img src="/assets/img/lock.svg" style="top: 324px; right: 112px;" class="btn_reveal" id="btn_reveal2"
+            onclick="toggleReveal(this, 'inputPassword2')">
     </div>
     <div class="form-group">
         <input type="password" class="form-control input_login input_password" style="margin-bottom: -16px !important;"
-            placeholder="Confirm Password">
-        <img src="/assets/img/lock.svg" style="top: 392px; right: 112px;" class="btn_reveal" id="btn_reveal_3"
-            onclick="togglePasswordReveal()">
+            id="inputPassword3" placeholder="Confirm password" onkeyup="updateInputState(this, 'btn_reveal3')"
+            onkeypress="updateInputState(this, 'btn_reveal3')">
+        <img src="/assets/img/lock.svg" style="top: 392px; right: 112px;" class="btn_reveal" id="btn_reveal3"
+            onclick="toggleReveal(this, 'inputPassword3')">
         <div class="password_warning" style="top: 22px !important;" id="noMatch">Ups! Your password don't match</div>
 
     </div>
