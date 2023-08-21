@@ -1,0 +1,53 @@
+.contacts {
+    height: 928px;
+    width: 456px;
+    box-shadow: 4px -4px 4px rgba(0 0 0 / 10%);
+}
+
+
+.contacts-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+}
+
+
+
+/* button new contact */
+
+.btn-new-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 352px;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.btn-new-contact-icon {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+}
+
+
+
+/* contacts content */
+
+#contacts-list {
+    display: flex;
+    flex-direction: column; 
+    width: 352px;
+}
+
+.contacts-separator {
+    border: 1px solid lightgray;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
