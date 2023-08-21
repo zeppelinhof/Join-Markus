@@ -1,9 +1,9 @@
-.panel{
+.panel {
     display: flex;
     justify-content: center;
 }
 
-.separator{
+.separator {
     height: 424px;
     width: 1px;
     background-color: #D1D1D1;
@@ -11,26 +11,26 @@
     margin-right: 24px;
 }
 
-input{
+input {
     border-radius: 5px;
 }
 
-.property{
+.property {
     padding: 12px;
 }
 
-.property-name{
+.property-name {
     margin-bottom: 6px;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: flex-end;
     margin-top: 148px;
     gap: 16px;
 }
 
-.button-create-task{
+.button-create-task {
     color: white;
     border-radius: 10px;
     background-color: #2A3647;
@@ -39,10 +39,55 @@ input{
     gap: 4px;
 }
 
-.button-clear{
+.button-clear {
     border-radius: 10px;
     background-color: #F6F7F8;
     display: flex;
     align-items: center;
     gap: 4px;
+}
+
+.button-prio {
+    background-color: white;
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    gap: 8px;
+}
+
+.button-prio:hover{
+    box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 20%);
+}
+
+.button-red{
+    background-color: #FF3D00;
+    color: white;
+
+}
+
+.button-yellow{
+    background-color: #FFA800;
+    color: white;
+
+}
+
+.button-green{
+    background-color: #7AE229;
+    color: white;
+
+}
+
+.white-background {
+    background-color: white;
+    cursor: pointer;
+}
+
+.black-font{
+    color: black;
+}
+
+
+.border-right-white{
+    border-right: white;
 }

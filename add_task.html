@@ -9,13 +9,16 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fonts.css">
 
     <!-- global css -->
     <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
 
     <!-- local css -->
     <link rel="stylesheet" href="css/add_task.css">
+
+    <!-- Javascript -->
+    <script src="js/add_task.js"></script>
 </head>
 
 <body>
@@ -23,10 +26,13 @@
     <div class="content">
         <div class="panel">
             <div class="left-side-of-panel">
+                
                 <div class="property">
                     <div class="property-name">Title</div>
-                    <input type="text" placeholder="Enter a title">
+                    <input type="text" class="form-control" placeholder="Enter a title"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
                 </div>
+
                 <div class="property">
                     <div class="property-name">Description</div>
                     <textarea name="" id="" cols="30" rows="3" placeholder="Enter a Description"></textarea>
@@ -47,14 +53,19 @@
             <div class="right-side-of-panel">
                 <div class="property">
                     <div class="property-name">Due date</div>
-                    <input type="text" placeholder="dd/mm/yyyy">
+                    <input type="date" placeholder="dd/mm/yyyy">
                 </div>
+
                 <div class="property">
                     <div class="property-name">Prio</div>
-                    <button>Urgent</button>
-                    <button>Medium</button>
-                    <button>Low</button>
+                    <button id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent <img
+                            src="assets/img/Capa_2.svg"></button>
+                    <button id="btn_medium" class="button-prio" onclick="colorYellow();">Medium <img
+                            src="assets/img/Prio_media.svg"></button>
+                    <button id="btn_low" class="button-prio" onclick="colorGreen();">Low <img
+                            src="assets/img/Capa_1.svg"></button>
                 </div>
+
                 <div class="property">
                     <div class="property-name">Category</div>
                     <select class="form-select" aria-label="Default select example">
@@ -63,11 +74,30 @@
                         <option value="2">Progress</option>
                         <option value="3">Finished</option>
                     </select>
+                    <!-- <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle white-background black-font" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Select task category
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div> -->
                 </div>
+
                 <div class="property">
                     <div class="property-name">Subtasks</div>
-                    <input type="text" name="" id="" placeholder="Add with Plus symbol to be done.">
+
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control border-right-white" placeholder="Add new subtask"
+                            aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <!-- <span class="input-group-text" id="basic-addon2">@example.com</span> -->
+                        <img id="add_symbol" class="input-group-text white-background" src="assets/img/add_black.svg">
+                    </div>
                 </div>
+
                 <div class="buttons">
                     <button class="button-clear">Clear <img src="assets/img/Vector.svg" alt=""></button>
                     <button class="button-create-task">Create Task <img src="assets/img/check.svg" alt=""></button>
