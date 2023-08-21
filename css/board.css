@@ -1,3 +1,13 @@
+.dummyClass {
+    height: 100px;
+    width: 60px;
+    background-color: greenyellow;
+}
+
+body {
+    height: 100vh;
+}
+
 .bodyContainer {
     background-color: #f6f7f8;
     height: 232px;
@@ -14,37 +24,70 @@
 .headlineBoard {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 48vh;
+    justify-content: space-between;
+    width: 1056px;
+    height: 73px;
+    top: 79.5px;
+    left: 64px;
+    position: absolute;
+}
+
+.headlineBoard h1 {
+    display: flex;
+    width: 176px;
+    height: 73px;
+    gap: 1px;
+    font-size: 61px;
+    line-height: 73.2px;
+    font-weight: 700;
 }
 
 .headlineBoard1 {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 30vw;
+    justify-content: space-between;
+    width: 504px;
+    height: 48px;
+    gap: 32px;
 }
 
 .inputBoard {
     border: none;
+    outline: none;
+}
+
+.inputBoard::placeholder {
+    width: 100px;
+    height: 24px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: #D1D1D1;
 }
 
 .searchContainer {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 312px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    padding: 8px 16px 8px 16px;
+    gap: 10px;
     background-color: #ffffff;
-    border: 1px solid #bababa;
-    height: 38px;
-    width: 17vw;
-    border-radius: 8px;
-    margin-right: 10px;
 }
+
+.sC1 {
+    width: 280px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .search {
-    height: 16px !important;
-    border-left: 1px solid #bababa;
-    width: 35px;
+    display: flex;
+    width: 48px;
+    height: 32px;
+    gap: 16px;
 }
 
 .search:hover {
@@ -52,34 +95,289 @@
 }
 
 .headlineButton {
-    margin-left: 10px;
-    height: 38px !important;
-    background-color: #2a3647 !important;
-    border-color: #2a3647 !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 160px;
+    height: 48px;
+    border: 1px solid #2A3647 !important;
+    border-radius: 10px !important;
+    padding: 8px 16px 8px 16px !important;
+    gap: 4px;
+    background-color: #2A3647 !important;
+}
+
+.hlB1 {
+    height: 32px;
+    width: 32px;
+}
+
+.headlineButton p {
+    width: 92px;
+    height: 24px;
+    font-weight: 700 !important;
+    font-size: 20px !important;
+    line-height: 25.2px !important;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.headlineButton:hover {
+    cursor: pointer;
 }
 
 .headlineBoard2 {
     display: flex;
     align-items: center;
-    justify-content:center;
-    width: 100%;
+    justify-content: space-between;
+    width: 1208px;
+    height: 24px;
+    top: 200.5px;
+    padding: 0px 64px 0px 64px;
+    position: absolute;
 }
 
 .hlB {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 12vw;
-    margin-left: 13px;
-    margin-right: 13px;
+    min-width: 244px;
+    height: 24px;
+
 }
 
 .hlB p {
-   font-weight: bold;
-   text-align: center;
-   margin-bottom: 0;
+    font-weight: 700;
+    color: #42526e;
+    width: 152px;
+    height: 24px;
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0;
 }
 
 .addheadlineButton {
-    height: 20px;
+    width: 24px;
+    height: 24px;
+}
+
+.addheadlineButton:hover {
+    cursor: pointer;
+}
+
+/*heir kommt der Teil mit den Aufgaben*/
+.boardContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 1208px;
+    height: 688px;
+    top: 232px !important;
+    padding: 0px 64px 0px 64px;
+    gap: 26px;
+    position: absolute;
+    background-color: #f6f7f8;
+}
+
+.taskContainer {
+    display: grid;
+    height: 688px;
+    width: 246px;
+    gap: 24px;
+}
+
+.noTaskContainer {
+    width: 246px;
+    height: 48px;
+    border-radius: 10px;
+    border: 1px solid #A8A8A8;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: dashed;
+}
+
+.noTaskContainer1 {
+    width: 111px;
+    height: 19px;
+}
+
+.noTaskContainer2 {
+    width: 137px;
+    height: 19px;
+}
+
+.noTaskContainer1 p, .noTaskContainer2 p {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.2px;
+    color: #A8A8A8;
+}
+
+/*UserTask*/
+.hauptContainer {
+    width: Fixed 252px;
+    height: 263px;
+    padding: 16px;
+    border-radius: 24px;
+    gap: 10px;
+    display: grid;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 3px #00000014;
+}
+
+.unterContainer {
+    width: Fill 220px;
+    height: 231px;
+    gap: 24px;
+    display: grid;
+}
+
+.taskbezeichnung {
+    width: 113px;
+    height: 27px;
+    padding: 4px 16px 4px 16px;
+    border-radius: 8px;
+    gap: 10px;
+    display: grid;
+    transform: rotate(0deg);
+    background: #0038FF;
+}
+
+.taskbezeichnung p {
+    width: 81px;
+    height: 19px;
+    transform: rotate(0deg);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.beschreibungsContainer {
+    width: Fill 220px;
+    height: 84px;
+    border-radius: 10px;
+    gap: 8px;
+    display: grid;
+}
+
+.titel {
+    width: 220px;
+    height: 38px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2A3647;
+}
+
+.beschreibung {
+    width: 220px;
+    height: 38px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    white-space: nowrap;
+    /* Verhindert Zeilenumbrüche im Text */
+    overflow: hidden;
+    /* Versteckt den überflüssigen Text */
+    text-overflow: ellipsis;
+    /* Zeigt "..." am Ende des abgeschnittenen Texts an */
+}
+
+.progressBar {
+    width: 220px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress1 {
+    background: #F4F4F4;
+    width: 128px !important;
+    height: 8px !important;
+    top: 4px !important;
+    padding: 0px 64px 0px 0px !important;
+    border-radius: 8px !important;
+    gap: 10px !important;
+    display: grid !important;
+}
+
+.progressBar1 {
+    width: 64px !important;
+    height: 8px !important;
+    border-radius: 16px !important;
+    background: #4589FF;
+}
+
+.progressBarFortschritt {
+    width: 73px;
+    height: 14px;
+    left: 139px;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+
+.benutzerContainer {
+    width: 220px;
+    height: 32px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.benutzerNamenContainer {
+    width: 80px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.namensUeberContainer {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+    display: grid;
+    gap: 10px;
+    color: #ffffff;
+}
+
+.eclipse {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(0deg, #FF7A00, #FF7A00),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 1px solid #FFFFFF;
+    border-radius: 45px;
+}
+
+.namensContainer {
+    position: relative;
+    width: 21.33px;
+    height: 7.62px;
+    top: 9.19px;
+    left: 4.33px;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #ffffff;
 }
