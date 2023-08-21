@@ -32,7 +32,7 @@ body {
 
 .join_logo {
   position: absolute;
-  top: 80px;
+  top: 57px;
   left: 77px;
   width: 100px;
   height: 122px;
@@ -146,7 +146,7 @@ body {
 
 .input_password:focus {
   box-shadow: none !important;
-  border-color: #29ABE2;
+  border-color: #29ABE2 !important;
 }
 
 .btn_reveal {
@@ -323,4 +323,68 @@ body {
   background-size: contain, 15px;
   background-position: top left, top right;
   background-repeat: no-repeat, no-repeat;
+}
+
+@media (max-width: 700px) {
+  .form_login {
+    width: 552px;
+    height: 477px;
+    padding: 28px 75px;
+  }
+
+  .btn_reveal {
+    top: 235px;
+    right: 89px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form_login {
+    width: 476px;
+    height: 473px;
+  }
+
+  .btn_reveal {
+    right: 51px;
+  }
+}
+
+@media (max-width: 500px) {
+  .form_login {
+    width: 320px;
+    height: 473px;
+  }
+
+  .btn_reveal {
+    right: 51px;
+  }
+
+  .loginButtonContainer {
+    width: 180px;
+    height: 123px;
+    flex-direction: column;
+  }
+
+  .login_headline {
+    font-size: 47px;
+  }
+
+  .input_login {
+    width: 285px;
+  }
+
+  .loginOptions {
+    width: 180px;
+    height: 123px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  .btn_join {
+    font-size: 16px;
+  }
+  .legal_container {
+    font-size: 16px;
+  }
 }
