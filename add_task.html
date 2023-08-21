@@ -45,10 +45,10 @@
                         </div>
 
                     </div>
-                    
-                    <div class="property">                                              <!-- Assigned to -->
+
+                    <div class="property"> <!-- Assigned to -->
                         <div class="property-name">Assigned to</div>
-                        <select 
+                        <select id="selectAssignedTo" class="form-select">
                         </select>
                     </div>
                 </div>
@@ -94,25 +94,23 @@
                                 src="assets/img/add_black.svg">
                         </div>
                     </div>
-
-                    <form onsubmit="register(); return false;">
-                        <input type="email" id="email">
-                        <input type="password" id="password">
-                        <button id="registerBtn">Registrieren</button>
-                    </form>
-                    <script src="js/register.js"></script>
-                    <script src="js/storage.js"></script>
-
                     <div class="buttons_clear_create">
-                        <button class="button-clear">Clear <img src="assets/img/Vector.svg" alt=""></button>
-                        <button class="button-create-task">Create Task <img src="assets/img/check.svg" alt=""></button>
+                        <button class="btn btn-outline-dark button-clear">Clear <img src="assets/img/Vector.svg" alt=""></button>
+                        <button class="btn btn-outline-dark button-create-task">Create Task <img src="assets/img/check.svg" alt=""></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     
+    <form onsubmit="register(); return false;">
+        <input type="email" id="email">
+        <input type="password" id="password">
+        <button id="registerBtn">Registrieren</button>
+    </form>
+    <script src="js/register.js"></script>
+    <script src="js/storage.js"></script>
+
 </body>
 
 </html>
