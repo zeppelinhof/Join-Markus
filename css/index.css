@@ -32,10 +32,10 @@ body {
 
 .join_logo {
   position: absolute;
-  top: 57px;
+  top: 51px;
   left: 77px;
-  width: 100px;
-  height: 122px;
+  width: 90px;
+  height: 110px;
 }
 
 .form_container {
@@ -228,7 +228,7 @@ body {
 }
 
 .btn_filled {
-  border-style: none;
+  border: 2px solid #2A3647;
   background-color: #2A3647;
   color: #fff;
   transition: background-color ease-in-out 100ms;
@@ -355,8 +355,13 @@ body {
     height: 473px;
   }
 
+  .form_container {
+    gap: 26px;
+  }
+
   .btn_reveal {
-    right: 51px;
+    right: 33px;
+    top: 219px;
   }
 
   .loginButtonContainer {
@@ -375,16 +380,64 @@ body {
 
   .loginOptions {
     width: 180px;
-    height: 123px;
+    height: 60px;
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-between;
+    position: relative;
+    right: 50px;
   }
 
   .btn_join {
     font-size: 16px;
+    padding: 4px 0px;
   }
+
   .legal_container {
     font-size: 16px;
+  }
+
+  .input_mail {
+    background-position: 250px;
+  }
+
+  .not-a-user-box {
+    top: auto;
+    bottom: 10%;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 267px;
+  }
+
+}
+
+@media (max-height: 800px) {
+  .join_logo {
+    top: 7px;
+    left: 43px;
+    width: 50px;
+    height: 90px;
+  }
+
+  .not-a-user-box {
+    bottom: 5%;
+  }
+
+  .legal_container {
+    bottom: 1%;
+  }
+
+  .btn_signup {
+    font-size: 12px !important;
+    padding: 9px 16px !important;
+  }
+
+  .not-a-user {
+    font-size: 16px;
+  }
+
+  .not-a-user-box {
+    width: 230px;
   }
 }
