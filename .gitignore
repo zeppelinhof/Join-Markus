@@ -2,4 +2,6 @@
 package-lock.json
 package.json
 test.html
-register.js
+js/register_mg.js
+js/storage.js
+test.html
