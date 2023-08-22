@@ -1,3 +1,13 @@
+
+body{ /* to be removed later */
+    background-color: #F6F7F8;
+}
+
+h1{
+    font-weight: 700;
+    font-size: 61px;
+    padding-bottom: 24px;
+}
 .wrap{
     display: flex;
     justify-content: center;
@@ -26,10 +36,6 @@ input {
     padding-bottom: 24px;
 }
 
-.property-name {
-    margin-bottom: 6px;
-}
-
 .buttons_clear_create {
     display: flex;
     justify-content: flex-end;
@@ -47,6 +53,12 @@ input {
     gap: 4px;
 }
 
+.button-create-task:hover{
+    background-color: #29ABE2;
+    border-color: #29ABE2;
+    box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 20%);
+}
+
 .button-clear {
     border-radius: 10px;
     background-color: #F6F7F8;
@@ -56,6 +68,13 @@ input {
     gap: 4px;
 }
 
+.button-clear:hover{
+    color: #29ABE2;
+    background-color: #F6F7F8;
+    border-color: #29ABE2;
+    box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 20%);
+}
+
 .all-buttons-prio {
     display: flex;
     justify-content: flex-end;
@@ -63,6 +82,9 @@ input {
 }
 
 .button-prio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     width: 136px;
     height: 56px;
@@ -82,16 +104,44 @@ input {
     color: white;
 }
 
-.button-yellow{
+.button-orange{
     background-color: #FFA800;
     color: white;
-
 }
 
 .button-green{
     background-color: #7AE229;
     color: white;
+}
 
+.containArrow{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 14.51px;
+}
+
+.arrowRedUrgent{
+    position: absolute;
+}
+
+.arrowWhiteUrgent{
+    position: absolute;
+}
+
+.arrowOrangeMedium{
+    position: absolute;
+}
+.arrowWhiteMedium{
+    position: absolute;
+}
+
+.arrowGreenLow{
+    position: absolute;
+}
+.arrowWhiteLow{
+    position: absolute;
 }
 
 .white-background {
@@ -112,13 +162,28 @@ input {
     cursor: pointer;
 }
 
-/* virtual Select */
-
-#multipleSelect{
-    max-width: 100%;
+.z-index-1{
+    z-index: 1;
 }
 
-.vscomp-toggle-button{
-    padding: 10px 30px 10px 10px;
-    border-radius: 5px;
+.z-index-n1{
+    z-index: -1;
+}
+
+/* Bootstrap-Fix wegen nicht sichtbarer Fehlermeldung */
+
+.invalid-feedback-mg {
+    /* display: none;   mg */
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: var(--bs-form-invalid-color);
+}
+
+.valid-feedback-mg {
+    /* display: none;  mg */
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: var(--bs-form-valid-color);
 }
