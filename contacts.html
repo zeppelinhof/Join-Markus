@@ -10,46 +10,46 @@
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/contacts.css">
+
+    <!-- scripts -->
+    <script src="./js/include_html.js"></script>
+    <script src="./js/topbar.js"></script>
+    <script src="./js/contacts.js"></script>
+    <script src="./js/contacts_html_template.js"></script>
 </head>
 
-<body>
+<body onload="init()">
 
-    <div class="contacts">
+    <!-- sidebar -->
+    <section w3-include-html="./template/sidebar_template.html"></section>
 
-        <div class="contacts-area">
+    <div>
 
-            <button class="btn-new-contact">
-                <span>Add new contact</span>
-                <img class="btn-new-contact-icon" src="./assets/img/icon_person_add.png" alt="">
-            </button>
+        <!-- topbar -->
+        <section w3-include-html="./template/topbar_template.html"></section>
 
-            <div id="contacts-list">
+        <div class="contact-windows">
+            <!-- contacts list -->
+            <section class="contacts">
 
-                <span class="contacts-letter-headline">A</span>
-                <div class="contacts-separator"></div>
+                <div class="contacts-area">
 
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <span>AM</span>
+                    <button class="btn-new-contact">
+                        <span>Add new contact</span>
+                        <img class="btn-new-contact-icon" src="./assets/img/icon_person_add.png" alt="">
+                    </button>
+
+                    <div id="contacts-list">
+
                     </div>
-                    <div class="contact">
-                        <span class="contact-name">Anton Mayer</span>
-                        <spa class="contact-email">antonm@gmail.com</span>
-                    </div>
+
                 </div>
 
-                <div class="contact-card">
-                    <div class="contact-icon">
-                        <span>AS</span>
-                    </div>
-                    <div class="contact">
-                        <span class="contact-name">Anja Schulz</span>
-                        <spa class="contact-email">schulz@hotmail.com</span>
-                    </div>
-                </div>
+            </section>
 
-            </div>
+            <section class="contact-data">
 
+            </section>
         </div>
 
 </body>

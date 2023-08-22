@@ -22,7 +22,7 @@
     justify-content: space-between;
     align-items: center;
     height: 96px;
-    width: calc(1440px - 232px - 384px - 40px);
+    width: calc(1440px - 384px - 40px);
     background-color: rgb(255, 255, 255);
     box-shadow: 0 4px 4px rgba(0 0 0 / 10%);
     padding-left: calc(384px - 232px);

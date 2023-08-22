@@ -1,7 +1,51 @@
+body {
+    display: flex;
+    background-color: rgb(246,247,248);
+}
+
+.contact-windows {
+    display: flex;
+}
+
+
+
+/* contacts list */
+
 .contacts {
     height: 928px;
     width: 456px;
-    box-shadow: 4px -4px 4px rgba(0 0 0 / 10%);
+    box-shadow: 4px 0px 4px rgba(0 0 0 / 10%);
+    overflow-y: scroll;
+    background-color: white;
+}
+
+.contacts::-webkit-scrollbar {
+    width: 24px;
+}
+
+.contacts::-webkit-scrollbar-thumb {
+    background: #999;
+    border-radius: 16px;
+    border: 8px solid transparent;
+    background-clip: content-box;
+}
+
+.contacts::-webkit-scrollbar-button:single-button {
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+
+.contacts::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url('../assets/img/scrollbar_up_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.contacts::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url('../assets/img/scrollbar_down_arrow.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 
@@ -91,4 +135,12 @@
     font-size: 16px;
     font-weight: 400;
     color: rgb(0,124,237);
+}
+
+
+
+/* contact data */
+.contact-data {
+    height: 928px;
+    width: 300px;
 }
