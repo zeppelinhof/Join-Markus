@@ -8,10 +8,18 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/summary.css">
+    <script src="./js/include_html.js"></script>
+    <script src="./js/topbar.js"></script>
 </head>
 
-<body>
+<body onload="includeHTML()">
 
-</body>
+    <div w3-include-html="./template/sidebar_template.html"></div>
+    <div class="area">
+        <div w3-include-html="./template/topbar_template.html"></div>
+        <div w3-include-html="add_task.html"></div>
+    </div>
+
 
 </html>

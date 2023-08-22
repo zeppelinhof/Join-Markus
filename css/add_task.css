@@ -6,6 +6,7 @@ body{ /* to be removed later */
 h1{
     font-weight: 700;
     font-size: 61px;
+    padding-bottom: 24px;
 }
 .wrap{
     display: flex;

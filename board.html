@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/board.js"></script>
     <link rel="stylesheet" href="css/board.css">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon_black.png">
     <title>Board</title>
 
     <!-- Bootstrap file -->
@@ -20,7 +21,7 @@
     <link rel="stylesheet" href="css/fonts.css">
 </head>
 
-<body>
+<body onload="init()">
     <div class="bodyContainer">
         <div class="headlineBoard">
             <h1>Board</h1>
@@ -31,7 +32,7 @@
                         <img class="search" src="assets/img/Frame 122.svg" alt="">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary headlineButton">
+                <button type="button" class="btn btn-primary headlineButton" >
                     <p>Add task</p>
                     <img class="hlB1" src="assets/img/add.svg" alt="">
                 </button>
@@ -40,7 +41,7 @@
         <div class="headlineBoard2">
             <div class="hlB">
                 <p>To do</p>
-                <img class="addheadlineButton" src="assets/img/plus button.svg" alt="">
+                <img class="addheadlineButton" src="assets/img/plus button.svg" alt="" onclick="openAddTask()">
             </div>
             <div class="hlB">
                 <p> In progress</p>
@@ -56,15 +57,34 @@
         </div>
         <div class="boardContainer">
             <div class="taskContainer" id="toDoContainer">
-                <div class="noTaskContainer">
+                <div class="noTaskContainer" id="noTask">
                     <span class="noTaskContainer1">
                         <p>No tasks To do</p>
                     </span>
                 </div>
+                <div id="noTaskContain" style.display="none"></div>
             </div>
-            <div class="taskContainer" id="inProgressContainer"></div>
-            <div class="taskContainer" id="feedbackContainer"></div>
-            <div class="taskContainer" id="doneContainer"></div>
+            <div class="taskContainer" id="inProgressContainer">
+                <div class="noTaskContainer">
+                    <span class="noTaskContainer2">
+                        <p>No tasks Progress</p>
+                    </span>
+                </div>
+            </div>
+            <div class="taskContainer" id="feedbackContainer">
+                <div class="noTaskContainer">
+                    <span class="noTaskContainer2">
+                        <p>No tasks feedback</p>
+                    </span>
+                </div>
+            </div>
+            <div class="taskContainer" id="doneContainer">
+                <div class="noTaskContainer">
+                    <span class="noTaskContainer1">
+                        <p>No tasks Done</p>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 

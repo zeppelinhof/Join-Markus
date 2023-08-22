@@ -1,4 +1,4 @@
-.dummyClass{
+.dummyClass {
     height: 100px;
     width: 60px;
     background-color: greenyellow;
@@ -115,7 +115,7 @@ body {
     width: 92px;
     height: 24px;
     font-weight: 700 !important;
-    font-size: 21px !important;
+    font-size: 20px !important;
     line-height: 25.2px !important;
     color: #ffffff;
     margin-bottom: 0;
@@ -201,10 +201,183 @@ body {
     height: 19px;
 }
 
-.noTaskContainer1 p {
+.noTaskContainer2 {
+    width: 137px;
+    height: 19px;
+}
+
+.noTaskContainer1 p, .noTaskContainer2 p {
     font-family: 'Open Sans';
     font-weight: 400;
     font-size: 16px;
     line-height: 19.2px;
     color: #A8A8A8;
+}
+
+/*UserTask*/
+.hauptContainer {
+    width: Fixed 252px;
+    height: 263px;
+    padding: 16px;
+    border-radius: 24px;
+    gap: 10px;
+    display: grid;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px 3px #00000014;
+}
+
+.unterContainer {
+    width: Fill 220px;
+    height: 231px;
+    gap: 24px;
+    display: grid;
+}
+
+.taskbezeichnung {
+    width: 113px;
+    height: 27px;
+    padding: 4px 16px 4px 16px;
+    border-radius: 8px;
+    gap: 10px;
+    display: grid;
+    transform: rotate(0deg);
+    background: #0038FF;
+}
+
+.taskbezeichnung p {
+    width: 81px;
+    height: 19px;
+    transform: rotate(0deg);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.beschreibungsContainer {
+    width: Fill 220px;
+    height: 84px;
+    border-radius: 10px;
+    gap: 8px;
+    display: grid;
+}
+
+.titel {
+    width: 220px;
+    height: 38px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2A3647;
+}
+
+.beschreibung {
+    width: 220px;
+    height: 38px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    white-space: nowrap;
+    /* Verhindert Zeilenumbrüche im Text */
+    overflow: hidden;
+    /* Versteckt den überflüssigen Text */
+    text-overflow: ellipsis;
+    /* Zeigt "..." am Ende des abgeschnittenen Texts an */
+}
+
+.progressBar {
+    width: 220px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.progress1 {
+    background: #F4F4F4;
+    width: 128px !important;
+    height: 8px !important;
+    top: 4px !important;
+    padding: 0px 64px 0px 0px !important;
+    border-radius: 8px !important;
+    gap: 10px !important;
+    display: grid !important;
+}
+
+.progressBar1 {
+    width: 64px !important;
+    height: 8px !important;
+    border-radius: 16px !important;
+    background: #4589FF;
+}
+
+.progressBarFortschritt {
+    width: 73px;
+    height: 14px;
+    left: 139px;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+
+.benutzerContainer {
+    width: 220px;
+    height: 32px;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+}
+
+.benutzerNamenContainer {
+    width: 80px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.namensUeberContainer {
+    width: 32px;
+    height: 32px;
+    border-radius: 45px;
+    display: grid;
+    gap: 10px;
+    color: #ffffff;
+}
+
+.eclipse {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(0deg, #FF7A00, #FF7A00),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 1px solid #FFFFFF;
+    border-radius: 45px;
+}
+
+.namensContainer {
+    position: relative;
+    width: 21.33px;
+    height: 7.62px;
+    top: 9.19px;
+    left: 4.33px;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #ffffff;
 }

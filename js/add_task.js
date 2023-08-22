@@ -1,3 +1,5 @@
+// #region Coloring Buttons Urgent Medium Low
+
 function colorRed() {
     let btn = document.getElementById('btn_urgent');
     if (btn.classList.length > 1) {
@@ -55,3 +57,48 @@ function whiteBackgroundGreenArrow(btn) {
     document.getElementById('arrowWhiteLow').classList.remove('z-index-1');
     document.getElementById('arrowGreenLow').classList.remove('z-index-n1');
 }
+
+// #endregion region Coloring Buttons Urgent Medium Low
+
+// #region Data from Add Task to Backend
+let users = [];
+
+async function init() {
+    loadUsers();
+}
+
+async function loadUsers() {
+    users = JSON.parse(await getItem('users'));
+    fillAssignedTo();
+}
+
+async function register_mg() {
+    registerBtn.disabled = true;
+    users.push({
+        email: email.value,
+        password: password.value,
+    });
+
+    await setItem('users', JSON.stringify(users));
+
+    fillAssignedTo();
+    resetForm();
+}
+
+function resetForm() {
+    email.value = '';
+    password.value = '';
+    registerBtn.disabled = false;
+}
+
+function fillAssignedTo() {
+    for (let i = 0; i < users.length; i++) {
+        document.getElementById('selectAssignedTo').innerHTML += /*html*/`
+        <option id="option${i}" value=""></option>
+    `
+        const user = users[i];
+        document.getElementById(`option${i}`).innerHTML = user.email;
+    }
+    
+}
+// #endregion Data from Add Task to Backend

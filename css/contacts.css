@@ -1,0 +1,94 @@
+.contacts {
+    height: 928px;
+    width: 456px;
+    box-shadow: 4px -4px 4px rgba(0 0 0 / 10%);
+}
+
+
+.contacts-area {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 32px 24px;
+}
+
+
+
+/* button new contact */
+
+.btn-new-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 352px;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.btn-new-contact-icon {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+}
+
+
+
+/* contacts content */
+
+#contacts-list {
+    display: flex;
+    flex-direction: column; 
+    gap: 8px;
+    width: 352px;
+}
+
+.contacts-letter-headline {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 17px 36px;
+}
+
+.contacts-separator {
+    border: 1px solid lightgray;
+}
+
+.contact-card {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding: 15px 24px;
+}
+
+.contact-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    color: white;
+    background-color: rgb(255,122,0);
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contact-name {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.contact-email {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(0,124,237);
+}
