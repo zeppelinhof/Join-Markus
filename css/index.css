@@ -156,6 +156,20 @@ body {
   right: 138px;
 }
 
+.signup_reveal1 {
+  position: absolute;
+  cursor: pointer;
+  top: 324px;
+  right: 111px;
+}
+
+.signup_reveal2 {
+  position: absolute;
+  cursor: pointer;
+  top: 390px;
+  right: 111px;
+}
+
 .password_warning {
   position: relative;
   top: -12px;
@@ -325,6 +339,13 @@ body {
   background-repeat: no-repeat, no-repeat;
 }
 
+@media (max-width: 900px) {
+  .form_forgotPassword {
+    width: 786px;
+    padding: 18px 28px;
+  }
+}
+
 @media (max-width: 700px) {
   .form_login {
     width: 552px;
@@ -332,9 +353,31 @@ body {
     padding: 28px 75px;
   }
 
+  .form_forgotPassword {
+    width: 532px;
+    height: 555px;
+    padding: 28px 78px;
+  }
+
   .btn_reveal {
     top: 235px;
     right: 89px;
+  }
+
+  .form_signup {
+    height: 597px;
+    width: 477px;
+    padding: 28px 75px;
+  }
+
+  .signup_reveal1 {
+    top: 303px;
+    right: 53px;
+  }
+
+  .signup_reveal2 {
+    top: 371px;
+    right: 53px;
   }
 }
 
@@ -344,8 +387,19 @@ body {
     height: 473px;
   }
 
+  .form_signup {
+    width: 476px;
+    height: 590px;
+  }
+
   .btn_reveal {
     right: 51px;
+  }
+
+  .form_resetPassword {
+    height: 553px;
+    width: 526px;
+    padding: 28px 68px;
   }
 }
 
@@ -353,6 +407,22 @@ body {
   .form_login {
     width: 320px;
     height: 473px;
+  }
+
+  .form_forgotPassword {
+    width: 332px;
+    height: 455px;
+    padding: 28px 2px;
+  }
+
+  .form_forgotPassword a {
+    left: 18px;
+    top: 52px;
+  }
+
+  .form_signup {
+    width: 320px;
+    height: 483px;
   }
 
   .form_container {
@@ -364,6 +434,16 @@ body {
     top: 219px;
   }
 
+  .signup_reveal1 {
+    top: 267px;
+    right: 34px;
+  }
+
+  .signup_reveal2 {
+    top: 325px;
+    right: 34px;
+  }
+
   .loginButtonContainer {
     width: 180px;
     height: 123px;
@@ -371,7 +451,7 @@ body {
   }
 
   .login_headline {
-    font-size: 47px;
+    font-size: 45px;
   }
 
   .input_login {
@@ -390,7 +470,7 @@ body {
 
   .btn_join {
     font-size: 16px;
-    padding: 4px 0px;
+    padding: 6px 10px;
   }
 
   .legal_container {
@@ -410,6 +490,24 @@ body {
     width: 267px;
   }
 
+  .backToLogin {
+    left: 36px;
+    top: 55px;
+  }
+
+  .input_name {
+    background-position: 253px
+  }
+}
+
+@media (max-height: 900px) {
+  .join_logo {
+    position: absolute;
+    top: 33px;
+    left: 87px;
+    width: 80px;
+    height: 88px;
+  }
 }
 
 @media (max-height: 800px) {
