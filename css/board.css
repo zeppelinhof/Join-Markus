@@ -226,6 +226,10 @@ body {
     box-shadow: 0px 0px 10px 3px #00000014;
 }
 
+.hauptContainer:hover {
+    cursor: pointer;
+}
+
 .unterContainer {
     width: Fill 220px;
     height: 231px;
@@ -380,4 +384,307 @@ body {
     letter-spacing: 0em;
     text-align: center;
     color: #ffffff;
+}
+
+/*detailCard*/
+.taskOverlay {
+    width: 523px;
+    height: 931px;
+    /*top: -3975px;*/
+    left: 154px;
+    border-radius: 30px;
+    padding: 48px 40px 48px 40px;
+    gap: 24px;
+    display: grid;
+    position: relative;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px 0px #00000029;
+}
+
+.frame203 {
+    width: 445px;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.close1 {
+    width: 32px;
+    height: 32px;
+    border: 56px;
+}
+
+.close2 {
+    width: 13.15px;
+    height: 13.15px;
+    top: 9.43px;
+    left: 9.42px;
+    color: #2A3647;
+}
+
+.taskOverlayHeadline {
+    width: 445px;
+    height: 219px;
+    font-family: 'Inter';
+    font-size: 61px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+.frame179 {
+    width: 445px;
+    height: 24px;
+    display: flex;
+    gap: 25px;
+}
+
+.taskOverlayDate {
+    width: 92px;
+    height: 24px;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.taskOverlayNumber {
+    width: 111px;
+    height: 24px;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+
+.frame178 {
+    width: 445px;
+    height: 32px;
+    display: flex;
+    gap: 25px;
+}
+
+.priority {
+    width: 73px;
+    height: 24px;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2A3647;
+
+}
+
+.priorityButton {
+    width: 139px;
+    height: 32px;
+    border-radius: 10px;
+    padding: 4px 18px 4px 18px;
+    display: grid;
+    gap: 10px;
+}
+
+.frame214 {
+    width: 445px;
+    height: 208px;
+    display: grid;
+    gap: 8px;
+}
+
+.assignedTo {
+    width: 445px;
+    height: 24px;
+    font-size: 20px;
+    font-family: 'Inter';
+    font-weight: 400;
+    line-height: 24px;
+    color: #2A3647;
+    margin-bottom: 0;
+}
+
+.frame204 {
+    width: 445px;
+    height: 176px;
+    display: grid;
+    gap: 4px;
+}
+
+.contactContain {
+    width: 445px;
+    height: 56px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 16px 7px 16px;
+}
+
+.frame191 {
+    width: 216px;
+    height: 42px;
+    display: grid;
+    gap: 16px;
+}
+
+.profileBadge {
+    width: 42px;
+    height: 42px;
+    border-radius: 45px;
+    display: grid;
+    gap: 10px;
+    background: #FFFFFF;
+}
+
+.group9 {
+    width: 42px;
+    height: 42px;
+    border-radius: 2px;
+    border: 2px solid #FFFFFF
+}
+
+.ellipse5 {
+    width: 42px;
+    height: 42px;
+    border: 2px;
+    background: linear-gradient(0deg, #1FD7C1, #1FD7C1),
+        linear-gradient(0deg, #FFFFFF, #FFFFFF);
+    border: 2px solid #FFFFFF
+}
+
+.initialien {
+    width: 28px;
+    height: 10px;
+    top: 16px;
+    left: 7px;
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.userName6 {
+    height: 23px;
+    width: 158px;
+    font-family: 'Open Sans';
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+}
+
+.frame215 {
+    width: 445px;
+    height: 100px;
+    gap: 8px;
+}
+
+.subtasks {
+    width: 445px;
+    height: 24px;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2A3647;
+}
+
+.subtasksCheck {
+    width: 344px;
+    height: 32px;
+    padding: 6px 16px 6px 16px;
+    gap: 16px;
+}
+
+.frame20 {
+    width: 159px;
+    height: 24px;
+    gap: 8px;
+    display: flex;
+}
+
+.deleteContact {
+    width: 81px;
+    height: 24px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+
+}
+
+.deleteText {
+    width: 49px;
+    height: 19px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #2A3647;
+    margin-bottom: 0;
+}
+
+.deleteContain {
+    width: 24px;
+    height: 24px;
+}
+
+.deleteIcon {
+    width: 16px;
+    height: 18px;
+    top: 3px;
+    left: 4px;
+    color: #2A3647;
+}
+
+.vector3 {
+    height: 24px;
+    border: 1px;
+    background: #D1D1D1;
+    border: 1px solid #D1D1D1
+}
+
+.editContacts {
+    width: 62px;
+    height: 24px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.editIcon {
+    width: 18.27604103088379px;
+    height: 18.25px;
+    top: 2.75px;
+    left: 3px;
+    color: #2A3647;
+}
+
+.editText {
+    width: 30px;
+    height: 19px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0;
 }
