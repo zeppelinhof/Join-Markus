@@ -21,17 +21,17 @@
     <script src="js/add_task.js"></script>
 </head>
 
-<body onload="init();">
+<body onload="initUsers(); initTasks();">
     <div class="wrap">
         <div class="content">
             <h1>Add Task</h1>
-            <form class="row g-3 needs-validation" novalidate>
+            <form onsubmit="register_task(); return false;" class="row g-3 needs-validation" novalidate>
                 <div class="panel">
                     <div class="left-side-of-panel">
 
                         <div class="property">
                             <label for="validationCustom01" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="validationCustom01" placeholder="Enter a title"
+                            <input id="title" type="text" class="form-control" id="validationCustom01" placeholder="Enter a title"
                                 required>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -40,7 +40,7 @@
 
                         <div class="property">
                             <label for="validationCustom02" class="form-label">Description</label>
-                            <textarea class="form-control" placeholder="Enter a Description" id="floatingTextarea" required
+                            <textarea id="description" class="form-control" placeholder="Enter a Description" id="floatingTextarea" required
                                     style="height: 100px"></textarea>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -63,7 +63,7 @@
                     <div class="right-side-of-panel">
                         <div class="property">
                             <label for="validationCustom02" class="form-label">Due date</label>
-                            <input type="date" class="form-control cursor-pointer" placeholder="dd/mm/yyyy" required>
+                            <input id="date" type="date" class="form-control cursor-pointer" placeholder="dd/mm/yyyy" required>
                             <div class="invalid-feedback">
                                 This field is required.
                             </div>
@@ -72,27 +72,28 @@
                         <div class="property">
                             <label for="validationCustom02" class="form-label">Prio</label>
                             <div class="all-buttons-prio">
-                                <button id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
+                                <div id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
                                     <div class="containArrow">
                                         <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
                                             src="assets/img/Capa_2_white.svg">
                                         <img id="arrowRedUrgent" class="arrowRedUrgent" src="assets/img/Capa_2.svg">
                                     </div>
-                                </button>
-                                <button id="btn_medium" class="button-prio" onclick="colorOrange();">Medium
+                                </div>
+                                <div id="btn_medium" class="button-prio" onclick="colorOrange();">Medium
                                     <div class="containArrow">
                                         <img id="arrowWhiteMedium" class="arrowWhiteMedium"
                                             src="assets/img/Prio_media_white.svg">
                                         <img id="arrowOrangeMedium" class="arrowOrangeMedium"
                                             src="assets/img/Prio_media.svg">
                                     </div>
-                                </button>
-                                <button id="btn_low" class="button-prio" onclick="colorGreen();">Low
+                                </div>
+                                <div id="btn_low" class="button-prio" onclick="colorGreen();">Low
                                     <div class="containArrow">
                                         <img id="arrowWhiteLow" class="arrowWhiteLow" src="assets/img/Capa_1_white.svg">
                                         <img id="arrowGreenLow" class="arrowGreenLow" src="assets/img/Capa_1.svg">
                                     </div>
-                                </button>
+                                </div>                                
+                                <div id="prioStatusAsString" style="display: none;"></div>  <!-- for transfer to Board -->
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -101,7 +102,7 @@
 
                         <div class="property">
                             <div class="property-name">Category</div>
-                            <select class="form-select" aria-label="Default select example" required>
+                            <select id="category" class="form-select" aria-label="Default select example" required>
                                 <option selected>Select task category</option>
                                 <option value="1">User Story</option>
                                 <option value="2">Technical Task</option>
@@ -125,7 +126,7 @@
                             </div>
                         </div>
 
-                        <div class="buttons_clear_create">
+                        <div class="buttons_clear_create">                            
                             <button class="btn btn-outline-dark button-clear">Clear<img class="x_clear" src="assets/img/Vector.svg"
                                     alt=""></button>
                             <button type="submit" class="btn btn-outline-dark button-create-task">Create Task <img
@@ -138,6 +139,7 @@
     </div>
 
     <form onsubmit="register_mg(); return false;">
+        <label>Assign person (email, password)</label><br>
         <input type="email" id="email">
         <input type="password" id="password">
         <button id="registerBtn">Registrieren</button>

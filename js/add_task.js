@@ -1,4 +1,4 @@
-// #region Coloring Buttons Urgent Medium Low
+// #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
 
 function colorRed() {
     let btn = document.getElementById('btn_urgent');
@@ -7,8 +7,9 @@ function colorRed() {
     }
     else {
         btn.classList.add('button-red');
-        document.getElementById('arrowWhiteUrgent').classList.add('z-index-1');
-        document.getElementById('arrowRedUrgent').classList.add('z-index-n1');
+        pushToFront('arrowWhiteUrgent');
+        pushToBackground('arrowRedUrgent');
+        setPrioStatusAsString('urgent');
     }
     whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
     whiteBackgroundGreenArrow(document.getElementById('btn_low'));
@@ -20,8 +21,9 @@ function colorOrange() {
     }
     else {
         btn.classList.add('button-orange');
-        document.getElementById('arrowWhiteMedium').classList.add('z-index-1');
-        document.getElementById('arrowOrangeMedium').classList.add('z-index-n1');
+        pushToFront('arrowWhiteMedium');
+        pushToBackground('arrowOrangeMedium');
+        setPrioStatusAsString('medium');
     }
     whiteBackgroundRedArrow(document.getElementById('btn_urgent'));
     whiteBackgroundGreenArrow(document.getElementById('btn_low'));
@@ -33,8 +35,9 @@ function colorGreen() {
     }
     else {
         btn.classList.add('button-green');
-        document.getElementById('arrowWhiteLow').classList.add('z-index-1');
-        document.getElementById('arrowGreenLow').classList.add('z-index-n1');
+        pushToFront('arrowWhiteLow');
+        pushToBackground('arrowGreenLow');
+        setPrioStatusAsString('low');
     }
     whiteBackgroundRedArrow(document.getElementById('btn_urgent'));
     whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
@@ -58,37 +61,55 @@ function whiteBackgroundGreenArrow(btn) {
     document.getElementById('arrowGreenLow').classList.remove('z-index-n1');
 }
 
+function pushToFront(obj){
+    document.getElementById(obj).classList.add('z-index-1');
+}
+
+function pushToBackground(obj){
+    document.getElementById(obj).classList.add('z-index-n1');
+}
+
+function setPrioStatusAsString(status){
+    document.getElementById('prioStatusAsString').innerHTML = status;
+}
+
 // #endregion region Coloring Buttons Urgent Medium Low
 
 // #region Data from Add Task to Backend
-let users = [];
+let tasks = [];
 
-async function init() {
-    loadUsers();
+async function initTasks() {
+    loadTasks();
 }
 
-async function loadUsers() {
-    users = JSON.parse(await getItem('users'));
-    fillAssignedTo();
+async function loadTasks() {
+    tasks = JSON.parse(await getItem('tasks'));
+    // fillAssignedTo();
 }
 
-async function register_mg() {
-    registerBtn.disabled = true;
-    users.push({
-        email: email.value,
-        password: password.value,
+async function register_task() {
+    // registerBtn.disabled = true;
+    tasks.push({
+        title: title.value,
+        description: description.value,
+        selectAssignedTo: selectAssignedTo.value,
+        date: date.value,
+        prio: document.getElementById('prioStatusAsString').innerHTML,
+        category: category.value
     });
 
-    await setItem('users', JSON.stringify(users));
+    await setItem('tasks', JSON.stringify(tasks));
 
-    fillAssignedTo();
+    // fillAssignedTo();
     resetForm();
 }
 
 function resetForm() {
-    email.value = '';
-    password.value = '';
-    registerBtn.disabled = false;
+    title.value = '';
+    description.value = '';
+    selectAssignedTo.value = '';
+    date.value = '';
+    // registerBtn.disabled = false;
 }
 
 function fillAssignedTo() {
