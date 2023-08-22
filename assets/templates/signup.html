@@ -1,12 +1,12 @@
-<form class="form_container form_signup">
+<form class="form_container form_signup" onsubmit="validateSignUp(); return false;">
     <a href="index.html" class="backToLogin"><img src="assets/img/arrowLeft.svg"></a>
     <div class="login_headline">Sign up</div>
     <i class="blueLine"></i>
 
     <input type="text" class="form-control input_login input_name" style="margin-bottom: -16px !important;"
-        aria-describedby="emailHelp" placeholder="Name">
+        aria-describedby="emailHelp" placeholder="Name" id="username">
     <input type="email" class="form-control input_login input_mail" style="margin-bottom: -16px !important;"
-        aria-describedby="emailHelp" placeholder="Email">
+        aria-describedby="emailHelp" placeholder="Email" id="email">
     <div class="form-group">
         <input type="password" class="form-control input_login input_password" style="margin-bottom: -16px !important;"
             id="inputPassword2" placeholder="Password" onkeyup="updateInputState(this, 'btn_reveal2')"
@@ -31,5 +31,5 @@
         </label>
         <a href="#" style="text-decoration: none; color: #29ABE2;">Privacy policy</a>
     </div>
-    <button type="submit" class="btn_filled btn_join">Sign up</button>
+    <button type="submit" class="btn_filled btn_join" id="btn_signUpUser">Sign up</button>
 </form>

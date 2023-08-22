@@ -1,5 +1,6 @@
-function init() {
+async function init() {
     loadHTML('formElement', "login.html");
+    loadUsers();
 }
 
 
@@ -78,4 +79,18 @@ function toggleReveal(img, id) {
         }
     }
     password.focus();
+}
+
+
+function validateSignUp() {
+    const username = document.getElementById('username').value;
+    const usermail = document.getElementById('email').value;
+    const password = document.getElementById('inputPassword2').value;
+    const passwordConfirm = document.getElementById('inputPassword3').value;
+
+    if(password === passwordConfirm) {
+        register(username, usermail, password);
+    } else {
+        alert('password not matching');
+    }
 }
