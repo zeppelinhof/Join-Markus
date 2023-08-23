@@ -1,39 +1,48 @@
 let contacts = [
     {
         'name': 'Anton Mayer',
-        'email': 'anton@gmail.com'
+        'email': 'anton@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Anja Schulz',
-        'email': 'schulz@hotmail.com'
+        'email': 'schulz@hotmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Benedikt Ziegler',
-        'email': 'benedikt@gmail.com'
+        'email': 'benedikt@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Clemens H.',
-        'email': 'clem@gmail.com'
+        'email': 'clem@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'David Eisenberg',
-        'email': 'davidberg@gmail.com'
+        'email': 'davidberg@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Eva Fischer',
-        'email': 'eva@gmail.com'
+        'email': 'eva@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Emmanuel Mauer',
-        'email': 'emmanuelma@gmail.com'
+        'email': 'emmanuelma@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Juri Sajzew',
-        'email': 'js@gmail.com'
+        'email': 'js@gmail.com',
+        'phone': '0170 333333'
     },
     {
         'name': 'Markus',
-        'email': 'mark@gmail.com'
+        'email': 'mark@gmail.com',
+        'phone': '0170 333333'
     }
 ];
 
@@ -120,7 +129,7 @@ let contactColors = [
 let existLetterHeadline = '';
 
 
-function init() {
+function initContacts() {
     renderContacts();
     includeHTML();
 }
@@ -139,7 +148,7 @@ function renderContacts() {
         addLetterHeadline(firstLetter, contactsList);
 
         let firstLetters = findFirstLetters(name);
-        contactsList.innerHTML += getContactCardHTML(colorStyle, firstLetters, name, email)
+        contactsList.innerHTML += getContactCardHTML(i, colorStyle, firstLetters, name, email)
 
         colorNumberIndex++;
         colorNumberIndex >= contactColors.length ? colorNumberIndex = 0 : null;
@@ -164,4 +173,14 @@ function findFirstLetters(name) {
     }
 
     return letters;
+}
+
+
+function openContactData(i) {
+    let contactCard = document.getElementById(`contactCard-${i}`);
+    if (contactCard.classList.contains('contact-card-click')) {
+        contactCard.classList.remove('contact-card-click');
+    } else {
+        contactCard.classList.add('contact-card-click');
+    }
 }
