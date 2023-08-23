@@ -339,6 +339,12 @@ body {
   background-repeat: no-repeat, no-repeat;
 }
 
+.animationContainer
+{
+  position: absolute;
+  bottom: 0px;
+}
+
 @media (max-width: 900px) {
   .form_forgotPassword {
     width: 786px;

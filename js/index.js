@@ -42,6 +42,7 @@ function updateInputState(element, idToToggle) {
             document.getElementById(idToToggle).src = "../assets/img/eye.svg";
         }
     }
+    validateSignUp();
 }
 
 
@@ -83,14 +84,37 @@ function toggleReveal(img, id) {
 
 
 function validateSignUp() {
+    const credentials = validatecredentials();
+    const match = validatePasswords();
+    const consent = document.getElementById('checkboxConsentPolicy').checked;
+
+    if(match && consent && credentials) {
+        document.getElementById('btn_signUpUser').classList.remove('invisible');
+    } else {
+        document.getElementById('btn_signUpUser').classList.add('invisible');
+    }
+}
+
+
+function validatecredentials() {
     const username = document.getElementById('username').value;
-    const usermail = document.getElementById('email').value;
+    const email = document.getElementById('email').value;
+    if(username != "" && email != "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function validatePasswords() {
     const password = document.getElementById('inputPassword2').value;
     const passwordConfirm = document.getElementById('inputPassword3').value;
-
     if(password === passwordConfirm) {
-        register(username, usermail, password);
+        document.getElementById('noMatch').classList.add('invisible');
+        return true;
     } else {
-        alert('password not matching');
+        document.getElementById('noMatch').classList.remove('invisible');
+        return false;
     }
 }
