@@ -8,6 +8,7 @@ h1{
     font-size: 61px;
     padding-bottom: 24px;
 }
+
 .wrap{
     display: flex;
     justify-content: center;
@@ -34,6 +35,34 @@ input {
 
 .property {
     padding-bottom: 24px;
+}
+
+.list-item-display-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+}
+
+.list-item-display-flex-icon-name{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+li:hover{
+    background-color: gray;
+}
+
+.contactCirle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color:darkslateblue;
+    color: white;
 }
 
 .buttons_clear_create {

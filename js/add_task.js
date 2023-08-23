@@ -84,7 +84,6 @@ async function initTasks() {
 
 async function loadTasks() {
     tasks = JSON.parse(await getItem('tasks'));
-    // fillAssignedTo();
 }
 
 async function register_task() {
@@ -92,7 +91,7 @@ async function register_task() {
     tasks.push({
         title: title.value,
         description: description.value,
-        selectAssignedTo: selectAssignedTo.value,
+        selectAssignedTo: contactsInTask,
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
         category: category.value
@@ -100,26 +99,17 @@ async function register_task() {
 
     await setItem('tasks', JSON.stringify(tasks));
 
-    // fillAssignedTo();
     resetForm();
 }
 
 function resetForm() {
     title.value = '';
     description.value = '';
+    contactsInTask = [];
     selectAssignedTo.value = '';
     date.value = '';
     // registerBtn.disabled = false;
 }
 
-function fillAssignedTo() {
-    for (let i = 0; i < users.length; i++) {
-        document.getElementById('selectAssignedTo').innerHTML += /*html*/`
-        <option id="option${i}" value=""></option>
-    `
-        const user = users[i];
-        document.getElementById(`option${i}`).innerHTML = user.email;
-    }
-    
-}
+
 // #endregion Data from Add Task to Backend
