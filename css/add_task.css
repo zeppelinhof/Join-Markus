@@ -72,10 +72,10 @@ li:hover{
     
 }
 
-.selected-contacts-circles-below{
+#selected-contacts-circles-below{
     display: flex;
     gap: 8px;
-    background-color: antiquewhite;
+    width: 200px;
     flex-wrap: wrap;
 }
 

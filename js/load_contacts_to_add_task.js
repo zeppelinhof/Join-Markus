@@ -53,11 +53,11 @@ function fillAssignedTo() {
         </li>                  
     `
         document.getElementById(`option${i}`).innerHTML += user;
-        initialsInCircle(i, user);
+        initialsInCircle_List(i, user);
     }
 }
 // Create Circles in list
-function initialsInCircle(i, contact) {
+function initialsInCircle_List(i, contact) {
     document.getElementById(`contactCircle${i}`).innerHTML = getInitials(contact);
 }
 
@@ -69,14 +69,12 @@ function contactToTaskClickName(i, user) {
     if (checkbox.checked) {
         document.getElementById(`flexCheckDefault${i}`).checked = false;
         deleteContact(user);
+        drawContactCirclesBelow();
     }
     else {
         // Create Circles of selected users below list
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
-        document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
-            <div class="contactCircle" id ="contactCircleBelow${i}"></div>       
-        `
-        document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
+        drawContactCirclesBelow();
 
         document.getElementById(`flexCheckDefault${i}`).checked = true;
     }
@@ -88,10 +86,22 @@ function contactToTaskClickCheckbox(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
-        document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
+        drawContactCirclesBelow();
     }
     else {
         deleteContact(contact);
+        drawContactCirclesBelow();
+    }
+}
+
+function drawContactCirclesBelow() {
+    document.getElementById('selected-contacts-circles-below').innerHTML = '';
+    for (let i = 0; i < contactsInTask.length; i++) {
+        const user = contactsInTask[i];
+        document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
+            <div class="contactCircle" id ="contactCircleBelow${i}"></div>       
+        `
+        document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
     }
 }
 
