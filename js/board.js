@@ -83,7 +83,7 @@ function openAddTask() {
         const task = allTasks[a]['task'];
         const designation = allTasks[a]['designation'];
         const description = allTasks[a]['description'];
-        const initialArray = allTasks[a]['initial'];
+        const initialArray = allTasks[a]['initials'];
         const category = allTasks[a]['category'];
 
         const containerClass = category === 'User Story' ? 'toDoContainer' : 'inProgressContainer';
@@ -91,11 +91,11 @@ function openAddTask() {
         let initialsHTML = '';
 
         for (let w = 0; w < initialArray.length; w++) {
-            const initial = initialArray[w];
+            const initials = initialArray[w];
             initialsHTML += /*html*/ `
                 <div class='profileBadge1' >
                     <div class="Group9">
-                        <p class='initialContain'>${initial}</p>
+                        <p class='initialContain'>${initials}</p>
                         <div class='eclipse5'></div>
                     </div>
                 </div>`;
@@ -166,4 +166,5 @@ function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
     document.getElementById('cards').style.display = '';
 }
+
 
