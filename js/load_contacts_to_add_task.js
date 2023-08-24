@@ -1,6 +1,7 @@
 let users = [];
 let contactsInTask = [];
-let initials = [];
+// let initials = [];
+
 
 // #region Load Users from Backend
 async function initUsers() {
@@ -12,7 +13,7 @@ async function loadUsers() {
     fillAssignedTo();
 }
 
-async function load_contacts() {
+async function register_user() {
     registerBtn.disabled = true;
     users.push({
         name: _name.value,
@@ -44,7 +45,7 @@ function fillAssignedTo() {
         <li class="list-group-item">            
             <div class="list-item-display-flex">
                 <div class="list-item-display-flex-icon-name" onclick="contactToTaskClickName(${i}, '${user}')">
-                    <div id="contactCirle${i}" class="contactCirle"></div>
+                    <div id="contactCircle${i}" class="contactCircle"></div>
                     <div id="option${i}"></div>
                 </div>
                 <input class="form-check-input me-1 checkbox-padding" type="checkbox" onclick="contactToTaskClickCheckbox(${i}, '${user}')" id="flexCheckDefault${i}" value="">
@@ -52,15 +53,12 @@ function fillAssignedTo() {
         </li>                  
     `
         document.getElementById(`option${i}`).innerHTML += user;
-        initialsInCirle(i, user);
+        initialsInCircle(i, user);
     }
 }
 // Create Circles in list
-function initialsInCirle(i, user) {
-    document.getElementById(`contactCirle${i}`).innerHTML += user.charAt(0);
-    if (user.match(' ')) {
-        document.getElementById(`contactCirle${i}`).innerHTML += user.charAt(user.match(' ').index + 1);
-    }
+function initialsInCircle(i, contact) {
+    document.getElementById(`contactCircle${i}`).innerHTML = getInitials(contact);
 }
 
 // #endregion Load Users from Backend
@@ -68,7 +66,7 @@ function initialsInCirle(i, user) {
 // #region Load Users to Dropdown
 function contactToTaskClickName(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
-    if (checkbox.checked == true) {
+    if (checkbox.checked) {
         document.getElementById(`flexCheckDefault${i}`).checked = false;
         deleteContact(user);
     }
@@ -76,25 +74,33 @@ function contactToTaskClickName(i, user) {
         // Create Circles of selected users below list
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
         document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
-            <div class="contactCirle" id ="contactCircleBelow${i}"></div>       
+            <div class="contactCircle" id ="contactCircleBelow${i}"></div>       
         `
-        document.getElementById(`contactCircleBelow${i}`).innerHTML += user.charAt(0);
-        if (user.match(' ')) {
-            document.getElementById(`contactCircleBelow${i}`).innerHTML += user.charAt(user.match(' ').index + 1);
-        }
-        
+        document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
+
         document.getElementById(`flexCheckDefault${i}`).checked = true;
     }
 }
 
-function contactToTaskClickCheckbox(i, contact) {
+// #endregion Load Users to Dropdown
+
+function contactToTaskClickCheckbox(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
-    if (checkbox.checked == true) {
+    if (checkbox.checked) {
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
+        document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
     }
     else {
         deleteContact(contact);
     }
+}
+
+function getInitials(contact) {
+    initials = contact.charAt(0);
+    if (contact.match(' ')) {
+        initials += contact.charAt(contact.match(' ').index + 1);
+    }
+    return initials;
 }
 
 function deleteContact(contact) {
@@ -106,4 +112,3 @@ function deleteContact(contact) {
         }
     }
 }
-// #endregion Load Users to Dropdown
