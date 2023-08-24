@@ -60,8 +60,8 @@
                         </div>
 
                         <div class="property"> <!-- Assigned to User -->
-                            <div class="dropdown">
-                                <div class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            <div class="dropdown cursor-pointer">
+                                <div class="dropdown-toggle select-contacts-field" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                     aria-expanded="false">
                                     Select contacts to assign
                                 </div>
@@ -71,6 +71,10 @@
                                     This field is required.
                                 </div>
                             </div>
+                        </div>
+
+                        <div id="selected-contacts-circles-below">
+
                         </div>
                     </div>
 
@@ -158,9 +162,11 @@
     </div>
 
     <form onsubmit="load_contacts(); return false;">
-        <label>Assign person (email, password)</label><br>
+        <label>Assign person (name, email, password, phone)</label><br>
+        <input type="text" id="_name">
         <input type="email" id="email">
         <input type="password" id="password">
+        <input type="text" id="phone">
         <button id="registerBtn">Registrieren</button>
     </form>
     <script src="js/load_contacts_to_add_task.js"></script>

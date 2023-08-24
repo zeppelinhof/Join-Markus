@@ -65,6 +65,20 @@ li:hover{
     color: white;
 }
 
+.select-contacts-field{
+    background-color: white;
+    border-radius: 10px;
+    padding: 12px 16px 12px 16px;
+    
+}
+
+.selected-contacts-circles-below{
+    display: flex;
+    gap: 8px;
+    background-color: antiquewhite;
+    flex-wrap: wrap;
+}
+
 .buttons_clear_create {
     display: flex;
     justify-content: flex-end;
