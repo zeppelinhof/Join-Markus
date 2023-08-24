@@ -99,7 +99,6 @@ async function register_task() {
         column: 'to do'
     });
 
-    tasks.splice(0,3);
     await setItem('tasks', JSON.stringify(tasks));
 
     resetForm();
