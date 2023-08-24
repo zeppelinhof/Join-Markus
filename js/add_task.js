@@ -98,7 +98,6 @@ async function register_task() {
         initials: initials
     });
 
-    tasks.splice(0,3);
     await setItem('tasks', JSON.stringify(tasks));
 
     resetForm();
