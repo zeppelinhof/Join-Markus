@@ -1,5 +1,6 @@
 let users = [];
 let contactsInTask = [];
+let initials = [];
 
 // #region Load Users from Backend
 async function initUsers() {

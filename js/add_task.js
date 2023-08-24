@@ -94,9 +94,11 @@ async function register_task() {
         selectAssignedTo: contactsInTask,
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
-        category: category.value
+        category: category.value,
+        initials: initials
     });
 
+    tasks.splice(0,3);
     await setItem('tasks', JSON.stringify(tasks));
 
     resetForm();
@@ -106,6 +108,7 @@ function resetForm() {
     title.value = '';
     description.value = '';
     contactsInTask = [];
+    initials = [];
     selectAssignedTo.value = '';
     date.value = '';
     // registerBtn.disabled = false;
