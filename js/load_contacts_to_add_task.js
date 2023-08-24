@@ -68,8 +68,7 @@ function contactToTaskClickName(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
         document.getElementById(`flexCheckDefault${i}`).checked = false;
-        deleteContact(user);
-        drawContactCirclesBelow();
+        deleteContact(user);        
     }
     else {
         // Create Circles of selected users below list
@@ -89,8 +88,7 @@ function contactToTaskClickCheckbox(i, user) {
         drawContactCirclesBelow();
     }
     else {
-        deleteContact(contact);
-        drawContactCirclesBelow();
+        deleteContact(user);
     }
 }
 
@@ -121,4 +119,5 @@ function deleteContact(contact) {
             contactsInTask.splice(i, 1);
         }
     }
+    drawContactCirclesBelow();
 }

@@ -59,12 +59,12 @@
                             </div>
                         </div>
 
-                        <div class="property"> <!-- Assigned to User -->
+                        <div class="property">                                  <!-- Assigned to User -->
                             <div class="dropdown cursor-pointer">
-                                <div class="dropdown-toggle select-contacts-field" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <div class="dropdown-toggle select-contacts-field" id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Select contacts to assign
-                                </div>
+                                </div>                                
                                 <ul id="selectAssignedTo" class="dropdown-menu">
                                 </ul>
                                 <div class="invalid-feedback">
@@ -72,7 +72,7 @@
                                 </div>
                             </div>
                             <div id="selected-contacts-circles-below">
-                        </div>                        
+                            </div>
 
                         </div>
                     </div>
@@ -190,6 +190,27 @@
                 }, false)
             })
         })()
+
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        function filterFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("myDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+
     </script>
 
 </body>

@@ -95,7 +95,7 @@ async function register_task() {
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
         category: category.value,
-        initials: initials,
+        initials: '',
         column: 'to do'
     });
 
