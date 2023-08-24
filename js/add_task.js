@@ -95,9 +95,11 @@ async function register_task() {
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
         category: category.value,
-        initials: initials
+        initials: initials,
+        column: 'to do'
     });
 
+    tasks.splice(0,3);
     await setItem('tasks', JSON.stringify(tasks));
 
     resetForm();
