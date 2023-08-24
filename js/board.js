@@ -1,34 +1,34 @@
 let allTasks = [
-    {
-        "task": 'User Story',
-        "designation": 'Kochwelt Page & Recipe Recomender',
-        "description": 'Build start page wirh recipe recommendation',
-        "date": '10.05.2023',
-        "priority": 'Medium',
-        "assigned": ["Emmanuel Mauerer", "Marcel Bauer", "Anton Mayeer"],
-        "initial": [],
-        "category": 'User Story',
-    },
-    {
-        "task": 'Technical Task',
-        "designation": 'CSS Architecture Planning',
-        "description": 'Define CSS naming conventions and structure.',
-        "date": '02.09.2023',
-        "priority": 'Urgent',
-        "assigned": ['Juri Sajzew', 'Benedigt Ziegler'],
-        "initial": [],
-        "category": 'User Story',
-    },
-    {
-        "task": 'Technical Task',
-        "designation": 'CSS Architecture Planning',
-        "description": 'Define CSS naming conventions and structure.',
-        "date": '02.09.2023',
-        "priority": 'Urgent',
-        "assigned": ['Juri Sajzew', 'Benedigt Ziegler'],
-        "initial": [],
-        "category": 'Technical Story',
-    }
+    //{
+    //    "task": 'User Story',
+    //    "designation": 'Kochwelt Page & Recipe Recomender',
+    //    "description": 'Build start page wirh recipe recommendation',
+    //    "date": '10.05.2023',
+    //    "priority": 'Medium',
+    //    "assigned": ["Emmanuel Mauerer", "Marcel Bauer", "Anton Mayeer"],
+    //    "initial": [],
+    //    "category": 'User Story',
+    //},
+    //{
+    //    "task": 'Technical Task',
+    //    "designation": 'CSS Architecture Planning',
+    //    "description": 'Define CSS naming conventions and structure.',
+    //    "date": '02.09.2023',
+    //    "priority": 'Urgent',
+    //    "assigned": ['Juri Sajzew', 'Benedigt Ziegler'],
+    //    "initial": [],
+    //    "category": 'User Story',
+    //},
+    //{
+    //    "task": 'Technical Task',
+    //    "designation": 'CSS Architecture Planning',
+    //    "description": 'Define CSS naming conventions and structure.',
+    //    "date": '02.09.2023',
+    //    "priority": 'Urgent',
+    //    "assigned": ['Juri Sajzew', 'Benedigt Ziegler'],
+    //    "initial": [],
+    //    "category": 'Technical Story',
+    //}
 ];
 
 let currentDraggedElement;
@@ -36,6 +36,11 @@ let currentDraggedElement;
 function init() {
     //includeHTML();
     loadAllName();
+    loadTasks();
+}
+
+async function loadTasks() {
+    allTasks = JSON.parse(await getItem('tasks'));
 }
 
 //async function includeHTML() {
