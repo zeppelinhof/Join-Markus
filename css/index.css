@@ -339,11 +339,41 @@ body {
   background-repeat: no-repeat, no-repeat;
 }
 
-.animationContainer
-{
+.slideBox {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 20px 25px;
+  color: #fff;
+  background-color: #2A3647;
+  border-radius: 20px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
   position: absolute;
-  bottom: 0px;
+  bottom: -100px;
+  z-index: 999;
+  animation-name: moveUp;
+  animation-duration: 2s;
+  animation-delay: 800ms;
+  animation-timing-function: ease-out;
 }
+
+@keyframes moveUp {
+  0% {bottom: 0; opacity: 1;}
+  99% {bottom: 50vh; opacity: 0;}
+  100% { display: none;}
+}
+
+/* .message {
+  position: absolute;
+  z-index: 999;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #00cc00;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  transition: transform 1s ease-in-out;
+} */
 
 @media (max-width: 900px) {
   .form_forgotPassword {

@@ -1,6 +1,6 @@
 async function init() {
     loadHTML('formElement', "login.html");
-    loadUsers();
+    await loadUsers();
 }
 
 
@@ -88,7 +88,7 @@ function validateSignUp() {
     const match = validatePasswords();
     const consent = document.getElementById('checkboxConsentPolicy').checked;
 
-    if(match && consent && credentials) {
+    if (match && consent && credentials) {
         document.getElementById('btn_signUpUser').classList.remove('invisible');
     } else {
         document.getElementById('btn_signUpUser').classList.add('invisible');
@@ -99,7 +99,7 @@ function validateSignUp() {
 function validatecredentials() {
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
-    if(username != "" && email != "") {
+    if (username != "" && email != "") {
         return true;
     } else {
         return false;
@@ -110,11 +110,22 @@ function validatecredentials() {
 function validatePasswords() {
     const password = document.getElementById('inputPassword2').value;
     const passwordConfirm = document.getElementById('inputPassword3').value;
-    if(password === passwordConfirm) {
+    if (password === passwordConfirm) {
         document.getElementById('noMatch').classList.add('invisible');
         return true;
     } else {
         document.getElementById('noMatch').classList.remove('invisible');
         return false;
     }
+}
+
+
+
+function successMessage(message) {
+    const slideBox = document.getElementById("slideBox");
+    slideBox.classList.remove('d-none');
+    slideBox.innerHTML = message;
+    setTimeout(function(){
+        slideBox.classList.add('d-none');
+    }, 2750); 
 }

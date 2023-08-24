@@ -1,15 +1,10 @@
 let users = [];
 
 
-async function init(){
-    loadUsers();
-}
-
-
-async function loadUsers(){
+async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
-    } catch(e){
+    } catch (e) {
         console.error('Loading error:', e);
     }
 }
@@ -27,9 +22,12 @@ async function register() {
         name: username.value,
         email: usermail.value,
         password: password.value,
+        phone: ""
     });
     await setItem('users', JSON.stringify(users));
     resetForm(username, usermail, password, passwordConfirm, registerBtn);
+    successMessage('You signed up successfully');
+    loadHTML('formElement', "login.html");
 }
 
 

@@ -21,9 +21,16 @@
     <link rel="stylesheet" href="css/fonts.css">
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
+    <script src="./js/storage.js"></script>
 </head>
 
-<body onload="init()"> 
+<body onload="init()">
+
+    <!--<div class="area">
+        <div w3-include-html="./template/topbar_template.html"></div>
+        <div w3-include-html="./template/sidebar_template.html"></div>
+    </div>-->
+
     <div class="bodyContainer">
         <div class="headlineBoard">
             <h1>Board</h1>
@@ -64,7 +71,7 @@
                         <p>No tasks To do</p>
                     </span>
                 </div>
-                <div id="noTaskContain" style.display="none"></div>
+                <div id="noTaskContain" style="display: none;"></div>
             </div>
             <div class="taskContainer" id="inProgressContainer">
                 <div class="noTaskContainer">
@@ -90,7 +97,64 @@
         </div>
     </div>
 
-    <div id="detailCard" ></div>
+    <div id="detailCard" style="display: none;">
+        <div class="taskOverlay">
+            <div class="frame203" id="frame203">
+                <span class="frame113" id="frame113"></span>
+                <div id="close1" onclick="closeDetailCard()">
+                    <img class="close2" src="assets/img/close.svg" alt="">
+                </div>
+            </div>
+            <p id="taskOverlayHeadline"></p>
+            <div class="frame179">
+                <p class="taskOverlayDate">Due date:</p>
+                <span id="taskOverlayNumber"></span>
+            </div>
+            <div class="frame178">
+                <p class="priority">Priority:</p>
+                <div class="priorityButton"></div>
+            </div>
+            <div class="frame214">
+                <p class="assignedTo">Assigned To:</p>
+                <div class="frame204">
+                    <div class="contactContain">
+                        <div class="frame191">
+                            <div class="profileBadge">
+                                <div class="group9">
+                                    <p class="initialien"></p>
+                                    <div class="ellipse5"></div>
+                                </div>
+                            </div>
+                            <p class="userName6"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="frame215">
+                <p class="subtasks">Subtasks</p>
+                <div class="frame204">
+                    <span class="subtasksCheck">
+                        <p class="contactForm"></p>
+                    </span>
+                </div>
+            </div>
+            <div class="frame20">
+                <div class="deleteContact">
+                    <div class="deleteContain">
+                        <img src="assets/img/delete.svg" alt="" class="deleteIcon">
+                    </div>
+                    <p class="deleteText">Delete</p>
+                </div>
+                <span class="vector3"></span>
+                <div class="editContacts">
+                    <div class="editContain">
+                        <img src="assets/img/edit.svg" alt="" class="editIcon">
+                    </div>
+                    <p class="editText">Edit</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

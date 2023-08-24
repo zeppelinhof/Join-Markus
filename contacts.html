@@ -18,17 +18,18 @@
     <script src="./js/contacts_html_template.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="initContacts()">
 
     <!-- sidebar -->
     <section w3-include-html="./template/sidebar_template.html"></section>
 
-    <div>
+    <div class="contact-topbar-area">
 
         <!-- topbar -->
         <section w3-include-html="./template/topbar_template.html"></section>
 
         <div class="contact-windows">
+
             <!-- contacts list -->
             <section class="contacts">
 
@@ -47,9 +48,40 @@
 
             </section>
 
+            <!-- contact data -->
             <section class="contact-data">
 
+                <div class="contact-data-area">
+
+                    <!-- headline -->
+                    <div class="contact-data-headline">
+                        <h1 class="contact-data-headline-left">Contacts</h1>
+                        <div class="contact-data-headline-separator"></div>
+                        <span class="contact-data-headline-right">Better with a team</span>
+                    </div>
+
+                    <!-- content -->
+                    <div class="contact-data-content">
+                        <span class="contact-data-content-icon">AM</span>
+                        <div class="contact-data-content-name-area">
+                            <h1 class="contact-data-content-name">Anton Mayer</h1>
+                            <div class="contact-data-content-edit-del-area">
+                                <div class="contact-data-content-edit-del">
+                                    <img src="./assets/img/edit.svg" alt="">
+                                    <span>Edit</span>
+                                </div>
+                                <div class="contact-data-content-edit-del">
+                                    <img src="./assets/img/delete.svg" alt="">
+                                    <span>Delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </section>
+
         </div>
 
 </body>
