@@ -176,11 +176,52 @@ function findFirstLetters(name) {
 }
 
 
-function openContactData(i) {
+function openContactData(i, colorStyle) {
     let contactCard = document.getElementById(`contactCard-${i}`);
+
     if (contactCard.classList.contains('contact-card-click')) {
         contactCard.classList.remove('contact-card-click');
+        clearContactData();
     } else {
+        closeAllContactClicks();
         contactCard.classList.add('contact-card-click');
+        renderContactData(i, colorStyle);
+    }
+}
+
+
+function renderContactData(i, colorStyle) {
+    let content = document.getElementById('contact-data-content');
+    content.innerHTML = '';
+
+
+    const name = contacts[i]['name'];
+    const email = contacts[i]['email'];
+    const phone = contacts[i]['phone'];
+    const firstLetters = findFirstLetters(name);
+
+    setTimeout(() => {
+        content.innerHTML = getContactDataHTML(colorStyle, firstLetters, name, email, phone)
+        content.classList.add('contact-data-content-animation')
+    }, 50);
+}
+
+function clearContactData() {
+    let content = document.getElementById('contact-data-content');
+
+    content.innerHTML = '';
+    content.classList.remove('contact-data-content-animation');
+}
+
+
+function closeAllContactClicks() {
+    clearContactData();
+
+    let allClicks = document.querySelectorAll('div.contact-card-click');
+
+    for (let i = 0; i < allClicks.length; i++) {
+        let currentClick = allClicks[i];
+
+        currentClick.classList.remove('contact-card-click');
     }
 }
