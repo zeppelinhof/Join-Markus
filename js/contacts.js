@@ -225,3 +225,8 @@ function closeAllContactClicks() {
         currentClick.classList.remove('contact-card-click');
     }
 }
+
+
+function openAddNewContact() {
+    document.getElementById('add-new-contact').classList.remove('contacts-d-none');
+}
