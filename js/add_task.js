@@ -114,5 +114,60 @@ function resetForm() {
     // registerBtn.disabled = false;
 }
 
-
 // #endregion Data from Add Task to Backend
+
+        // #region select contact logic
+        const wrapper = document.querySelector(".wrapper");
+        searchInp = document.getElementById('searchContactField');
+        options = document.getElementById('selectAssignedTo');
+        // searchInp = wrapper.querySelector("input");
+        // options = wrapper.querySelector(".options");
+        
+
+
+        searchInp.addEventListener("keyup", () => {
+            if (document.getElementById('searchContactField').value == '') {
+                document.getElementById('selectAssignedTo').innerHTML = '';
+                fillAssignedTo();
+            }
+
+            else {
+                document.getElementById('selectAssignedTo').innerHTML = '';
+                let arr = [];
+                let searchedVal = searchInp.value.toLowerCase();
+                for (let i = 0; i < users.length; i++) {
+                    const user = users[i];
+                    if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
+                        document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+                        fillUsername(i, user.name);
+                    }
+                }
+            }
+        });
+
+        function selectContactFieldInBackground() {
+            document.getElementById('selectContactField').classList.add('d-none');
+            if (document.getElementById('contentSearchContact').classList.contains('d-none')) {
+                document.getElementById('contentSearchContact').classList.remove('d-none');
+            }
+        }
+
+        function closeContactList() {
+            document.getElementById('selectContactField').classList.remove('d-none');
+            document.getElementById('contentSearchContact').classList.add('d-none');
+        }
+
+        function hideContactList() {
+            document.getElementById('contentSearchContact').classList.add('d-none');
+            document.getElementById('contentSearchContact').elemen
+        }
+
+        function borderLightblue(id) {
+            if (document.getElementById(id).classList.contains('borderLightblue')) {
+                document.getElementById(id).remove('borderLightblue');
+            }
+            else {
+                document.getElementById(classname).add('borderLightblue');
+            }
+        }
+// #endregiion select contact logic

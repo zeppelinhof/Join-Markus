@@ -21,13 +21,16 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="css/add_task.css">
+    <link rel="stylesheet" href="template/add_task/searchStyle.css">
 
     <!-- Javascript -->
+    <script src="js/load_contacts_to_add_task.js"></script>
+    <script src="js/storage.js"></script>
     <script src="js/add_task.js"></script>
     <script src="js/include_html.js"></script>
 </head>
 
-<body onload="initUsers(); initTasks(); includeHTML();">
+<body onload="initUsers(); initTasks(); includeHTML(); hideContactList();">
     <!-- Topbar and Sidebar -->
     <!-- <div w3-include-html="template/topbar_template.html"></div> -->
     <!-- <div w3-include-html="template/sidebar_template.html"></div> -->
@@ -59,13 +62,27 @@
                             </div>
                         </div>
 
-                        <div class="property">                                  <!-- Assigned to User -->
-                            <div class="dropdown cursor-pointer">
-                                <div class="dropdown-toggle select-contacts-field" id="dropdownMenuButton1"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Select contacts to assign
-                                </div>                                
-                                <ul id="selectAssignedTo" class="dropdown-menu">
+                        <div class="property"> <!-- Assigned to User -->
+                            <div class="wrapper">
+                                <div class="select-btn" onclick="selectContactFieldInBackground();"
+                                    id="selectContactField">
+                                    <span>Select Contact</span>
+                                    <div class="circleAroundArrow" onclick="closeContactList();">
+                                        <img src="assets/img/arrow_drop_down.svg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="contentSearchContact" id="contentSearchContact">
+                                <div class="search">
+
+                                    <input type="text" placeholder="Search" id="searchContactField">
+                                    <div class="circleAroundArrow" onclick="closeContactList();">
+                                        <img src="assets/img/arrow_drop_up.svg">
+                                    </div>
+
+                                </div>
+                                <ul class="options" id="selectAssignedTo">
+
                                 </ul>
                                 <div class="invalid-feedback">
                                     This field is required.
@@ -168,8 +185,7 @@
         <input type="text" id="phone">
         <button id="registerBtn">Registrieren</button>
     </form>
-    <script src="js/load_contacts_to_add_task.js"></script>
-    <script src="js/storage.js"></script>
+    
 
     <script>
         (() => {
@@ -190,27 +206,6 @@
                 }, false)
             })
         })()
-
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        function filterFunction() {
-            var input, filter, ul, li, a, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            div = document.getElementById("myDropdown");
-            a = div.getElementsByTagName("a");
-            for (i = 0; i < a.length; i++) {
-                txtValue = a[i].textContent || a[i].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    a[i].style.display = "";
-                } else {
-                    a[i].style.display = "none";
-                }
-            }
-        }
-
     </script>
 
 </body>

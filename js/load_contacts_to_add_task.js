@@ -41,21 +41,30 @@ function resetForm() {
 function fillAssignedTo() {
     for (let i = 0; i < users.length; i++) {
         let user = users[i].name;
-        document.getElementById('selectAssignedTo').innerHTML += /*html*/`
-        <li class="list-group-item">            
-            <div class="list-item-display-flex">
-                <div class="list-item-display-flex-icon-name" onclick="contactToTaskClickName(${i}, '${user}')">
-                    <div id="contactCircle${i}" class="contactCircle"></div>
-                    <div id="option${i}"></div>
-                </div>
-                <input class="form-check-input me-1 checkbox-padding" type="checkbox" onclick="contactToTaskClickCheckbox(${i}, '${user}')" id="flexCheckDefault${i}" value="">
-            </div>
-        </li>                  
-    `
-        document.getElementById(`option${i}`).innerHTML += user;
-        initialsInCircle_List(i, user);
+        document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+        fillUsername(i, user);
     }
 }
+
+function showDropdown(i, user){
+    return /*html*/`
+    <li class="list-group-item">            
+        <div class="list-item-display-flex">
+            <div class="list-item-display-flex-icon-name" onclick="contactToTaskClickName(${i}, '${user}')">
+                <div id="contactCircle${i}" class="contactCircle"></div>
+                <div id="option${i}"></div>
+            </div>
+            <input class="form-check-input me-1 checkbox-padding" type="checkbox" onclick="contactToTaskClickCheckbox(${i}, '${user}')" id="flexCheckDefault${i}" value="">
+        </div>
+    </li>                  
+`
+}
+
+function fillUsername(i, user) {
+    document.getElementById(`option${i}`).innerHTML += user;
+    initialsInCircle_List(i, user);
+}
+
 // Create Circles in list
 function initialsInCircle_List(i, contact) {
     document.getElementById(`contactCircle${i}`).innerHTML = getInitials(contact);
@@ -68,7 +77,7 @@ function contactToTaskClickName(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
         document.getElementById(`flexCheckDefault${i}`).checked = false;
-        deleteContact(user);        
+        deleteContact(user);
     }
     else {
         // Create Circles of selected users below list
@@ -81,7 +90,7 @@ function contactToTaskClickName(i, user) {
 
 // #endregion Load Users to Dropdown
 
-function contactToTaskClickCheckbox(i, user) {
+async function contactToTaskClickCheckbox(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
