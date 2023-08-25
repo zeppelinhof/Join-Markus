@@ -20,6 +20,12 @@
 
 <body onload="initContacts()">
 
+    <!-- add new contact -->
+    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact"></div>
+
+    <!-- edit contact -->
+    <div class="contacts-d-none" w3-include-html="./edit_contact.html"></div>
+
     <!-- sidebar -->
     <section w3-include-html="./template/sidebar_template.html"></section>
 
@@ -35,7 +41,7 @@
 
                 <div class="contacts-area">
 
-                    <button class="btn-new-contact">
+                    <button class="btn-new-contact" onclick="openAddNewContact()">
                         <span>Add new contact</span>
                         <img class="btn-new-contact-icon" src="./assets/img/icon_person_add.png" alt="">
                     </button>

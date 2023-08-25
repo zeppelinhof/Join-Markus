@@ -4,6 +4,15 @@ body {
 }
 
 
+/* default */
+
+.contacts-d-none {
+    display: none;
+}
+
+
+
+/* contact tobar only window */
 
 .contact-topbar-area {
     display: flex;
@@ -79,8 +88,16 @@ body {
     color: white;
     font-size: 21px;
     font-weight: 700;
+    border: none;
     border-radius: 10px;
     padding: 12px;
+}
+
+.btn-new-contact:hover {
+    cursor: pointer;
+    background-color: rgb(41, 170, 227);
+    box-shadow: 0 4px 0 rgba(0 0 0 / 15%);
+    transform: scale(1.01);
 }
 
 .btn-new-contact-icon {

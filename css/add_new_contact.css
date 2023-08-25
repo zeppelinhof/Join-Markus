@@ -1,0 +1,215 @@
+/* add new contact */
+
+.add-new-contact-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0 0 0 / 20%);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* add new contact sidebar */
+
+.add-new-contact-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+    color: white;
+    background-color: rgb(42, 54, 71);
+    padding: 66px 48px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    height: calc(594px - 66px - 66px);
+}
+
+.add-new-contact-logo {
+    height: 66.48px;
+    width: 55.6px;
+}
+
+.add-new-contact-headline {
+    margin: 0;
+    font-size: 61px;
+    font-weight: 700;
+
+}
+
+.add-new-contact-text {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.add-new-contact-separator {
+    width: 90px;
+    border: 3px solid rgb(41, 170, 227);
+}
+
+/* add new contact input mask */
+
+.add-new-contact-input-mask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 72px;
+    padding-left: 72px;
+    padding-right: 48px;
+    background-color: white;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: 594px;
+    position: relative;
+}
+
+.add-new-contact-close {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+}
+
+.add-new-contact-profile-icon {
+    background-image: url('../assets/img/icon_person_with.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    height: 42px;
+    width: 42px;
+    padding: calc(120px - 82px);
+    border: 1px solid white;
+    border-radius: 50%;
+    background-color: rgb(209,209,209);
+    margin-bottom: 48px;
+}
+
+.add-new-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.add-new-contact-input-area {
+    display: flex;
+    align-items: center;
+}
+
+.add-new-contact-input-name {
+    background-image: url('../assets/img/person.svg');
+}
+
+.add-new-contact-input-email {
+    background-image: url('../assets/img/mail.svg');
+}
+
+.add-new-contact-input-phone {
+    background-image: url('../assets/img/icon_phone.png');
+}
+
+.add-new-contact-input {
+    background-repeat: no-repeat;
+    background-position-x: calc(422px - 32px);
+    background-position-y: center;
+    height: 50px;
+    width: calc(422px - 24px);
+    border: 1px solid rgb(215,215,215);
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400px;
+    padding-left: 24px;
+    outline: none;
+}
+
+.add-new-contact-input::placeholder {
+    color: rgb(215,215,215);
+}
+
+.add-new-contact-input:focus {
+    border: 2px solid rgb(41, 170, 227);
+}
+
+.add-new-contact-button-area {
+    display: flex;
+    align-items: center;
+    gap: 24px
+}
+
+.add-new-contact-button-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    height: 56px;
+    width: 126px;
+    font-size: 20px;
+    font-weight: 400;
+    background-color: white;
+    border: 1px solid rgb(42, 54, 71);
+    border-radius: 10px;
+}
+
+.edit-contact-button-left {
+    height: 55px !important;
+    width: 113px !important;
+}
+
+.add-new-contact-button-left-icon {
+    background-image: url('../assets/img/close.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 24px;
+    width: 24px;
+}
+
+.add-new-contact-button-left:hover {
+    cursor: pointer;
+    color: rgb(41, 170, 227);
+    border: 2px solid rgb(41, 170, 227);
+    box-shadow: 0 4px 0 rgba(0 0 0 / 15%);
+    transform: scale(1.01);
+
+    .add-new-contact-button-left-icon {
+        background-image: url('../assets/img/icon_close_hover.png');
+        border-radius: 50%;
+    }
+}
+
+.add-new-contact-button-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: 58px;
+    width: 214px;
+    font-size: 21px;
+    font-weight: 700;
+    background-color: rgb(42, 54, 71);
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+.edit-contact-button-right {
+    height: 57px !important;
+    width: 111px !important;
+}
+
+.add-new-contact-button-right-icon {
+    height: 20px;
+    width: 20px;
+    object-fit: contain;
+}
+
+.add-new-contact-button-right:hover {
+    cursor: pointer;
+    background-color: rgb(41, 170, 227);
+    box-shadow: 0 4px 0 rgba(0 0 0 / 15%);
+    transform: scale(1.01);
+}
