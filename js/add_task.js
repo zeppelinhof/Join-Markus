@@ -61,15 +61,15 @@ function whiteBackgroundGreenArrow(btn) {
     document.getElementById('arrowGreenLow').classList.remove('z-index-n1');
 }
 
-function pushToFront(obj){
+function pushToFront(obj) {
     document.getElementById(obj).classList.add('z-index-1');
 }
 
-function pushToBackground(obj){
+function pushToBackground(obj) {
     document.getElementById(obj).classList.add('z-index-n1');
 }
 
-function setPrioStatusAsString(status){
+function setPrioStatusAsString(status) {
     document.getElementById('prioStatusAsString').innerHTML = status;
 }
 
@@ -95,8 +95,8 @@ async function register_task() {
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
         category: category.value,
-        initials: '',
-        column: 'to do'
+        subtasks: subtasks.value,
+        column: 'to do',        
     });
 
     await setItem('tasks', JSON.stringify(tasks));
@@ -111,63 +111,48 @@ function resetForm() {
     initials = [];
     selectAssignedTo.value = '';
     date.value = '';
+    subtasks = [];
     // registerBtn.disabled = false;
 }
 
 // #endregion Data from Add Task to Backend
 
-        // #region select contact logic
-        const wrapper = document.querySelector(".wrapper");
-        searchInp = document.getElementById('searchContactField');
-        options = document.getElementById('selectAssignedTo');
-        // searchInp = wrapper.querySelector("input");
-        // options = wrapper.querySelector(".options");
-        
+// #region select contact logic
 
+function selectContactFieldInBackground() {
+    document.getElementById('selectContactField').classList.add('d-none');
+    if (document.getElementById('contentSearchContact').classList.contains('d-none')) {
+        document.getElementById('contentSearchContact').classList.remove('d-none');
+    }
+}
 
-        searchInp.addEventListener("keyup", () => {
-            if (document.getElementById('searchContactField').value == '') {
-                document.getElementById('selectAssignedTo').innerHTML = '';
-                fillAssignedTo();
-            }
+function closeContactList() {
+    document.getElementById('selectContactField').classList.remove('d-none');
+    document.getElementById('contentSearchContact').classList.add('d-none');
+}
 
-            else {
-                document.getElementById('selectAssignedTo').innerHTML = '';
-                let arr = [];
-                let searchedVal = searchInp.value.toLowerCase();
-                for (let i = 0; i < users.length; i++) {
-                    const user = users[i];
-                    if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
-                        document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
-                        fillUsername(i, user.name);
-                    }
-                }
-            }
-        });
+function hideContactList() {
+    document.getElementById('contentSearchContact').classList.add('d-none');
+    document.getElementById('contentSearchContact').elemen
+}
 
-        function selectContactFieldInBackground() {
-            document.getElementById('selectContactField').classList.add('d-none');
-            if (document.getElementById('contentSearchContact').classList.contains('d-none')) {
-                document.getElementById('contentSearchContact').classList.remove('d-none');
-            }
-        }
-
-        function closeContactList() {
-            document.getElementById('selectContactField').classList.remove('d-none');
-            document.getElementById('contentSearchContact').classList.add('d-none');
-        }
-
-        function hideContactList() {
-            document.getElementById('contentSearchContact').classList.add('d-none');
-            document.getElementById('contentSearchContact').elemen
-        }
-
-        function borderLightblue(id) {
-            if (document.getElementById(id).classList.contains('borderLightblue')) {
-                document.getElementById(id).remove('borderLightblue');
-            }
-            else {
-                document.getElementById(classname).add('borderLightblue');
-            }
-        }
+function borderLightblue(id) {
+    if (document.getElementById(id).classList.contains('borderLightblue')) {
+        document.getElementById(id).remove('borderLightblue');
+    }
+    else {
+        document.getElementById(classname).add('borderLightblue');
+    }
+}
 // #endregiion select contact logic
+
+// #region add Subtask
+function addSubtask(){
+    document.getElementById('selectedSubtasks').innerHTML += document.getElementById('subtaskInputfield').value;
+    
+    
+    selectedSubtasks = document.getElementById('selectedSubtasks');
+
+    subtasks.push(selectedSubtasks.innerHTML);
+}
+// #endregion add Subtask

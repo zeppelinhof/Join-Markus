@@ -1,6 +1,6 @@
 let users = [];
 let contactsInTask = [];
-// let initials = [];
+let subtasks = [];
 
 
 // #region Load Users from Backend
@@ -44,9 +44,10 @@ function fillAssignedTo() {
         document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
         fillUsername(i, user);
     }
+    buttonInContactListAddContact();
 }
 
-function showDropdown(i, user){
+function showDropdown(i, user) {
     return /*html*/`
     <li class="list-group-item">            
         <div class="list-item-display-flex">
@@ -54,7 +55,7 @@ function showDropdown(i, user){
                 <div id="contactCircle${i}" class="contactCircle"></div>
                 <div id="option${i}"></div>
             </div>
-            <input class="form-check-input me-1 checkbox-padding" type="checkbox" onclick="contactToTaskClickCheckbox(${i}, '${user}')" id="flexCheckDefault${i}" value="">
+            <input class="form-check-input me-1 checkbox-padding" type="checkbox" onclick="contactToTaskClickCheckbox(${i}, '${user}')" id="flexCheckDefault${i}" value="">            
         </div>
     </li>                  
 `
@@ -63,6 +64,18 @@ function showDropdown(i, user){
 function fillUsername(i, user) {
     document.getElementById(`option${i}`).innerHTML += user;
     initialsInCircle_List(i, user);
+}
+
+function buttonInContactListAddContact() {
+    document.getElementById('buttonInContactListAddContact').innerHTML += /*html*/`        
+        <div>
+            Add new contact
+        </div>
+        <div>
+            <img src="../assets/img/person_add.svg">
+        </div>
+    
+    `
 }
 
 // Create Circles in list

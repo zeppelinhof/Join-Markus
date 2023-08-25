@@ -21,7 +21,6 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="css/add_task.css">
-    <link rel="stylesheet" href="template/add_task/searchStyle.css">
 
     <!-- Javascript -->
     <script src="js/load_contacts_to_add_task.js"></script>
@@ -81,9 +80,12 @@
                                     </div>
 
                                 </div>
-                                <ul class="options" id="selectAssignedTo">
+                                <ul class="selectAssignedTo" id="selectAssignedTo">
 
                                 </ul>
+                                <div class="buttonInContactListAddContact" id="buttonInContactListAddContact">
+
+                                </div>
                                 <div class="invalid-feedback">
                                     This field is required.
                                 </div>
@@ -150,18 +152,21 @@
                                 This field is required.
                             </div>
                         </div>
-
-                        <div class="property">
-                            <div class="property-name">Subtasks</div>
+                        
+                        <div class="property">                  
+                            <div class="property-name">Subtasks</div>           <!-- Subtasks -->
 
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control border-right-white" placeholder="Add new subtask"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2">
-                                <img id="add_symbol" class="input-group-text white-background"
-                                    src="assets/img/add_black.svg">
+                                    aria-label="Recipient's username" aria-describedby="basic-addon2" id="subtaskInputfield">
+                                <img id="add_symbol" class="input-group-text white-background cursor-pointer"
+                                    src="assets/img/add_black.svg" onclick="addSubtask()">
                             </div>
                             <div class="invalid-feedback">
                                 This field is required.
+                            </div>
+                            <div class="selectedSubtasks" id="selectedSubtasks">
+
                             </div>
                         </div>
 
@@ -185,7 +190,7 @@
         <input type="text" id="phone">
         <button id="registerBtn">Registrieren</button>
     </form>
-    
+
 
     <script>
         (() => {
@@ -206,6 +211,37 @@
                 }, false)
             })
         })()
+
+        // #region select contact logic        
+        const wrapper = document.getElementById('wrapper');
+        searchInp = document.getElementById('searchContactField');
+        selectAssignedTo = document.getElementById('selectAssignedTo');
+        // const wrapper = document.querySelector(".wrapper");
+        // searchInp = wrapper.querySelector("input");
+        // selectAssignedTo = wrapper.querySelector(".selectAssignedTo");
+
+
+
+        searchInp.addEventListener("keyup", () => {
+            if (document.getElementById('searchContactField').value == '') {
+                document.getElementById('selectAssignedTo').innerHTML = '';
+                fillAssignedTo();
+            }
+
+            else {
+                document.getElementById('selectAssignedTo').innerHTML = '';
+                let arr = [];
+                let searchedVal = searchInp.value.toLowerCase();
+                for (let i = 0; i < users.length; i++) {
+                    const user = users[i];
+                    if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
+                        document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+                        fillUsername(i, user.name);
+                    }
+                }
+            }
+        });
+// #endregion select contact logic
     </script>
 
 </body>
