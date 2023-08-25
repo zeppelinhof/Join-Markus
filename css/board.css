@@ -217,7 +217,7 @@ body {
 /*UserTask*/
 #cards {
     width: 252px;
-    height: 263px;
+    max-height: 263px;
     padding: 16px;
     border-radius: 24px;
     gap: 10px;
@@ -237,7 +237,7 @@ body {
 
 .frame119 {
     width: 220px;
-    height: 231px;
+    max-height: 231px;
     gap: 24px;
     display: grid;
 }
