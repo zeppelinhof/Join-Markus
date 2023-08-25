@@ -95,7 +95,7 @@ body {
 
 #contacts-list {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 8px;
     width: 352px;
 }
@@ -128,7 +128,7 @@ body {
 
 .contact-card:hover {
     cursor: pointer;
-    background-color: rgb(246,247,248);
+    background-color: rgb(246, 247, 248);
 }
 
 .contact-icon {
@@ -140,7 +140,7 @@ body {
     border: 1px solid white;
     border-radius: 50%;
     color: white;
-    background-color: rgb(255,122,0);
+    background-color: rgb(255, 122, 0);
 }
 
 .contact {
@@ -157,7 +157,7 @@ body {
 .contact-email {
     font-size: 16px;
     font-weight: 400;
-    color: rgb(0,124,237);
+    color: rgb(0, 124, 237);
 }
 
 .contact-card-click {
@@ -177,13 +177,16 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     flex-grow: 1;
-    background-color: rgb(246,247,248);
+    background-color: rgb(246, 247, 248);
     z-index: -1;
 }
 
 .contact-data-area {
-    margin-top: 32px;
+    margin-top: 96px;
     margin-left: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
 }
 
 /* contact data headline */
@@ -196,11 +199,12 @@ body {
 
 .contact-data-headline-left {
     font-size: 61px;
+    margin: 0;
 }
 
 .contact-data-headline-separator {
     height: 59px;
-    border: 3px solid rgb(41,170,227);
+    border: 3px solid rgb(41, 170, 227);
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -209,15 +213,31 @@ body {
     font-size: 27px;
 }
 
-/* contact data content */
+.contact-data-content-animation {
+    animation-duration: 0.2s;
+    animation-name: slidein;
+}
 
-.contact-data-content {
+@keyframes slidein {
+    from {
+        margin-left: 200px;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+/* contact data name */
+
+.contact-data-name-area {
     display: flex;
     align-items: center;
     gap: 54px;
+    margin-bottom: 48px;
 }
 
-.contact-data-content-icon {
+.contact-data-name-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -226,32 +246,60 @@ body {
     border: 1px solid white;
     border-radius: 50%;
     color: white;
-    background-color: rgb(255,122,0);
+    background-color: rgb(255, 122, 0);
     font-size: 47px;
     font-weight: 500;
 }
 
-
-.contact-data-content-name-area {
+.contact-data-name-headline {
     display: flex;
     flex-direction: column;
 }
 
-.contact-data-content-name {
+.contact-data-name {
     font-size: 47px;
     font-weight: 500;
     margin-top: 0;
     margin-bottom: 8px;
 }
 
-.contact-data-content-edit-del-area {
+.contact-data-name-edit-del-area {
     display: flex;
     align-items: center;
     gap: 32px;
 }
 
-.contact-data-content-edit-del {
+.contact-data-name-edit-del {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+/* contact data info */
+
+.contact-data-info-area {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.contact-data-info-headline {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.contact-data-info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.contact-data-info-content-headline {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.contact-data-info-content-phone {
+    font-size: 16px;
+    font-weight: 400;
 }
