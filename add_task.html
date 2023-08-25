@@ -39,7 +39,7 @@
     <div class="wrap">
         <div class="content">
             <h1>Add Task</h1>
-            <form onsubmit="register_task(); return false;" class="row g-3 needs-validation" novalidate>
+            <form onsubmit="register_task(); return false;" class="row g-3 needs-validation" id="mainForm" novalidate>
                 <div class="panel">
                     <div class="left-side-of-panel">
 
@@ -60,8 +60,8 @@
                                 This field is required.
                             </div>
                         </div>
-
-                        <div class="property"> <!-- Assigned to User -->
+                                                    <!-- Assigned to User -->
+                        <div class="property"> 
                             <div class="wrapper">
                                 <div class="select-btn" onclick="selectContactFieldInBackground();"
                                     id="selectContactField">
@@ -95,7 +95,6 @@
 
                         </div>
                     </div>
-
 
                     <div class="separator"></div>
 
@@ -153,8 +152,9 @@
                             </div>
                         </div>
                         
-                        <div class="property">                  
-                            <div class="property-name">Subtasks</div>           <!-- Subtasks -->
+                        <div class="property">   
+                            <!-- Subtasks -->               
+                            <div class="property-name">Subtasks</div>           
 
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control border-right-white" placeholder="Add new subtask"
@@ -165,9 +165,7 @@
                             <div class="invalid-feedback">
                                 This field is required.
                             </div>
-                            <div class="selectedSubtasks" id="selectedSubtasks">
-
-                            </div>
+                            <div class="selectedSubtasks" id="selectedSubtasks"></div>
                         </div>
 
                         <div class="buttons_clear_create">

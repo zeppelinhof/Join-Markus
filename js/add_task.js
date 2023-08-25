@@ -95,8 +95,8 @@ async function register_task() {
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
         category: category.value,
-        subtasks: subtasks.value,
-        column: 'to do',        
+        subtasks: subtasks,
+        column: 'to do',
     });
 
     await setItem('tasks', JSON.stringify(tasks));
@@ -105,14 +105,15 @@ async function register_task() {
 }
 
 function resetForm() {
+    // document.getElementById('mainForm').reset();
     title.value = '';
     description.value = '';
     contactsInTask = [];
-    initials = [];
     selectAssignedTo.value = '';
     date.value = '';
     subtasks = [];
-    // registerBtn.disabled = false;
+    registerBtn.disabled = false;
+    document.getElementById('mainForm').classList.remove('was-validated');
 }
 
 // #endregion Data from Add Task to Backend
@@ -147,12 +148,23 @@ function borderLightblue(id) {
 // #endregiion select contact logic
 
 // #region add Subtask
-function addSubtask(){
-    document.getElementById('selectedSubtasks').innerHTML += document.getElementById('subtaskInputfield').value;
-    
-    
-    selectedSubtasks = document.getElementById('selectedSubtasks');
-
-    subtasks.push(selectedSubtasks.innerHTML);
+function addSubtask() {
+    if (document.getElementById('subtaskInputfield').value) {
+        subtaskInputfield = document.getElementById('subtaskInputfield').value;
+        selectedSubtasks = document.getElementById('selectedSubtasks');
+        selectedSubtasks.innerHTML += /*html*/`        
+            <div class="oneSelectedSubtask">
+                <div>
+                    •${subtaskInputfield}
+                </div>
+                <div class="pencil-bin">
+                    <img src="assets/img/Subtasks_pencil.svg">
+                    <img src="assets/img/Subtasks_bin.svg">
+                </div>
+            </div>
+      
+    `
+        subtasks.push(subtaskInputfield);
+    }
 }
 // #endregion add Subtask

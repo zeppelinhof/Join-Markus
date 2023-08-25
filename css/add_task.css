@@ -87,6 +87,10 @@ li:hover{
     gap: 25px;
 }
 
+.checkbox-modified{
+    z-index: 0;
+}
+
 .button-create-task {
     color: white;
     border-radius: 10px;
@@ -212,6 +216,21 @@ li:hover{
 
 .z-index-n1{
     z-index: -1;
+}
+
+.selectedSubtasks{
+    
+}
+
+.oneSelectedSubtask{
+    display: flex;
+    justify-content: space-between;
+    background-color: aliceblue;
+}
+
+.pencil-bin{
+    display: flex;
+    gap: 4px;
 }
 
 /* #region search contact button */

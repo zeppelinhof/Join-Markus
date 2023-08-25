@@ -50,12 +50,12 @@ function fillAssignedTo() {
 function showDropdown(i, user) {
     return /*html*/`
     <li class="list-group-item">            
-        <div class="list-item-display-flex">
-            <div class="list-item-display-flex-icon-name" onclick="contactToTaskClickName(${i}, '${user}')">
+        <div class="list-item-display-flex" onclick="contactToTaskClickName(${i}, '${user}')">
+            <div class="list-item-display-flex-icon-name">
                 <div id="contactCircle${i}" class="contactCircle"></div>
                 <div id="option${i}"></div>
             </div>
-            <input class="form-check-input me-1 checkbox-padding" type="checkbox" onclick="contactToTaskClickCheckbox(${i}, '${user}')" id="flexCheckDefault${i}" value="">            
+            <input class="form-check-input me-1 checkbox-padding checkbox-modified" type="checkbox" id="flexCheckDefault${i}" value="">            
         </div>
     </li>                  
 `
@@ -103,7 +103,7 @@ function contactToTaskClickName(i, user) {
 
 // #endregion Load Users to Dropdown
 
-async function contactToTaskClickCheckbox(i, user) {
+function contactToTaskClickCheckbox(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
