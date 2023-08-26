@@ -120,22 +120,22 @@ function resetForm() {
 
 // #region select contact logic
 
+function add_d_none(classname){
+    document.getElementById(classname).classList.add('d-none');
+}
+
+function remove_d_none(classname){
+    document.getElementById(classname).classList.remove('d-none');
+}
+
 function selectContactFieldInBackground() {
-    document.getElementById('selectContactField').classList.add('d-none');
+    add_d_none('selectContactField');
     if (document.getElementById('contentSearchContact').classList.contains('d-none')) {
-        document.getElementById('contentSearchContact').classList.remove('d-none');
+        remove_d_none('contentSearchContact');
     }
 }
 
-function closeContactList() {
-    document.getElementById('selectContactField').classList.remove('d-none');
-    document.getElementById('contentSearchContact').classList.add('d-none');
-}
 
-function hideContactList() {
-    document.getElementById('contentSearchContact').classList.add('d-none');
-    document.getElementById('contentSearchContact').elemen
-}
 
 function borderLightblue(id) {
     if (document.getElementById(id).classList.contains('borderLightblue')) {
@@ -165,6 +165,7 @@ function addSubtask() {
       
     `
         subtasks.push(subtaskInputfield);
+        document.getElementById('subtaskInputfield').value = '';
     }
 }
 // #endregion add Subtask

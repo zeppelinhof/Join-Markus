@@ -29,7 +29,7 @@
     <script src="js/include_html.js"></script>
 </head>
 
-<body onload="initUsers(); initTasks(); includeHTML(); hideContactList();">
+<body onload="initUsers(); initTasks(); includeHTML(); add_d_none('contentSearchContact');">
     <!-- Topbar and Sidebar -->
     <!-- <div w3-include-html="template/topbar_template.html"></div> -->
     <!-- <div w3-include-html="template/sidebar_template.html"></div> -->
@@ -45,7 +45,7 @@
 
                         <div class="property">
                             <label for="validationCustom01" class="form-label">Title</label>
-                            <input id="title" type="text" class="form-control" id="validationCustom01"
+                            <input id="title" type="text" class="form-control height-48px" id="validationCustom01"
                                 placeholder="Enter a title" required>
                             <div class="invalid-feedback">
                                 This field is required.
@@ -60,26 +60,24 @@
                                 This field is required.
                             </div>
                         </div>
-                                                    <!-- Assigned to User -->
-                        <div class="property"> 
+                        <!-- Assigned to User -->
+                        <div class="property">
                             <div class="wrapper">
                                 <div class="select-btn" onclick="selectContactFieldInBackground();"
                                     id="selectContactField">
                                     <span>Select Contact</span>
-                                    <div class="circleAroundArrow" onclick="closeContactList();">
+                                    <div class="circleAroundDownArrow" id="downarrow" onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
                                         <img src="assets/img/arrow_drop_down.svg">
-                                    </div>
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="contentSearchContact" id="contentSearchContact">
                                 <div class="search">
-
                                     <input type="text" placeholder="Search" id="searchContactField">
-                                    <div class="circleAroundArrow" onclick="closeContactList();">
+                                    <div class="circleAroundUpArrow d-none" id="uparrow" onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
                                         <img src="assets/img/arrow_drop_up.svg">
-                                    </div>
-
-                                </div>
+                                    </div>                                                                   
+                                </div>                                
                                 <ul class="selectAssignedTo" id="selectAssignedTo">
 
                                 </ul>
@@ -101,8 +99,8 @@
                     <div class="right-side-of-panel">
                         <div class="property"> <!-- Date -->
                             <label for="validationCustom02" class="form-label">Due date</label>
-                            <input id="date" type="date" class="form-control cursor-pointer" placeholder="dd/mm/yyyy"
-                                required>
+                            <input id="date" type="date" class="form-control height-48px cursor-pointer"
+                                placeholder="dd/mm/yyyy" required>
                             <div class="invalid-feedback">
                                 This field is required.
                             </div>
@@ -142,7 +140,8 @@
 
                         <div class="property"> <!-- Category -->
                             <div class="property-name">Category</div>
-                            <select id="category" class="form-select" aria-label="Default select example" required>
+                            <select id="category" class="form-select height-48px" aria-label="Default select example"
+                                required>
                                 <option selected value="">Select task category</option>
                                 <option>User Story</option>
                                 <option>Technical Task</option>
@@ -151,14 +150,15 @@
                                 This field is required.
                             </div>
                         </div>
-                        
-                        <div class="property">   
-                            <!-- Subtasks -->               
-                            <div class="property-name">Subtasks</div>           
+
+                        <div class="property">
+                            <!-- Subtasks -->
+                            <div class="property-name">Subtasks</div>
 
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control border-right-white" placeholder="Add new subtask"
-                                    aria-label="Recipient's username" aria-describedby="basic-addon2" id="subtaskInputfield">
+                                <input type="text" class="form-control border-right-white height-48px"
+                                    placeholder="Add new subtask" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2" id="subtaskInputfield">
                                 <img id="add_symbol" class="input-group-text white-background cursor-pointer"
                                     src="assets/img/add_black.svg" onclick="addSubtask()">
                             </div>
@@ -167,6 +167,18 @@
                             </div>
                             <div class="selectedSubtasks" id="selectedSubtasks"></div>
                         </div>
+
+                        <!-- <div class="property">
+                            <div class="wrapper">
+                                <div class="select-btn" onclick="selectContactFieldInBackground();"
+                                    id="selectContactField">
+                                    <span>Select Contact</span>
+                                    <div class="circleAroundArrow XXXXX" onclick="closeContactList();">
+                                        <img src="assets/img/arrow_drop_down.svg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
 
                         <div class="buttons_clear_create">
                             <button class="btn btn-outline-dark button-clear">Clear<img class="x_clear"
