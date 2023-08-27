@@ -21,19 +21,19 @@ function getContactCardHTML(i, colorStyle, firstLetters, name, email) {
 }
 
 
-function getContactDataHTML(colorStyle, firstLetters, name, email, phone) {
+function getContactDataHTML(i, colorStyle, firstLetters, name, email, phone) {
     return /*html*/ `
         <div class="contact-data-name-area">
             <span class="contact-data-name-icon" style="background-color: ${colorStyle}">${firstLetters}</span>
             <div class="contact-data-name-headline">
                 <h1 class="contact-data-name">${name}</h1>
                 <div class="contact-data-name-edit-del-area">
-                    <div class="contact-data-name-edit-del">
-                        <img src="./assets/img/edit.svg" alt="">
+                    <div class="contact-data-name-edit-del" onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact', ${i}, '${colorStyle}')">
+                        <div class="contact-data-name-edit"></div>
                         <span>Edit</span>
                     </div>
                     <div class="contact-data-name-edit-del">
-                        <img src="./assets/img/delete.svg" alt="">
+                        <div class="contact-data-name-delete"></div>
                         <span>Delete</span>
                     </div>
                 </div>

@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/add_new_contact.css">
-
-    <!-- scripts -->
-    <script src="./js/add_new_contact.js"></script>
 </head>
 
 <body>
@@ -33,7 +30,7 @@
 
             <!-- input mask -->
             <div class="add-new-contact-input-mask">
-                <div class="add-new-contact-close" onclick="openAndCloseAddNewContact()"></div>
+                <div class="add-new-contact-close" onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact')"></div>
                 <span class="add-new-contact-profile-icon"></span>
 
                 <form class="add-new-contact-form" onsubmit="addNewContact(); return false">
@@ -44,7 +41,7 @@
                     <input class="add-new-contact-input-phone add-new-contact-input" type="tel" placeholder="Phone"
                         required>
                     <div class="add-new-contact-button-area">
-                        <button type="reset" onclick="openAndCloseAddNewContact()" class="add-new-contact-button-left">
+                        <button type="reset" onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact')" class="add-new-contact-button-left">
                             <span>Cancel</span>
                             <div class="add-new-contact-button-left-icon"></div>
                         </button>

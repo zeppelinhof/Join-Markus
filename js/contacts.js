@@ -129,7 +129,8 @@ let contactColors = [
 let existLetterHeadline = '';
 
 
-function initContacts() {
+async function initContacts() {
+    await loadUsers();
     renderContacts();
     includeHTML();
 }
@@ -140,9 +141,9 @@ function renderContacts() {
     contactsList.innerHTML = '';
     let colorNumberIndex = 0;
 
-    for (let i = 0; i < contacts.length; i++) {
-        const [name, email] = [contacts[i]['name'], contacts[i]['email']];
-        const firstLetter = contacts[i]['name'].charAt(0);
+    for (let i = 0; i < users.length; i++) {
+        const [name, email] = [users[i]['name'], users[i]['email']];
+        const firstLetter = users[i]['name'].charAt(0);
         const colorStyle = contactColors[colorNumberIndex]['style'];
 
         addLetterHeadline(firstLetter, contactsList);
@@ -169,7 +170,12 @@ function findFirstLetters(name) {
     let letters = '';
 
     for (let i = 0; i < splitName.length; i++) {
-        letters += splitName[i].charAt(0).toUpperCase();
+
+        if (typeof splitName[i].substring(0, 1) == 'string') {
+            letters += splitName[i].charAt(0).toUpperCase();
+        } else {
+            letters += splitName[i].substring(0, 1);
+        }
     }
 
     return letters;
@@ -195,13 +201,13 @@ function renderContactData(i, colorStyle) {
     content.innerHTML = '';
 
 
-    const name = contacts[i]['name'];
-    const email = contacts[i]['email'];
-    const phone = contacts[i]['phone'];
+    const name = users[i]['name'];
+    const email = users[i]['email'];
+    const phone = users[i]['phone'];
     const firstLetters = findFirstLetters(name);
 
     setTimeout(() => {
-        content.innerHTML = getContactDataHTML(colorStyle, firstLetters, name, email, phone)
+        content.innerHTML = getContactDataHTML(i, colorStyle, firstLetters, name, email, phone)
         content.classList.add('contact-slide-animation')
     }, 50);
 }

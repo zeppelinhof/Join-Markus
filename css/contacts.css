@@ -49,6 +49,7 @@ body {
     box-shadow: 4px 0px 4px rgba(0 0 0 / 10%);
     overflow-y: scroll;
     background-color: white;
+    z-index: 1;
 }
 
 .contacts::-webkit-scrollbar {
@@ -210,7 +211,6 @@ body {
     justify-content: flex-start;
     flex-grow: 1;
     background-color: rgb(246, 247, 248);
-    z-index: -1;
 }
 
 .contact-data-area {
@@ -251,6 +251,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 640px;
+    z-index: 1;
 }
 
 /* contact data name */
@@ -292,12 +293,45 @@ body {
     display: flex;
     align-items: center;
     gap: 32px;
+    font-size: 16px;
 }
 
 .contact-data-name-edit-del {
     display: flex;
     align-items: center;
     gap: 8px;
+}
+
+.contact-data-name-edit-del:hover {
+    cursor: pointer;
+    font-weight: 700;
+    color: rgb(41, 170, 227);
+
+    .contact-data-name-edit {
+        background-image: url('../assets/img/icon_edit_hover.png');
+    }
+
+    .contact-data-name-delete {
+        background-image: url('../assets/img/icon_delete_hover.png');
+    }
+}
+
+.contact-data-name-edit {
+    background-image: url('../assets/img/edit.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 24px;
+    width: 24px;
+}
+
+.contact-data-name-delete {
+    background-image: url('../assets/img/delete.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 24px;
+    width: 24px;
 }
 
 /* contact data info */

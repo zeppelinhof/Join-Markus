@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,38 +11,51 @@
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/add_new_contact.css">
 </head>
+
 <body>
-    
+
     <!-- add new contact -->
     <div class="add-new-contact-panel">
 
-        <!-- sidebar -->
-        <div class="add-new-contact-sidebar">
-            <img class="add-new-contact-logo" src="./assets/img/join_logo_white.png" alt="">
-            <h1 class="add-new-contact-headline">Edit contact</h1>
-            <div class="add-new-contact-separator"></div>
+        <!-- add new contact area -->
+        <div class="add-new-contact-area" id="edit-contact">
+
+            <!-- sidebar -->
+            <div class="add-new-contact-sidebar">
+                <img class="add-new-contact-logo" src="./assets/img/join_logo_white.png" alt="">
+                <h1 class="add-new-contact-headline">Edit contact</h1>
+                <div class="add-new-contact-separator"></div>
+            </div>
+
+            <!-- input mask -->
+            <div class="add-new-contact-input-mask">
+                <div class="add-new-contact-close" onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact')"></div>
+                <span class="contact-data-name-icon" id="edit-contact-profile-icon"></span>
+
+                <form class="add-new-contact-form" onsubmit="editContact(); return false">
+                    <input class="add-new-contact-input-name add-new-contact-input" type="text" placeholder="Name"
+                        required id="edit-name">
+                    <input class="add-new-contact-input-email add-new-contact-input" type="email" placeholder="Email"
+                        required id="edit-email">
+                    <input class="add-new-contact-input-phone add-new-contact-input" type="tel" placeholder="Phone"
+                        required id="edit-phone">
+                    <div class="add-new-contact-button-area">
+                        <button type="reset" onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact')" class="add-new-contact-button-left edit-contact-button-left">
+                            <span>Delete</span>
+                        </button>
+                        <button type="submit" class="add-new-contact-button-right edit-contact-button-right">
+                            <span>Save</span>
+                            <img class="add-new-contact-button-right-icon" src="./assets/img/check.svg" alt="">
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+
         </div>
 
-        <!-- input mask -->
-        <div class="add-new-contact-input-mask">
-            <img class="add-new-contact-close" src="./assets/img/close.svg" alt="">
-            <span class="add-new-contact-profile-icon"></span>
-            <form class="add-new-contact-form" onsubmit=" ; return flase">
-                <input class="add-new-contact-input-name add-new-contact-input" type="text" placeholder="Name" required>
-                <input class="add-new-contact-input-email add-new-contact-input" type="email" placeholder="Email" required>
-                <input class="add-new-contact-input-phone add-new-contact-input" type="tel" placeholder="Phone" required>
-                <div class="add-new-contact-button-area">
-                    <button class="add-new-contact-button-left edit-contact-button-left">
-                        <span>Delete</span>
-                    </button>
-                    <button class="add-new-contact-button-right edit-contact-button-right">
-                        <span>Save</span>
-                        <img class="add-new-contact-button-right-icon" src="./assets/img/check.svg" alt="">
-                    </button>
-                </div>
-            </form>
-        </div>
     </div>
 
 </body>
+
 </html>
