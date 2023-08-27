@@ -1,4 +1,5 @@
 async function init() {
+    animateJoinLogo();
     loadHTML('formElement', "login.html");
     await loadUsers();
 }
@@ -119,6 +120,16 @@ function validatePasswords() {
         document.getElementById('noMatch').classList.remove('invisible');
         return false;
     }
+}
+
+
+function animateJoinLogo() {
+    const animationOverlay = document.getElementById("animationOverlay");
+    animationOverlay.classList.remove('d-none');
+    setTimeout(function () {
+        animationOverlay.classList.add('d-none');
+    }, 990);
+    animateIteration = 1; 
 }
 
 
