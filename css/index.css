@@ -8,6 +8,11 @@ body {
   height: 100dvh;
 }
 
+input:focus {
+  box-shadow: none !important;
+  border-color: #29ABE2 !important;
+}
+
 .not-a-user-box {
   width: 279px;
   height: 49px;
@@ -144,9 +149,8 @@ body {
   margin-bottom: 16px;
 }
 
-.input_password:focus {
-  box-shadow: none !important;
-  border-color: #29ABE2 !important;
+.redBorder {
+  border-color: #FF8190 !important;
 }
 
 .btn_reveal {
@@ -245,11 +249,12 @@ body {
   border: 2px solid #2A3647;
   background-color: #2A3647;
   color: #fff;
-  transition: background-color ease-in-out 100ms;
+  transition: background-color ease-in-out 100ms, border-color ease-in-out 100ms;
 }
 
 .btn_filled:hover {
   background-color: #29abe2;
+  border-color: #29abe2;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -357,9 +362,19 @@ body {
 }
 
 @keyframes moveUp {
-  0% {bottom: 0; opacity: 1;}
-  99% {bottom: 50vh; opacity: 0;}
-  100% { display: none;}
+  0% {
+    bottom: 0;
+    opacity: 1;
+  }
+
+  99% {
+    bottom: 50vh;
+    opacity: 0;
+  }
+
+  100% {
+    display: none;
+  }
 }
 
 /* .message {
@@ -533,6 +548,11 @@ body {
 
   .input_name {
     background-position: 253px
+  }
+
+  .slideBox {
+    font-size: 16px;
+    padding: 10px 15px;
   }
 }
 
