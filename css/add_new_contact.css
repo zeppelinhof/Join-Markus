@@ -1,3 +1,37 @@
+/* default */
+
+.add-new-contact-slidein-animation {
+    animation-duration: 0.5s;
+    animation-name: add-new-contact-slidein;
+}
+
+@keyframes add-new-contact-slidein {
+    from {
+        margin-left: calc(100vw + 1212px + 16px);
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
+.add-new-contact-slideout-animation {
+    animation-duration: 0.5s;
+    animation-name: add-new-contact-slideout;
+}
+
+@keyframes add-new-contact-slideout {
+    from {
+        margin-left: 0;
+    }
+
+    to {
+        margin-left: calc(100vw + 1212px + 16px);
+    }
+}
+
+
+
 /* add new contact */
 
 .add-new-contact-panel {
@@ -11,6 +45,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+/* add new contact area */
+
+.add-new-contact-area {
+    display: inline-flex;
 }
 
 /* add new contact sidebar */
@@ -27,6 +68,7 @@
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     height: calc(594px - 66px - 66px);
+    width: calc(467px - 48px - 48px);
 }
 
 .add-new-contact-logo {
@@ -74,6 +116,15 @@
     height: 32px;
     width: 32px;
     object-fit: contain;
+    background-image: url('../assets/img/close.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.add-new-contact-close:hover {
+    cursor: pointer;
+    background-image: url('../assets/img/icon_close_hover.png') !important;
 }
 
 .add-new-contact-profile-icon {
@@ -86,7 +137,7 @@
     padding: calc(120px - 82px);
     border: 1px solid white;
     border-radius: 50%;
-    background-color: rgb(209,209,209);
+    background-color: rgb(209, 209, 209);
     margin-bottom: 48px;
 }
 
@@ -119,7 +170,7 @@
     background-position-y: center;
     height: 50px;
     width: calc(422px - 24px);
-    border: 1px solid rgb(215,215,215);
+    border: 1px solid rgb(215, 215, 215);
     border-radius: 10px;
     font-size: 20px;
     font-weight: 400px;
@@ -128,7 +179,7 @@
 }
 
 .add-new-contact-input::placeholder {
-    color: rgb(215,215,215);
+    color: rgb(215, 215, 215);
 }
 
 .add-new-contact-input:focus {
@@ -177,7 +228,6 @@
 
     .add-new-contact-button-left-icon {
         background-image: url('../assets/img/icon_close_hover.png');
-        border-radius: 50%;
     }
 }
 

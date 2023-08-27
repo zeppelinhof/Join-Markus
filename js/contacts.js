@@ -202,7 +202,7 @@ function renderContactData(i, colorStyle) {
 
     setTimeout(() => {
         content.innerHTML = getContactDataHTML(colorStyle, firstLetters, name, email, phone)
-        content.classList.add('contact-data-content-animation')
+        content.classList.add('contact-slide-animation')
     }, 50);
 }
 
@@ -210,7 +210,7 @@ function clearContactData() {
     let content = document.getElementById('contact-data-content');
 
     content.innerHTML = '';
-    content.classList.remove('contact-data-content-animation');
+    content.classList.remove('contact-slide-animation');
 }
 
 
@@ -224,9 +224,4 @@ function closeAllContactClicks() {
 
         currentClick.classList.remove('contact-card-click');
     }
-}
-
-
-function openAddNewContact() {
-    document.getElementById('add-new-contact').classList.remove('contacts-d-none');
 }
