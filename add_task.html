@@ -21,18 +21,25 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="css/add_task.css">
+    <!-- <link rel="stylesheet" href="css/sidebar_template.css"> -->
+    <!-- <link rel="stylesheet" href="css/topbar_template.css"> -->
+    <!-- <link rel="stylesheet" href="./css/contacts.css"> -->
 
     <!-- Javascript -->
     <script src="js/load_contacts_to_add_task.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/add_task.js"></script>
     <script src="js/include_html.js"></script>
+    <!-- <script src="js/contacts.js"></script> -->
 </head>
 
-<body onload="initUsers(); initTasks(); includeHTML(); add_d_none('contentSearchContact');">
+<body onload="initUsers(); initTasks(); includeHTML();">
     <!-- Topbar and Sidebar -->
     <!-- <div w3-include-html="template/topbar_template.html"></div> -->
     <!-- <div w3-include-html="template/sidebar_template.html"></div> -->
+
+    <!-- add new contact -->
+    <!-- <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact"></div> -->
 
 
 
@@ -66,23 +73,30 @@
                                 <div class="select-btn" onclick="selectContactFieldInBackground();"
                                     id="selectContactField">
                                     <span>Select Contact</span>
-                                    <div class="circleAroundDownArrow" id="downarrow" onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
+                                    <div class="circleAroundDownArrow" id="downarrow"
+                                        onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
                                         <img src="assets/img/arrow_drop_down.svg">
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
-                            <div class="contentSearchContact" id="contentSearchContact">
+                            <div class="contentSearchContact d-none" id="contentSearchContact">
                                 <div class="search">
                                     <input type="text" placeholder="Search" id="searchContactField">
-                                    <div class="circleAroundUpArrow d-none" id="uparrow" onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
+                                    <div class="circleAroundUpArrow d-none" id="uparrow"
+                                        onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
                                         <img src="assets/img/arrow_drop_up.svg">
-                                    </div>                                                                   
-                                </div>                                
+                                    </div>
+                                </div>
                                 <ul class="selectAssignedTo" id="selectAssignedTo">
 
                                 </ul>
-                                <div class="buttonInContactListAddContact" id="buttonInContactListAddContact">
-
+                                <div class="buttonInContactListAddContact" id="buttonInContactListAddContact" onclick="openAddNewContact();">
+                                    <div>
+                                        Add new contact
+                                    </div>
+                                    <div>
+                                        <img src="../assets/img/person_add.svg">
+                                    </div>
                                 </div>
                                 <div class="invalid-feedback">
                                     This field is required.
@@ -167,18 +181,6 @@
                             </div>
                             <div class="selectedSubtasks" id="selectedSubtasks"></div>
                         </div>
-
-                        <!-- <div class="property">
-                            <div class="wrapper">
-                                <div class="select-btn" onclick="selectContactFieldInBackground();"
-                                    id="selectContactField">
-                                    <span>Select Contact</span>
-                                    <div class="circleAroundArrow XXXXX" onclick="closeContactList();">
-                                        <img src="assets/img/arrow_drop_down.svg">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
 
                         <div class="buttons_clear_create">
                             <button class="btn btn-outline-dark button-clear">Clear<img class="x_clear"

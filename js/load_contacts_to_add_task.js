@@ -44,7 +44,6 @@ function fillAssignedTo() {
         document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
         fillUsername(i, user);
     }
-    buttonInContactListAddContact();
 }
 
 function showDropdown(i, user) {
@@ -55,7 +54,9 @@ function showDropdown(i, user) {
                 <div id="contactCircle${i}" class="contactCircle"></div>
                 <div id="option${i}"></div>
             </div>
-            <input class="form-check-input me-1 checkbox-padding checkbox-modified" type="checkbox" id="flexCheckDefault${i}" value="">            
+            <input class="form-check-input me-1 checkbox-padding checkbox-modified d-none" type="checkbox" id="flexCheckDefault${i}" value="">            
+            <img id="check_filled${i}" src="assets/img/Check_button_filled.svg" class="d-none">
+            <img id="check_empty${i}" src="assets/img/Check_button_empty.svg" class="">
         </div>
     </li>                  
 `
@@ -64,18 +65,6 @@ function showDropdown(i, user) {
 function fillUsername(i, user) {
     document.getElementById(`option${i}`).innerHTML += user;
     initialsInCircle_List(i, user);
-}
-
-function buttonInContactListAddContact() {
-    document.getElementById('buttonInContactListAddContact').innerHTML += /*html*/`        
-        <div>
-            Add new contact
-        </div>
-        <div>
-            <img src="../assets/img/person_add.svg">
-        </div>
-    
-    `
 }
 
 // Create Circles in list
@@ -89,11 +78,15 @@ function initialsInCircle_List(i, contact) {
 function contactToTaskClickName(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
+        add_d_none(`check_filled${i}`);
+        remove_d_none(`check_empty${i}`);
         document.getElementById(`flexCheckDefault${i}`).checked = false;
         deleteContact(user);
     }
     else {
         // Create Circles of selected users below list
+        remove_d_none(`check_filled${i}`);
+        add_d_none(`check_empty${i}`);
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
         drawContactCirclesBelow();
 

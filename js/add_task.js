@@ -132,6 +132,7 @@ function selectContactFieldInBackground() {
     add_d_none('selectContactField');
     if (document.getElementById('contentSearchContact').classList.contains('d-none')) {
         remove_d_none('contentSearchContact');
+        remove_d_none('uparrow');
     }
 }
 
