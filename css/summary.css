@@ -17,6 +17,8 @@ body {
     padding-left: 96px;
     padding-top: 110px;
     background-color: #F6F7F8;
+    display: flex;
+    align-items: center;
 }
 
 .panelContainer {
@@ -57,17 +59,40 @@ body {
     font-weight: 400;
 }
 
+.font21px700 {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.font47px500 {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.font64px700 {
+    font-size: 64px;
+    font-weight: 700;
+}
+
 .rowUrgent {
     background-color: #fff;
     border-radius: 30px;
     width: 560px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .urgentTask {
     display: flex;
     align-items: center;
+    gap: 20px;
+    padding: 28px 48px;
+}
+
+.deadline {
+    display: flex;
+    flex-direction: column;
     gap: 20px;
     padding: 28px 48px;
 }
@@ -91,7 +116,36 @@ body {
     height: 102px;
     border: solid 1px #D1D1D1;
 }
+
 .urgentTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.otherTasksContainer {
+    width: 264px;
+    height: 168px;
+    border-radius: 30px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.edit {
+    width: 69px;
+    height: 69px;
+    border-radius: 100%;
+    background-color: #2A3647;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.editText {
     display: flex;
     flex-direction: column;
     justify-content: center;
