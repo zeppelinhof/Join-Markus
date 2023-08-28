@@ -8,6 +8,7 @@ body {
     /* to be removed later */
     background-color: #F6F7F8;
     display: flex;
+    justify-content: center;
 }
 
 h1 {
@@ -20,8 +21,8 @@ h1 {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 24px;
-    margin-left: 96px;
+    padding-top: 24px;
+    padding-left: 96px;
 }
 
 .panel {
