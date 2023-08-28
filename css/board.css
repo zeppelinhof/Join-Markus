@@ -370,16 +370,13 @@ body {
     display: grid;
     gap: 10px;
     transform: rotate(0deg);
-    background-color: greenyellow;
     position: relative;
 }
 
 .prioBaja{
     width: 17px;
     height: 12px;
-    transform: rotate(0deg);
-    background-color: whitesmoke;
-    
+    transform: rotate(0deg);    
 }
 
 .capa2 {
@@ -389,7 +386,6 @@ body {
     top: 0px;
     left: 0px;
     transform: rotate(0deg);
-    background-color: #1FD7C1;
 }
 
 .profileBadge1 {

@@ -52,11 +52,14 @@ function imagePriority(priority) {
     } else if (priority === 'low') {
         priorityIMG = 'assets/img/Capa_1.svg';
     }
+    return priorityIMG;
 }
 
 function loadAllTask(category, title, description, column, q, priority) {
     checkEmptyContainer();
-    imagePriority(priority);
+
+    const priorityIMG = imagePriority(priority);
+
     const cardHTML = /*html*/ `
             <div id="cards" onclick="detailCard(${q})">
                 <div class='frame119'>
@@ -71,7 +74,7 @@ function loadAllTask(category, title, description, column, q, priority) {
                         <div id='frame217'></div>
                         <div id='prioritySymbols'>
                             <div class="prioBaja">
-                                <!--<img class="capa2" src="${priorityIMG}" alt="">-->
+                                <img class="capa2" src="${priorityIMG}" alt="">
                             </div>
                         </div>
                     </div>
@@ -95,6 +98,10 @@ function assingAllTasks(column, cardHTML) {
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
+}
+
+function openDetailCard(){
+
 }
 
 

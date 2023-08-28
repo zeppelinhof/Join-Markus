@@ -8,6 +8,11 @@ body {
   height: 100dvh;
 }
 
+input:focus {
+  box-shadow: none !important;
+  border-color: #29ABE2 !important;
+}
+
 .not-a-user-box {
   width: 279px;
   height: 49px;
@@ -36,6 +41,39 @@ body {
   left: 77px;
   width: 90px;
   height: 110px;
+}
+
+.animationOverlay {
+  position: absolute;
+  z-index: 999;
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #F6F7F8;
+}
+
+.logoAnimation {
+  position: relative;
+  animation: slideLogo 1s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideLogo {
+  0% {
+    width: 274px;
+    height: 334px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  100% {
+    width: 90px;
+    height: 110px;
+    top: 51px;
+    left: 77px;
+  }
 }
 
 .form_container {
@@ -93,6 +131,16 @@ body {
   top: 71px;
 }
 
+.backToLogin2 {
+  position: absolute;
+  left: 60px;
+  top: 71px;
+}
+
+.backToLogin2 img:hover {
+  width: 24px;
+}
+
 .backToLogin img:hover {
   width: 24px;
 }
@@ -144,9 +192,8 @@ body {
   margin-bottom: 16px;
 }
 
-.input_password:focus {
-  box-shadow: none !important;
-  border-color: #29ABE2 !important;
+.redBorder {
+  border-color: #FF8190 !important;
 }
 
 .btn_reveal {
@@ -245,11 +292,12 @@ body {
   border: 2px solid #2A3647;
   background-color: #2A3647;
   color: #fff;
-  transition: background-color ease-in-out 100ms;
+  transition: background-color ease-in-out 100ms, border-color ease-in-out 100ms;
 }
 
 .btn_filled:hover {
   background-color: #29abe2;
+  border-color: #29abe2;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.06);
 }
 
@@ -357,23 +405,20 @@ body {
 }
 
 @keyframes moveUp {
-  0% {bottom: 0; opacity: 1;}
-  99% {bottom: 50vh; opacity: 0;}
-  100% { display: none;}
-}
+  0% {
+    bottom: 0;
+    opacity: 1;
+  }
 
-/* .message {
-  position: absolute;
-  z-index: 999;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #00cc00;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  transition: transform 1s ease-in-out;
-} */
+  99% {
+    bottom: 50vh;
+    opacity: 0;
+  }
+
+  100% {
+    display: none;
+  }
+}
 
 @media (max-width: 900px) {
   .form_forgotPassword {
@@ -531,8 +576,18 @@ body {
     top: 55px;
   }
 
+  .backToLogin2 {
+    left: 19px;
+    top: 51px;
+  }
+
   .input_name {
     background-position: 253px
+  }
+
+  .slideBox {
+    font-size: 16px;
+    padding: 10px 15px;
   }
 }
 

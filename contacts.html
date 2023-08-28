@@ -16,20 +16,23 @@
     <script src="./js/topbar.js"></script>
     <script src="./js/contacts.js"></script>
     <script src="./js/contacts_html_template.js"></script>
+    <script src="./js/add_new_contact.js"></script>
+    <script src="./js/register.js"></script>
+    <script src="./js/storage.js"></script>
 </head>
 
 <body onload="initContacts()">
 
     <!-- add new contact -->
-    <div class="contacts-d-none" w3-include-html="./contacts.html" id="add-new-contact"></div>
-    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact"></div>
+    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
 
     <!-- edit contact -->
-    <div class="contacts-d-none" w3-include-html="./edit_contact.html"></div>
+    <div class="contacts-d-none" w3-include-html="./edit_contact.html" id="edit-contact-include-HTML"></div>
 
     <!-- sidebar -->
     <section w3-include-html="./template/sidebar_template.html"></section>
 
+    <!-- contact + topbare as only -->
     <div class="contact-topbar-area">
 
         <!-- topbar -->
@@ -42,7 +45,7 @@
 
                 <div class="contacts-area">
 
-                    <button class="btn-new-contact" onclick="openAddNewContact()">
+                    <button class="btn-new-contact" onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact')">
                         <span>Add new contact</span>
                         <img class="btn-new-contact-icon" src="./assets/img/icon_person_add.png" alt="">
                     </button>

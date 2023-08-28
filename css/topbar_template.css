@@ -15,6 +15,7 @@
 .topbar-area {
     display: block;
     position: relative;
+    max-width: calc(100vw - 232px);
 }
 
 .topbar-panel {

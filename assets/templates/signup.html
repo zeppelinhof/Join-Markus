@@ -1,8 +1,7 @@
 <form class="form_container form_signup">
-    <a href="index.html" class="backToLogin"><img src="assets/img/arrowLeft.svg"></a>
+    <div class="backToLogin2" onclick="loadHTML('formElement', 'login.html')"><img src="assets/img/arrowLeft.svg"></div>
     <div class="login_headline">Sign up</div>
     <i class="blueLine"></i>
-
     <input type="text" class="form-control input_login input_name" style="margin-bottom: -16px !important;"
         aria-describedby="emailHelp" placeholder="Name" id="username" onkeypress="validateSignUp()">
     <input type="email" class="form-control input_login input_mail" style="margin-bottom: -16px !important;"
@@ -20,8 +19,8 @@
             onkeypress="updateInputState(this, 'btn_reveal3')">
         <img src="/assets/img/lock.svg" class="signup_reveal2" id="btn_reveal3"
             onclick="toggleReveal(this, 'inputPassword3')">
-        <div class="password_warning invisible" style="top: 22px !important;" id="noMatch">Ups! Your password don't match</div>
-
+        <div class="password_warning invisible" style="top: 22px !important;" id="noMatch">Ups! Your password don't
+            match</div>
     </div>
     <div class="consent_container">
         <label class="custom-checkbox">
@@ -31,5 +30,6 @@
         </label>
         <a href="#" style="text-decoration: none; color: #29ABE2;">Privacy policy</a>
     </div>
-    <button type="submit" class="btn_filled btn_join invisible" id="btn_signUpUser" onclick="register(); return false;">Sign up</button>
+    <button type="submit" class="btn_filled btn_join invisible" id="btn_signUpUser"
+        onclick="register(); return false;">Sign up</button>
 </form>

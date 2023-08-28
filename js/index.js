@@ -1,4 +1,5 @@
 async function init() {
+    animateJoinLogo();
     loadHTML('formElement', "login.html");
     await loadUsers();
 }
@@ -42,7 +43,9 @@ function updateInputState(element, idToToggle) {
             document.getElementById(idToToggle).src = "../assets/img/eye.svg";
         }
     }
-    validateSignUp();
+    if (document.getElementById('formElement').innerHTML.includes('form_signup')) {
+        validateSignUp();
+    }
 }
 
 
@@ -120,12 +123,62 @@ function validatePasswords() {
 }
 
 
+function animateJoinLogo() {
+    const animationOverlay = document.getElementById("animationOverlay");
+    animationOverlay.classList.remove('d-none');
+    setTimeout(function () {
+        animationOverlay.classList.add('d-none');
+    }, 990);
+    animateIteration = 1; 
+}
+
 
 function successMessage(message) {
     const slideBox = document.getElementById("slideBox");
     slideBox.classList.remove('d-none');
     slideBox.innerHTML = message;
-    setTimeout(function(){
+    setTimeout(function () {
         slideBox.classList.add('d-none');
-    }, 2750); 
+    }, 2750);
+}
+
+
+function resetPassword() {
+    successMessage('You reset your password');
+}
+
+
+function forgotPassword() {
+    const message = /*html*/ `
+        <img src="../assets/img/email_send.svg"> An Email has been sent to you
+    `;
+    successMessage(message);
+    document.getElementById('btn_sendMail').classList.add('d-none');
+}
+
+
+function login() {
+    const email = document.getElementById("inputEmail");
+    const password = document.getElementById("inputPassword");
+    const user = users.find(u => u.email == email.value && u.password == password.value);
+    const wrongPassword = users.find(u => u.email == email.value && u.password != password.value);
+    const warning = document.getElementById("password_warning");
+    const passwordTextbox = document.getElementById("inputPassword");
+    if (user) {
+        warning.classList.add('invisible');
+        passwordTextbox.classList.remove('redBorder');
+        g_currentUser = user;
+        window.location.href = 'summary.html';
+    } else if (wrongPassword) {
+        warning.classList.remove('invisible');
+        passwordTextbox.classList.add('redBorder');
+    } else {
+        warning.classList.add('invisible');
+        passwordTextbox.classList.remove('redBorder');
+    }
+}
+
+
+function guest() {
+    window.location.href = 'summary.html';
 }

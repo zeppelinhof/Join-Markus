@@ -1,4 +1,4 @@
-<form class="form_container form_login">
+<form class="form_container form_login" onsubmit="login(); return false;">
     <div class="login_headline">Log in</div>
     <i class="blueLine"></i>
 
@@ -13,7 +13,7 @@
                 onkeypress="updateInputState(this, 'btn_reveal1')">
             <img src="/assets/img/lock.svg" class="btn_reveal" id="btn_reveal1"
                 onclick="toggleReveal(this, 'inputPassword')">
-            <div class="password_warning" id="password_warning">Wrong password Ups! Try again.</div>
+            <div class="password_warning invisible" id="password_warning">Wrong password Ups! Try again.</div>
         </div>
     </div>
     <div class="loginOptions">
@@ -26,6 +26,6 @@
     </div>
     <div class="loginButtonContainer">
         <button type="submit" class="btn_filled btn_join">Log in</button>
-        <button type="submit" class="btn_outlined btn_join">Guest Log in</button>
+        <button class="btn_outlined btn_join" onclick="guest()">Guest Log in</button>
     </div>
 </form>
