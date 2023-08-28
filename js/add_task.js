@@ -94,7 +94,7 @@ async function register_task() {
         selectAssignedTo: contactsInTask,
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerHTML,
-        category: category.value,
+        category: selectedCategory.innerHTML,
         subtasks: subtasks,
         column: 'to do',
     });
@@ -119,12 +119,14 @@ function resetForm() {
 // #endregion Data from Add Task to Backend
 
 // #region select contact logic
+let categoryClosed = false;
+let subtaskNumber = 0;
 
-function add_d_none(classname){
+function add_d_none(classname) {
     document.getElementById(classname).classList.add('d-none');
 }
 
-function remove_d_none(classname){
+function remove_d_none(classname) {
     document.getElementById(classname).classList.remove('d-none');
 }
 
@@ -134,6 +136,29 @@ function selectContactFieldInBackground() {
         remove_d_none('contentSearchContact');
         remove_d_none('uparrow');
     }
+}
+
+function showContentCategory() {
+    if (document.getElementById('contentCategory').classList.contains('d-none') && (categoryClosed == false)) {
+        remove_d_none('contentCategory');
+    }
+    if (categoryClosed == false) {
+        remove_d_none('uparrow_cat');
+        add_d_none('downarrow_cat');
+    }
+    categoryClosed = false;
+}
+
+function closeContentCategory() {
+    add_d_none('uparrow_cat');
+    add_d_none('contentCategory');
+    remove_d_none('downarrow_cat');
+    categoryClosed = true;
+}
+
+function selectCategory(i) {
+    let selectedCategory = document.getElementById('selectedCategory');
+    selectedCategory.innerHTML = document.getElementById('category' + i).innerHTML;
 }
 
 
@@ -149,24 +174,52 @@ function borderLightblue(id) {
 // #endregiion select contact logic
 
 // #region add Subtask
-function addSubtask() {
+function addSubtask() {    
     if (document.getElementById('subtaskInputfield').value) {
         subtaskInputfield = document.getElementById('subtaskInputfield').value;
         selectedSubtasks = document.getElementById('selectedSubtasks');
         selectedSubtasks.innerHTML += /*html*/`        
-            <div class="oneSelectedSubtask">
-                <div>
-                    •${subtaskInputfield}
-                </div>
-                <div class="pencil-bin">
+            <div class="oneSelectedSubtask" onmouseover="showEdit('pencil-bin${subtaskNumber}');" onmouseout="closeEdit('pencil-bin${subtaskNumber}')" id="oneSubtask${subtaskNumber}">                
+                <div style="display: flex;">
+                    •<div id="rawData${subtaskNumber}">
+                        ${subtaskInputfield}
+                    </div>  
+                </div>                              
+                <div class="pencil-bin d-none" id="pencil-bin${subtaskNumber}">
                     <img src="assets/img/Subtasks_pencil.svg">
-                    <img src="assets/img/Subtasks_bin.svg">
-                </div>
-            </div>
-      
+                    <div class="pencil-bin-separator"></div>
+                    <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
+                </div>    
+            </div>  
     `
         subtasks.push(subtaskInputfield);
         document.getElementById('subtaskInputfield').value = '';
+        subtaskNumber++;
     }
+}
+
+function showEdit(x){
+    let classList = document.getElementById(x).classList;
+    classList.remove('d-none');
+    // remove_d_none('pencil-bin'+i);
+}
+
+function closeEdit(x){
+    let classList = document.getElementById(x).classList;
+    classList.add('d-none');
+}
+
+function deleteSubtask(x){
+    let oneSubtaskToDelete = document.getElementById(`oneSubtask${x}`);
+    
+    for (let i = 0; i < subtasks.length; i++) {
+        const currentSubtask = subtasks[i];
+
+        if (document.getElementById('rawData'+x).innerHTML === currentSubtask) {
+            subtasks.splice(i, 1);
+        }
+    }
+    
+    oneSubtaskToDelete.innerHTML = '';
 }
 // #endregion add Subtask
