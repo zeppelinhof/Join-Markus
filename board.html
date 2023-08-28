@@ -26,10 +26,10 @@
 
 <body onload="init()">
 
-    <!--<div class="area">
+    <div class="area">
         <div w3-include-html="./template/topbar_template.html"></div>
         <div w3-include-html="./template/sidebar_template.html"></div>
-    </div>-->
+    </div>
 
     <div class="bodyContainer">
         <div class="headlineBoard">
@@ -50,15 +50,18 @@
         <div class="headlineBoard2">
             <div class="hlB">
                 <p>To do</p>
-                <img class="addheadlineButton" src="assets/img/plus button.svg" alt="" onclick="addTask('toDoContainer')">
+                <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
+                    onclick="addTask('toDoContainer')">
             </div>
             <div class="hlB">
                 <p> In progress</p>
-                <img class="addheadlineButton" src="assets/img/plus button.svg" alt="" onclick="addTask('inProgressContainer')">
+                <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
+                    onclick="addTask('inProgressContainer')">
             </div>
             <div class="hlB">
                 <p> Await feedback</p>
-                <img class="addheadlineButton" src="assets/img/plus button.svg" alt="" onclick="addTask('feedbackContainer')">
+                <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
+                    onclick="addTask('feedbackContainer')">
             </div>
             <div class="hlB">
                 <p>Done</p>
@@ -73,21 +76,21 @@
                 </div>
 
             </div>
-            <div class="taskContainer" id="inProgressContainer"  ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="taskContainer" id="inProgressContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div class="noTaskContainer">
                     <span class="noTaskContainer2">
                         <p>No tasks Progress</p>
                     </span>
                 </div>
             </div>
-            <div class="taskContainer" id="feedbackContainer"  ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="taskContainer" id="feedbackContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div class="noTaskContainer">
                     <span class="noTaskContainer2">
                         <p>No tasks feedback</p>
                     </span>
                 </div>
             </div>
-            <div class="taskContainer" id="doneContainer"  ondrop="drop(event)" ondragover="allowDrop(event)">
+            <div class="taskContainer" id="doneContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
                 <div class="noTaskContainer">
                     <span class="noTaskContainer1">
                         <p>No tasks Done</p>
@@ -100,34 +103,30 @@
     <div id="detailCard" style="display: none;">
         <div class="taskOverlay">
             <div class="frame203" id="frame203">
-                <span class="frame113" id="frame113"></span>
+                <span class="frame113" id="frame113">
+                    <p id="taskContain"></p>
+                </span>
                 <div id="close1" onclick="closeDetailCard()">
                     <img class="close2" src="assets/img/close.svg" alt="">
                 </div>
             </div>
             <p id="taskOverlayHeadline"></p>
+            <p id="descriptionContain"></p>
             <div class="frame179">
                 <p class="taskOverlayDate">Due date:</p>
                 <span id="taskOverlayNumber"></span>
             </div>
             <div class="frame178">
                 <p class="priority">Priority:</p>
-                <div class="priorityButton"></div>
+                <div id="priorityButton">
+                    <p id="medium"></p>
+                    <span id="prioMedia"></span>
+                </div>
             </div>
             <div class="frame214">
                 <p class="assignedTo">Assigned To:</p>
-                <div class="frame204">
-                    <div class="contactContain">
-                        <div class="frame191">
-                            <div class="profileBadge">
-                                <div class="group9">
-                                    <p class="initialien"></p>
-                                    <div class="ellipse5"></div>
-                                </div>
-                            </div>
-                            <p class="userName6"></p>
-                        </div>
-                    </div>
+                <div id="frame204">
+                    
                 </div>
             </div>
             <div class="frame215">

@@ -1,3 +1,99 @@
 body {
     display: flex;
 }
+
+.topBarContainer {
+    position: absolute;
+    top: 0;
+    left: 232px;
+    right: 0;
+    height: 96px;
+}
+
+.contentContainer {
+    width: 100%;
+    position: relative;
+    top: 96px;
+    padding-left: 96px;
+    padding-top: 110px;
+    background-color: #F6F7F8;
+}
+
+.panelContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-top: 60px;
+}
+
+.panelRow {
+    display: flex;
+    gap: 28px;
+}
+
+.tasksPanel {
+    background-color: #fff;
+    width: 168px;
+    height: 168px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.variablePanel {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.font16px400 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.font20px400 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.rowUrgent {
+    background-color: #fff;
+    border-radius: 30px;
+    width: 560px;
+    display: flex;
+    align-items: center;
+}
+
+.urgentTask {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 48px;
+}
+
+.urgentImageContainer {
+    background-color: #FF3D00;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.urgentImageContainer img {
+    width: 34px;
+}
+
+.verticalGreyLine {
+    width: 0px;
+    height: 102px;
+    border: solid 1px #D1D1D1;
+}
+.urgentTextContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
