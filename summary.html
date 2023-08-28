@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/summary.css">
+    <link rel="stylesheet" href="./css/contacts.css">
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
@@ -17,7 +18,50 @@
 <body onload="includeHTML()">
 
     <div w3-include-html="./template/sidebar_template.html"></div>
-    <div w3-include-html="./template/topbar_template.html"></div>
+    <div class="topBarContainer">
+        <div w3-include-html="./template/topbar_template.html"></div>
+    </div>
+    <!--  -->
+    <div class="contentContainer">
+            <!-- headline -->
+        <div class="contact-data-headline">
+            <h1 class="contact-data-headline-left">Summary</h1>
+            <div class="contact-data-headline-separator"></div>
+            <span class="contact-data-headline-right">Everything in a nutshell!</span>
+        </div>
+        <div class="panelContainer">
+            <div class="panelRow">
+                <div class="tasksPanel">
+                    <div class="variablePanel" id="variablePanel1">12</div>
+                    <div class="font20px400">Tasks in<br>Board</div>
+                </div>
+                <div class="tasksPanel">
+                    <div class="variablePanel" id="variablePanel2">2</div>
+                    <div class="font20px400">Tasks in<br>Progress</div>
+                </div>
+                <div class="tasksPanel">
+                    <div class="variablePanel" id="variablePanel3">2</div>
+                    <div class="font20px400">Awaiting<br>Feedback</div>
+                </div>
+            </div>
+
+            <div class="rowUrgent">
+                <div class="urgentTask">
+                    <div class="urgentImageContainer">
+                        <img src="assets/img/Capa_2_white.svg" alt="arrowUp">
+                    </div>
+                    <div class="urgentTextContainer">
+                        <div class="variablePanel" id="variablePanel4">2</div>
+                        <div class="font16px400">Urgent</div>
+                    </div>
+                </div>
+                <div class="verticalGreyLine"></div>
+                <div class="deadline"></div>
+            </div>
+            <div class="panelRow"></div>
+            <div class="panelRow"></div>
+        </div>
+    </div>
 
 
 </html>
