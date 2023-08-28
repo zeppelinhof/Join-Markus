@@ -1,19 +1,32 @@
 /*Uebergreifende Variablen*/
 let allTasks = [];
 
+// ------------ORIGINALER CODE-------------------------------------------
+// /*funktion die für den Body alle notwendigen Funktionen aufruft*/
+// /*function that calls all necessary functions for the body*/
+// function init() {
+//     loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
 
-/*funktion die für den Body alle notwendigen Funktionen aufruft*/
-/*function that calls all necessary functions for the body*/
-function init() {
-    loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+// }
 
+// /*funktion die das komplette tasks aus dem Backend ausließt*/
+// async function loadTasks() {
+//     allTasks = JSON.parse(await getItem('tasks'));
+//     loopAllTasks();
+// }
+
+// ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
+async function init() {
+    await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+    loopAllTasks();
 }
 
 /*funktion die das komplette tasks aus dem Backend ausließt*/
 async function loadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
-    loopAllTasks();
 }
+// ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH ENDE -----------
+
 
 /*Open and Close function*/
 function closeDetailContain() {

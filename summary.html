@@ -13,7 +13,8 @@
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
-    <script src="./js/add_task.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/summary.js"></script>
 </head>
 
 <body onload="includeHTML(); initSummary()">
@@ -31,7 +32,7 @@
                 <div class="contact-data-headline-separator"></div>
                 <span class="contact-data-headline-right">Everything in a nutshell!</span>
             </div>
-                <!-- Panel Area -->
+            <!-- Panel Area -->
             <div class="panelContainer">
                 <div class="panelRow">
                     <div class="tasksPanel">
@@ -67,8 +68,11 @@
                 <div class="panelRow">
                     <div class="otherTasksContainer">
                         <div class="edit">
-                            <svg width="24" height="24" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z" fill="#fff"/>
+                            <svg width="24" height="24" viewBox="0 0 19 19" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M2 17H3.4L12.025 8.375L10.625 6.975L2 15.6V17ZM16.3 6.925L12.05 2.725L13.45 1.325C13.8333 0.941667 14.3042 0.75 14.8625 0.75C15.4208 0.75 15.8917 0.941667 16.275 1.325L17.675 2.725C18.0583 3.10833 18.2583 3.57083 18.275 4.1125C18.2917 4.65417 18.1083 5.11667 17.725 5.5L16.3 6.925ZM14.85 8.4L4.25 19H0V14.75L10.6 4.15L14.85 8.4Z"
+                                    fill="#fff" />
                             </svg>
                         </div>
                         <div class="editText">
@@ -78,8 +82,10 @@
                     </div>
                     <div class="otherTasksContainer">
                         <div class="edit">
-                            <svg width="38" height="30" viewBox="0 0 38 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.02832 15.0001L15.2571 26.0662L33.9717 3.93408" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg width="38" height="30" viewBox="0 0 38 30" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.02832 15.0001L15.2571 26.0662L33.9717 3.93408" stroke="white"
+                                    stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
                         <div class="editText">
@@ -88,11 +94,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="panelRow"></div>
-                <div class="panelRow"></div>
             </div>
         </div>
-            <!-- Greeting Area -->
+        <!-- Greeting Area -->
         <div class="greetingContainer">
             <div class="font47px500" id="greeting">Good Morning,</div>
             <div class="font64px700" style="color: #29ABE2;" id="greetingName">Guest</div>
