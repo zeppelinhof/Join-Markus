@@ -1,30 +1,35 @@
-
-body{ /* to be removed later */
-    background-color: #F6F7F8;
+.outer{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
 }
 
-h1{
+body {
+    /* to be removed later */
+    background-color: #F6F7F8;
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
     font-weight: 700;
     font-size: 61px;
     padding-bottom: 24px;
 }
 
-.wrap{
+.wrap {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
-    margin: 24px;
-    height: 100vh;
-    width: 100vw;
-    flex-grow: 1;
+    padding-top: 24px;
+    padding-left: 96px;
 }
 
 .panel {
     display: flex;
 }
 
-.height-48px{
+.height-48px {
     height: 48px;
 }
 
@@ -44,42 +49,41 @@ input {
     padding-bottom: 24px;
 }
 
-.list-item-display-flex{
+.list-item-display-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 12px;
 }
 
-.list-item-display-flex-icon-name{
+.list-item-display-flex-icon-name {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-li:hover{
+li:hover {
     background-color: gray;
 }
 
-.contactCircle{
+.contactCircle {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background-color:darkslateblue;
     color: white;
+    background-color: #0a168a;
 }
 
-.select-contacts-field{
+.select-contacts-field {
     background-color: white;
     border-radius: 10px;
     padding: 12px 16px 12px 16px;
-    
+
 }
 
-#selected-contacts-circles-below{
+#selected-contacts-circles-below {
     display: flex;
     gap: 8px;
     width: 200px;
@@ -94,7 +98,7 @@ li:hover{
     gap: 25px;
 }
 
-.checkbox-modified{
+.checkbox-modified {
     z-index: 0;
 }
 
@@ -108,7 +112,7 @@ li:hover{
     gap: 4px;
 }
 
-.button-create-task:hover{
+.button-create-task:hover {
     background-color: #29ABE2;
     border-color: #29ABE2;
     box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 20%);
@@ -123,7 +127,7 @@ li:hover{
     gap: 4px;
 }
 
-.button-clear:hover{
+.button-clear:hover {
     color: #29ABE2;
     background-color: #F6F7F8;
     border-color: #29ABE2;
@@ -150,26 +154,26 @@ li:hover{
     gap: 8px;
 }
 
-.button-prio:hover{
+.button-prio:hover {
     box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 20%);
 }
 
-.button-red{
+.button-red {
     background-color: #FF3D00;
     color: white;
 }
 
-.button-orange{
+.button-orange {
     background-color: #FFA800;
     color: white;
 }
 
-.button-green{
+.button-green {
     background-color: #7AE229;
     color: white;
 }
 
-.containArrow{
+.containArrow {
     position: relative;
     display: flex;
     align-items: center;
@@ -177,25 +181,27 @@ li:hover{
     height: 14.51px;
 }
 
-.arrowRedUrgent{
+.arrowRedUrgent {
     position: absolute;
 }
 
-.arrowWhiteUrgent{
+.arrowWhiteUrgent {
     position: absolute;
 }
 
-.arrowOrangeMedium{
-    position: absolute;
-}
-.arrowWhiteMedium{
+.arrowOrangeMedium {
     position: absolute;
 }
 
-.arrowGreenLow{
+.arrowWhiteMedium {
     position: absolute;
 }
-.arrowWhiteLow{
+
+.arrowGreenLow {
+    position: absolute;
+}
+
+.arrowWhiteLow {
     position: absolute;
 }
 
@@ -204,51 +210,74 @@ li:hover{
     cursor: pointer;
 }
 
-.black-font{
+.black-font {
     color: black;
 }
 
 
-.border-right-white{
+.border-right-white {
     border-right: white;
 }
 
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
 
-.z-index-1{
+.z-index-1 {
     z-index: 1;
 }
 
-.z-index-n1{
+.z-index-n1 {
     z-index: -1;
 }
 
-.selectedSubtasks{
+.selectedSubtasks {
     margin-top: 10px;
     max-height: 80px;
     overflow-y: auto;
     padding-right: 8px;
 }
 
-.oneSelectedSubtask{
+.oneSelectedSubtask {
     display: flex;
     justify-content: space-between;
-    background-color: aliceblue;
 }
 
-.pencil-bin{
-    display: flex;
+.oneSelectedSubtask:hover{
+    background-color: #f2f2f2;
+}
+
+.pencil-bin {
+    display: flex;    
     gap: 4px;
+}
+
+.pencil-bin-separator {
+    height: 100%;
+    width: 1px;
+    background-color: #A8A8A8;
+}
+
+.padding-left-16 {
+    padding-left: 16px;
+}
+
+.list-group-item-category {
+    display: flex;
+    align-items: center;
+}
+
+.list-group-item:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 /* #region search contact button */
 .wrapper {
     width: 370px;
-  }
+}
 
-  .select-btn {
+.select-btn {
     display: flex;
     cursor: pointer;
     position: relative;
@@ -258,37 +287,37 @@ li:hover{
     padding: 0 20px;
     border-radius: 10px;
     background: #fff;
-  }
+}
 
-  .contentSearchContact {
+.contentSearchContact {
     position: relative;
     background-color: white;
     border-radius: 10px;
-  }
+}
 
-  .contentSearchContact ul {
+.contentSearchContact ul {
     padding-left: 8px;
-  }
+}
 
-  .contentSearchContact .search {
+.contentSearchContact .search {
     position: relative;
-  }
+}
 
-  .search i {
+.search i {
     position: absolute;
     line-height: 53px;
     left: 15px;
-    color: #999;
-  }
+    color: #000;
+}
 
-  .search input {
+.search input {
     height: 48px;
     padding: 0 20px;
     width: 100%;
     outline: none;
     border-radius: 10px;
     border: 1px solid #29ABE2;
-  }
+}
 
 /* #region samll up and down arrows */
 .circleAroundDownArrow {
@@ -301,13 +330,17 @@ li:hover{
     height: 16px;
     border-radius: 8px;
     cursor: pointer;
-  }
+}
 
-  .circleAroundUpArrow:hover {
+.circleAroundUpArrow:hover {
     background-color: #EEEEEE;
-  }
+}
 
-  .circleAroundUpArrow {
+ul {
+    padding: 10px;
+}
+
+.circleAroundUpArrow {
     position: absolute;
     display: flex;
     justify-content: center;
@@ -318,54 +351,53 @@ li:hover{
     height: 16px;
     border-radius: 8px;
     cursor: pointer;
-  }
+}
 
-  .circleAroundDownArrow:hover {
+.circleAroundDownArrow:hover {
     background-color: #EEEEEE;
-  }
+}
 
 /* #endregion samll up and down arrows */
 
-  .selectAssignedTo{
+.selectAssignedTo {
     position: relative;
-  }
+}
 
-  .contentSearchContact .selectAssignedTo {
-    margin-top: 10px;
+.contentSearchContact .selectAssignedTo {
     max-height: 250px;
     overflow-y: auto;
     padding-right: 8px;
-  }
+}
 
-  .selectAssignedTo::-webkit-scrollbar {
+.selectAssignedTo::-webkit-scrollbar {
     width: 8px;
 
-  }
+}
 
-  .selectAssignedTo::-webkit-scrollbar-track {
+.selectAssignedTo::-webkit-scrollbar-track {
     background-color: white;
-  }
+}
 
-  .selectAssignedTo::-webkit-scrollbar-thumb {
+.selectAssignedTo::-webkit-scrollbar-thumb {
     background-color: #A8A8A8;
     border-radius: 25px;
-  }
+}
 
 
-  .selectAssignedTo li {
+.selectAssignedTo li {
     height: 50px;
     border-radius: 10px;
-  }
+}
 
-  .selectAssignedTo li:hover {
+.selectAssignedTo li:hover {
     background-color: #f2f2f2;
-  }
+}
 
-  .d-none {
+.d-none {
     display: none;
-  }
+}
 
-  .buttonInContactListAddContact{
+.buttonInContactListAddContact {
     display: flex;
     justify-content: center;
     gap: 10px;
@@ -376,5 +408,6 @@ li:hover{
     top: 20px;
     background-color: #2A3647;
     cursor: pointer;
-  }
+}
+
 /* #endregion search contact button */

@@ -21,9 +21,7 @@
 
     <!-- local css -->
     <link rel="stylesheet" href="css/add_task.css">
-    <!-- <link rel="stylesheet" href="css/sidebar_template.css"> -->
-    <!-- <link rel="stylesheet" href="css/topbar_template.css"> -->
-    <!-- <link rel="stylesheet" href="./css/contacts.css"> -->
+    <link rel="stylesheet" href="./css/contacts.css">
 
     <!-- Javascript -->
     <script src="js/load_contacts_to_add_task.js"></script>
@@ -31,177 +29,209 @@
     <script src="js/add_task.js"></script>
     <script src="js/include_html.js"></script>
     <!-- <script src="js/contacts.js"></script> -->
+    <script src="js/add_new_contact.js"></script>
 </head>
 
-<body onload="initUsers(); initTasks(); includeHTML();">
-    <!-- Topbar and Sidebar -->
-    <!-- <div w3-include-html="template/topbar_template.html"></div> -->
-    <!-- <div w3-include-html="template/sidebar_template.html"></div> -->
+<body onload="initUsers(); initTasks(); ">
 
     <!-- add new contact -->
-    <!-- <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact"></div> -->
+    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
+
+    <!-- Topbar and Sidebar -->
+    <div w3-include-html="template/sidebar_template.html"></div>
 
 
+    <div class="outer">
+        <div w3-include-html="template/topbar_template.html"></div>
+        <div class="wrap">
 
-    <div class="wrap">
-        <div class="content">
-            <h1>Add Task</h1>
-            <form onsubmit="register_task(); return false;" class="row g-3 needs-validation" id="mainForm" novalidate>
-                <div class="panel">
-                    <div class="left-side-of-panel">
+            <div class="content">
+                <h1>Add Task</h1>
+                <form onsubmit="register_task(); return false;" needs-validation" id="mainForm"
+                    novalidate>
+                    <div class="panel">
+                        <div class="left-side-of-panel">
 
-                        <div class="property">
-                            <label for="validationCustom01" class="form-label">Title</label>
-                            <input id="title" type="text" class="form-control height-48px" id="validationCustom01"
-                                placeholder="Enter a title" required>
-                            <div class="invalid-feedback">
-                                This field is required.
+                            <div class="property">
+                                <label for="validationCustom01" class="form-label">Title</label>
+                                <input id="title" type="text" class="form-control height-48px" id="validationCustom01"
+                                    placeholder="Enter a title" required>
+                                <div class="invalid-feedback">
+                                    This field is required.
+                                </div>
+                            </div>
+
+                            <div class="property">
+                                <label for="validationCustom02" class="form-label">Description</label>
+                                <textarea id="description" class="form-control" placeholder="Enter a Description"
+                                    id="floatingTextarea" required style="height: 100px"></textarea>
+                                <div class="invalid-feedback">
+                                    This field is required.
+                                </div>
+                            </div>
+                            <!-- Assigned to User -->
+                            <div class="property">
+                                <div class="wrapper">
+                                    <div class="select-btn" onclick="selectContactFieldInBackground();"
+                                        id="selectContactField">
+                                        <span>Select Contact</span>
+                                        <div class="circleAroundDownArrow" id="downarrow"
+                                            onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
+                                            <img src="assets/img/arrow_drop_down.svg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contentSearchContact d-none" id="contentSearchContact">
+                                    <div class="search">
+                                        <input type="text" placeholder="Search" id="searchContactField">
+                                        <div class="circleAroundUpArrow d-none" id="uparrow"
+                                            onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
+                                            <img src="assets/img/arrow_drop_up.svg">
+                                        </div>
+                                    </div>
+                                    <ul class="selectAssignedTo" id="selectAssignedTo">
+
+                                    </ul>
+                                    <div class="buttonInContactListAddContact" id="buttonInContactListAddContact"
+                                        onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact')">
+                                        <div>
+                                            Add new contact
+                                        </div>
+                                        <div>
+                                            <img src="../assets/img/person_add.svg">
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        This field is required.
+                                    </div>
+                                </div>
+                                <div id="selected-contacts-circles-below">
+                                </div>
+
                             </div>
                         </div>
 
-                        <div class="property">
-                            <label for="validationCustom02" class="form-label">Description</label>
-                            <textarea id="description" class="form-control" placeholder="Enter a Description"
-                                id="floatingTextarea" required style="height: 100px"></textarea>
-                            <div class="invalid-feedback">
-                                This field is required.
-                            </div>
-                        </div>
-                        <!-- Assigned to User -->
-                        <div class="property">
-                            <div class="wrapper">
-                                <div class="select-btn" onclick="selectContactFieldInBackground();"
-                                    id="selectContactField">
-                                    <span>Select Contact</span>
-                                    <div class="circleAroundDownArrow" id="downarrow"
-                                        onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
-                                        <img src="assets/img/arrow_drop_down.svg">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="contentSearchContact d-none" id="contentSearchContact">
-                                <div class="search">
-                                    <input type="text" placeholder="Search" id="searchContactField">
-                                    <div class="circleAroundUpArrow d-none" id="uparrow"
-                                        onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
-                                        <img src="assets/img/arrow_drop_up.svg">
-                                    </div>
-                                </div>
-                                <ul class="selectAssignedTo" id="selectAssignedTo">
+                        <div class="separator"></div>
 
-                                </ul>
-                                <div class="buttonInContactListAddContact" id="buttonInContactListAddContact" onclick="openAddNewContact();">
-                                    <div>
-                                        Add new contact
+                        <div class="right-side-of-panel">
+                            <div class="property"> <!-- Date -->
+                                <label for="validationCustom02" class="form-label">Due date</label>
+                                <input id="date" type="date" class="form-control height-48px cursor-pointer"
+                                    placeholder="dd/mm/yyyy" required>
+                                <div class="invalid-feedback">
+                                    This field is required.
+                                </div>
+                            </div>
+
+                            <div class="property"> <!-- Prio -->
+                                <label for="validationCustom02" class="form-label">Prio</label>
+                                <div class="all-buttons-prio">
+                                    <div id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
+                                        <div class="containArrow">
+                                            <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
+                                                src="assets/img/Capa_2_white.svg">
+                                            <img id="arrowRedUrgent" class="arrowRedUrgent" src="assets/img/Capa_2.svg">
+                                        </div>
                                     </div>
-                                    <div>
-                                        <img src="../assets/img/person_add.svg">
+                                    <div id="btn_medium" class="button-prio" onclick="colorOrange();">Medium
+                                        <div class="containArrow">
+                                            <img id="arrowWhiteMedium" class="arrowWhiteMedium"
+                                                src="assets/img/Prio_media_white.svg">
+                                            <img id="arrowOrangeMedium" class="arrowOrangeMedium"
+                                                src="assets/img/Prio_media.svg">
+                                        </div>
                                     </div>
+                                    <div id="btn_low" class="button-prio" onclick="colorGreen();">Low
+                                        <div class="containArrow">
+                                            <img id="arrowWhiteLow" class="arrowWhiteLow"
+                                                src="assets/img/Capa_1_white.svg">
+                                            <img id="arrowGreenLow" class="arrowGreenLow" src="assets/img/Capa_1.svg">
+                                        </div>
+                                    </div>
+                                    <div id="prioStatusAsString" style="display: none;"></div>
+                                    <!-- for transfer to Board -->
                                 </div>
                                 <div class="invalid-feedback">
                                     This field is required.
                                 </div>
                             </div>
-                            <div id="selected-contacts-circles-below">
+                            <!-- Category -->
+                            <div class="property">
+                                <div class="wrapper-category">
+                                    <div class="select-btn" onclick="showContentCategory();">
+                                        <span id="selectedCategory">Select task category</span>
+                                        <div class="circleAroundDownArrow" id="downarrow_cat"
+                                            onclick="showContentCategory();">
+                                            <img src="assets/img/arrow_drop_down.svg">
+                                        </div>
+                                        <div class="circleAroundDownArrow d-none" id="uparrow_cat"
+                                            onclick="closeContentCategory();">
+                                            <img src="assets/img/arrow_drop_up.svg">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contentSearchContact d-none" id="contentCategory">
+                                    <ul class="selectAssignedTo">
+                                        <li class="list-group-item padding-left-16 list-group-item-category"
+                                            onclick="selectCategory(1); closeContentCategory();">
+                                            <div class="list-item-display-flex">
+                                                <div class="list-item-display-flex-icon-name" id="category1">User Story</div>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item padding-left-16"
+                                            onclick="selectCategory(2); closeContentCategory();">
+                                            <div class="list-item-display-flex">
+                                                <div class="list-item-display-flex-icon-name" id="category2">Technical Task</div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="invalid-feedback">
+                                        This field is required.
+                                    </div>
+                                </div>
+                                <div id="selected-contacts-circles-below">
+                                </div>
+
                             </div>
 
+                            <div class="property">
+                                <!-- Subtasks -->
+                                <div class="property-name">Subtasks</div>
+
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control border-right-white height-48px"
+                                        placeholder="Add new subtask" aria-label="Recipient's username"
+                                        aria-describedby="basic-addon2" id="subtaskInputfield">
+                                    <img id="add_symbol" class="input-group-text white-background cursor-pointer"
+                                        src="assets/img/add_black.svg" onclick="addSubtask()">
+                                </div>
+                                <div class="invalid-feedback">
+                                    This field is required.
+                                </div>
+                                <div class="selectedSubtasks" id="selectedSubtasks"></div>
+                            </div>
+
+                            <div class="buttons_clear_create">
+                                <button class="btn btn-outline-dark button-clear">Clear<img class="x_clear"
+                                        src="assets/img/Vector.svg" alt=""></button>
+                                <button type="submit" class="btn btn-outline-dark button-create-task">Create Task <img
+                                        src="assets/img/check.svg" alt=""></button>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="separator"></div>
-
-                    <div class="right-side-of-panel">
-                        <div class="property"> <!-- Date -->
-                            <label for="validationCustom02" class="form-label">Due date</label>
-                            <input id="date" type="date" class="form-control height-48px cursor-pointer"
-                                placeholder="dd/mm/yyyy" required>
-                            <div class="invalid-feedback">
-                                This field is required.
-                            </div>
-                        </div>
-
-                        <div class="property"> <!-- Prio -->
-                            <label for="validationCustom02" class="form-label">Prio</label>
-                            <div class="all-buttons-prio">
-                                <div id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
-                                    <div class="containArrow">
-                                        <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
-                                            src="assets/img/Capa_2_white.svg">
-                                        <img id="arrowRedUrgent" class="arrowRedUrgent" src="assets/img/Capa_2.svg">
-                                    </div>
-                                </div>
-                                <div id="btn_medium" class="button-prio" onclick="colorOrange();">Medium
-                                    <div class="containArrow">
-                                        <img id="arrowWhiteMedium" class="arrowWhiteMedium"
-                                            src="assets/img/Prio_media_white.svg">
-                                        <img id="arrowOrangeMedium" class="arrowOrangeMedium"
-                                            src="assets/img/Prio_media.svg">
-                                    </div>
-                                </div>
-                                <div id="btn_low" class="button-prio" onclick="colorGreen();">Low
-                                    <div class="containArrow">
-                                        <img id="arrowWhiteLow" class="arrowWhiteLow" src="assets/img/Capa_1_white.svg">
-                                        <img id="arrowGreenLow" class="arrowGreenLow" src="assets/img/Capa_1.svg">
-                                    </div>
-                                </div>
-                                <div id="prioStatusAsString" style="display: none;"></div>
-                                <!-- for transfer to Board -->
-                            </div>
-                            <div class="invalid-feedback">
-                                This field is required.
-                            </div>
-                        </div>
-
-                        <div class="property"> <!-- Category -->
-                            <div class="property-name">Category</div>
-                            <select id="category" class="form-select height-48px" aria-label="Default select example"
-                                required>
-                                <option selected value="">Select task category</option>
-                                <option>User Story</option>
-                                <option>Technical Task</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                This field is required.
-                            </div>
-                        </div>
-
-                        <div class="property">
-                            <!-- Subtasks -->
-                            <div class="property-name">Subtasks</div>
-
-                            <div class="input-group mb-3">
-                                <input type="text" class="form-control border-right-white height-48px"
-                                    placeholder="Add new subtask" aria-label="Recipient's username"
-                                    aria-describedby="basic-addon2" id="subtaskInputfield">
-                                <img id="add_symbol" class="input-group-text white-background cursor-pointer"
-                                    src="assets/img/add_black.svg" onclick="addSubtask()">
-                            </div>
-                            <div class="invalid-feedback">
-                                This field is required.
-                            </div>
-                            <div class="selectedSubtasks" id="selectedSubtasks"></div>
-                        </div>
-
-                        <div class="buttons_clear_create">
-                            <button class="btn btn-outline-dark button-clear">Clear<img class="x_clear"
-                                    src="assets/img/Vector.svg" alt=""></button>
-                            <button type="submit" class="btn btn-outline-dark button-create-task">Create Task <img
-                                    src="assets/img/check.svg" alt=""></button>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
-    <form onsubmit="register_user(); return false;">
+<!--     <form onsubmit="register_user(); return false;" style="display: none;">
         <label>Assign person (name, email, password, phone)</label><br>
         <input type="text" id="_name">
         <input type="email" id="email">
         <input type="password" id="password">
         <input type="text" id="phone">
         <button id="registerBtn">Registrieren</button>
-    </form>
+    </form> -->
 
 
     <script>

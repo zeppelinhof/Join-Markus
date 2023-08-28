@@ -29,9 +29,8 @@ async function loadTasks() {
 
 
 /*Open and Close function*/
-function closeDetailContain() {
-    document.getElementById('').style.display = 'none';
-    document.getElementById('').style.display = '';
+function closeDetailCard() {
+    document.getElementById('detailCard').style.display = 'none';
 }
 
 /*Lädt alle Karten mit Aufgaben*/
@@ -42,8 +41,10 @@ function loopAllTasks() {
         const priority = allTasks[q]['prio'];
         const title = allTasks[q]['title'];
         const column = allTasks[q]['column'];
+        const date = allTasks[q]['date'];
+        const assigned = allTasks[q]['seselectAssignedTo'];
 
-        loadAllTask(category, description, title, column, q, priority);
+        loadAllTask(category, title, description, column, q, priority, date, priority, assigned);
     }
 }
 
@@ -68,20 +69,20 @@ function imagePriority(priority) {
     return priorityIMG;
 }
 
-function loadAllTask(category, title, description, column, q, priority) {
+function loadAllTask(category, title, description, column, q, priority, date, priority, assigned) {
     checkEmptyContainer();
 
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
-            <div id="cards" onclick="detailCard(${q})">
+            <div id="cards" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
                 <div class='frame119'>
                     <div class='labelsBoardCardlabel'>
                         <p id="cardLabel">${category}</p>
                     </div>
                     <div class='frame114'>
-                        <div id='title'>${description}</div>
-                        <div id="content">${title}</div>
+                        <div id='title'>${title}</div>
+                        <div id="content">${description}</div>
                     </div>
                     <div id='frame139'>
                         <div id='frame217'></div>
@@ -113,8 +114,26 @@ function assingAllTasks(column, cardHTML) {
     }
 }
 
-function openDetailCard(){
+function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
+    document.getElementById('detailCard').style.display = '';
+    document.getElementById('taskContain').innerHTML = /*html*/ `${category}`;
+    document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `${title}`;
+    document.getElementById('descriptionContain').innerHTML = /*html*/ `${description}`;
+    document.getElementById('taskOverlayNumber').innerHTML = /*html*/`${date}`;
+    document.getElementById('medium').innerHTML = /*html*/`${priority}`;
+    document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
+    document.getElementById('frame204').innerHTML += /*html*/`
+        <div class="contactContain">
+            <div class="frame191">
+                <div class="profileBadge">
+                    <div class="group9">
+                        <p class="initialien"></p>
+                        <div class="ellipse5"></div>
+                    </div>
+                </div>
+                <p id="userName6">${assigned}</p>
+            </div>
+        </div>`;
 
+    loadAllTask();
 }
-
-

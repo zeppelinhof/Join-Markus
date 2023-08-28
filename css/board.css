@@ -373,10 +373,10 @@ body {
     position: relative;
 }
 
-.prioBaja{
+.prioBaja {
     width: 17px;
     height: 12px;
-    transform: rotate(0deg);    
+    transform: rotate(0deg);
 }
 
 .capa2 {
@@ -401,7 +401,7 @@ body {
     width: 32px;
     height: 32px;
     border: 1px solid #FFFFFF;
-    
+
 }
 
 .eclipse5 {
@@ -439,8 +439,7 @@ body {
 .taskOverlay {
     width: 523px;
     height: 931px;
-    /*top: -3975px;*/
-    /*left: 154px;*/
+    top: 80px;
     border-radius: 30px;
     padding: 48px 40px 48px 40px;
     gap: 24px;
@@ -448,6 +447,8 @@ body {
     position: relative;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px 0px #00000029;
+    position: absolute;
+    z-index: 3;
 }
 
 .frame203 {
@@ -469,7 +470,7 @@ body {
     background-color: #0038FF;
 }
 
-.userStory {
+#taskContain {
     min-width: 112px;
     max-width: 155px;
     height: 28px;
@@ -481,6 +482,7 @@ body {
     letter-spacing: 0em;
     text-align: left;
     color: #FFFFFF;
+    margin-bottom: 0;
 }
 
 #close1 {
@@ -512,6 +514,18 @@ body {
     text-align: left;
     color: #000000;
     margin-bottom: 0;
+}
+
+#descriptionContain {
+    width: 445px;
+    height: 24px;
+    font-family: 'Inter';
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
 }
 
 .frame179 {
@@ -550,6 +564,7 @@ body {
     height: 32px;
     display: flex;
     gap: 25px;
+    align-items: center;
 }
 
 .priority {
@@ -562,16 +577,35 @@ body {
     letter-spacing: 0em;
     text-align: left;
     color: #2A3647;
+    margin-bottom: 0;
 
 }
 
-.priorityButton {
+#priorityButton {
     width: 139px;
     height: 32px;
     border-radius: 10px;
     padding: 4px 18px 4px 18px;
-    display: grid;
+    display: flex;
     gap: 10px;
+}
+
+#medium {
+    width: 76px;
+    height: 24px;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+#prioMedia {
+    width: 17px;
+    height: 6.33px;
 }
 
 .frame214 {
@@ -592,7 +626,7 @@ body {
     margin-bottom: 0;
 }
 
-.frame204 {
+#frame204 {
     width: 445px;
     height: 176px;
     display: grid;
@@ -604,6 +638,7 @@ body {
     height: 56px;
     border-radius: 10px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 7px 16px 7px 16px;
 }
@@ -611,7 +646,9 @@ body {
 .frame191 {
     width: 216px;
     height: 42px;
-    display: grid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 16px;
 }
 
@@ -654,7 +691,7 @@ body {
     color: #FFFFFF;
 }
 
-.userName6 {
+#userName6 {
     height: 23px;
     width: 158px;
     font-family: 'Open Sans';
