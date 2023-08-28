@@ -191,10 +191,10 @@ function addSubtask() {
                     <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
                 </div>    
             </div>  
-    `
-        subtasks.push(subtaskInputfield);
+    `        
         document.getElementById('subtaskInputfield').value = '';
         subtaskNumber++;
+        fillSubtaskArray();
     }
 }
 
@@ -221,5 +221,20 @@ function deleteSubtask(x){
     }
     
     oneSubtaskToDelete.innerHTML = '';
+
+    fillSubtaskArray();
+}
+
+function fillSubtaskArray(){
+    subtasks = [];
+    for (let i = 0; i < 100; i++) {
+        let element = document.getElementById('rawData'+i)
+
+        if (element) {
+            subtasks.push(element.innerText);
+        }
+        
+    }
+    
 }
 // #endregion add Subtask
