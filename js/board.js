@@ -1,39 +1,27 @@
-/*Uebergreifende Variablen*/
+/*-------------------------------------------Uebergreifende Variablen-------------------------------------------*/
 let allTasks = [];
-
-// ------------ORIGINALER CODE-------------------------------------------
-// /*funktion die für den Body alle notwendigen Funktionen aufruft*/
-// /*function that calls all necessary functions for the body*/
-// function init() {
-//     loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
-
-// }
-
-// /*funktion die das komplette tasks aus dem Backend ausließt*/
-// async function loadTasks() {
-//     allTasks = JSON.parse(await getItem('tasks'));
-//     loopAllTasks();
-// }
+let currentDraggedElement;
 
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
 async function init() {
+    includeHTML();
     await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
 }
 
-/*funktion die das komplette tasks aus dem Backend ausließt*/
+/*--------------------------funktion die das komplette tasks aus dem Backend ausließt--------------------------*/
 async function loadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH ENDE -----------
 
 
-/*Open and Close function*/
+/*-------------------------------------------Open and Close function-------------------------------------------*/
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
 }
 
-/*Lädt alle Karten mit Aufgaben*/
+/*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
 function loopAllTasks() {
     for (let q = 0; q < allTasks.length; q++) {
         const category = allTasks[q]['category'];
@@ -47,35 +35,36 @@ function loopAllTasks() {
         loadAllTask(category, title, description, column, q, priority, date, priority, assigned);
     }
 }
-
+/*----------------------Checkt ob die Kontainer leer sind oder haben Inhalt----------------------*/
 function checkEmptyContainer() {
-    if (toDoContainer, inProgressContainer, feedbackContainer, doneContainer === 0) {
+    if (inProgressContainer.querySelector('.card')) {
+        document.getElementById('noProgress').style.display = '';
+        console.log('Karte ist nicht da');
+    } else {
+        document.getElementById('noProgress').style.display = 'none';
+        console.log('Karte befindet sich im Container');
+    } if (toDoContainer.querySelector('.card')) {
         document.getElementById('noTask').style.display = '';
     } else {
         document.getElementById('noTask').style.display = 'none';
+    } if (feedbackContainer.querySelector('.card')) {
+        document.getElementById('noFeedback').style.display = '';
+    } else {
+        document.getElementById('noFeedback').style.display = 'none';
+    } if (doneContainer.querySelector('.card')) {
+        document.getElementById('noDode').style.display = '';
+    } else {
+        document.getElementById('noDone').style.display = 'none';
     }
 }
 
-function imagePriority(priority) {
-    let priorityIMG = '';
-
-    if (priority === 'urgent') {
-        priorityIMG = 'assets/img/Capa_2.svg';
-    } else if (priority === 'medium') {
-        priorityIMG = 'assets/img/Prio_media.svg';
-    } else if (priority === 'low') {
-        priorityIMG = 'assets/img/Capa_1.svg';
-    }
-    return priorityIMG;
-}
-
+/*-------------------------------------------lädt den Inhalt der Gesamten Karte-------------------------------------------*/
 function loadAllTask(category, title, description, column, q, priority, date, priority, assigned) {
-    checkEmptyContainer();
 
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
-            <div id="cards" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
+            <div id="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
                 <div class='frame119'>
                     <div class='labelsBoardCardlabel'>
                         <p id="cardLabel">${category}</p>
@@ -97,11 +86,24 @@ function loadAllTask(category, title, description, column, q, priority, date, pr
     assingAllTasks(column, cardHTML);
 }
 
+function imagePriority(priority) {
+    let priorityIMG = '';
+
+    if (priority === 'urgent') {
+        priorityIMG = 'assets/img/Capa_2.svg';
+    } else if (priority === 'medium') {
+        priorityIMG = 'assets/img/Prio_media.svg';
+    } else if (priority === 'low') {
+        priorityIMG = 'assets/img/Capa_1.svg';
+    }
+    return priorityIMG;
+}
+
 function assingAllTasks(column, cardHTML) {
-    const toDoContainer = document.getElementById('toDoContainer');
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
     const doneContainer = document.getElementById('doneContainer');
+    const toDoContainer = document.getElementById('toDoContainer');
 
     if (column === 'to do') {
         toDoContainer.innerHTML += cardHTML;
@@ -112,6 +114,7 @@ function assingAllTasks(column, cardHTML) {
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
+    checkEmptyContainer(toDoContainer, feedBackContainer, doneContainer, toDoContainer)
 }
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
@@ -122,18 +125,40 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('taskOverlayNumber').innerHTML = /*html*/`${date}`;
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
+    document.getElementById('frame204').innerHTML = loadAssigned(assigned);
+}
+
+function loadAssigned(assigned) {
+    document.getElementById('frame204').innerHTML = '';
     document.getElementById('frame204').innerHTML += /*html*/`
-        <div class="contactContain">
-            <div class="frame191">
-                <div class="profileBadge">
-                    <div class="group9">
-                        <p class="initialien"></p>
-                        <div class="ellipse5"></div>
-                    </div>
+    <div class="contactContain">
+        <div class="frame191">
+            <div class="profileBadge">
+                <div class="group9">
+                    <p class="initialien"></p>
+                    <div class="ellipse5"></div>
                 </div>
-                <p id="userName6">${assigned}</p>
             </div>
-        </div>`;
+            <p id="userName6">${assigned}</p>
+        </div>
+    </div>`;
 
     loadAllTask();
+}
+
+/*------------------------------------------------Drag and Drop------------------------------------------------*/
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function startDragging(q) {
+    currentDraggedElement = q;
+    console.log(currentDraggedElement);
+}
+
+async function moveTo(column, contain) {
+    allTasks[currentDraggedElement]['column'] = column;
+    await setItem('tasks', JSON.stringify(allTasks));
+    location.reload();
+    console.log(allTasks);
 }
