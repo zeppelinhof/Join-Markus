@@ -40,7 +40,7 @@
     background-color: rgb(42, 54, 71);
 }
 
-@media(min-width: 800px) {
+@media(max-width: 800px) {
     .sidebar-panel {
         display: flex;
         flex-direction: row;
