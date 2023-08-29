@@ -47,9 +47,9 @@
     z-index: 2;
 }
 
-/* *, :after, :before {
-    box-sizing: unset;
-} */
+.add-new-contact-panel *, ::after, ::before {
+    box-sizing: unset !important;
+}
 
 /* add new contact area */
 
@@ -57,6 +57,14 @@
     display: flex;
     height: 594px;
     width: 1212px;
+}
+
+.add-new-contact-area::after {
+    box-sizing: unset !important;
+}
+
+.add-new-contact-area::before {
+    box-sizing: unset !important;
 }
 
 /* add new contact sidebar */
