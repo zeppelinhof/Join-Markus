@@ -137,6 +137,7 @@ li:hover {
 .all-buttons-prio {
     display: flex;
     justify-content: flex-end;
+    border-radius: 10px;
     gap: 16px;
 }
 
@@ -247,6 +248,12 @@ li:hover {
     background-color: #f2f2f2;
 }
 
+.inputChangeSubtask{
+    outline: none;
+    border: 1px solid white;
+
+}
+
 .pencil-bin {
     display: flex;    
     gap: 4px;
@@ -270,6 +277,10 @@ li:hover {
 .list-group-item:first-child {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.input-group{
+    border-radius: 10px;
 }
 
 /* #region search contact button */
@@ -357,7 +368,7 @@ ul {
     background-color: #EEEEEE;
 }
 
-/* #endregion samll up and down arrows */
+/* #endregion small up and down arrows */
 
 .selectAssignedTo {
     position: relative;
@@ -435,4 +446,8 @@ ul {
 .blueBorder{
     border: 1px solid #29ABE2;
 }
+
+.form-control:focus {
+    box-shadow: none;
+  }
 /* #endregion Validation */

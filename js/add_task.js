@@ -4,6 +4,7 @@ function colorRed() {
     let btn = document.getElementById('btn_urgent');
     if (btn.classList.length > 1) {
         whiteBackgroundRedArrow(btn);
+        setPrioStatusAsString('');
     }
     else {
         btn.classList.add('button-red');
@@ -18,6 +19,7 @@ function colorOrange() {
     let btn = document.getElementById('btn_medium');
     if (btn.classList.length > 1) {
         whiteBackgroundOrangeArrow(btn);
+        setPrioStatusAsString('');
     }
     else {
         btn.classList.add('button-orange');
@@ -32,6 +34,7 @@ function colorGreen() {
     let btn = document.getElementById('btn_low');
     if (btn.classList.length > 1) {
         whiteBackgroundGreenArrow(btn);
+        setPrioStatusAsString('');
     }
     else {
         btn.classList.add('button-green');
@@ -104,7 +107,6 @@ async function register_task() {
 }
 
 function resetForm() {
-    // document.getElementById('mainForm').reset();
     title.value = '';
     description.value = '';
     contactsInTask = [];
@@ -113,7 +115,7 @@ function resetForm() {
     subtasks = [];
     document.getElementById('selectedSubtasks').innerHTML = '';
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
-    document.getElementById('mainForm').classList.remove('was-validated');
+    location.reload();
 }
 
 // #endregion Data from Add Task to Backend
@@ -123,11 +125,15 @@ let categoryClosed = false;
 let subtaskNumber = 0;
 
 function add_d_none(classname) {
-    document.getElementById(classname).classList.add('d-none');
+    if (!document.getElementById(classname).classList.contains('d-none')) {
+        document.getElementById(classname).classList.add('d-none');
+    }
 }
 
 function remove_d_none(classname) {
-    document.getElementById(classname).classList.remove('d-none');
+    if (document.getElementById(classname).classList.contains('d-none')) {
+        document.getElementById(classname).classList.remove('d-none');
+    }
 }
 
 function selectContactFieldInBackground() {
@@ -183,18 +189,57 @@ function addSubtask() {
                 <div style="display: flex;">
                     •<div id="rawData${subtaskNumber}">
                         ${subtaskInputfield}
-                    </div>  
+                    </div>
+                    <input class="inputChangeSubtask d-none" id="rawDataChange${subtaskNumber}" type="text" value="${subtaskInputfield}">
                 </div>                              
                 <div class="pencil-bin d-none" id="pencil-bin${subtaskNumber}">
-                    <img src="assets/img/Subtasks_pencil.svg">
+                    <img src="assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
+                        onclick="remove_d_none('rawDataChange${subtaskNumber}'); add_d_none('rawData${subtaskNumber}'); add_d_none('pencil${subtaskNumber}'); remove_d_none('submit${subtaskNumber}')">
                     <div class="pencil-bin-separator"></div>
                     <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
+                    <img src="assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
+                        onclick="saveSubtaskChanges('rawDataChange${subtaskNumber}', 'rawData${subtaskNumber}', '${subtaskNumber}'); 
+                        add_d_none('rawDataChange${subtaskNumber}'); remove_d_none('rawData${subtaskNumber}'); 
+                        remove_d_none('pencil${subtaskNumber}'); add_d_none('submit${subtaskNumber}')">                                        
                 </div>    
             </div>  
     `
         document.getElementById('subtaskInputfield').value = '';
         subtaskNumber++;
         fillSubtaskArray();
+    }
+}
+
+function saveSubtaskChanges(changedValue, goal, subtaskNumber) {
+    document.getElementById(goal).value = document.getElementById(changedValue).value;
+    fillSubtaskArrayAsValue();
+    document.getElementById(`rawData${subtaskNumber}`).innerHTML = /*html*/`
+        ${document.getElementById(changedValue).value}
+    `
+    
+}
+
+function fillSubtaskArray() {
+    subtasks = [];
+    for (let i = 0; i < 100; i++) {
+        let element = document.getElementById('rawData' + i)
+
+        if (element) {
+            subtasks.push(element.innerText);  // hier als innerText
+        }
+
+    }
+}
+
+function fillSubtaskArrayAsValue() {
+    subtasks = [];
+    for (let i = 0; i < 100; i++) {
+        let element = document.getElementById('rawData' + i)
+
+        if (element) {
+            subtasks.push(element.value);  // hier als value
+        }
+
     }
 }
 
@@ -225,72 +270,115 @@ function deleteSubtask(x) {
     fillSubtaskArray();
 }
 
-function fillSubtaskArray() {
-    subtasks = [];
-    for (let i = 0; i < 100; i++) {
-        let element = document.getElementById('rawData' + i)
-
-        if (element) {
-            subtasks.push(element.innerText);
-        }
-
-    }
-
-}
 // #endregion add Subtask
 
 //#region Validation
 function custValidation() {
-    let fieldIds = [
-        'prioStatusAsString',
-        'selectedCategory',
-    ];
 
-    let invalidMessageIds = [
-        'prioInvalid',
-        'categoryInvalid',
-    ];
+    let valid = true;
+    //unsetValidationMessages();
 
     title = document.getElementById('title');
     if (title.value == '') {
-        title.classList.add('redBorder');
-        document.getElementById('titleInvalid').innerHTML = 'This field is required.'
+        setRedBorder('title');
+        remove_d_none('titleInvalid');
+        valid = false;
     }
 
     description = document.getElementById('description');
     if (description.value == '') {
-        description.classList.add('redBorder');
-        document.getElementById('descriptionInvalid').innerHTML = 'This field is required.'
+        setRedBorder('description');
+        remove_d_none('descriptionInvalid');
+        valid = false;
     }
 
-    assignedToInvalid = document.getElementById('selected-contacts-circles-below').innerText;
-    if (selectAssignedTo == '') {
-        selectAssignedTo.classList.add('redBorder');
-        document.getElementById('assignedToInvalid').innerHTML = 'This field is required.'
+    assignedToInvalid = document.getElementById('selected-contacts-circles-below');
+    if (selectAssignedTo.innerText == '') {
+        setRedBorder(assignedToInvalid);
+        remove_d_none('selected-contacts-circles-below');
+        valid = false;
+    }
+
+    date = document.getElementById('date');
+    if (date.value == '') {
+        setRedBorder('date');
+        remove_d_none('dateInvalid');
+        valid = false;
     }
 
     prioStatusAsString = document.getElementById('prioStatusAsString');
-    if (prioStatusAsString.value == '') {
-        document.getElementById('all-buttons-prio').classList.add('redBorder');
-        document.getElementById('dateInvalid').innerHTML = 'This field is required.'
+    if (prioStatusAsString.innerText == '') {
+        setRedBorder('all-buttons-prio');
+        remove_d_none('prioInvalid');
+        valid = false;
+    }
+
+    if (document.getElementById('selected-contacts-circles-below').innerText == '') {
+        setRedBorder('selectContactField');
+        remove_d_none('assignedToInvalid');
+        valid = false;
     }
 
     category = document.getElementById('selectedCategory');
     if (category.innerText == 'Select task category') {
-        document.getElementById('categoryId').classList.add('redBorder');
-        document.getElementById('categoryInvalid').innerHTML = 'This field is required.'
+        setRedBorder('categoryId');
+        remove_d_none('categoryInvalid');
+        valid = false;
     }
-
-   
 
     if (subtasks.length == 0) {
-        document.getElementById('subtaskInputfield').classList.add('redBorder');
-        document.getElementById('subtaskInvalid').innerHTML = 'This field is required.'
+        setRedBorder('subtask_wrapper');
+        remove_d_none('subtaskInvalid');
+        valid = false;
     }
 
-    if (document.getElementById('selected-contacts-circles-below').innerText == '') {
-        document.getElementById('selectContactField').classList.add('redBorder');
-        document.getElementById('assignedToInvalid').innerHTML = 'This field is required.'
+    if (valid) {
+        register_task()
     }
+}
+
+// function unsetValidationMessages(classBorder, classMessage) {
+//     border = document.getElementById(classBorder);
+//     message = document.getElementById(classMessage);
+//     unsetRedBorder(border);
+//     add_d_none(message.classList);
+// }
+
+function unsetRedBorder(classname) {
+    classList = document.getElementById(classname).classList;
+
+    if (classList.contains('redBorder')) {
+        classList.remove('redBorder');
+    }
+}
+
+function setRedBorder(classname) {
+    unsetBlueBorder(classname);
+    classList = document.getElementById(classname).classList;
+
+    if (!classList.contains('redBorder')) {
+        classList.add('redBorder');
+    }
+}
+
+function unsetBlueBorder(classname) {
+    classList = document.getElementById(classname).classList;
+
+    if (classList.contains('blueBorder')) {
+        classList.remove('blueBorder');
+    }
+}
+
+function setBlueBorder(classnameBorder, classnameMessage) {
+    unsetRedBorder(classnameBorder);
+
+    classListBorder = document.getElementById(classnameBorder).classList;
+
+    if (!classList.contains('blueBorder')) {
+        classList.add('blueBorder');
+    }
+    add_d_none(classnameMessage);
+
+
 }
 //#endregion Validation
