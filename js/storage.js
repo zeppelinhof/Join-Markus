@@ -1,4 +1,3 @@
-let g_currentUser;
 const STORAGE_TOKEN = 'GKAE3MZGHV4QZFBPDA8OOMCEAC9OBJHNPSJXA670';
 const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
 
