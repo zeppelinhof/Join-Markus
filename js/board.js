@@ -60,7 +60,7 @@ function checkEmptyContainer() {
 
 /*-------------------------------------------lädt den Inhalt der Gesamten Karte-------------------------------------------*/
 function loadAllTask(category, title, description, column, q, priority, date, priority, assigned) {
-
+    checkEmptyContainer();
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
@@ -114,7 +114,6 @@ function assingAllTasks(column, cardHTML) {
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
-    checkEmptyContainer(toDoContainer, feedBackContainer, doneContainer, toDoContainer)
 }
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
