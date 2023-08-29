@@ -129,7 +129,7 @@ function animateJoinLogo() {
     setTimeout(function () {
         animationOverlay.classList.add('d-none');
     }, 990);
-    animateIteration = 1; 
+    animateIteration = 1;
 }
 
 
@@ -167,8 +167,7 @@ function login() {
     if (user) {
         warning.classList.add('invisible');
         passwordTextbox.classList.remove('redBorder');
-        g_currentUser = user;
-        window.location.href = 'summary.html';
+        window.location.href = "summary.html?name=" + encodeURIComponent(user['name']);
     } else if (wrongPassword) {
         warning.classList.remove('invisible');
         passwordTextbox.classList.add('redBorder');
@@ -180,5 +179,5 @@ function login() {
 
 
 function guest() {
-    window.location.href = 'summary.html';
+    window.location.href = "summary.html?name=" + encodeURIComponent("Guest");
 }
