@@ -233,7 +233,7 @@ li:hover {
 
 .selectedSubtasks {
     margin-top: 10px;
-    max-height: 80px;
+    height: 80px;
     overflow-y: auto;
     padding-right: 8px;
 }
@@ -361,6 +361,8 @@ ul {
 
 .selectAssignedTo {
     position: relative;
+    width: 100%;
+    background-color: white;
 }
 
 .contentSearchContact .selectAssignedTo {
@@ -398,16 +400,39 @@ ul {
 }
 
 .buttonInContactListAddContact {
+    bottom: -40px;
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 12px;
-    width: 100%;
+    box-sizing: border-box;
     border-radius: 10px;
     color: white;
-    top: 20px;
+    
     background-color: #2A3647;
     cursor: pointer;
 }
 
+.dropdownAbsolutePositioned{
+    position: absolute; 
+    z-index: 1; 
+    border-radius: 10px;
+}
+
 /* #endregion search contact button */
+
+/* #region Validation */
+.invalidMessage{
+    color: #FF8190;
+    font-size: 12px;
+}
+
+.redBorder{
+    border: 1px solid #FF8190;
+}
+
+.blueBorder{
+    border: 1px solid #29ABE2;
+}
+/* #endregion Validation */

@@ -15,7 +15,6 @@ async function loadUsers() {
 }
 
 async function register_user() {
-    registerBtn.disabled = true;
     users.push({
         name: _name.value,
         email: email.value,
@@ -35,7 +34,6 @@ function resetForm() {
     password.value = '';
     phone.value = '';
     users = [];
-    registerBtn.disabled = false;
     location.reload();
 }
 
