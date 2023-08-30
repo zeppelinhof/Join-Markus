@@ -59,32 +59,3 @@ function upcomingDeadline() {
     }
     return deadline;
 }
-
-
-// function queryUserName() {
-//     var queryString = window.location.search;
-//     var urlParams = new URLSearchParams(queryString);
-//     var userName = urlParams.get('name');
-//     return userName;
-// }
-
-
-// function userInitials() {
-//     const userName = queryUserName();
-//     document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
-// }
-
-
-// //Funktion aus load_contacts_to_add_task.js kopiert
-// function getInitials(contact) {
-//     initials = contact.charAt(0);
-//     if (contact.match(' ')) {
-//         initials += contact.charAt(contact.match(' ').index + 1);
-//     }
-//     return initials;
-// }
-
-
-// function linkBoard() {
-//     window.location.href = "board.html?name=" + encodeURIComponent(queryUserName());
-// }

@@ -10,8 +10,8 @@ function showOrHideContextMenu() {
     )
 }
 
-//used by all main pages
 
+//used by all main pages
 function queryUserName() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -19,13 +19,14 @@ function queryUserName() {
     return userName;
 }
 
-
+//used by all main pages
 function userInitials() {
     const userName = queryUserName();
     document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
 }
 
 
+//used by all main pages
 function getInitials(contact) {
     initials = contact.charAt(0);
     if (contact.match(' ')) {
@@ -35,6 +36,7 @@ function getInitials(contact) {
 }
 
 
+//used by sidebar buttons to link to other pages
 function linkPage(pageName) {
     window.location.href = pageName + ".html?name=" + encodeURIComponent(queryUserName());
 }
