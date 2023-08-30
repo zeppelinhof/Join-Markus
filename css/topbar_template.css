@@ -16,6 +16,7 @@
     display: block;
     position: relative;
     max-width: calc(100vw - 232px);
+    z-index: 1;
 }
 
 @media(max-width: 800px) {
@@ -125,6 +126,14 @@
     position: absolute;
     right: 16px;
     padding: 10px;
+    z-index: 2;
+}
+
+@media(max-width: 800px) {
+    #context-menu {
+        top: 62px;
+        right: 40px;
+    }
 }
 
 .context-menu-member {

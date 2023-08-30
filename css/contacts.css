@@ -70,6 +70,7 @@ body {
 @media(max-width: 800px) {
     .contacts {
         width: 100%;
+        z-index: 0;
     }
 }
 
@@ -102,24 +103,39 @@ body {
     background-position: center;
 }
 
-
 .contacts-area {
     display: flex;
     flex-direction: column;
     gap: 8px;
     align-items: center;
-    padding: 32px 24px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 
-/* @media(max-width: 800px) {
+@media(max-width: 800px) {
     .contacts-area {
         padding: 24px;
     }
-} */
+}
 
 
 
 /* button new contact */
+
+.btn-new-contact-area {
+    position: sticky;
+    top: 0;
+    padding: 22.5px 52px;
+    background-color: white;
+}
+
+@media(max-width: 800px) {
+    .btn-new-contact-area {
+        position: unset;
+        top: unset;
+        padding: unset;
+    }
+}
 
 .btn-new-contact {
     display: flex;
@@ -136,11 +152,27 @@ body {
     padding: 12px;
 }
 
+@media(max-width: 800px) {
+    .btn-new-contact {
+        position: absolute;
+        right: 16px;
+        bottom: 112px;
+        width: auto;
+        border-radius: 50%;
+    }
+}
+
 .btn-new-contact:hover {
     cursor: pointer;
     background-color: rgb(41, 170, 227);
     box-shadow: 0 4px 0 rgba(0 0 0 / 15%);
     transform: scale(1.01);
+}
+
+@media(max-width: 800px) {
+    .btn-new-contact-text {
+        display: none;
+    }
 }
 
 .btn-new-contact-icon {
@@ -404,28 +436,28 @@ body {
 
 
 .contact-added-slideBox {
-  font-size: 20px;
-  font-weight: 400;
-  padding: 20px 25px;
-  color: #fff;
-  background-color: #2A3647;
-  border-radius: 20px;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
-  position: absolute;
-  right: -320px;
-  bottom: 300px;
-  z-index: 2;
-  animation-duration: 4s;
-  animation-name: moveUp;
-  animation-delay: 500ms;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 20px 25px;
+    color: #fff;
+    background-color: #2A3647;
+    border-radius: 20px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+    position: absolute;
+    right: -320px;
+    bottom: 300px;
+    z-index: 2;
+    animation-duration: 4s;
+    animation-name: moveUp;
+    animation-delay: 500ms;
 }
 
 @keyframes moveUp {
-  50% {
-    right: 50vw;
-  }
+    50% {
+        right: 50vw;
+    }
 
-  100% {
-    right: -320px;
-  }
+    100% {
+        right: -320px;
+    }
 }
