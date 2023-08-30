@@ -186,7 +186,7 @@ function addSubtask() {
         selectedSubtasks = document.getElementById('selectedSubtasks');
         selectedSubtasks.innerHTML += /*html*/`        
             <div class="oneSelectedSubtask" onmouseover="showEdit('pencil-bin${subtaskNumber}');" onmouseout="closeEdit('pencil-bin${subtaskNumber}')" id="oneSubtask${subtaskNumber}">                
-                <div style="display: flex;">
+                <div style="display: flex; width: 100%">
                     •<div id="rawData${subtaskNumber}">
                         ${subtaskInputfield}
                     </div>
@@ -194,7 +194,7 @@ function addSubtask() {
                 </div>                              
                 <div class="pencil-bin d-none" id="pencil-bin${subtaskNumber}">
                     <img src="assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
-                        onclick="remove_d_none('rawDataChange${subtaskNumber}'); add_d_none('rawData${subtaskNumber}'); add_d_none('pencil${subtaskNumber}'); remove_d_none('submit${subtaskNumber}')">
+                        onclick="remove_d_none('rawDataChange${subtaskNumber}'); add_d_none('rawData${subtaskNumber}'); add_d_none('pencil${subtaskNumber}'); remove_d_none('submit${subtaskNumber}');">
                     <div class="pencil-bin-separator"></div>
                     <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
                     <img src="assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
@@ -268,6 +268,16 @@ function deleteSubtask(x) {
     oneSubtaskToDelete.innerHTML = '';
 
     fillSubtaskArray();
+}
+
+function changeWhiteBackground(classname){
+    let surface = document.getElementById(classname).classList
+    if(surface.contains('white-background')){
+        surface.remove('white-background');
+    }
+    else{
+        surface.add('white-background');
+    }
 }
 
 // #endregion add Subtask
