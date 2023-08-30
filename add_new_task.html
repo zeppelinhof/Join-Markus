@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Mein Flush -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLOW IN</title>
+
+    <!-- Bootstrap -->
+    <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <!-- global css -->
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
+
+    <!-- local css -->
+    <link rel="stylesheet" href="css/add_task.css">
+    <link rel="stylesheet" href="./css/contacts.css">
+
+    <!-- Javascript -->
+    <script src="js/load_contacts_to_add_task.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/add_task.js"></script>
+    <script src="js/include_html.js"></script>
+    <script src="js/add_new_contact.js"></script>
+</head>
+
+<body onload="includeHTML(); initUsers(); initTasks();">
+    <!-- add new contact -->
+    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
+
+    <div class="outer-gray-background" id="add-new-task">
+        <div class="content-white">
+            <!-- Close Button -->
+            <div class="add-new-contact-close"
+            onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')"></div>
+            <div w3-include-html="./add_task.html"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    // select contact logic        
+    const wrapper = document.getElementById('wrapper');
+    searchInp = document.getElementById('searchContactField');
+    selectAssignedTo = document.getElementById('selectAssignedTo');
+    // const wrapper = document.querySelector(".wrapper");
+    // searchInp = wrapper.querySelector("input");
+    // selectAssignedTo = wrapper.querySelector(".selectAssignedTo");
+
+
+
+    searchInp.addEventListener("keyup", () => {
+        if (document.getElementById('searchContactField').value == '') {
+            document.getElementById('selectAssignedTo').innerHTML = '';
+            fillAssignedTo();
+        }
+
+        else {
+            document.getElementById('selectAssignedTo').innerHTML = '';
+            let arr = [];
+            let searchedVal = searchInp.value.toLowerCase();
+            for (let i = 0; i < users.length; i++) {
+                const user = users[i];
+                if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
+                    document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+                    fillUsername(i, user.name);
+                }
+            }
+        }
+    });
+</script>
+
+
+</html>

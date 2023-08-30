@@ -1,7 +1,7 @@
 .outer{
     display: flex;
     flex: 1;
-    flex-direction: column;
+    flex-direction: column;    
 }
 
 body {
@@ -104,7 +104,6 @@ li:hover {
 .buttons_clear_create {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
     gap: 25px;
 }
 
@@ -478,6 +477,7 @@ ul {
 }
 
 .content-white {
+    position: relative;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -487,3 +487,12 @@ ul {
     width: 1000px;
 }
 /* #endregion Add new task Card */
+
+/* #region Media Query */
+@media(max-width: 981px)
+{
+    .hide-mobile{
+        display: none;
+    }
+}
+/* #endregion Media Query */
