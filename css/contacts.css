@@ -49,6 +49,12 @@ body {
     height: calc(100vh - 96px);
 }
 
+@media(max-width: 800px) {
+    .contact-windows {
+        height: calc(100vh - 80px - 80px);
+    }
+}
+
 
 
 /* contacts list */
