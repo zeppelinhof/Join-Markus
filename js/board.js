@@ -4,7 +4,8 @@ let currentDraggedElement;
 
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
 async function init() {
-    includeHTML();
+    await includeHTML();
+    userInitials();
     await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
 }
