@@ -7,8 +7,8 @@ async function initSummary() {
 
 function renderSummary() {
     document.getElementById('variablePanel1').innerHTML = allTasks.length;
-    document.getElementById('variablePanel2').innerHTML = tasksOfCategory('in progress');
-    document.getElementById('variablePanel3').innerHTML = tasksOfCategory('awaiting feedback');
+    document.getElementById('variablePanel2').innerHTML = tasksOfCategory('inProgress');
+    document.getElementById('variablePanel3').innerHTML = tasksOfCategory('feedback');
     document.getElementById('variablePanel4').innerHTML = urgentTasks();
     document.getElementById('deadlineDate').innerHTML = upcomingDeadline();
     document.getElementById('variablePanel5').innerHTML = tasksOfCategory('to do');
@@ -61,25 +61,30 @@ function upcomingDeadline() {
 }
 
 
-function queryUserName() {
-    var queryString = window.location.search;
-    var urlParams = new URLSearchParams(queryString);
-    var userName = urlParams.get('name');
-    return userName;
-}
+// function queryUserName() {
+//     var queryString = window.location.search;
+//     var urlParams = new URLSearchParams(queryString);
+//     var userName = urlParams.get('name');
+//     return userName;
+// }
 
 
-function userInitials() {
-    const userName = queryUserName();
-    document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
-}
+// function userInitials() {
+//     const userName = queryUserName();
+//     document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
+// }
 
 
-//Funktion aus load_contacts_to_add_task.js kopiert
-function getInitials(contact) {
-    initials = contact.charAt(0);
-    if (contact.match(' ')) {
-        initials += contact.charAt(contact.match(' ').index + 1);
-    }
-    return initials;
-}
+// //Funktion aus load_contacts_to_add_task.js kopiert
+// function getInitials(contact) {
+//     initials = contact.charAt(0);
+//     if (contact.match(' ')) {
+//         initials += contact.charAt(contact.match(' ').index + 1);
+//     }
+//     return initials;
+// }
+
+
+// function linkBoard() {
+//     window.location.href = "board.html?name=" + encodeURIComponent(queryUserName());
+// }
