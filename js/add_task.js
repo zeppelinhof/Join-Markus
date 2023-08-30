@@ -283,6 +283,54 @@ function changeWhiteBackground(classname){
 // #endregion add Subtask
 
 //#region Validation
+
+// function checkIfFilledAllFields() {
+
+//     let completed = true;
+
+//     title = document.getElementById('title');
+//     if (title.value == '') {
+//         completed = false;
+//     }
+
+//     description = document.getElementById('description');
+//     if (description.value == '') {
+//         completed = false;
+//     }
+
+//     assignedToInvalid = document.getElementById('selected-contacts-circles-below');
+//     if (selectAssignedTo.innerText == '') {
+//         completed = false;
+//     }
+
+//     date = document.getElementById('date');
+//     if (date.value == '') {
+//         completed = false;
+//     }
+
+//     prioStatusAsString = document.getElementById('prioStatusAsString');
+//     if (prioStatusAsString.innerText == '') {
+//         completed = false;
+//     }
+
+//     if (document.getElementById('selected-contacts-circles-below').innerText == '') {
+//         completed = false;
+//     }
+
+//     category = document.getElementById('selectedCategory');
+//     if (category.innerText == 'Select task category') {
+//         completed = false;
+//     }
+
+//     if (completed) {
+//         document.getElementById('buttonCreate').disabled = false;
+//     }
+//     else{
+//         document.getElementById('buttonCreate').disabled = true;
+//     }
+// }
+
+
 function custValidation() {
 
     let valid = true;

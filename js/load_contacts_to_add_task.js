@@ -42,7 +42,6 @@ function fillAssignedTo() {
         let user = users[i].name;
         document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
         fillUsername(i, user);
-        // takeColor();
     }
 }
 
@@ -135,32 +134,4 @@ function deleteContact(contact) {
         }
     }
     drawContactCirclesBelow();
-}
-
-function takeColor(){
-    let colorArray = [
-        "#1c6b02",
-        "#6b0266",
-        "#FF3D00",
-        "#03cffc",
-        "#6b1202",
-        "#0390fc",
-        "#023e6b",
-        "#3a6b02",
-        "#fc4103",
-        "#6b3e02",
-        "#FFA800",
-        "#2d03fc",
-        "#f003fc",
-        "#961212",
-        "#3c1296",
-        "#128e96",
-        "#707a59"
-    ];
-    for (let i = 0; i < colorArray.length; i++) {
-        // const color = colorArray[i];
-        // document.getElementById(`contactCircle${i}`).classList += /*css*/`
-        //     background-color: ${colorArray[i]}
-        // `            
-    }
 }
