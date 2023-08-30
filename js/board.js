@@ -5,7 +5,7 @@ let currentDraggedElement;
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
 async function init() {
     await includeHTML();
-    userInitials();
+    //userInitials();
     await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
 }
@@ -84,6 +84,8 @@ function loadAllTask(category, title, description, column, q, priority, date, pr
                     </div>
                 </div>
             </div>`;
+
+
     assingAllTasks(column, cardHTML);
 }
 
@@ -105,6 +107,11 @@ function assingAllTasks(column, cardHTML) {
     const feedBackContainer = document.getElementById('feedbackContainer');
     const doneContainer = document.getElementById('doneContainer');
     const toDoContainer = document.getElementById('toDoContainer');
+
+    inProgressContainer.innerHTML += '';
+    feedBackContainer.innerHTML += '';
+    doneContainer.innerHTML += '';
+    toDoContainer.innerHTML += '';
 
     if (column === 'to do') {
         toDoContainer.innerHTML += cardHTML;
@@ -156,9 +163,15 @@ function startDragging(q) {
     console.log(currentDraggedElement);
 }
 
-async function moveTo(column, contain) {
+async function moveTo(column) {
     allTasks[currentDraggedElement]['column'] = column;
     await setItem('tasks', JSON.stringify(allTasks));
-    location.reload();
     console.log(allTasks);
 }
+
+async function performMoveAndRefresh(column) {
+    await moveTo(column);
+    assingAllTasks();
+}
+
+/*-----------------------------------Suchfunktion---------------------------------*/
