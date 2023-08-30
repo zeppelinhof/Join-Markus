@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Mein Flush -->
 
 <head>
     <meta charset="UTF-8">
@@ -30,12 +31,16 @@
     <script src="js/add_new_contact.js"></script>
 </head>
 
-<body onload="initUsers(); initTasks();">
+<body onload="includeHTML(); initUsers(); initTasks();">
     <!-- add new contact -->
     <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
 
-    <div class="outer-gray-background">
+    <div class="outer-gray-background" id="add-new-task">
         <div class="content-white">
+            <!-- Close Button -->
+            <div class="add-new-contact-close"
+                onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')"></div>
+            <div w3-include-html="./add_task.html"></div>
             <div class="outer">
                 <div class="wrap">
                     <div class="contentFlowIn">
@@ -220,7 +225,8 @@
                                     </div>
 
                                     <div class="buttons_clear_create">
-                                        <button class="btn btn-outline-dark button-clear" onclick="resetForm();"
+                                        <button class="btn btn-outline-dark button-clear"
+                                            onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');"
                                             onmouseover="remove_d_none('blue_x'); add_d_none('black_x');"
                                             onmouseleave="add_d_none('blue_x'); remove_d_none('black_x');">Clear<img
                                                 id="black_x" src="assets/img/Vector.svg"> <img id="blue_x"
