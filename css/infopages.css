@@ -1,5 +1,6 @@
 body {
     display: flex;
+    overflow-y: hidden;
 }
 
 .topBarContainer {
@@ -10,7 +11,9 @@ body {
     height: 96px;
 }
 
-.contentContainer_Help {
+.contentContainerInfo {
+    height: calc(100dvh - 96px);
+    overflow-y: auto !important;
     width: 100%;
     padding-left: 96px;
     padding-right: 96px;

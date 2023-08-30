@@ -19,9 +19,9 @@
         <div class="topbar-panel">
             <img class="topbar-logo" src="../assets/img/join_logo.svg" alt="logo">
             <h3 class="topbar-area-headline">Kanban Project Management Tool</h3>
-            <nav class="topbar-nav">
+            <nav class="topbar-nav" id="topbar-nav">
                 <a href="#">
-                    <img class="topbar-icon" src="../assets/img/icon_help.png" alt="">
+                    <img class="topbar-icon" src="../assets/img/icon_help.png" alt="help" onclick="linkPage('help')">
                 </a>
                 <div class="topbar-user-profile" onclick="showOrHideContextMenu()">
                     <span id="topbar-user-profile-letter">SS</span>
@@ -30,9 +30,9 @@
         </div>
 
         <div id="context-menu" class="topbar-d-none">
-            <a href="#" class="context-menu-member topbar-t-d-none">Legal Notice</a>
-            <a href="#" class="context-menu-member topbar-t-d-none">Privacy Policy</a>
-            <a href="#" class="context-menu-member topbar-t-d-none">Log out</a>
+            <a href="legalnotice.html" class="context-menu-member topbar-t-d-none" target="_blank">Legal Notice</a>
+            <a href="privacypolicy.html" class="context-menu-member topbar-t-d-none" target="_blank">Privacy Policy</a>
+            <a href="index.html" class="context-menu-member topbar-t-d-none">Log out</a>
         </div>
     </div>
 

@@ -1,5 +1,4 @@
 //used by topbar_template.html
-
 function showOrHideContextMenu() {
     let contextMenu = document.getElementById('context-menu');
 
@@ -39,4 +38,12 @@ function getInitials(contact) {
 //used by sidebar buttons to link to other pages
 function linkPage(pageName) {
     window.location.href = pageName + ".html?name=" + encodeURIComponent(queryUserName());
+}
+
+
+//used by Legal Notice and Privacy Policy
+async function initInfoPage() {
+    await includeHTML();
+    document.getElementById('sidebar-nav').style.display = "none";
+    document.getElementById('topbar-nav').style.display = "none";
 }

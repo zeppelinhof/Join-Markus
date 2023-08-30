@@ -12,20 +12,19 @@
     <link rel="stylesheet" href="css/infopages.css">
     <link rel="stylesheet" href="css/topbar_template.css">
     <link rel="stylesheet" href="css/sidebar_template.css">
-
     <script src="./js/include_html.js"></script>
     <script src="./js/global.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="initInfoPage()">
 
     <div w3-include-html="./template/sidebar_template.html"></div>
     <div class="topBarContainer">
         <div w3-include-html="./template/topbar_template.html"></div>
     </div>
-    <div class="contentContainer_Help">
+    
+    <div class="contentContainerInfo">
         <h1>Legal Notice</h1>
-
         <h3>Imprint</h3>
         <ul>
             <li>Markus</li>
@@ -33,7 +32,6 @@
             <li>Juri</li>
             <li>Clemens</li>
         </ul>
-
         <h3>Exploring the Board</h3>
         <p>Email:</p>
 
@@ -88,6 +86,7 @@
 
             Date: July 26, 2023
         </p>
+    </div>
 
 </body>
 
