@@ -1,6 +1,7 @@
 async function initSummary() {
     await loadTasks();
     renderSummary();
+    userInitials();
 }
 
 
@@ -12,6 +13,7 @@ function renderSummary() {
     document.getElementById('deadlineDate').innerHTML = upcomingDeadline();
     document.getElementById('variablePanel5').innerHTML = tasksOfCategory('to do');
     document.getElementById('variablePanel6').innerHTML = tasksOfCategory('done');
+    document.getElementById('greetingName').innerHTML = queryUserName();
 }
 
 
@@ -44,7 +46,7 @@ function upcomingDeadline() {
     const currentDate = new Date();
     const taskDates = allTasks.map(task => new Date(task['date']));
     const futureDates = taskDates.filter(taskDate => taskDate > currentDate);
-    
+
     if (futureDates.length > 0) {
         futureDates.sort((a, b) => a - b);
         deadline = futureDates[0].toLocaleDateString('en-US', {
@@ -56,4 +58,28 @@ function upcomingDeadline() {
         deadline = null;
     }
     return deadline;
+}
+
+
+function queryUserName() {
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var userName = urlParams.get('name');
+    return userName;
+}
+
+
+function userInitials() {
+    const userName = queryUserName();
+    document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
+}
+
+
+//Funktion aus load_contacts_to_add_task.js kopiert
+function getInitials(contact) {
+    initials = contact.charAt(0);
+    if (contact.match(' ')) {
+        initials += contact.charAt(contact.match(' ').index + 1);
+    }
+    return initials;
 }

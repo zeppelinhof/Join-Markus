@@ -144,7 +144,7 @@ function renderContacts() {
     for (let i = 0; i < users.length; i++) {
         const [name, email] = [users[i]['name'], users[i]['email']];
         const firstLetter = users[i]['name'].charAt(0);
-        const colorStyle = contactColors[colorNumberIndex]['style'];
+        const colorStyle = returnContactColor(i);
 
         addLetterHeadline(firstLetter, contactsList);
 
@@ -182,7 +182,7 @@ function findFirstLetters(name) {
 }
 
 
-function openContactData(i, colorStyle) {
+function openContactData(i) {
     let contactCard = document.getElementById(`contactCard-${i}`);
 
     if (contactCard.classList.contains('contact-card-click')) {
@@ -191,12 +191,12 @@ function openContactData(i, colorStyle) {
     } else {
         closeAllContactClicks();
         contactCard.classList.add('contact-card-click');
-        renderContactData(i, colorStyle);
+        renderContactData(i);
     }
 }
 
 
-function renderContactData(i, colorStyle) {
+function renderContactData(i) {
     let content = document.getElementById('contact-data-content');
     content.innerHTML = '';
 
@@ -205,6 +205,7 @@ function renderContactData(i, colorStyle) {
     const email = users[i]['email'];
     const phone = users[i]['phone'];
     const firstLetters = findFirstLetters(name);
+    const colorStyle = returnContactColor(i);
 
     setTimeout(() => {
         content.innerHTML = getContactDataHTML(i, colorStyle, firstLetters, name, email, phone)
@@ -230,4 +231,11 @@ function closeAllContactClicks() {
 
         currentClick.classList.remove('contact-card-click');
     }
+}
+
+
+function returnContactColor(i) {
+    let result = i % contactColors.length
+
+    return contactColors[result]['style'];
 }

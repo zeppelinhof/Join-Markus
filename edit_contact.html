@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/global.css">
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/add_new_contact.css">
+    <link rel="stylesheet" href="./css/contact.css">
 </head>
 
 <body>
@@ -29,7 +30,9 @@
 
             <!-- input mask -->
             <div class="add-new-contact-input-mask">
-                <div class="add-new-contact-close" onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact')"></div>
+
+                <div class="add-new-contact-close"
+                    onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact')"></div>
                 <span class="contact-data-name-icon" id="edit-contact-profile-icon"></span>
 
                 <form class="add-new-contact-form" onsubmit="editContact(); return false">
@@ -40,10 +43,11 @@
                     <input class="add-new-contact-input-phone add-new-contact-input" type="tel" placeholder="Phone"
                         required id="edit-phone">
                     <div class="add-new-contact-button-area">
-                        <button type="reset" class="add-new-contact-button-left edit-contact-button-left">
-                            <span>Delete</span>
+                        <button type="reset" onclick="deleteContact()" class="add-new-contact-button-left edit-contact-button-left">
+                            <span id="edit-contact-btn-text-del">Delete</span>
                         </button>
-                        <button type="submit" class="add-new-contact-button-right edit-contact-button-right" id="edit-contact-btn-save">
+                        <button type="submit" class="add-new-contact-button-right edit-contact-button-right"
+                            id="edit-contact-btn-save">
                             <span id="edit-contact-btn-text-save">Save</span>
                             <img class="add-new-contact-button-right-icon" src="./assets/img/check.svg" alt="">
                         </button>

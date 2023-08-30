@@ -28,13 +28,13 @@ function getContactDataHTML(i, colorStyle, firstLetters, name, email, phone) {
             <div class="contact-data-name-headline">
                 <h1 class="contact-data-name">${name}</h1>
                 <div class="contact-data-name-edit-del-area">
-                    <div class="contact-data-name-edit-del" onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact', ${i}, '${colorStyle}')">
+                    <div class="contact-data-name-edit-del" onclick="openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact', true, ${i})">
                         <div class="contact-data-name-edit"></div>
                         <span>Edit</span>
                     </div>
                     <div class="contact-data-name-edit-del">
                         <div class="contact-data-name-delete"></div>
-                        <span>Delete</span>
+                        <span onclick="deleteContact(${i}, false)">Delete</span>
                     </div>
                 </div>
             </div>

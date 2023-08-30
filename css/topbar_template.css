@@ -35,6 +35,12 @@
     font-weight: 400;
 }
 
+@media(max-width: 800px) {
+    .topbar-area-headline {
+        display: none;
+    }
+}
+
 .topbar-nav {
     display: flex;
     justify-content: center;

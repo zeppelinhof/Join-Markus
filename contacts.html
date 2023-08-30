@@ -45,7 +45,8 @@
 
                 <div class="contacts-area">
 
-                    <button class="btn-new-contact" onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact')">
+                    <button class="btn-new-contact"
+                        onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact', false)">
                         <span>Add new contact</span>
                         <img class="btn-new-contact-icon" src="./assets/img/icon_person_add.png" alt="">
                     </button>
@@ -78,6 +79,10 @@
 
             </section>
 
+        </div>
+
+        <div class="contact-added-slideBox contacts-d-none" id="contact-added-slideBox">
+            Contact succesfull created
         </div>
 
 </body>

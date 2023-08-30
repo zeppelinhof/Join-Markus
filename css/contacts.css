@@ -3,11 +3,20 @@ body {
     overflow: hidden;
 }
 
+@media(max-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: unset;
+    }
+}
+
+
 
 /* default */
 
 .contacts-d-none {
-    display: none;
+    display: none !important;
 }
 
 .contact-slide-animation {
@@ -213,6 +222,12 @@ body {
     background-color: rgb(246, 247, 248);
 }
 
+@media(max-width: 800px) {
+    .contact-data {
+        display: none;
+    }
+}
+
 .contact-data-area {
     margin-top: 96px;
     margin-left: 48px;
@@ -361,4 +376,32 @@ body {
 .contact-data-info-content-phone {
     font-size: 16px;
     font-weight: 400;
+}
+
+
+.contact-added-slideBox {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 20px 25px;
+  color: #fff;
+  background-color: #2A3647;
+  border-radius: 20px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  position: absolute;
+  right: -320px;
+  bottom: 300px;
+  z-index: 2;
+  animation-duration: 4s;
+  animation-name: moveUp;
+  animation-delay: 500ms;
+}
+
+@keyframes moveUp {
+  50% {
+    right: 50vw;
+  }
+
+  100% {
+    right: -320px;
+  }
 }

@@ -7,6 +7,8 @@
     <script src="js/board.js"></script>
     <link rel="stylesheet" href="css/board.css">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon_black.png">
+    <link rel="stylesheet" href="css/topbar_template.css">
+    <link rel="stylesheet" href="css/sidebar_template.css">
     <title>Board</title>
 
     <!-- Bootstrap file -->
@@ -30,6 +32,7 @@
         <div w3-include-html="./template/topbar_template.html"></div>
         <div w3-include-html="./template/sidebar_template.html"></div>
     </div>
+
 
     <div class="bodyContainer">
         <div class="headlineBoard">
@@ -67,8 +70,8 @@
                 <p>Done</p>
             </div>
         </div>
-        <div class="boardContainer">
-            <div class="taskContainer" id="toDoContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
+        <div class="boardContainer" id="boardContain">
+            <div class="taskContainer" id="toDoContainer" ondrop="moveTo('to do')" ondragover="allowDrop(event)">
                 <div class="noTaskContainer" id="noTask">
                     <span class="noTaskContainer1">
                         <p>No tasks To do</p>
@@ -76,22 +79,22 @@
                 </div>
 
             </div>
-            <div class="taskContainer" id="inProgressContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div class="noTaskContainer">
+            <div class="taskContainer" id="inProgressContainer" ondrop="moveTo('inProgress')" ondragover="allowDrop(event)">
+                <div class="noTaskContainer" id="noProgress">
                     <span class="noTaskContainer2">
                         <p>No tasks Progress</p>
                     </span>
                 </div>
             </div>
-            <div class="taskContainer" id="feedbackContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div class="noTaskContainer">
+            <div class="taskContainer" id="feedbackContainer" ondrop="moveTo('feedback')" ondragover="allowDrop(event)">
+                <div class="noTaskContainer" id="noFeedback">
                     <span class="noTaskContainer2">
                         <p>No tasks feedback</p>
                     </span>
                 </div>
             </div>
-            <div class="taskContainer" id="doneContainer" ondrop="drop(event)" ondragover="allowDrop(event)">
-                <div class="noTaskContainer">
+            <div class="taskContainer" id="doneContainer" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                <div class="noTaskContainer" id="noDone">
                     <span class="noTaskContainer1">
                         <p>No tasks Done</p>
                     </span>
@@ -126,7 +129,7 @@
             <div class="frame214">
                 <p class="assignedTo">Assigned To:</p>
                 <div id="frame204">
-                    
+
                 </div>
             </div>
             <div class="frame215">
