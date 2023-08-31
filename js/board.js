@@ -216,7 +216,6 @@ function drop(ev, column) {
 }
 function startDragging(q) {
     currentDraggedElement = q;
-    console.log(currentDraggedElement);
 }
 
 
