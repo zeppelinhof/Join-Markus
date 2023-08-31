@@ -42,7 +42,7 @@ body {
 
 @media(max-width: 800px) {
     .contentContainerInfo {
-        height: calc(100vh - 160px - 60px);
+        /* height: calc(100vh - 160px - 60px); */
 /*         overflow-y: unset; */
         padding-left: 30px;
         padding-right: 30px;
