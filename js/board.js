@@ -192,16 +192,22 @@ function loadSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML = '';
 
     const subtask = allTasks[q]['subtasks'];
+    const subTaskState = allTasks[q]['subtaskstate'];
 
     for (let p = 0; p < subtask.length; p++) {
         const subtasks = subtask[p];
-
         document.getElementById('subtaskContain').innerHTML += /*html*/`
-            <span class="subtasksCheck">
-                <img id="checkButton" src="assets/img/Check_button_empty.svg" alt="">
-                <p id="contactForm">${subtasks}</p>
-            </span>
+            
+            <label class="custom-checkbox">
+                <input type="checkbox" id="subtask${p}">
+                <span class="checkbox-icon"></span>
+                ${subtasks}
+            </label><br>
         `;
+        const subtaskid = 'subtask' + p;
+        const checkbox = document.getElementById(subtaskid);
+        console.log(subTaskState[p]);
+        checkbox.checked = subTaskState[p];
     }
 }
 

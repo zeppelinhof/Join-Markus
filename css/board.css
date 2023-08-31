@@ -776,13 +776,6 @@ body {
     right: 40px;
 }
 
-#checkButton {
-    width: 24px;
-    height: 24px;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
 #contactForm {
     max-width: 272px;
     height: 19px;
