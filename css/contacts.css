@@ -7,7 +7,6 @@ body {
     body {
         display: flex;
         flex-direction: column-reverse;
-        overflow: unset;
     }
 }
 
