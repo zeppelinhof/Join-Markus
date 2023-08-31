@@ -8,6 +8,7 @@ async function init() {
     //userInitials();
     await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
+    liveSearch();
 
 }
 
@@ -162,8 +163,6 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('taskOverlayNumber').innerHTML = /*html*/`${date}`;
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
-    //document.getElementById('frame204').innerHTML = loadAssigned(q, assigned);
-
 }
 
 function loadAssigned(q) {
@@ -233,7 +232,29 @@ async function moveTo(column) {
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
+function liveSearch() {
+    const searchInput = document.getElementById('search');
+    const boardContain = document.querySelector('.Todo');
+    const progress = document.querySelector('.in_Progress');
+    const feedBack = document.querySelector('.Feedback');
+    const Done = document.querySelector('.donecontainer');
 
+    searchInput.addEventListener('input', function () {
+        const searchContain = searchInput.value.toLowerCase();
+
+        boardContain.innerHTML = '';
+        progress.innerHTML = '';
+        feedBack.innerHTML = '';
+        Done.innerHTML = '';
+
+        for (let q = 0; q < allTasks.length; q++) {
+            const title = allTasks[q]['title'].toLowerCase();
+            if (title.includes(searchContain)) {
+                loadAllTask();
+            }
+        }
+    });
+}
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
 function deleteCard() {
