@@ -279,7 +279,24 @@ body {
 
 @media(max-width: 800px) {
     .contact-data {
+        position: relative;
         display: none;
+    }
+}
+
+.contact-data-arrow-left-icon {
+    display: none;
+}
+
+@media(max-width: 800px) {
+    .contact-data-arrow-left-icon {
+        display: block;
+        position: absolute;
+        top: 32px;
+        right: 16px;
+        height: 32px;
+        width: 32px;
+        object-fit: contain;
     }
 }
 
@@ -289,6 +306,13 @@ body {
     display: flex;
     flex-direction: column;
     gap: 48px;
+}
+
+@media(max-width: 800px) {
+    .contact-data-area {
+        margin-top: 32px;
+        margin-left: 16px;
+    }
 }
 
 /* contact data headline */
@@ -311,6 +335,12 @@ body {
 .contact-data-headline-left {
     font-size: 61px;
     margin: 0;
+}
+
+@media(max-width: 800px) {
+    .contact-data-headline-left {
+        font-size: 47px;
+    }
 }
 
 .contact-data-headline-subContainer {
@@ -348,6 +378,12 @@ body {
     font-size: 27px;
 }
 
+@media(max-width: 800px) {
+    .contact-data-headline-right {
+        font-size: 20px;
+    }
+}
+
 /* contact data content */
 
 #contact-data-content {
@@ -357,6 +393,12 @@ body {
     z-index: 1;
 }
 
+@media(max-width: 800px) {
+    #contact-data-content {
+        width: auto;
+    }
+}
+
 /* contact data name */
 
 .contact-data-name-area {
@@ -364,6 +406,13 @@ body {
     align-items: center;
     gap: 54px;
     margin-bottom: 48px;
+}
+
+@media(max-width: 800px) {
+    .contact-data-name-area {
+        gap: 20px;
+        margin-bottom: 21px;
+    }
 }
 
 .contact-data-name-icon {
@@ -380,6 +429,14 @@ body {
     font-weight: 500;
 }
 
+@media(max-width: 800px) {
+    .contact-data-name-icon {
+        height: 80px;
+        width: 80px;
+        font-size: 27px;
+    }
+}
+
 .contact-data-name-headline {
     display: flex;
     flex-direction: column;
@@ -392,11 +449,23 @@ body {
     margin-bottom: 8px;
 }
 
+@media(max-width: 800px) {
+    .contact-data-name {
+        font-size: 36px;
+    }
+}
+
 .contact-data-name-edit-del-area {
     display: flex;
     align-items: center;
     gap: 32px;
     font-size: 16px;
+}
+
+@media(max-width: 800px) {
+    .contact-data-name-edit-del {
+        display: none !important;
+    }
 }
 
 .contact-data-name-edit-del {
@@ -445,6 +514,12 @@ body {
     gap: 40px;
 }
 
+@media(max-width: 800px) {
+    .contact-data-info-area {
+        gap: 21px;
+    }
+}
+
 .contact-data-info-headline {
     font-size: 20px;
     font-weight: 400;
@@ -454,6 +529,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 22px;
+}
+
+@media(max-width: 800px) {
+    .contact-data-info-content {
+        gap: 16px;
+    }
 }
 
 .contact-data-info-content-headline {
