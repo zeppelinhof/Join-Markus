@@ -1,7 +1,7 @@
 /*-------------------------------------------Uebergreifende Variablen-------------------------------------------*/
 let allTasks = [];
 let currentDraggedElement;
-
+let currentOpenCard;
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
 async function init() {
     await includeHTML();
@@ -161,54 +161,57 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('taskOverlayNumber').innerHTML = /*html*/`${date}`;
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
+    currentOpenCard = q;
 }
 
 function loadAssigned(q) {
     document.getElementById('frame204').innerHTML = '';
 
     const nameUser = allTasks[q]['selectAssignedTo'];
-
     for (let n = 0; n < nameUser.length; n++) {
         const assigned = nameUser[n];
-
+        const userInitials = getInitials(assigned);
         document.getElementById('frame204').innerHTML += /*html*/`
         <div class="contactContain">
             <div class="frame191">
-                <div class="profileBadge">
-                    <div class="group9">
-                        <p class="initialien"></p>
-                        <div class="ellipse5"></div>
-                    </div>
-                </div>
+                <div class="profileBadge" id="profileBadge${n}">${userInitials}</div>
                 <p id="userName6">${assigned}</p>
             </div>
         </div>`;
-
     }
 }
 
 //----------------------------------------------------ab hier werden die Subtasks geladen----------------------------------------------------
 function loadSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML = '';
-
     const subtask = allTasks[q]['subtasks'];
-    const subTaskState = allTasks[q]['subtaskstate'];
-
     for (let p = 0; p < subtask.length; p++) {
         const subtasks = subtask[p];
         document.getElementById('subtaskContain').innerHTML += /*html*/`
-            
             <label class="custom-checkbox">
-                <input type="checkbox" id="subtask${p}">
+                <input type="checkbox" id="subtask${p}" onclick="updateSubTaskCheckBoxState(this.id)">
                 <span class="checkbox-icon"></span>
                 ${subtasks}
             </label><br>
         `;
-        const subtaskid = 'subtask' + p;
-        const checkbox = document.getElementById(subtaskid);
-        console.log(subTaskState[p]);
-        checkbox.checked = subTaskState[p];
     }
+    setCheckBoxState(q);
+}
+
+function setCheckBoxState(q) {
+    const subTaskState = allTasks[q]['subtaskstate'];
+    for (let i = 0; i < subTaskState.length; i++) {
+        subTaskState[i] = subTaskState[i] === 'true';
+        const state = subTaskState[i];
+        const subtaskid = 'subtask' + i;
+        document.getElementById(subtaskid).checked = state;
+    }
+}
+
+function updateSubTaskCheckBoxState(element) {
+    const afterSubstring = element.slice("subtask".length);
+    const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
+    allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
 }
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/

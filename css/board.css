@@ -451,7 +451,6 @@ body {
     margin-bottom: 0;
 }
 
-/*detailCard*/
 #detailCard {
     display: flex;
     align-items: center;
@@ -459,8 +458,6 @@ body {
 }
 
 .taskOverlay {
-    width: 523px;
-    height: 100vh;
     top: 0;
     border-radius: 30px;
     padding: 48px 40px 48px 40px;
@@ -478,6 +475,7 @@ body {
     height: 36px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #frame113 {
@@ -510,7 +508,9 @@ body {
 #close1 {
     width: 32px;
     height: 32px;
-    border: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #close1:hover {
@@ -518,16 +518,13 @@ body {
 }
 
 .close2 {
-    width: 13.15px;
-    height: 13.15px;
-    top: 9.43px;
-    left: 9.42px;
+    width: 24px;
+    height: 24px;
     color: #2A3647;
 }
 
 #taskOverlayHeadline, .taskOverlineHeadline {
     width: 445px;
-    height: 219px;
     font-family: 'Inter';
     font-size: 61px;
     font-weight: 700;
@@ -685,44 +682,12 @@ body {
 .profileBadge {
     width: 42px;
     height: 42px;
-    border-radius: 45px;
-    display: grid;
-    gap: 10px;
-    background: #FFFFFF;
-}
-
-.group9 {
-    width: 42px;
-    height: 42px;
-    border-radius: 2px;
-    border: 2px solid #FFFFFF;
-    position: relative;
-}
-
-.ellipse5 {
-    width: 42px;
-    height: 42px;
-    border: 2px;
-    background: linear-gradient(0deg, #1FD7C1, #1FD7C1),
-        linear-gradient(0deg, #FFFFFF, #FFFFFF);
-    border: 2px solid #FFFFFF;
-    position: absolute;
-}
-
-.initialien {
-    width: 28px;
-    height: 10px;
-    top: 16px;
-    left: 7px;
-    font-family: 'Inter';
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14px;
-    letter-spacing: 0em;
-    text-align: center;
-    color: #FFFFFF;
-    position: absolute;
-    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 100%;
+    background-color: aqua;
 }
 
 #userName6 {
