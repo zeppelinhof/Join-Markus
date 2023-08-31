@@ -152,6 +152,7 @@ function assingAllTasks(column, cardHTML) {
 }
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
+    loadAssigned(q);
     document.getElementById('detailCard').style.display = '';
     document.getElementById('taskContain').innerHTML = /*html*/ `${category}`;
     document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `${title}`;
@@ -159,26 +160,34 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('taskOverlayNumber').innerHTML = /*html*/`${date}`;
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
-    document.getElementById('frame204').innerHTML = loadAssigned(assigned);
+    //document.getElementById('frame204').innerHTML = loadAssigned(q, assigned);
+
 }
 
-function loadAssigned(assigned) {
+function loadAssigned(q) {
     document.getElementById('frame204').innerHTML = '';
-    document.getElementById('frame204').innerHTML = /*html*/`
-    <div class="contactContain">
-        <div class="frame191">
-            <div class="profileBadge">
-                <div class="group9">
-                    <p class="initialien"></p>
-                    <div class="ellipse5"></div>
-                </div>
-            </div>
-            <p id="userName6">${assigned}</p>
-        </div>
-    </div>`;
 
-    //loadAllTask();
+    const nameUser = allTasks[q]['selectAssignedTo'];
+    for (let n = 0; n < nameUser.length; n++) {
+        const assigned = nameUser[n];
+
+        document.getElementById('frame204').innerHTML += /*html*/`
+        <div class="contactContain">
+            <div class="frame191">
+                <div class="profileBadge">
+                    <div class="group9">
+                        <p class="initialien"></p>
+                        <div class="ellipse5"></div>
+                    </div>
+                </div>
+                <p id="userName6">${assigned}</p>
+            </div>
+        </div>`;
+
+    }
 }
+
+
 
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/
