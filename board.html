@@ -60,7 +60,7 @@
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                         onclick="addTask('toDoContainer')">
                 </div>
-                <div class="taskContainer" id="toDoContainer" ondrop="moveTo('to do')" ondragover="allowDrop(event)">
+                <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')" ondragover="allowDrop(event)">
                     <div class="noTaskContainer" id="noTask">
                         <span class="noTaskContainer1">
                             <p>No tasks To do</p>
@@ -74,7 +74,7 @@
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                         onclick="addTask('inProgressContainer')">
                 </div>
-                <div class="taskContainer" id="inProgressContainer" ondrop="moveTo('inProgress')"
+                <div class="taskContainer" id="inProgressContainer" ondrop="drop(event, 'inProgress')"
                     ondragover="allowDrop(event)">
                     <div class="noTaskContainer" id="noProgress">
                         <span class="noTaskContainer2">
@@ -89,7 +89,7 @@
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                         onclick="addTask('feedbackContainer')">
                 </div>
-                <div class="taskContainer" id="feedbackContainer" ondrop="moveTo('feedback')"
+                <div class="taskContainer" id="feedbackContainer" ondrop="drop(event, 'feedback')"
                     ondragover="allowDrop(event)">
                     <div class="noTaskContainer" id="noFeedback">
                         <span class="noTaskContainer2">
@@ -102,7 +102,7 @@
                 <div class="hlB">
                     <p>Done</p>
                 </div>
-                <div class="taskContainer" id="doneContainer" ondrop="moveTo('done')" ondragover="allowDrop(event)">
+                <div class="taskContainer" id="doneContainer" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
                     <div class="noTaskContainer" id="noDone">
                         <span class="noTaskContainer1">
                             <p>No tasks Done</p>

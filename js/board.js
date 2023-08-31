@@ -65,7 +65,7 @@ function loadAllTask(category, title, description, column, q, priority, date, pr
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
-            <div id="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
+            <div id="cards-${q}" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
                 <div class='frame119'>
                     <div class='labelsBoardCardlabel'>
                         <p id="cardLabel">${category}</p>
@@ -150,7 +150,7 @@ function loadAssigned(assigned) {
         </div>
     </div>`;
 
-    loadAllTask();
+    //loadAllTask();
 }
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/
@@ -158,20 +158,23 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+function drop(ev, column) {
+    ev.preventDefault();
+    moveTo(column);
+}
 function startDragging(q) {
     currentDraggedElement = q;
     console.log(currentDraggedElement);
 }
 
+
 async function moveTo(column) {
+    const cardHTML = document.getElementById(`cards-${currentDraggedElement}`);
+    cardHTML.remove(); // Entferne das Element aus dem alten Container
+
     allTasks[currentDraggedElement]['column'] = column;
     await setItem('tasks', JSON.stringify(allTasks));
-    console.log(allTasks);
-}
-
-async function performMoveAndRefresh(column) {
-    await moveTo(column);
-    assingAllTasks();
+    assingAllTasks(column, cardHTML.outerHTML); // Füge das Element in den neuen Container ein
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
