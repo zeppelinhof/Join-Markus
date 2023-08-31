@@ -99,11 +99,20 @@ async function register_task() {
         category: selectedCategory.innerText,
         subtasks: subtasks,
         column: 'to do',
+        subtaskstate: subtaskstate() 
     });
 
     await setItem('tasks', JSON.stringify(tasks));
 
     resetForm();
+}
+
+function subtaskstate() {
+    let subtaskstate = [];
+    for (let i = 0; i < subtasks.length; i++) {
+        subtaskstate[i] = 'false';
+    }
+    return subtaskstate;
 }
 
 function resetForm() {
