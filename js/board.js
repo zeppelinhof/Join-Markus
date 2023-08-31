@@ -151,8 +151,10 @@ function assingAllTasks(column, cardHTML) {
     checkEmptyContainer();
 }
 
+//------------------------------------------Funktion die Detailcard aufruft und die Namen zuweist------------------------------------------
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
     loadAssigned(q);
+    loadSubtasks(q);
     document.getElementById('detailCard').style.display = '';
     document.getElementById('taskContain').innerHTML = /*html*/ `${category}`;
     document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `${title}`;
@@ -168,6 +170,7 @@ function loadAssigned(q) {
     document.getElementById('frame204').innerHTML = '';
 
     const nameUser = allTasks[q]['selectAssignedTo'];
+
     for (let n = 0; n < nameUser.length; n++) {
         const assigned = nameUser[n];
 
@@ -187,8 +190,23 @@ function loadAssigned(q) {
     }
 }
 
+//----------------------------------------------------ab hier werden die Subtasks geladen----------------------------------------------------
+function loadSubtasks(q) {
+    document.getElementById('subtaskContain').innerHTML = '';
 
+    const subtask = allTasks[q]['subtasks'];
 
+    for (let p = 0; p < subtask.length; p++) {
+        const subtasks = subtask[p];
+
+        document.getElementById('subtaskContain').innerHTML += /*html*/`
+            <span class="subtasksCheck">
+                <img id="checkButton" src="assets/img/Check_button_empty.svg" alt="">
+                <p id="contactForm">${subtasks}</p>
+            </span>
+        `;
+    }
+}
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/
 function allowDrop(ev) {

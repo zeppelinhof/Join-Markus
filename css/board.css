@@ -633,7 +633,7 @@ body {
 
 .frame214 {
     width: 445px;
-    height: 208px;
+    max-height: 208px;
     display: grid;
     gap: 8px;
 }
@@ -651,13 +651,13 @@ body {
 
 #frame204 {
     width: 445px;
-    height: 176px;
+    height: 113px;
     display: grid;
     gap: 4px;
     overflow-y: scroll;
 }
 
-#frame204::-webkit-scrollbar{
+#frame204::-webkit-scrollbar {
     display: none;
 }
 
@@ -754,6 +754,7 @@ body {
     letter-spacing: 0em;
     text-align: left;
     color: #2A3647;
+    margin-bottom: 0;
 }
 
 .subtasksCheck {
@@ -761,6 +762,8 @@ body {
     height: 32px;
     padding: 6px 16px 6px 16px;
     gap: 16px;
+    display: flex;
+    align-items: center;
 }
 
 .frame20 {
@@ -768,6 +771,29 @@ body {
     height: 24px;
     gap: 8px;
     display: flex;
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+
+#checkButton {
+    width: 24px;
+    height: 24px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+#contactForm {
+    max-width: 272px;
+    height: 19px;
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #000000;
+    margin-bottom: 0;
 }
 
 .deleteContact {
