@@ -8,7 +8,6 @@ async function init() {
     //userInitials();
     await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
-    liveSearch();
 
 }
 
@@ -35,7 +34,6 @@ function loopAllTasks() {
         const date = allTasks[q]['date'];
         const assigned = allTasks[q]['selectAssignedTo'];
 
-        console.log(assigned);
         loadAllTask(category, title, description, column, q, priority, date, priority, assigned);
     }
 }
@@ -218,7 +216,6 @@ function drop(ev, column) {
 }
 function startDragging(q) {
     currentDraggedElement = q;
-    console.log(currentDraggedElement);
 }
 
 
@@ -234,25 +231,23 @@ async function moveTo(column) {
 /*-----------------------------------Suchfunktion---------------------------------*/
 function liveSearch() {
     const searchInput = document.getElementById('search');
-    const boardContain = document.querySelector('.Todo');
-    const progress = document.querySelector('.in_Progress');
-    const feedBack = document.querySelector('.Feedback');
-    const Done = document.querySelector('.donecontainer');
 
     searchInput.addEventListener('input', function () {
         const searchContain = searchInput.value.toLowerCase();
 
-        boardContain.innerHTML = '';
-        progress.innerHTML = '';
-        feedBack.innerHTML = '';
-        Done.innerHTML = '';
-
         for (let q = 0; q < allTasks.length; q++) {
             const title = allTasks[q]['title'].toLowerCase();
             if (title.includes(searchContain)) {
-                loadAllTask();
+                const category = allTasks[q]['category'];
+                const description = allTasks[q]['descriprion'];
+                const column = allTasks[q]['column'];
+                const priority = allTasks[q]['prio'];
+                const date = allTasks[q]['date'];
+                const assigned = allTasks[q]['selectAssignedTo'];
+                loadAllTask(category, title, description, column, q, priority, date, priority, assigned)
             }
         }
+        loopAllTasks();
     });
 }
 
