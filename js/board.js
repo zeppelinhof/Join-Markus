@@ -8,6 +8,7 @@ async function init() {
     //userInitials();
     await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
+
 }
 
 /*--------------------------funktion die das komplette tasks aus dem Backend ausließt--------------------------*/
@@ -38,34 +39,60 @@ function loopAllTasks() {
 }
 /*----------------------Checkt ob die Kontainer leer sind oder haben Inhalt----------------------*/
 function checkEmptyContainer() {
-    if (inProgressContainer.querySelector('.card')) {
-        document.getElementById('noProgress').style.display = '';
+    clearNoTasToDO();
+    clearNoTaskProgress();
+    clearNoTaskFeedback();
+    clearNoTaskDone();
+}
+
+function clearNoTaskProgress() {
+    const inProgressContainer = document.getElementById('inProgressContainer');
+
+    if (inProgressContainer.querySelector('.cards')) {
+        document.getElementById('noProgress').style.display = 'none';
         console.log('Karte ist nicht da');
     } else {
-        document.getElementById('noProgress').style.display = 'none';
+        document.getElementById('noProgress').style.display = '';
         console.log('Karte befindet sich im Container');
-    } if (toDoContainer.querySelector('.card')) {
-        document.getElementById('noTask').style.display = '';
-    } else {
+    }
+}
+
+function clearNoTasToDO() {
+    const toDoContainer = document.getElementById('toDoContainer');
+
+    if (toDoContainer.querySelector('.cards')) {
         document.getElementById('noTask').style.display = 'none';
-    } if (feedbackContainer.querySelector('.card')) {
-        document.getElementById('noFeedback').style.display = '';
     } else {
+        document.getElementById('noTask').style.display = '';
+    }
+}
+
+function clearNoTaskFeedback() {
+    const feedbackContainer = document.getElementById('feedbackContainer');
+
+    if (feedbackContainer.querySelector('.cards')) {
         document.getElementById('noFeedback').style.display = 'none';
-    } if (doneContainer.querySelector('.card')) {
-        document.getElementById('noDode').style.display = '';
     } else {
+        document.getElementById('noFeedback').style.display = '';
+    }
+}
+
+function clearNoTaskDone() {
+    const DoneContainer = document.getElementById('DoneContainer');
+
+    if (DoneContainer.querySelector('.cards')) {
         document.getElementById('noDone').style.display = 'none';
+    } else {
+        document.getElementById('noDone').style.display = '';
     }
 }
 
 /*-------------------------------------------lädt den Inhalt der Gesamten Karte-------------------------------------------*/
 function loadAllTask(category, title, description, column, q, priority, date, priority, assigned) {
-    checkEmptyContainer();
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
-            <div id="cards-${q}" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
+            <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
                 <div class='frame119'>
                     <div class='labelsBoardCardlabel'>
                         <p id="cardLabel">${category}</p>
@@ -105,12 +132,12 @@ function imagePriority(priority) {
 function assingAllTasks(column, cardHTML) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
-    const doneContainer = document.getElementById('doneContainer');
+    const DoneContainer = document.getElementById('DoneContainer');
     const toDoContainer = document.getElementById('toDoContainer');
 
     inProgressContainer.innerHTML += '';
     feedBackContainer.innerHTML += '';
-    doneContainer.innerHTML += '';
+    DoneContainer.innerHTML += '';
     toDoContainer.innerHTML += '';
 
     if (column === 'to do') {
@@ -118,10 +145,11 @@ function assingAllTasks(column, cardHTML) {
     } else if (column === 'inProgress') {
         inProgressContainer.innerHTML += cardHTML;
     } else if (column === 'done') {
-        doneContainer.innerHTML += cardHTML;
+        DoneContainer.innerHTML += cardHTML;
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
+    checkEmptyContainer();
 }
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
@@ -175,6 +203,7 @@ async function moveTo(column) {
     allTasks[currentDraggedElement]['column'] = column;
     await setItem('tasks', JSON.stringify(allTasks));
     assingAllTasks(column, cardHTML.outerHTML); // Füge das Element in den neuen Container ein
+
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
