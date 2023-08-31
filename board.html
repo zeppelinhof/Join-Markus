@@ -21,10 +21,13 @@
     <!-- local css -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/contacts.css">
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/global.js"></script>
+    <script src="js/add_new_contact.js"></script>
+    <script src=""></script>
 </head>
 
 <body onload="init()">
@@ -45,7 +48,8 @@
                         <img class="search" src="assets/img/Frame 122.svg" alt="">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary headlineButton">
+                <button type="button" class="btn btn-primary headlineButton"
+                    onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')">
                     <p>Add task</p>
                     <img class="hlB1" src="assets/img/add.svg" alt="">
                 </button>
@@ -60,7 +64,8 @@
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                         onclick="addTask('toDoContainer')">
                 </div>
-                <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')" ondragover="allowDrop(event)">
+                <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')"
+                    ondragover="allowDrop(event)">
                     <div class="noTaskContainer" id="noTask">
                         <span class="noTaskContainer1">
                             <p>No tasks To do</p>
@@ -102,7 +107,8 @@
                 <div class="hlB">
                     <p>Done</p>
                 </div>
-                <div class="taskContainer" id="DoneContainer" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
+                <div class="taskContainer" id="DoneContainer" ondrop="drop(event, 'done')"
+                    ondragover="allowDrop(event)">
                     <div class="noTaskContainer" id="noDone">
                         <span class="noTaskContainer1">
                             <p>No tasks Done</p>
@@ -150,8 +156,8 @@
                     </span>
                 </div>
             </div>
-            <div class="frame20">
-                <div class="deleteContact">
+            <div class="frame20" id="frame20">
+                <div class="deleteContact" onclick="deleteCard()">
                     <div class="deleteContain">
                         <img src="assets/img/delete.svg" alt="" class="deleteIcon">
                     </div>

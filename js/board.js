@@ -32,12 +32,13 @@ function loopAllTasks() {
         const title = allTasks[q]['title'];
         const column = allTasks[q]['column'];
         const date = allTasks[q]['date'];
-        const assigned = allTasks[q]['seselectAssignedTo'];
+        const assigned = allTasks[q]['selectAssignedTo'];
 
+        console.log(assigned);
         loadAllTask(category, title, description, column, q, priority, date, priority, assigned);
     }
 }
-/*----------------------Checkt ob die Kontainer leer sind oder haben Inhalt----------------------*/
+/*----------------------Checkt ob die Kontainer leer sind oder Inhalt haben ----------------------*/
 function checkEmptyContainer() {
     clearNoTasToDO();
     clearNoTaskProgress();
@@ -50,10 +51,8 @@ function clearNoTaskProgress() {
 
     if (inProgressContainer.querySelector('.cards')) {
         document.getElementById('noProgress').style.display = 'none';
-        console.log('Karte ist nicht da');
     } else {
         document.getElementById('noProgress').style.display = '';
-        console.log('Karte befindet sich im Container');
     }
 }
 
@@ -165,7 +164,7 @@ function openDetailCard(q, title, description, category, priority, date, priorit
 
 function loadAssigned(assigned) {
     document.getElementById('frame204').innerHTML = '';
-    document.getElementById('frame204').innerHTML += /*html*/`
+    document.getElementById('frame204').innerHTML = /*html*/`
     <div class="contactContain">
         <div class="frame191">
             <div class="profileBadge">
@@ -180,6 +179,7 @@ function loadAssigned(assigned) {
 
     //loadAllTask();
 }
+
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/
 function allowDrop(ev) {
@@ -203,7 +203,12 @@ async function moveTo(column) {
     allTasks[currentDraggedElement]['column'] = column;
     await setItem('tasks', JSON.stringify(allTasks));
     assingAllTasks(column, cardHTML.outerHTML); // Füge das Element in den neuen Container ein
-
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
+
+
+//--------------------------------------Löschfunktion der Karte--------------------------------------
+function deleteCard() {
+    alert('Zeige mir die Richtige Karte ${q}');
+}
