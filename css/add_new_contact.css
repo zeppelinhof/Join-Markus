@@ -30,6 +30,28 @@
     }
 }
 
+@media(max-width: 1300px) {
+    @keyframes add-new-contact-slidein {
+        from {
+            margin-top: calc(100vh + 760px + 16px);
+        }
+
+        to {
+            margin-top: 0;
+        }
+    }
+
+    @keyframes add-new-contact-slideout {
+        from {
+            margin-top: 0;
+        }
+
+        to {
+            margin-top: calc(100vh + 760px + 16px);
+        }
+    }
+}
+
 
 
 /* add new contact */
@@ -65,10 +87,12 @@
     .add-new-contact-area {
         display: flex;
         flex-direction: column;
-        height: 594px;
-        width: 1212px;
+        height: 760px;
+        width: 396px;
     }
 }
+
+
 
 /* add new contact sidebar */
 
@@ -86,16 +110,38 @@
     width: 466px;
 }
 
+@media(max-width: 1300px) {
+    .add-new-contact-sidebar {
+        height: 352px;
+        width: calc(100% - 24px);
+        padding: 0;
+        padding-left: 24px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: unset;
+    }
+}
+
 .add-new-contact-logo {
     height: 66.48px;
     width: 55.6px;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-logo {
+        display: none;
+    }
 }
 
 .add-new-contact-headline {
     margin: 0;
     font-size: 61px;
     font-weight: 700;
+}
 
+@media(max-width: 1300px) {
+    .add-new-contact-headline {
+        font-size: 47px;
+    }
 }
 
 .add-new-contact-text {
@@ -103,10 +149,19 @@
     font-weight: 400;
 }
 
+@media(max-width: 1300px) {
+    .add-new-contact-text {
+        font-size: 20px;
+    }
+}
+
 .add-new-contact-separator {
     width: 90px;
     border: 3px solid rgb(41, 170, 227);
+    border-radius: 3px;
 }
+
+
 
 /* add new contact input mask */
 
@@ -123,6 +178,21 @@
     position: relative;
 }
 
+@media(max-width: 1300px) {
+    .add-new-contact-input-mask {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        padding: 0;
+        width: 100%;
+        flex-grow: 1;
+        border-top-right-radius: unset;
+        border-bottom-left-radius: 30px;
+    }
+}
+
 .add-new-contact-close {
     position: absolute;
     top: 48px;
@@ -134,6 +204,14 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-close {
+        background-image: url('../assets/img/icon_close_white.png');
+        top: calc(-352px + 28px);
+        right: 20px;
+    }
 }
 
 .add-new-contact-close:hover {
@@ -149,16 +227,31 @@
     height: 42px;
     width: 42px;
     padding: calc(120px - 82px);
-    border: 1px solid white;
+    border: 3px solid white;
     border-radius: 50%;
     background-color: rgb(209, 209, 209);
     margin-bottom: 48px;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-profile-icon {
+        position: absolute;
+        top: -60px;
+    }
 }
 
 .add-new-contact-form {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-form {
+        align-items: center;
+        gap: 15px;
+        margin-top: 15px;
+    }
 }
 
 .add-new-contact-input-area {
@@ -168,14 +261,23 @@
 
 .add-new-contact-input-name {
     background-image: url('../assets/img/person.svg');
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
 }
 
 .add-new-contact-input-email {
     background-image: url('../assets/img/mail.svg');
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
 }
 
 .add-new-contact-input-phone {
     background-image: url('../assets/img/icon_phone.png');
+    height: 24px;
+    width: 24px;
+    object-fit: contain;
 }
 
 .add-new-contact-input {
@@ -190,6 +292,16 @@
     font-weight: 400px;
     padding-left: 24px;
     outline: none;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-input {
+        background-position-x: calc(364px - 48px);
+        height: 41px;
+        width: calc(364px - 28px);
+        padding-top: 0;
+        padding-bottom: 0;
+    }
 }
 
 .add-new-contact-input::placeholder {
@@ -218,6 +330,12 @@
     background-color: white;
     border: 1px solid rgb(42, 54, 71);
     border-radius: 10px;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-button-left {
+        display: none;
+    }
 }
 
 .edit-contact-button-left {
@@ -258,6 +376,14 @@
     color: white;
     border: none;
     border-radius: 10px;
+}
+
+@media(max-width: 1300px) {
+    .add-new-contact-button-right {
+        width: 190px;
+        height: 49px;
+        margin-top: 15px;
+    }
 }
 
 .edit-contact-button-right {
