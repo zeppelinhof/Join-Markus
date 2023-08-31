@@ -1,21 +1,27 @@
 body {
     display: flex;
+    height: 100vh;
 }
 
 .topBarContainer {
-    position: absolute;
-    top: 0;
-    left: 232px;
-    right: 0;
-    height: 96px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .contentContainer {
-    width: 100%;
     padding-left: 96px;
     background-color: #F6F7F8;
     display: flex;
     align-items: center;
+    flex-grow: 1;
+}
+
+@media(max-width: 800px) {
+    .contentContainer {
+        justify-content: center;
+        padding: unset;
+    }
 }
 
 .panelContainer {
