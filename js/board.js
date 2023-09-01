@@ -127,6 +127,20 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                         <div id='title'>${title}</div>
                         <div id="content">${description}</div>
                     </div>
+                    <div id="progressBar">
+                        <div class="progress progress1" role="progressbar" aria-label="Basic example" id="ProgressBar" >
+                            <div class="progress-bar w-75 progressBar1" id="progress-bar"></div>
+                        </div>
+                        <div class="progressAdvanced">
+                            <div class="Subtasks">
+                                <div id="sumOfTasks">
+                                    <b id="TasksNumber_${q}"></b>/
+                                    <b id="allTasksNumber_${q}"></b>
+                                </div>    
+                                <p style="margin-bottom:0;">Subtasks</p>
+                            </div>
+                        </div>
+                    </div>
                     <div id='frame139'>
                         <div id='frame217'>
                             <div id="frame1_${q}" class="frame1"></div>
@@ -145,7 +159,6 @@ function loadAllTask(category, title, description, column, q, priority, date, as
 }
 
 function loadInitials(q) {
-    //document.getElementById('frame217').innerHTML = '';
     const user = allTasks[q]['selectAssignedTo'];
 
     for (let index = 0; index < user.length; index++) {
@@ -154,13 +167,47 @@ function loadInitials(q) {
         const targetElementId = `frame1_${q}`;
         document.getElementById(targetElementId).innerHTML += /*html*/`
             <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
-        console.log(UserInitials);
 
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
-
     }
 }
 
+//----------------------------------------------------Darstellung der Aufgaben auf der kleinen Karte----------------------------------------------------
+
+
+function countCompletedTasks(q) {
+    const subTaskState = allTasks[q]['subtaskstate'];
+    let completedTasks = 0;
+
+    for (let i = 0; i < subTaskState.length; i++) {
+        subTaskState[i] = subTaskState[i] === 'true';
+        console.log(subTaskState[i]);
+
+        if (subTaskState[i]) {
+            completedTasks++;
+        }
+    }
+
+    let percent = (completedTasks) / subTaskState.length;
+    percent = Math.round(percent * 100);
+
+    // Wenn keine Aufgaben erledigt wurden, setze die Progressbar auf 0%
+    if (completedTasks === 0) {
+        document.getElementById('progress-bar').style = `width: 0%;`;
+    } else {
+        document.getElementById('progress-bar').style = `width: ${percent}%;`;
+    }
+
+    return completedTasks;
+}
+
+function allNumberTasks(q) {
+    const taskNumber = allTasks[q]['subtasks'];
+
+    document.getElementById(`allTasksNumber_${q}`).innerHTML += taskNumber.length;
+}
+
+//---------------------------------------------------------------darstellung der Prioimages---------------------------------------------------------------
 function imagePriority(priority) {
     let priorityIMG = '';
 
@@ -174,6 +221,7 @@ function imagePriority(priority) {
     return priorityIMG;
 }
 
+//---------------------------------------------------Zuordnung der Karten in die jeweiligen Kontainer---------------------------------------------------
 function assingAllTasks(column, cardHTML, q) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
@@ -196,6 +244,7 @@ function assingAllTasks(column, cardHTML, q) {
     }
     checkEmptyContainer();
     loadInitials(q);
+    allNumberTasks(q);
 }
 
 //------------------------------------------Funktion die Detailcard aufruft und die Namen zuweist------------------------------------------
@@ -255,12 +304,19 @@ function setCheckBoxState(q) {
         const subtaskid = 'subtask' + i;
         document.getElementById(subtaskid).checked = state;
     }
+    updateCompletedTasksCount(q);
 }
 
 function updateSubTaskCheckBoxState(element) {
     const afterSubstring = element.slice("subtask".length);
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
+    updateCompletedTasksCount(currentOpenCard);
+}
+
+function updateCompletedTasksCount(q) {
+    const completedTasks = countCompletedTasks(q);
+    document.getElementById(`TasksNumber_${q}`).textContent = completedTasks;
 }
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/

@@ -332,7 +332,7 @@ body {
     /* Zeigt "..." am Ende des abgeschnittenen Texts an */
 }
 
-.progressBar {
+#progressBar {
     width: 220px;
     height: 16px;
     display: flex;
@@ -358,8 +358,8 @@ body {
     background: #4589FF;
 }
 
-.progressBarFortschritt {
-    width: 73px;
+.progressAdvanced {
+    width: 80px;
     height: 14px;
     left: 139px;
     font-family: 'Inter';
@@ -369,6 +369,12 @@ body {
     letter-spacing: 0em;
     text-align: left;
     color: #000000;
+}
+
+.Subtasks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #frame139 {
