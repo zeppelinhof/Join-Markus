@@ -267,34 +267,26 @@ async function moveTo(column) {
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
-document.addEventListener('DOMContentLoaded', function () {
-
-    function liveSearch() {
-        let contains = document.querySelectorAll('.boardContainer');
-        let searchQuery = document.querySelector('#search').value.toLowerCase();
-
-        contains.forEach(container => {
-            const tasks = container.querySelectorAll('#feedbackContainer');
-
-            tasks.forEach(task => {
-                const taskText = task.textContent.toLowerCase();
-                if (taskText.includes(searchQuery)) {
-                    container.classList.remove('is-hidden');
-                } else {
-                    container.classList.add('is-hidden');
-                }
-            });
-        });
-    }
-
-    let typingTimer;
-    let typeInterval = 500;
-    let searchInput = document.querySelector('#search');
-    searchInput.addEventListener('keyup', () => {
-        clearTimeout(typingTimer);
-        typingTimer = setTimeout(liveSearch, typeInterval);
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    // Füge den Event-Listener hinzu, sobald das DOM geladen ist
+    document.getElementById('searchInput').addEventListener('input', searchTasks);
 });
+
+function searchTasks() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase(); // Suchbegriff in Kleinbuchstaben umwandeln
+    const cards = document.querySelectorAll('.cards');
+
+    for (let q = 0; q < allTasks.length; q++) {
+        const title = allTasks[q]['title'].toLowerCase(); // Titel in Kleinbuchstaben umwandeln
+        const card = cards[q];
+
+        if (title.includes(searchInput)) {
+            card.style.display = 'block'; // Karte anzeigen, wenn der Titel den Suchbegriff enthält
+        } else {
+            card.style.display = 'none'; // Karte ausblenden, wenn der Titel den Suchbegriff nicht enthält
+        }
+    }
+}
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
 function deleteCard() {
