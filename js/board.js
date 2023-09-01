@@ -36,7 +36,7 @@ async function saveDetailCardData() {
         category: allTasks[q]['category'],
         column: allTasks[q]['column'],
         subtasks: allTasks[q]['subtasks'],
-        subtaskstate: getSubtasksCheckboxState() 
+        subtaskstate: getSubtasksCheckboxState()
     };
     updateItem('tasks', currentOpenCard, newItem);
 }
@@ -45,10 +45,10 @@ function getSubtasksCheckboxState() {
     const subtask = allTasks[currentOpenCard]['subtasks'];
     const newStates = [];
     for (let i = 0; i < subtask.length; i++) {
-        newStates[i] = document.getElementById('subtask'+i).checked;
+        newStates[i] = document.getElementById('subtask' + i).checked;
     }
     const stringArray = newStates.map(value => String(value));
-    return(stringArray);
+    return (stringArray);
 }
 
 /*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
@@ -206,7 +206,7 @@ function loadAssigned(q) {
                 <p id="userName6">${assigned}</p>
             </div>
         </div>`;
-    document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
+        document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
     }
 }
 
@@ -267,7 +267,7 @@ async function moveTo(column) {
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Füge den Event-Listener hinzu, sobald das DOM geladen ist
     document.getElementById('searchInput').addEventListener('input', searchTasks);
 });
@@ -289,6 +289,8 @@ function searchTasks() {
 }
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
-function deleteCard() {
-    deleteItem('tasks', currentOpenCard);
+async function deleteCard() {
+    document.getElementById('detailCard').style.display = 'none';
+    await deleteItem('tasks', currentOpenCard);
+    location.reload();
 }
