@@ -91,8 +91,8 @@ async function loadTasks() {
 
 async function register_task() {
     tasks.push({
-        title: title.value,
-        description: description.value,
+        title: cleanInputString(title.value),
+        description: cleanInputString(description.value),
         selectAssignedTo: contactsInTask,
         date: date.value,
         prio: document.getElementById('prioStatusAsString').innerText,
@@ -101,9 +101,7 @@ async function register_task() {
         column: 'to do',
         subtaskstate: subtaskstate() 
     });
-
     await setItem('tasks', JSON.stringify(tasks));
-
     resetForm();
 }
 
@@ -113,6 +111,13 @@ function subtaskstate() {
         subtaskstate[i] = 'false';
     }
     return subtaskstate;
+}
+
+function cleanInputString(input) {
+    const pattern = /[<>&"'/\\]/g;
+    const sanitizedInput = input.replace(pattern, '');
+    const trimmedInput = sanitizedInput.trim();
+    return trimmedInput;
 }
 
 function resetForm() {

@@ -36,7 +36,7 @@ async function saveDetailCardData() {
         category: allTasks[q]['category'],
         column: allTasks[q]['column'],
         subtasks: allTasks[q]['subtasks'],
-        subtaskstate: getSubtasksCheckboxState() 
+        subtaskstate: getSubtasksCheckboxState()
     };
     updateItem('tasks', currentOpenCard, newItem);
 }
@@ -45,10 +45,10 @@ function getSubtasksCheckboxState() {
     const subtask = allTasks[currentOpenCard]['subtasks'];
     const newStates = [];
     for (let i = 0; i < subtask.length; i++) {
-        newStates[i] = document.getElementById('subtask'+i).checked;
+        newStates[i] = document.getElementById('subtask' + i).checked;
     }
     const stringArray = newStates.map(value => String(value));
-    return(stringArray);
+    return (stringArray);
 }
 
 /*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
@@ -62,7 +62,7 @@ function loopAllTasks() {
         const date = allTasks[q]['date'];
         const assigned = allTasks[q]['selectAssignedTo'];
 
-        loadAllTask(category, title, description, column, q, priority, date, priority, assigned);
+        loadAllTask(category, title, description, column, q, priority, date, assigned);
     }
 }
 /*----------------------Checkt ob die Kontainer leer sind oder Inhalt haben ----------------------*/
@@ -114,7 +114,7 @@ function clearNoTaskDone() {
 }
 
 /*-------------------------------------------lädt den Inhalt der Gesamten Karte-------------------------------------------*/
-function loadAllTask(category, title, description, column, q, priority, date, priority, assigned) {
+function loadAllTask(category, title, description, column, q, priority, date, assigned) {
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
@@ -128,7 +128,9 @@ function loadAllTask(category, title, description, column, q, priority, date, pr
                         <div id="content">${description}</div>
                     </div>
                     <div id='frame139'>
-                        <div id='frame217'></div>
+                        <div id='frame217'>
+                            <div id="frame1_${q}" class="frame1"></div>
+                        </div>
                         <div id='prioritySymbols'>
                             <div class="prioBaja">
                                 <img class="capa2" src="${priorityIMG}" alt="">
@@ -139,7 +141,24 @@ function loadAllTask(category, title, description, column, q, priority, date, pr
             </div>`;
 
 
-    assingAllTasks(column, cardHTML);
+    assingAllTasks(column, cardHTML, q);
+}
+
+function loadInitials(q) {
+    //document.getElementById('frame217').innerHTML = '';
+    const user = allTasks[q]['selectAssignedTo'];
+
+    for (let index = 0; index < user.length; index++) {
+        const element = user[index];
+        const UserInitials = getInitials(element);
+        const targetElementId = `frame1_${q}`;
+        document.getElementById(targetElementId).innerHTML += /*html*/`
+            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
+        console.log(UserInitials);
+
+        document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
+
+    }
 }
 
 function imagePriority(priority) {
@@ -155,7 +174,7 @@ function imagePriority(priority) {
     return priorityIMG;
 }
 
-function assingAllTasks(column, cardHTML) {
+function assingAllTasks(column, cardHTML, q) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
     const DoneContainer = document.getElementById('DoneContainer');
@@ -176,6 +195,7 @@ function assingAllTasks(column, cardHTML) {
         feedBackContainer.innerHTML += cardHTML;
     }
     checkEmptyContainer();
+    loadInitials(q);
 }
 
 //------------------------------------------Funktion die Detailcard aufruft und die Namen zuweist------------------------------------------
@@ -206,7 +226,7 @@ function loadAssigned(q) {
                 <p id="userName6">${assigned}</p>
             </div>
         </div>`;
-    document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
+        document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
     }
 }
 
@@ -267,7 +287,7 @@ async function moveTo(column) {
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Füge den Event-Listener hinzu, sobald das DOM geladen ist
     document.getElementById('searchInput').addEventListener('input', searchTasks);
 });
@@ -289,6 +309,8 @@ function searchTasks() {
 }
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
-function deleteCard() {
-    deleteItem('tasks', currentOpenCard);
+async function deleteCard() {
+    document.getElementById('detailCard').style.display = 'none';
+    await deleteItem('tasks', currentOpenCard);
+    location.reload();
 }

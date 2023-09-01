@@ -32,7 +32,6 @@ async function deleteItem(database, indexToDelete) {
     let allItems = JSON.parse(await getItem(database));
 
     if (indexToDelete >= 0 && indexToDelete < allItems.length) {
-        // Löschen Sie den Eintrag anhand des Index.
         allItems.splice(indexToDelete, 1);
         await setItem(database, JSON.stringify(allItems));
     } else {

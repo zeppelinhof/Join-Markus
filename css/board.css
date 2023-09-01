@@ -384,7 +384,6 @@ body {
     height: 32px;
     display: flex;
     align-items: center;
-    background-color: greenyellow;
 }
 
 #prioritySymbols {
@@ -688,6 +687,10 @@ body {
     color: white;
     border-radius: 100%;
     background-color: aqua;
+}
+
+.frame1{
+    display: flex;
 }
 
 #userName6 {
