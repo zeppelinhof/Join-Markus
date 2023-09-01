@@ -1,52 +1,3 @@
-let contacts = [
-    {
-        'name': 'Anton Mayer',
-        'email': 'anton@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Anja Schulz',
-        'email': 'schulz@hotmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Benedikt Ziegler',
-        'email': 'benedikt@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Clemens H.',
-        'email': 'clem@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'David Eisenberg',
-        'email': 'davidberg@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Eva Fischer',
-        'email': 'eva@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Emmanuel Mauer',
-        'email': 'emmanuelma@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Juri Sajzew',
-        'email': 'js@gmail.com',
-        'phone': '0170 333333'
-    },
-    {
-        'name': 'Markus',
-        'email': 'mark@gmail.com',
-        'phone': '0170 333333'
-    }
-];
-
-
 let existLetterHeadline = '';
 
 
@@ -106,15 +57,32 @@ function findFirstLetters(name) {
 
 function openContactData(i) {
     let contactCard = document.getElementById(`contactCard-${i}`);
+    let conatacts = document.getElementById('contacts');
+    let contactData = document.getElementById('contact-data');
+    let windowSize = window.matchMedia('(max-width: 1050px)');
 
     if (contactCard.classList.contains('contact-card-click')) {
         contactCard.classList.remove('contact-card-click');
         clearContactData();
     } else {
-        closeAllContactClicks();
-        contactCard.classList.add('contact-card-click');
+        if (windowSize.matches) {
+            conatacts.classList.add('contact-data-d-none');
+            contactData.classList.remove('contact-data-d-none');
+        } else {
+            closeAllContactClicks();
+            contactCard.classList.add('contact-card-click');
+        }
         renderContactData(i);
     }
+}
+
+
+function closeContactData() {
+    let conatacts = document.getElementById('contacts');
+    let contactData = document.getElementById('contact-data');
+
+    conatacts.classList.remove('contact-data-d-none');
+    contactData.classList.add('contact-data-d-none');
 }
 
 
@@ -153,4 +121,29 @@ function closeAllContactClicks() {
 
         currentClick.classList.remove('contact-card-click');
     }
+}
+
+
+function openEditContactPointMenu() {
+    let editContactPointMenu = document.getElementById('contact-data-name-edit-del-area')
+
+    editContactPointMenu.classList.remove('contact-data-name-edit-del-area-slideout-animation');
+    editContactPointMenu.classList.add('contact-data-name-edit-del-area-slidein-animation');
+
+    editContactPointMenu.classList.remove('contacts-point-menu-d-none');
+}
+
+function closeEditContactPointMenu() {
+    let editContactPointMenu = document.getElementById('contact-data-name-edit-del-area')
+
+    editContactPointMenu.classList.remove('contact-data-name-edit-del-area-slidein-animation');
+    editContactPointMenu.classList.add('contact-data-name-edit-del-area-slideout-animation');
+
+    setTimeout(() => {
+        editContactPointMenu.classList.add('contacts-point-menu-d-none');
+    }, 500);
+}
+
+function notToClose(event) {
+    event.stopPropagation();
 }

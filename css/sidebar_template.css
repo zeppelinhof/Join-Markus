@@ -40,7 +40,7 @@
     background-color: rgb(42, 54, 71);
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1050px) {
     .sidebar-panel {
         display: flex;
         flex-direction: row;
@@ -55,7 +55,7 @@
     margin-top: 64px;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1050px) {
     .sidebar-logo {
         display: none;
     }
@@ -67,7 +67,7 @@
     width: 100%;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1050px) {
     .sidebar-nav {
         display: flex;
         flex-direction: row;
@@ -87,7 +87,7 @@
     color: rgb(205, 205, 205);
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1050px) {
     .sidebar-nav-member {
         display: flex;
         justify-content: center;
@@ -121,7 +121,7 @@
     background-image: url('../assets/img/icon_contacs_side.png');
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1050px) {
     .sidebar-text {
         display: none;
     }
@@ -136,7 +136,7 @@
     margin-bottom: 64px;
 }
 
-@media(max-width: 800px) {
+@media(max-width: 1050px) {
     .sidebar-footer {
         display: none;
     }

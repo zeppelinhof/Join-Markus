@@ -43,7 +43,7 @@
         <div class="contact-windows">
 
             <!-- contacts list -->
-            <section class="contacts">
+            <section class="contacts" id="contacts">
 
                 <div class="contacts-area">
 
@@ -64,9 +64,9 @@
             </section>
 
             <!-- contact data -->
-            <section class="contact-data">
+            <section class="contact-data contact-data-d-none" onclick="closeEditContactPointMenu(); notToClose(event)" id="contact-data">
 
-                <img class="contact-data-arrow-left-icon" src="./assets/img/icon_arrow_left.png" alt="">
+                <img class="contact-data-arrow-left-icon" src="./assets/img/icon_arrow_left.png" alt="" onclick="closeContactData()">
 
                 <div class="contact-data-area">
 
