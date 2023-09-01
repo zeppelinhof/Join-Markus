@@ -21,6 +21,34 @@ async function loadTasks() {
 /*-------------------------------------------Open and Close function-------------------------------------------*/
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
+    saveDetailCardData();
+}
+
+async function saveDetailCardData() {
+    const q = currentOpenCard;
+    const newCheckboxStates = getSubtasksCheckboxState();
+    newItem = {
+        title: allTasks[q]['title'],
+        description: allTasks[q]['description'],
+        selectAssignedTo: allTasks[q]['selectAssignedTo'],
+        date: allTasks[q]['date'],
+        prio: allTasks[q]['prio'],
+        category: allTasks[q]['category'],
+        column: allTasks[q]['column'],
+        subtasks: allTasks[q]['subtasks'],
+        subtaskstate: getSubtasksCheckboxState() 
+    };
+    updateItem('tasks', currentOpenCard, newItem);
+}
+
+function getSubtasksCheckboxState() {
+    const subtask = allTasks[currentOpenCard]['subtasks'];
+    const newStates = [];
+    for (let i = 0; i < subtask.length; i++) {
+        newStates[i] = document.getElementById('subtask'+i).checked;
+    }
+    const stringArray = newStates.map(value => String(value));
+    return(stringArray);
 }
 
 /*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
@@ -178,6 +206,7 @@ function loadAssigned(q) {
                 <p id="userName6">${assigned}</p>
             </div>
         </div>`;
+    document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
     }
 }
 
@@ -269,5 +298,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
 function deleteCard() {
-    alert('Zeige mir die Richtige Karte ${q}');
+    deleteItem('tasks', currentOpenCard);
 }

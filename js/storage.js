@@ -16,3 +16,26 @@ async function getItem(key) {
         } throw `Could not find data with key "${key}".`;
     });
 }
+
+async function updateItem(database, index, newValue) {
+    let allItems = JSON.parse(await getItem(database));
+
+    if (index >= 0 && index < allItems.length) {
+        allItems[index] = newValue;
+        await setItem(database, JSON.stringify(allItems));
+    } else {
+        console.log(database + "nicht aktualisiert!");
+    }
+}
+
+async function deleteItem(database, indexToDelete) {
+    let allItems = JSON.parse(await getItem(database));
+
+    if (indexToDelete >= 0 && indexToDelete < allItems.length) {
+        // Löschen Sie den Eintrag anhand des Index.
+        allItems.splice(indexToDelete, 1);
+        await setItem(database, JSON.stringify(allItems));
+    } else {
+        console.log(database + " nicht gelöscht!");
+    }
+}
