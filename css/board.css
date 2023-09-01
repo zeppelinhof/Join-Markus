@@ -3,7 +3,9 @@
     flex-direction: row;
 }
 
-
+.is-hidden {
+    display: none;
+}
 
 body {
     height: 100vh;

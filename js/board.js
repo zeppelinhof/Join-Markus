@@ -238,27 +238,34 @@ async function moveTo(column) {
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
-function liveSearch() {
-    const searchInput = document.getElementById('search');
+document.addEventListener('DOMContentLoaded', function () {
 
-    searchInput.addEventListener('input', function () {
-        const searchContain = searchInput.value.toLowerCase();
+    function liveSearch() {
+        let contains = document.querySelectorAll('.boardContainer');
+        let searchQuery = document.querySelector('#search').value.toLowerCase();
 
-        for (let q = 0; q < allTasks.length; q++) {
-            const title = allTasks[q]['title'].toLowerCase();
-            if (title.includes(searchContain)) {
-                const category = allTasks[q]['category'];
-                const description = allTasks[q]['descriprion'];
-                const column = allTasks[q]['column'];
-                const priority = allTasks[q]['prio'];
-                const date = allTasks[q]['date'];
-                const assigned = allTasks[q]['selectAssignedTo'];
-                loadAllTask(category, title, description, column, q, priority, date, priority, assigned)
-            }
-        }
-        loopAllTasks();
+        contains.forEach(container => {
+            const tasks = container.querySelectorAll('#feedbackContainer');
+
+            tasks.forEach(task => {
+                const taskText = task.textContent.toLowerCase();
+                if (taskText.includes(searchQuery)) {
+                    container.classList.remove('is-hidden');
+                } else {
+                    container.classList.add('is-hidden');
+                }
+            });
+        });
+    }
+
+    let typingTimer;
+    let typeInterval = 500;
+    let searchInput = document.querySelector('#search');
+    searchInput.addEventListener('keyup', () => {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(liveSearch, typeInterval);
     });
-}
+});
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
 function deleteCard() {
