@@ -2,6 +2,7 @@
 let allTasks = [];
 let currentDraggedElement;
 let currentOpenCard;
+
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
 async function init() {
     await includeHTML();
@@ -128,8 +129,8 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                         <div id="content">${description}</div>
                     </div>
                     <div id="progressBar">
-                        <div class="progress progress1" role="progressbar" aria-label="Basic example" id="ProgressBar" >
-                            <div class="progress-bar w-75 progressBar1" id="progress-bar"></div>
+                        <div id="progress-container">
+                            <div id="bar"></div>
                         </div>
                         <div class="progressAdvanced">
                             <div class="Subtasks">
@@ -158,6 +159,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
     assingAllTasks(column, cardHTML, q);
 }
 
+//----------------------------------------Darstellung der Initialien in die Karten im Hauptbild----------------------------------------
 function loadInitials(q) {
     const user = allTasks[q]['selectAssignedTo'];
 
@@ -170,41 +172,6 @@ function loadInitials(q) {
 
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
     }
-}
-
-//----------------------------------------------------Darstellung der Aufgaben auf der kleinen Karte----------------------------------------------------
-
-
-function countCompletedTasks(q) {
-    const subTaskState = allTasks[q]['subtaskstate'];
-    let completedTasks = 0;
-
-    for (let i = 0; i < subTaskState.length; i++) {
-        subTaskState[i] = subTaskState[i] === 'true';
-        console.log(subTaskState[i]);
-
-        if (subTaskState[i]) {
-            completedTasks++;
-        }
-    }
-
-    let percent = (completedTasks) / subTaskState.length;
-    percent = Math.round(percent * 100);
-
-    // Wenn keine Aufgaben erledigt wurden, setze die Progressbar auf 0%
-    if (completedTasks === 0) {
-        document.getElementById('progress-bar').style = `width: 0%;`;
-    } else {
-        document.getElementById('progress-bar').style = `width: ${percent}%;`;
-    }
-
-    return completedTasks;
-}
-
-function allNumberTasks(q) {
-    const taskNumber = allTasks[q]['subtasks'];
-
-    document.getElementById(`allTasksNumber_${q}`).innerHTML += taskNumber.length;
 }
 
 //---------------------------------------------------------------darstellung der Prioimages---------------------------------------------------------------
@@ -244,7 +211,8 @@ function assingAllTasks(column, cardHTML, q) {
     }
     checkEmptyContainer();
     loadInitials(q);
-    allNumberTasks(q);
+    loadAllTaskNumber(q);
+
 }
 
 //------------------------------------------Funktion die Detailcard aufruft und die Namen zuweist------------------------------------------
@@ -304,19 +272,12 @@ function setCheckBoxState(q) {
         const subtaskid = 'subtask' + i;
         document.getElementById(subtaskid).checked = state;
     }
-    updateCompletedTasksCount(q);
 }
 
 function updateSubTaskCheckBoxState(element) {
     const afterSubstring = element.slice("subtask".length);
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
-    updateCompletedTasksCount(currentOpenCard);
-}
-
-function updateCompletedTasksCount(q) {
-    const completedTasks = countCompletedTasks(q);
-    document.getElementById(`TasksNumber_${q}`).textContent = completedTasks;
 }
 
 /*------------------------------------------------Drag and Drop------------------------------------------------*/
@@ -362,6 +323,7 @@ function searchTasks() {
             card.style.display = 'none'; // Karte ausblenden, wenn der Titel den Suchbegriff nicht enthält
         }
     }
+    searchInput.value = '';
 }
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
@@ -369,4 +331,53 @@ async function deleteCard() {
     document.getElementById('detailCard').style.display = 'none';
     await deleteItem('tasks', currentOpenCard);
     location.reload();
+}
+
+//----------------------------------------------------Darstellung der Aufgaben auf der kleinen Karte----------------------------------------------------
+function loadAllTaskNumber(q) {
+    let SubTasks = allTasks[q]['subtaskstate'];
+    document.getElementById(`allTasksNumber_${q}`).innerHTML = SubTasks.length; 3
+    loadTaskNumber(q);
+}
+
+function loadTaskNumber(q) {
+    let subtaskState = allTasks[q]['subtaskstate'];
+    let completedTasks = 0; // Zähler für erledigte Aufgaben
+    let uncompletedTasks = 0; // Zähler für unerledigte Aufgaben
+
+    for (let i = 0; i < subtaskState.length; i++) {
+        subtaskState[i] = subtaskState[i] === 'true';
+
+        // Überprüfe den Status der Aufgabe und erhöhe den entsprechenden Zähler
+        if (subtaskState[i]) {
+            completedTasks++;
+        } else {
+            uncompletedTasks++;
+        }
+    }
+    // Erstelle eine Textzeichenfolge mit den Informationen
+    const taskInfoText = `${completedTasks}`;
+
+    // Finde den Container mit der ID 'alltasksNumber_${q}'
+    const container = document.getElementById(`TasksNumber_${q}`);
+
+    // Überprüfe, ob der Container gefunden wurde, und füge den Text ein
+    if (container) {
+        container.textContent = taskInfoText;
+    }
+    console.log(`Erledigte Aufgaben: ${completedTasks}`);
+    updateProgressBar(q, completedTasks)
+}
+
+function updateProgressBar(q, completedTasks) {
+    let totalTasks = allTasks[q]['subtaskstate'].length; // Gesamtzahl der Aufgaben für die spezifische Aufgabenliste
+    const progressBar = document.getElementById('bar');
+    const percent = (completedTasks / totalTasks) * 100;
+    progressBar.style.width = `${percent}%`;
+    toggleTaskCompletion(completedTasks);
+}
+
+// Funktion, um den Fortschritt zu aktualisieren, wenn Aufgaben erledigt werden
+function toggleTaskCompletion(completedTasks) {
+    completedTasks++;
 }

@@ -332,30 +332,32 @@ body {
     /* Zeigt "..." am Ende des abgeschnittenen Texts an */
 }
 
+/*-------------------------------------------------------neuer ProgressContainer-------------------------------------------------------*/
+#progress-container {
+    width: 128px;
+    height: 8px;
+    top: 4px;
+    padding: 0px 64px 0px 0px;
+    border-radius: 8px;
+    display: grid;
+    gap: 10px;
+
+}
+
+#bar {
+    background: #4589FF;
+    width: 0px;
+    height: 8px;
+    border-radius: 16px;
+}
+
+/*-------------------------------------------------------alter ProgressContainer-------------------------------------------------------*/
 #progressBar {
     width: 220px;
     height: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.progress1 {
-    background: #F4F4F4;
-    width: 128px !important;
-    height: 8px !important;
-    top: 4px !important;
-    padding: 0px 64px 0px 0px !important;
-    border-radius: 8px !important;
-    gap: 10px !important;
-    display: grid !important;
-}
-
-.progressBar1 {
-    width: 64px !important;
-    height: 8px !important;
-    border-radius: 16px !important;
-    background: #4589FF;
 }
 
 .progressAdvanced {
@@ -695,7 +697,7 @@ body {
     background-color: aqua;
 }
 
-.frame1{
+.frame1 {
     display: flex;
 }
 
