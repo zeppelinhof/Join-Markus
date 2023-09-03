@@ -9,6 +9,7 @@ async function initContacts() {
 }
 
 
+/* rendert all contacts from users[] as contactlist */
 function renderContacts() {
     let contactsList = document.getElementById('contacts-list');
     contactsList.innerHTML = '';
@@ -21,7 +22,7 @@ function renderContacts() {
 
         addLetterHeadline(firstLetter, contactsList);
 
-        let firstLetters = findFirstLetters(name);
+        let firstLetters = getInitials(name);
         contactsList.innerHTML += getContactCardHTML(i, colorStyle, firstLetters, name, email)
 
         colorNumberIndex++;
@@ -30,6 +31,7 @@ function renderContacts() {
 }
 
 
+/* added the letter category for contacts A, B, C etc. */
 function addLetterHeadline(firstLetter, contactsList) {
     if (existLetterHeadline != firstLetter || existLetterHeadline == '') {
         contactsList.innerHTML += getLetterHeadlineHTML(firstLetter.toUpperCase());
@@ -38,23 +40,7 @@ function addLetterHeadline(firstLetter, contactsList) {
 }
 
 
-function findFirstLetters(name) {
-    let splitName = name.split(' ');
-    let letters = '';
-
-    for (let i = 0; i < splitName.length; i++) {
-
-        if (typeof splitName[i].substring(0, 1) == 'string') {
-            letters += splitName[i].charAt(0).toUpperCase();
-        } else {
-            letters += splitName[i].substring(0, 1);
-        }
-    }
-
-    return letters;
-}
-
-
+/* open the datas from clicked contact from the contactlist */
 function openContactData(i) {
     let contactCard = document.getElementById(`contactCard-${i}`);
     let conatacts = document.getElementById('contacts');
@@ -77,15 +63,19 @@ function openContactData(i) {
 }
 
 
+/* close the the clicked contactdatas */
 function closeContactData() {
     let conatacts = document.getElementById('contacts');
     let contactData = document.getElementById('contact-data');
 
     conatacts.classList.remove('contact-data-d-none');
     contactData.classList.add('contact-data-d-none');
+
+    closeAllContactClicks();
 }
 
 
+/* render the screen 'contactdata' with the datas from clicked contact */
 function renderContactData(i) {
     let content = document.getElementById('contact-data-content');
     content.innerHTML = '';
@@ -94,7 +84,7 @@ function renderContactData(i) {
     const name = users[i]['name'];
     const email = users[i]['email'];
     const phone = users[i]['phone'];
-    const firstLetters = findFirstLetters(name);
+    const firstLetters = getInitials(name);
     const colorStyle = returnContactColor(i);
 
     setTimeout(() => {
@@ -103,6 +93,8 @@ function renderContactData(i) {
     }, 50);
 }
 
+
+/* blanks the contactdatas */
 function clearContactData() {
     let content = document.getElementById('contact-data-content');
 
@@ -111,6 +103,7 @@ function clearContactData() {
 }
 
 
+/* ensures that only one contact is marked as clicked */
 function closeAllContactClicks() {
     clearContactData();
 
@@ -124,6 +117,7 @@ function closeAllContactClicks() {
 }
 
 
+/* open the context menu in the responsive view for edit and delete contact */
 function openEditContactPointMenu() {
     let editContactPointMenu = document.getElementById('contact-data-name-edit-del-area')
 
@@ -144,6 +138,8 @@ function closeEditContactPointMenu() {
     }, 500);
 }
 
+
+/* excludes a child container from the parent container's onclick method */
 function notToClose(event) {
     event.stopPropagation();
 }

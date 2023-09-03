@@ -3,7 +3,7 @@ body {
     overflow: hidden;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 900px) {
     body {
         display: flex;
         flex-direction: column-reverse;
@@ -48,7 +48,7 @@ body {
     height: calc(100vh - 96px);
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-windows {
         height: calc(100vh - 80px - 80px);
         position: relative;
@@ -67,9 +67,17 @@ body {
     z-index: 1;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contacts {
+        height: calc(100vh - 96px);
         width: 100%;
+        z-index: 0;
+    }
+}
+
+@media(max-width: 900px) {
+    .contacts {
+        height: auto;
         z-index: 0;
     }
 }
@@ -112,7 +120,7 @@ body {
     padding-right: 24px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contacts-area {
         padding: 24px;
     }
@@ -129,7 +137,7 @@ body {
     background-color: white;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .btn-new-contact-area {
         position: unset;
         top: unset;
@@ -152,10 +160,10 @@ body {
     padding: 12px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .btn-new-contact {
         position: absolute;
-        right: 16px;
+        right: 32px;
         bottom: 48px;
         width: auto;
         border-radius: 50%;
@@ -169,7 +177,7 @@ body {
     transform: scale(1.01);
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .btn-new-contact-text {
         display: none;
     }
@@ -192,7 +200,7 @@ body {
     width: 352px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     #contacts-list {
         width: 100%;
     }
@@ -278,9 +286,10 @@ body {
     background-color: rgb(246, 247, 248);
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-data {
         position: relative;
+        height: calc(100vh - 96px);
     }
 
     .contact-data-d-none {
@@ -288,11 +297,17 @@ body {
     }
 }
 
+@media(max-width: 900px) {
+    .contact-data {
+        height: auto;
+    }
+}
+
 .contact-data-arrow-left-icon {
     display: none;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-data-arrow-left-icon {
         display: block;
         position: absolute;
@@ -313,7 +328,7 @@ body {
     gap: 48px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-data-area {
         margin-top: 32px;
         margin-left: 16px;
@@ -400,7 +415,13 @@ body {
 
 @media(max-width: 1350px) {
     #contact-data-content {
-        width: auto;
+        width: 450px;
+    }
+}
+
+@media(max-width: 1200px) {
+    #contact-data-content {
+        width: 420px;
     }
 }
 
@@ -464,7 +485,7 @@ body {
     display: flex !important;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contacts-point-menu-d-none {
         display: none !important;
     }
@@ -478,7 +499,7 @@ body {
     font-size: 16px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-data-name-edit-del-area {
         position: absolute;
         right: 8px;
@@ -576,7 +597,7 @@ body {
     gap: 40px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-data-info-area {
         gap: 21px;
     }
@@ -593,7 +614,7 @@ body {
     gap: 22px;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-data-info-content {
         gap: 16px;
     }
@@ -613,7 +634,7 @@ body {
     display: none;
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .btn-menu-contact {
         position: absolute;
         right: 16px;
@@ -641,7 +662,6 @@ body {
 .contact-added-slideBox {
     font-size: 20px;
     font-weight: 400;
-    padding: 20px 25px;
     color: #fff;
     background-color: #2A3647;
     border-radius: 20px;
@@ -653,11 +673,16 @@ body {
     animation-duration: 4s;
     animation-name: moveUp;
     animation-delay: 500ms;
+    height: 64px;
+    width: 303px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes moveUp {
     50% {
-        right: 50vw;
+        right: calc(100vw - 232px - 456px - 303px);
     }
 
     100% {
@@ -665,11 +690,11 @@ body {
     }
 }
 
-@media(max-width: 1050px) {
+@media(max-width: 1130px) {
     .contact-added-slideBox {
-        right: 50vw;
+        right: calc(50vw - 151.5px);
         bottom: -80px;
-        animation-duration: 2s;
+        animation-duration: 4s;
         animation-name: moveUp;
         animation-delay: 500ms;
     }

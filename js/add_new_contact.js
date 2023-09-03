@@ -1,5 +1,6 @@
 let currentContactIndex = 0;
 
+/* open and close the add new and edit contact overlay */
 function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
     let addNewContactInlcudeHTML = document.getElementById(id1);
     let addNewContact = document.getElementById(id2)
@@ -24,11 +25,7 @@ function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
 }
 
 
-function addNewContact() {
-    console.log('New contact added!');
-}
-
-
+/* rendert the edit contact overly with contact data */
 function renderEditContact(i) {
     const editProfileIcon = document.getElementById('edit-contact-profile-icon');
     const inputEditName = document.getElementById('edit-name');
@@ -37,7 +34,7 @@ function renderEditContact(i) {
     const colorStyle = returnContactColor(i);
 
 
-    editProfileIcon.innerHTML = findFirstLetters(users[i]['name']);
+    editProfileIcon.innerHTML = getInitials(users[i]['name']);
     editProfileIcon.style = `background-color: ${colorStyle}; margin-bottom: 48px;`;
 
     inputEditName.value = users[i]['name'];
@@ -48,6 +45,7 @@ function renderEditContact(i) {
 }
 
 
+/* added a new contact to users[] */
 async function addNewContact() {
     let inputName = document.getElementById('add-new-name').value;
     let inputEmail = document.getElementById('add-new-email').value;
@@ -66,6 +64,7 @@ async function addNewContact() {
 }
 
 
+/* show the new contact in the contactdata screen */
 function showNewContact() {
     renderContacts();
     openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
@@ -74,12 +73,16 @@ function showNewContact() {
         behavior: 'smooth'
     });
     addNewContactClear();
-    setTimeout(addNewContactShowSlideBox, 50);
+    addNewContactShowSlideBox('Contact succesfull created');
 }
 
 
-function addNewContactShowSlideBox() {
+/* show a little box with status form added, changed or deleted contact */
+function addNewContactShowSlideBox(text) {
     let slideBox = document.getElementById('contact-added-slideBox');
+    let slideBoxText = document.getElementById('contact-slideBox-text');
+
+    slideBoxText.innerHTML = text;
 
     slideBox.classList.remove('contacts-d-none');
 
@@ -90,6 +93,7 @@ function addNewContactShowSlideBox() {
 }
 
 
+/* blanks the add new contact overlay */
 function addNewContactClear() {
     document.getElementById('add-new-name').value = '';
     document.getElementById('add-new-email').value = '';
@@ -97,6 +101,7 @@ function addNewContactClear() {
 }
 
 
+/* changed contact datas from current contact */
 async function editContact() {
     let inputName = document.getElementById('edit-name').value;
     let inputEmail = document.getElementById('edit-email').value;
@@ -112,27 +117,14 @@ async function editContact() {
     renderContacts();
     renderContactData(currentContactIndex, currentColorStyle);
 
-    editContactChangeSaveButton();
+    openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact');
+    addNewContactShowSlideBox('Contact changed');
 }
 
 
-function editContactChangeSaveButton() {
-    let btnSave = document.getElementById('edit-contact-btn-save');
-    let btnTextSave = document.getElementById('edit-contact-btn-text-save');
-
-    btnSave.disabled = true;
-    btnTextSave.innerHTML = 'Done';
-    btnSave.style = `background-color: ${contactColors[5]['style']}`;
-
-    setTimeout(() => {
-        btnSave.disabled = false;
-        btnTextSave.innerHTML = 'Save';
-        btnSave.style = `background-color: rgb(42, 54, 71)`;
-    }, 1000);
-}
-
-
-async function deleteContact(i, openFalse = true) {
+/* deleted the current contact */
+async function deleteContact(i=currentContactIndex, openFalse = true) {
+    let windowSize = window.matchMedia('(max-width: 1050px)');
     users.splice(i, 1);
 
     await setItem('users', JSON.stringify(users));
@@ -143,4 +135,10 @@ async function deleteContact(i, openFalse = true) {
     if (openFalse) {
         openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact');
     }
+
+    if (windowSize.matches) {
+        closeContactData();
+    }
+
+    addNewContactShowSlideBox('Contact deleted');
 }
