@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/boardMobile.css">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon_black.png">
     <link rel="stylesheet" href="css/topbar_template.css">
     <link rel="stylesheet" href="css/sidebar_template.css">
@@ -38,7 +39,7 @@
     <!-- <script src="add_new_task_CARD.js"></script> -->
 </head>
 
-<body onload="init()">
+<body onload="init()" class="bodyBoard">
     <!--<div class="contacts-d-none" w3-include-html="./CARD_WORK/add_task_source_for_CARD.html" id="add-new-task-include-HTML"></div>-->
     <div class="area top-sidebar-area">
         <div w3-include-html="./template/sidebar_template.html"></div>
@@ -63,8 +64,6 @@
                 </button>
             </div>
         </div>
-        <div class="headlineBoard2"></div>
-
         <div class="boardContainer" id="boardContain">
             <div class="Todo">
                 <div class="hlB">
