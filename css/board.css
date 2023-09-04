@@ -11,7 +11,7 @@
     margin: 0;
     height: 100vh !important;
     width: 100vw !important;
-    overflow: auto !important;
+    overflow: hidden !important;
     background-color: #f6f7f8 !important;
 }
 
@@ -27,13 +27,9 @@
     background-color: #f6f7f8;
     height: 232px;
     width: 1208px;
-    top: 96px;
-    left: 232px;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    top: -297px;
+    left: -520px;
+    position: relative;
 }
 
 .headlineBoard {
@@ -196,7 +192,7 @@
 .taskContainer {
     display: flex;
     flex-direction: column;
-    height: 540px;
+    height: 568px;
     width: 252px;
     gap: 24px;
     overflow: auto;
@@ -465,19 +461,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
 }
 
 .taskOverlay {
-    top: 0;
     border-radius: 30px;
     padding: 48px 40px 48px 40px;
     gap: 24px;
     display: grid;
-    position: relative;
     background: #FFFFFF;
     box-shadow: 0px 0px 4px 0px #00000029;
     position: absolute;
     z-index: 3;
+    left: 615px;
 }
 
 .frame203 {
