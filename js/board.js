@@ -159,21 +159,6 @@ function loadAllTask(category, title, description, column, q, priority, date, as
     assingAllTasks(column, cardHTML, q);
 }
 
-//----------------------------------------Darstellung der Initialien in die Karten im Hauptbild----------------------------------------
-function loadInitials(q) {
-    const user = allTasks[q]['selectAssignedTo'];
-
-    for (let index = 0; index < user.length; index++) {
-        const element = user[index];
-        const UserInitials = getInitials(element);
-        const targetElementId = `frame1_${q}`;
-        document.getElementById(targetElementId).innerHTML += /*html*/`
-            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
-
-        document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
-    }
-}
-
 //---------------------------------------------------------------darstellung der Prioimages---------------------------------------------------------------
 function imagePriority(priority) {
     let priorityIMG = '';
@@ -213,6 +198,24 @@ function assingAllTasks(column, cardHTML, q) {
     loadInitials(q);
     loadAllTaskNumber(q);
 
+}
+
+//----------------------------------------Darstellung der Initialien in die Karten im Hauptbild----------------------------------------
+function loadInitials(q) {
+    const user = allTasks[q]['selectAssignedTo'];
+    const targetElementId = `frame1_${q}`;
+    
+    // Leeren Sie den Container, bevor neue Initialen hinzugefügt werden
+    document.getElementById(targetElementId).innerHTML = '';
+
+    for (let index = 0; index < user.length; index++) {
+        const element = user[index];
+        const UserInitials = getInitials(element);
+        document.getElementById(targetElementId).innerHTML += /*html*/`
+            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
+
+        document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
+    }
 }
 
 //------------------------------------------Funktion die Detailcard aufruft und die Namen zuweist------------------------------------------
@@ -287,20 +290,22 @@ function allowDrop(ev) {
 
 function drop(ev, column) {
     ev.preventDefault();
-    moveTo(column);
+    moveTo(column, currentDraggedElement);
 }
 function startDragging(q) {
     currentDraggedElement = q;
 }
 
 
-async function moveTo(column) {
-    const cardHTML = document.getElementById(`cards-${currentDraggedElement}`);
-    cardHTML.remove(); // Entferne das Element aus dem alten Container
+async function moveTo(column, q) {
+    const cardHTML = document.getElementById(`cards-${q}`);
+    if (cardHTML) {
+        cardHTML.remove(); // Entferne das Element aus dem alten Container
 
-    allTasks[currentDraggedElement]['column'] = column;
-    await setItem('tasks', JSON.stringify(allTasks));
-    assingAllTasks(column, cardHTML.outerHTML); // Füge das Element in den neuen Container ein
+        allTasks[q]['column'] = column;
+        await setItem('tasks', JSON.stringify(allTasks));
+        assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
+    }
 }
 
 /*-----------------------------------Suchfunktion---------------------------------*/
@@ -365,7 +370,7 @@ function loadTaskNumber(q) {
     if (container) {
         container.textContent = taskInfoText;
     }
-    console.log(`Erledigte Aufgaben: ${completedTasks}`);
+    //console.log(`Erledigte Aufgaben: ${completedTasks}`);
     updateProgressBar(q, completedTasks)
 }
 
