@@ -334,14 +334,14 @@
     width: 128px;
     height: 8px;
     top: 4px;
-    padding: 0px 64px 0px 0px;
+    padding: 0px 0px 0px 0px;
     border-radius: 8px;
     display: grid;
     gap: 10px;
 
 }
 
-#bar {
+.bar {
     background: #4589FF;
     width: 0px;
     height: 8px;
@@ -660,6 +660,8 @@
     overflow-y: scroll;
 }
 
+
+
 #frame204::-webkit-scrollbar {
     display: none;
 }
@@ -730,6 +732,11 @@
     text-align: left;
     color: #2A3647;
     margin-bottom: 0;
+}
+
+#subtaskContain {
+    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .subtasksCheck {

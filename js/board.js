@@ -12,9 +12,27 @@ async function init() {
 
 }
 
+
+
 /*--------------------------funktion die das komplette tasks aus dem Backend ausließt--------------------------*/
 async function loadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
+}
+
+async function refreshData() {
+    await loadTasks();
+    await emptyContainer();
+    loopAllTasks();
+}
+
+
+//------------------------------Funktion die alle Container nach einem Reloaud leert------------------------------
+async function emptyContainer() {
+    document.getElementById('toDoContainer').innerHTML = '';
+    document.getElementById('feedbackContainer').innerHTML = '';
+    document.getElementById('inProgressContainer').innerHTML = '';
+    document.getElementById('DoneContainer').innerHTML = '';
+    location.reload(loopAllTasks);
 }
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH ENDE -----------
 
@@ -23,6 +41,7 @@ async function loadTasks() {
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
     saveDetailCardData();
+    refreshData();
 }
 
 async function saveDetailCardData() {
@@ -130,7 +149,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                     </div>
                     <div id="progressBar">
                         <div id="progress-container">
-                            <div id="bar"></div>
+                            <div id="bar_${q}" class="bar"></div>
                         </div>
                         <div class="progressAdvanced">
                             <div class="Subtasks">
@@ -197,14 +216,13 @@ function assingAllTasks(column, cardHTML, q) {
     checkEmptyContainer();
     loadInitials(q);
     loadAllTaskNumber(q);
-
 }
 
 //----------------------------------------Darstellung der Initialien in die Karten im Hauptbild----------------------------------------
 function loadInitials(q) {
     const user = allTasks[q]['selectAssignedTo'];
     const targetElementId = `frame1_${q}`;
-    
+
     // Leeren Sie den Container, bevor neue Initialen hinzugefügt werden
     document.getElementById(targetElementId).innerHTML = '';
 
@@ -376,13 +394,7 @@ function loadTaskNumber(q) {
 
 function updateProgressBar(q, completedTasks) {
     let totalTasks = allTasks[q]['subtaskstate'].length; // Gesamtzahl der Aufgaben für die spezifische Aufgabenliste
-    const progressBar = document.getElementById('bar');
+    const progressBar = document.getElementById(`bar_${q}`);
     const percent = (completedTasks / totalTasks) * 100;
     progressBar.style.width = `${percent}%`;
-    toggleTaskCompletion(completedTasks);
-}
-
-// Funktion, um den Fortschritt zu aktualisieren, wenn Aufgaben erledigt werden
-function toggleTaskCompletion(completedTasks) {
-    completedTasks++;
 }
