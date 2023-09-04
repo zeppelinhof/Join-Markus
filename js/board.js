@@ -358,43 +358,22 @@ async function deleteCard() {
 
 //----------------------------------------------------Darstellung der Aufgaben auf der kleinen Karte----------------------------------------------------
 function loadAllTaskNumber(q) {
-    let SubTasks = allTasks[q]['subtaskstate'];
-    document.getElementById(`allTasksNumber_${q}`).innerHTML = SubTasks.length; 3
-    loadTaskNumber(q);
-}
-
-function loadTaskNumber(q) {
     let subtaskState = allTasks[q]['subtaskstate'];
-    let completedTasks = 0; // Zähler für erledigte Aufgaben
-    let uncompletedTasks = 0; // Zähler für unerledigte Aufgaben
-
-    for (let i = 0; i < subtaskState.length; i++) {
-        subtaskState[i] = subtaskState[i] === 'true';
-
-        // Überprüfe den Status der Aufgabe und erhöhe den entsprechenden Zähler
-        if (subtaskState[i]) {
-            completedTasks++;
-        } else {
-            uncompletedTasks++;
-        }
-    }
-    // Erstelle eine Textzeichenfolge mit den Informationen
-    const taskInfoText = `${completedTasks}`;
-
-    // Finde den Container mit der ID 'alltasksNumber_${q}'
-    const container = document.getElementById(`TasksNumber_${q}`);
-
-    // Überprüfe, ob der Container gefunden wurde, und füge den Text ein
-    if (container) {
-        container.textContent = taskInfoText;
-    }
-    //console.log(`Erledigte Aufgaben: ${completedTasks}`);
-    updateProgressBar(q, completedTasks)
+    let completedTasks = subtaskState.filter(status => status === 'true').length;
+    let unfinishedTasks = subtaskState.length;
+    document.getElementById(`allTasksNumber_${q}`).textContent = unfinishedTasks; // Anzahl der erledigten Aufgaben
+    document.getElementById(`TasksNumber_${q}`).textContent = completedTasks; // Anzeige der erledigten Aufgaben
+    // Übergeben Sie die Anzahl der erledigten Aufgaben an die Fortschrittsleistenaktualisierung
+    updateProgressBar(q, completedTasks);
 }
 
-function updateProgressBar(q, completedTasks) {
-    let totalTasks = allTasks[q]['subtaskstate'].length; // Gesamtzahl der Aufgaben für die spezifische Aufgabenliste
+function updateProgressBar(q) {
+    const subtaskState = allTasks[q]['subtaskstate'];
+    const completedTasks = subtaskState.filter(status => status === 'true').length;
+    const totalTasks = subtaskState.length;
+
     const progressBar = document.getElementById(`bar_${q}`);
     const percent = (completedTasks / totalTasks) * 100;
+
     progressBar.style.width = `${percent}%`;
 }
