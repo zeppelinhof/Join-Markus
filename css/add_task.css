@@ -11,6 +11,13 @@ body {
     justify-content: center;
 }
 
+@media(max-width: 900px) {
+    body {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+
 h1 {
     font-weight: 700;
     font-size: 61px;
@@ -20,6 +27,33 @@ h1 {
 .contentStandard {
     padding-left: 100px;
     padding-top: 100px;
+}
+
+@media(max-width: 900px),
+(max-height: 900px) {
+    .contentStandard {
+        height: calc(100vh - 80px - 80px);
+        padding: unset;
+        overflow: scroll;
+    }
+
+    .contentStandard::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@media(max-width: 1100px) {
+    .left-0-top-3em-mobile {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 3em;
+    }
+}
+
+@media(max-height: 900px) {
+    .left-0-top-3em-mobile {
+        padding-top: 1em;
+    }
 }
 
 .contentFlowIn {
@@ -97,6 +131,12 @@ li:hover {
     display: flex;
     justify-content: flex-end;
     gap: 25px;
+}
+
+@media(max-width: 1100px), (max-height: 900px) {
+    .buttons_clear_create {
+        margin-bottom: 1em;
+    }
 }
 
 .checkbox-modified {
@@ -480,19 +520,13 @@ ul {
 /* #endregion Add new task Card */
 
 /* #region Media Query */
-@media(max-width: 981px) {
+@media(max-width: 1100px) {
     .hide-mobile {
         display: none;
     }
 
     h1 {
         font-size: clamp(3rem, 1rem + 5vw, 7rem);
-    }
-
-    .left-0-top-3em-mobile {
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-top: 3em;
     }
 
     .block-mobile {
