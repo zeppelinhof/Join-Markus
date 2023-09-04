@@ -345,8 +345,8 @@ function searchTasks() {
         } else {
             card.style.display = 'none'; // Karte ausblenden, wenn der Titel den Suchbegriff nicht enthält
         }
+        console.log(`Title: ${title}, Search Input: ${searchInput}, Display: ${card.style.display}`);
     }
-    searchInput.value = '';
 }
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
