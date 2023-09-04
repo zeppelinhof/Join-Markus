@@ -24,6 +24,9 @@ async function register() {
         password: password.value,
         phone: ""
     });
+
+    [users, currentContactIndex] = sortUsers();
+
     await setItem('users', JSON.stringify(users));
     resetForm(username, usermail, password, passwordConfirm, registerBtn);
     successMessage('You signed up successfully');

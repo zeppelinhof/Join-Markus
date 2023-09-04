@@ -58,6 +58,9 @@ async function addNewContact() {
         phone: inputPhone
     });
 
+    
+    [users, currentContactIndex] = sortUsers();
+
     await setItem('users', JSON.stringify(users))
 
     showNewContact();
@@ -68,10 +71,14 @@ async function addNewContact() {
 function showNewContact() {
     renderContacts();
     openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
-    openContactData(users.length - 1);
-    document.getElementById(`contactCard-${users.length - 1}`).scrollIntoView({
-        behavior: 'smooth'
+    openContactData(currentContactIndex);
+
+    let scrollPositionElement = document.getElementById(`contactCard-${currentContactIndex}`);
+    scrollPositionElement.scrollIntoView({
+        block: "end",
+        behavior: "smooth"
     });
+
     addNewContactClear();
     addNewContactShowSlideBox('Contact succesfull created');
 }

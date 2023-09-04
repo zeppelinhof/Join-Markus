@@ -77,6 +77,35 @@ let contactColors = [
     }
 ]
 
+let alphabet = [
+    { 'number': 1, 'letter': 'a' },
+    { 'number': 2, 'letter': 'b' },
+    { 'number': 3, 'letter': 'c' },
+    { 'number': 4, 'letter': 'd' },
+    { 'number': 5, 'letter': 'e' },
+    { 'number': 6, 'letter': 'f' },
+    { 'number': 7, 'letter': 'g' },
+    { 'number': 8, 'letter': 'h' },
+    { 'number': 9, 'letter': 'i' },
+    { 'number': 10, 'letter': 'j' },
+    { 'number': 11, 'letter': 'k' },
+    { 'number': 12, 'letter': 'l' },
+    { 'number': 13, 'letter': 'm' },
+    { 'number': 14, 'letter': 'n' },
+    { 'number': 15, 'letter': 'o' },
+    { 'number': 16, 'letter': 'p' },
+    { 'number': 17, 'letter': 'q' },
+    { 'number': 18, 'letter': 'r' },
+    { 'number': 19, 'letter': 's' },
+    { 'number': 20, 'letter': 't' },
+    { 'number': 21, 'letter': 'u' },
+    { 'number': 22, 'letter': 'v' },
+    { 'number': 23, 'letter': 'w' },
+    { 'number': 24, 'letter': 'x' },
+    { 'number': 25, 'letter': 'y' },
+    { 'number': 26, 'letter': 'z' },
+];
+
 
 //used by topbar_template.html
 function showOrHideContextMenu() {
@@ -134,4 +163,80 @@ function returnContactColor(i) {
     let result = i % contactColors.length
 
     return contactColors[result]['style'];
+}
+
+
+//sortet users by alphabet
+function sortUsers() {
+    let alphabetUsers = [];
+    let lastAddedContactIndex = 0; 
+
+    for (let i = 0; i < users.length; i++) {
+        const userName = users[i]['name'];
+        const userNameList = userName.split(' ');
+        let userNameWithoutSpace = '';
+
+        for (let m = 0; m < userNameList.length; m++) {
+            userNameWithoutSpace += userNameList[m];
+        }
+
+        let alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[0].toLowerCase());
+
+        if (alphabetUsers.length == 0) {
+            alphabetUsers.push({
+                name: users[i]['name'],
+                email: users[i]['email'],
+                password: users[i]['password'],
+                phone: users[i]['phone']
+            });
+        } else {
+            loop1:
+            for (let k = 0; k < alphabetUsers.length; k++) {
+                const alphabetUsersName = alphabetUsers[k]['name'];
+                const alphabetUserNameList = alphabetUsersName.split(' ');
+                let alphabetUserNameWithoutSpace = '';
+
+                for (let m = 0; m < alphabetUserNameList.length; m++) {
+                    alphabetUserNameWithoutSpace += alphabetUserNameList[m];
+                }
+
+                for (let l = 0; l < alphabetUserNameWithoutSpace.length; l++) {
+                    const alphabetUserNamerCurrentLetter = alphabetUserNameWithoutSpace[l].toLowerCase();
+                    const alphabetLetterCurrentAlphabetUser = alphabet.find(element => element['letter'] == alphabetUserNamerCurrentLetter);
+
+                    if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number'] && k < alphabetUsers.length - 1 && l < 1) {
+                        break;
+                    }
+                    else if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
+                        alphabetUsers.splice(k + 1, 0, {
+                            name: users[i]['name'],
+                            email: users[i]['email'],
+                            password: users[i]['password'],
+                            phone: users[i]['phone']
+                        });
+
+                        lastAddedContactIndex = k + 1;
+
+                        break loop1;
+                    } else if (alphabetLetterCurrentUser['number'] < alphabetLetterCurrentAlphabetUser['number']) {
+                        alphabetUsers.splice(k, 0, {
+                            name: users[i]['name'],
+                            email: users[i]['email'],
+                            password: users[i]['password'],
+                            phone: users[i]['phone']
+                        });
+
+                        lastAddedContactIndex = k;
+
+                        break loop1;
+                    }
+                    else {
+                        alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[l + 1].toLowerCase());
+                    }
+                }
+            }
+        }
+    }
+
+    return [alphabetUsers, lastAddedContactIndex];
 }
