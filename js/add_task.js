@@ -1,5 +1,13 @@
-// #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
+async function initAddTask() {
+    await includeHTML();
+    await initUsers();
+    await loadTasks();
+    userInitials();
+}
 
+
+
+// #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
 function colorRed() {
     let btn = document.getElementById('btn_urgent');
     if (btn.classList.length > 1) {
@@ -81,9 +89,9 @@ function setPrioStatusAsString(status) {
 // #region Data from Add Task to Backend
 let tasks = [];
 
-async function initTasks() {
-    loadTasks();
-}
+
+
+
 
 async function loadTasks() {
     tasks = JSON.parse(await getItem('tasks'));
