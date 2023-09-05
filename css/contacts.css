@@ -430,6 +430,12 @@ body {
     }
 }
 
+@media(max-width: 500px) {
+    #contact-data-content {
+        width: 100%;
+    }
+}
+
 /* contact data name */
 .contact-data-name-area {
     display: flex;
@@ -482,6 +488,12 @@ body {
 @media(max-width: 1350px) {
     .contact-data-name {
         font-size: 36px;
+    }
+}
+
+@media(max-width: 500px) {
+    .contact-data-name {
+        font-size: 30px;
     }
 }
 
@@ -662,7 +674,6 @@ body {
     box-shadow: 0 4px 0 rgba(0 0 0 / 15%);
     transform: scale(1.01);
 }
-
 
 .contact-added-slideBox {
     font-size: 20px;
