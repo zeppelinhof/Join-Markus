@@ -10,15 +10,15 @@
     <link rel="stylesheet" href="./css/fonts.css">
     <link rel="stylesheet" href="./css/summary.css">
     <link rel="stylesheet" href="./css/contacts.css">
+    <script src="./js/global.js"></script>
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/summary.js"></script>
-    <script src="./js/global.js"></script>
 </head>
 
-<body onload="includeHTML(); initSummary()">
+<body onload="initSummary()">
 
     <div w3-include-html="./template/sidebar_template.html"></div>
     <div class="topBarContainer">
@@ -88,7 +88,7 @@
 
                     <div class="summary-greeting">
                         <div class="greetingContainer">
-                            <div class="font47px500" id="greeting">Good Morning,</div>
+                            <div class="font47px500" id="greeting">Welcome,</div>
                             <div class="font64px700" style="color: #29ABE2;" id="greetingName">Guest</div>
                         </div>
                     </div>

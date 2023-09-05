@@ -1,4 +1,5 @@
 async function initSummary() {
+    await includeHTML();
     await loadTasks();
     renderSummary();
     userInitials();
