@@ -654,7 +654,7 @@
 
 #frame204 {
     width: 445px;
-    height: 113px;
+    height: 75px;
     display: grid;
     gap: 4px;
     overflow-y: scroll;
@@ -670,7 +670,7 @@
 
 .contactContain {
     width: 428px;
-    height: 56px;
+    height: 35px;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -679,7 +679,7 @@
 }
 
 .frame191 {
-    width: 216px;
+    width: 231px;
     height: 42px;
     display: flex;
     align-items: center;
@@ -688,8 +688,8 @@
 }
 
 .profileBadge {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -704,7 +704,7 @@
 
 #userName6 {
     height: 23px;
-    width: 158px;
+    min-width: 158px;
     font-family: 'Open Sans';
     font-size: 19px;
     font-weight: 400;
@@ -719,6 +719,8 @@
     width: 445px;
     height: 100px;
     gap: 8px;
+    overflow: hidden;
+    display: grid;
 }
 
 .subtasks {
@@ -735,8 +737,11 @@
 }
 
 #subtaskContain {
-    overflow: hidden;
     overflow-y: scroll;
+}
+
+#subtaskContain::-webkit-scrollbar {
+    width: 5px;
 }
 
 .subtasksCheck {
