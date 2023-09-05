@@ -6,7 +6,7 @@ let currentOpenCard;
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
 async function boardInit() {
     await includeHTML();
-    //userInitials();
+    userInitials();
     await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
 
@@ -20,7 +20,7 @@ async function boardLoadTasks() {
 }
 
 async function refreshData() {
-    await loadTasks();
+    await boardLoadTasks();
     await emptyContainer();
     loopAllTasks();
 }
