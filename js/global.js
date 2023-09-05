@@ -106,6 +106,9 @@ let alphabet = [
     { 'number': 26, 'letter': 'z' },
 ];
 
+async function loadTasks() {
+    tasks = JSON.parse(await getItem('tasks'));
+}
 
 //used by topbar_template.html
 function showOrHideContextMenu() {

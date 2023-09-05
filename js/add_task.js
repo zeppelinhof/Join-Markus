@@ -1,11 +1,15 @@
+let tasks = [];
+
 async function initAddTask() {
     await includeHTML();
-    await initUsers();
+    await loadUsers();
     await loadTasks();
     userInitials();
 }
 
-
+async function loadTasks() {
+    tasks = JSON.parse(await getItem('tasks'));
+}
 
 // #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
 function colorRed() {
@@ -87,15 +91,7 @@ function setPrioStatusAsString(status) {
 // #endregion region Coloring Buttons Urgent Medium Low
 
 // #region Data from Add Task to Backend
-let tasks = [];
 
-
-
-
-
-async function loadTasks() {
-    tasks = JSON.parse(await getItem('tasks'));
-}
 
 async function register_task() {
     tasks.push({
