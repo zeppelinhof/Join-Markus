@@ -8,7 +8,7 @@ async function initSummary() {
 
 
 function renderSummary() {
-    document.getElementById('variablePanel1').innerHTML = allTasks.length;
+    document.getElementById('variablePanel1').innerHTML = tasks.length;
     document.getElementById('variablePanel2').innerHTML = tasksOfCategory('inProgress');
     document.getElementById('variablePanel3').innerHTML = tasksOfCategory('feedback');
     document.getElementById('variablePanel4').innerHTML = urgentTasks();
@@ -21,8 +21,8 @@ function renderSummary() {
 
 function tasksOfCategory(category) {
     let count = 0;
-    for (let i = 0; i < allTasks.length; i++) {
-        const element = allTasks[i]['column'];
+    for (let i = 0; i < tasks.length; i++) {
+        const element = tasks[i]['column'];
         if (element === category) {
             count += 1;
         }
@@ -33,8 +33,8 @@ function tasksOfCategory(category) {
 
 function urgentTasks() {
     let count = 0;
-    for (let i = 0; i < allTasks.length; i++) {
-        const element = allTasks[i]['prio'];
+    for (let i = 0; i < tasks.length; i++) {
+        const element = tasks[i]['prio'];
         if (element === 'urgent') {
             count += 1;
         }
@@ -46,7 +46,7 @@ function urgentTasks() {
 function upcomingDeadline() {
     let deadline;
     const currentDate = new Date();
-    const taskDates = allTasks.map(task => new Date(task['date']));
+    const taskDates = tasks.map(task => new Date(task['date']));
     const futureDates = taskDates.filter(taskDate => taskDate > currentDate);
 
     if (futureDates.length > 0) {
