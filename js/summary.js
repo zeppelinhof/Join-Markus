@@ -2,6 +2,7 @@ async function initSummary() {
     await loadTasks();
     renderSummary();
     userInitials();
+    mobileGreetings();
 }
 
 
@@ -59,3 +60,13 @@ function upcomingDeadline() {
     }
     return deadline;
 }
+
+
+function mobileGreetings() {
+    const username = queryUserName();
+    
+    document.getElementById('greetingMobileMessage').innerHTML = `Welcome,`;
+    document.getElementById('greetingMobileName').innerHTML = username;
+
+}
+     
