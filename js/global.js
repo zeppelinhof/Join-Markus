@@ -172,74 +172,94 @@ function returnContactColor(i) {
 //sortet users by alphabet
 function sortUsers() {
     let alphabetUsers = [];
-    let lastAddedContactIndex = 0; 
+    let lastAddedContactIndex = 0;
+    let outOfFuction = false;
 
     for (let i = 0; i < users.length; i++) {
         const userName = users[i]['name'];
-        const userNameList = userName.split(' ');
-        let userNameWithoutSpace = '';
-
-        for (let m = 0; m < userNameList.length; m++) {
-            userNameWithoutSpace += userNameList[m];
-        }
+        let userNameWithoutSpace = returnNameWithoutSpaces(userName);
 
         let alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[0].toLowerCase());
 
         if (alphabetUsers.length == 0) {
-            alphabetUsers.push({
-                name: users[i]['name'],
-                email: users[i]['email'],
-                password: users[i]['password'],
-                phone: users[i]['phone']
-            });
+            alphabetUsers.push(retrunUserJSON(i));
         } else {
             loop1:
             for (let k = 0; k < alphabetUsers.length; k++) {
                 const alphabetUsersName = alphabetUsers[k]['name'];
-                const alphabetUserNameList = alphabetUsersName.split(' ');
-                let alphabetUserNameWithoutSpace = '';
+                let alphabetUserNameWithoutSpace = returnNameWithoutSpaces(alphabetUsersName);
 
-                for (let m = 0; m < alphabetUserNameList.length; m++) {
-                    alphabetUserNameWithoutSpace += alphabetUserNameList[m];
-                }
+                [alphabetUsers, lastAddedContactIndex, outOfFuction] = compareUsersWithAlphabetUsers(i, k, alphabetUsers, lastAddedContactIndex, outOfFuction, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace);
 
-                for (let l = 0; l < alphabetUserNameWithoutSpace.length; l++) {
-                    const alphabetUserNamerCurrentLetter = alphabetUserNameWithoutSpace[l].toLowerCase();
-                    const alphabetLetterCurrentAlphabetUser = alphabet.find(element => element['letter'] == alphabetUserNamerCurrentLetter);
-
-                    if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number'] && k < alphabetUsers.length - 1 && l < 1) {
-                        break;
-                    }
-                    else if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
-                        alphabetUsers.splice(k + 1, 0, {
-                            name: users[i]['name'],
-                            email: users[i]['email'],
-                            password: users[i]['password'],
-                            phone: users[i]['phone']
-                        });
-
-                        lastAddedContactIndex = k + 1;
-
-                        break loop1;
-                    } else if (alphabetLetterCurrentUser['number'] < alphabetLetterCurrentAlphabetUser['number']) {
-                        alphabetUsers.splice(k, 0, {
-                            name: users[i]['name'],
-                            email: users[i]['email'],
-                            password: users[i]['password'],
-                            phone: users[i]['phone']
-                        });
-
-                        lastAddedContactIndex = k;
-
-                        break loop1;
-                    }
-                    else {
-                        alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[l + 1].toLowerCase());
-                    }
+                if (outOfFuction) {
+                    outOfFuction = false;
+                    break loop1;
                 }
             }
         }
     }
 
     return [alphabetUsers, lastAddedContactIndex];
+}
+
+//compare the usernames with the alphabetUser array
+function compareUsersWithAlphabetUsers(i, k, alphabetUsers, lastAddedContactIndex, outOfFuction, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace) {
+    for (let l = 0; l < alphabetUserNameWithoutSpace.length; l++) {
+        const alphabetUserNamerCurrentLetter = alphabetUserNameWithoutSpace[l].toLowerCase();
+        const alphabetLetterCurrentAlphabetUser = alphabet.find(element => element['letter'] == alphabetUserNamerCurrentLetter);
+
+        if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number'] && k < alphabetUsers.length - 1 && l < 1) {
+            break;
+        }
+        else if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
+            if (k == alphabetUsers.length - 1) {
+                alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
+                outOfFuction = true;
+            }
+
+            lastAddedContactIndex = k + 1;
+
+            break;
+        } else if (alphabetLetterCurrentUser['number'] < alphabetLetterCurrentAlphabetUser['number']) {
+            alphabetUsers.splice(k, 0, retrunUserJSON(i));
+            lastAddedContactIndex = k;
+            outOfFuction = true;
+
+            break;
+        }
+        else {
+            if (l == alphabetUserNameWithoutSpace.length - 1) {
+                alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
+                outOfFuction = true;
+            } else {
+                alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[l + 1].toLowerCase());
+            }
+        }
+    }
+
+    return [alphabetUsers, lastAddedContactIndex, outOfFuction];
+}
+
+
+//return JSON Object for users
+function retrunUserJSON(i) {
+    return {
+        name: users[i]['name'],
+        email: users[i]['email'],
+        password: users[i]['password'],
+        phone: users[i]['phone']
+    };
+}
+
+
+//return username without spaces
+function returnNameWithoutSpaces(name) {
+    let splitName = name.split(' ');
+    let nameWithoutSpaces = '';
+
+    for (let m = 0; m < splitName.length; m++) {
+        nameWithoutSpaces += splitName[m];
+    }
+
+    return nameWithoutSpaces;
 }
