@@ -4,10 +4,10 @@ let currentDraggedElement;
 let currentOpenCard;
 
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
-async function init() {
+async function boardInit() {
     await includeHTML();
     //userInitials();
-    await loadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+    await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
 
 }
@@ -15,7 +15,7 @@ async function init() {
 
 
 /*--------------------------funktion die das komplette tasks aus dem Backend ausließt--------------------------*/
-async function loadTasks() {
+async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
 

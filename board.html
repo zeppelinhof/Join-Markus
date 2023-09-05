@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/contacts.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/add_new_contact.css">
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
@@ -35,12 +36,16 @@
     <link rel="stylesheet" href="./css/add_task.css">
     <link rel="stylesheet" href="./css/add_new_contact.css">
     <script src="./CARD_WORK/load_contacts_CARD.js"></script>
-    <!--<script src="./CARD_WORK/add_task_CARD.js"></script>-->
-    <!-- <script src="add_new_task_CARD.js"></script> -->
+    <script src="./CARD_WORK/add_task_CARD.js"></script>
 </head>
 
-<body onload="init()" class="bodyBoard">
-    <!--<div class="contacts-d-none" w3-include-html="./CARD_WORK/add_task_source_for_CARD.html" id="add-new-task-include-HTML"></div>-->
+<body onload="boardInit()" class="bodyBoard">
+    <!-- add new contact -->
+    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
+
+    <!-- add new task card -->
+    <div class="contacts-d-none" w3-include-html="./CARD_WORK/add_task_source_for_CARD.html" id="add-new-task-include-HTML"></div>
+
     <div class="area top-sidebar-area">
         <div w3-include-html="./template/sidebar_template.html"></div>
         <div w3-include-html="./template/topbar_template.html"></div>
