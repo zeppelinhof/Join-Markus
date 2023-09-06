@@ -47,9 +47,12 @@ function renderEditContact(i) {
 
 /* added a new contact to users[] */
 async function addNewContact() {
+    let loadingScreen = document.getElementById('contacts-loading-sreen');
     let inputName = document.getElementById('add-new-name').value;
     let inputEmail = document.getElementById('add-new-email').value;
     let inputPhone = document.getElementById('add-new-phone').value;
+
+    loadingScreen.classList.remove('contacts-d-none');
 
     users.push({
         name: inputName,
@@ -64,6 +67,10 @@ async function addNewContact() {
     await setItem('users', JSON.stringify(users))
 
     showNewContact();
+
+    setTimeout(() => {
+        loadingScreen.classList.add('contacts-d-none');
+    }, 4000);
 }
 
 
@@ -110,10 +117,13 @@ function addNewContactClear() {
 
 /* changed contact datas from current contact */
 async function editContact() {
+    let loadingScreen = document.getElementById('contacts-loading-sreen');
     let inputName = document.getElementById('edit-name').value;
     let inputEmail = document.getElementById('edit-email').value;
     let inputPhone = document.getElementById('edit-phone').value;
     let currentColorStyle = returnContactColor(currentContactIndex);
+
+    loadingScreen.classList.remove('contacts-d-none');
 
     users[currentContactIndex]['name'] = inputName;
     users[currentContactIndex]['email'] = inputEmail;
@@ -126,13 +136,20 @@ async function editContact() {
 
     openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact');
     addNewContactShowSlideBox('Contact changed');
+
+    setTimeout(() => {
+        loadingScreen.classList.add('contacts-d-none');
+    }, 4000);
 }
 
 
 /* deleted the current contact */
 async function deleteContact(i=currentContactIndex, openFalse = true) {
+    let loadingScreen = document.getElementById('contacts-loading-sreen');
     let windowSize = window.matchMedia('(max-width: 1050px)');
     users.splice(i, 1);
+
+    loadingScreen.classList.remove('contacts-d-none');
 
     await setItem('users', JSON.stringify(users));
 
@@ -148,4 +165,8 @@ async function deleteContact(i=currentContactIndex, openFalse = true) {
     }
 
     addNewContactShowSlideBox('Contact deleted');
+
+    setTimeout(() => {
+        loadingScreen.classList.add('contacts-d-none');
+    }, 4000);
 }

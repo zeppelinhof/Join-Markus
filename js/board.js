@@ -10,6 +10,7 @@ async function boardInit() {
     await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
     loadUsers();
+    await loadTasks();
 }
 
 
@@ -25,7 +26,6 @@ async function refreshData() {
     loopAllTasks();
 }
 
-
 //------------------------------Funktion die alle Container nach einem Reloaud leert------------------------------
 async function emptyContainer() {
     document.getElementById('toDoContainer').innerHTML = '';
@@ -35,8 +35,6 @@ async function emptyContainer() {
     location.reload(loopAllTasks);
 }
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH ENDE -----------
-
-
 /*-------------------------------------------Open and Close function-------------------------------------------*/
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
@@ -379,10 +377,20 @@ function updateProgressBar(q) {
 }
 
 //--------------------------------------------Hinzufügen addTask über + Button--------------------------------------------
-function addTaskFeedback() {
-    column = 'feedback';
 
+
+async function addTaskFeedback() {
     openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');
+    await addFeedback();
+}
+
+async function addFeedback() {
+    for (let index = 0; index < allTasks.length; index++) {
+        const column = allTasks[index]['column'];
+        if (column === 'to do') {
+            column = 'feedback';
+        }
+    }
 }
 
 function addTaskInProgress() {
