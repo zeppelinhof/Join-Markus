@@ -106,7 +106,7 @@ async function register_task() {
         subtaskstate: subtaskstate() 
     });
     await setItem('tasks', JSON.stringify(tasks));
-    resetForm();
+    resetForm2();
 }
 
 function subtaskstate() {
@@ -124,7 +124,7 @@ function cleanInputString(input) {
     return trimmedInput;
 }
 
-function resetForm() {
+function resetForm2() {
     title.value = '';
     description.value = '';
     contactsInTask = [];
