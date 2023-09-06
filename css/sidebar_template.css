@@ -90,8 +90,9 @@
 @media(max-width: 900px) {
     .sidebar-nav-member {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
+        justify-content: center;
         height: 76px;
         width: 80px;
         border-radius: 16px;
@@ -123,7 +124,7 @@
 
 @media(max-width: 900px) {
     .sidebar-text {
-        display: none;
+        font-size: 14px;
     }
 }
 
