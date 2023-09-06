@@ -289,10 +289,15 @@ body {
     .contentContainer {
         justify-content: center;
         padding-top: unset;
+        padding-left: unset;
     }
 
     .contentSubcontainer {
         justify-content: center;
+    }
+
+    .contact-data-headline {
+        padding-left: 96px;
     }
 
     .tasksPanel {
@@ -405,7 +410,7 @@ body {
 
 @media (max-width: 500px) {
     .contact-data-headline {
-        padding-left: 16px;
+        padding-left: 16px !important;
         gap: 4px;
         margin-bottom: 16px;
     }
@@ -413,7 +418,6 @@ body {
     .contentContainer {
         padding-left: 0;
     }
-
 
     .panelContainer {
         width: 100%;
