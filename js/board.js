@@ -377,3 +377,18 @@ function updateProgressBar(q) {
 
     progressBar.style.width = `${percent}%`;
 }
+
+//--------------------------------------------Hinzufügen addTask über + Button--------------------------------------------
+function addTaskFeedback() {
+    column = 'feedback';
+
+    openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');
+}
+
+function addTaskInProgress() {
+    column = 'inProgress';
+
+    openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');
+}
+
+
