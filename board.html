@@ -73,7 +73,7 @@
                 <div class="hlB">
                     <p>To do</p>
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
-                        onclick="addTask('toDoContainer')">
+                        onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')">
                 </div>
                 <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')"
                     ondragover="allowDrop(event)">
@@ -88,7 +88,7 @@
                 <div class="hlB">
                     <p> In progress</p>
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
-                        onclick="addTask('inProgressContainer')">
+                        onclick="addTaskInProgress()">
                 </div>
                 <div class="taskContainer" id="inProgressContainer" ondrop="drop(event, 'inProgress')"
                     ondragover="allowDrop(event)">
@@ -103,7 +103,7 @@
                 <div class="hlB">
                     <p> Await feedback</p>
                     <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
-                        onclick="addTask('feedbackContainer')">
+                        onclick="addTaskFeedback()">
                 </div>
                 <div class="taskContainer" id="feedbackContainer" ondrop="drop(event, 'feedback')"
                     ondragover="allowDrop(event)">
