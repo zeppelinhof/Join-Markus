@@ -169,4 +169,14 @@
         display: grid;
         gap: 16px;
     }
+
+
+    .separator {
+        display: none;
+    }
+
+    .panel {
+        overflow-y: scroll;
+        display: block !important;
+    }
 }

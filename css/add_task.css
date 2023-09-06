@@ -33,7 +33,7 @@ h1 {
 (max-height: 900px) {
     .contentStandard {
         height: calc(100vh - 80px - 80px);
-        padding: unset;
+        padding-top: unset;
         overflow: scroll;
     }
 
