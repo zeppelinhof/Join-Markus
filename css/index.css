@@ -76,6 +76,11 @@ input:focus {
   }
 }
 
+.animationOverlayMobile {
+  display: none;
+}
+
+
 .form_container {
   position: absolute;
   z-index: 99;
@@ -420,6 +425,8 @@ input:focus {
   }
 }
 
+
+
 @media (max-width: 900px) {
   .form_forgotPassword {
     width: 786px;
@@ -459,6 +466,42 @@ input:focus {
   .signup_reveal2 {
     top: 371px;
     right: 53px;
+  }
+
+  .animationOverlayMobile {
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2A3647;
+    animation: greetingMobile;
+    animation-delay: 200ms;
+    animation-duration: 800ms;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes greetingMobile {
+    0% {
+      display: block;
+      opacity: 100%;
+    }
+
+    100% {
+      opacity: 0%;
+      display: none;
+    }
+  }
+
+  .logoAnimationMobile {
+    width: 100px;
+    height: 122px;
+    background: url(../assets/img/join_logo_white.png);
+    object-fit: contain;
   }
 }
 

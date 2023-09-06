@@ -40,13 +40,13 @@
         height: auto;
     }
 
-    .frame113 {}
-
-    .frame214, .frame178, .frame179 {
+    .frame214,
+    .frame178,
+    .frame179 {
         width: 100%;
     }
 
-    #detailCard  {
+    #detailCard {
         margin: 20px;
     }
 
@@ -62,7 +62,8 @@
         width: 100%;
     }
 
-    #frame204, .contactContain {
+    #frame204,
+    .contactContain {
         width: 100%;
     }
 
@@ -73,6 +74,10 @@
     #taskOverlayHeadline {
         width: 316px;
         font-size: 36px;
+    }
+
+    #descriptionContain {
+        max-width: 67%;
     }
 }
 
@@ -104,11 +109,16 @@
         justify-content: space-between;
     }
 
-    .headlineButton, .btn, .btn-primary {
+    .headlineButton,
+    .btn,
+    .btn-primary {
         display: none !important;
     }
 
-    .Todo, .donecontainer, .Feedback, .in_Progress {
+    .Todo,
+    .donecontainer,
+    .Feedback,
+    .in_Progress {
         flex-wrap: wrap;
     }
 

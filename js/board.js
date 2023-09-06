@@ -9,7 +9,7 @@ async function boardInit() {
     userInitials();
     await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     loopAllTasks();
-
+    loadUsers();
 }
 
 
