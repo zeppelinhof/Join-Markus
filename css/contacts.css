@@ -35,6 +35,18 @@ body {
 
 
 
+/* contacts loading sreen */
+.contacts-loading-sreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0 0 0 / 20%);
+    z-index: 99;
+}
+
+
 /* contact tobar only window */
 
 .contact-topbar-area {
@@ -684,7 +696,7 @@ body {
     box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
     position: absolute;
     right: -320px;
-    bottom: 300px;
+    bottom: 32px;
     z-index: 2;
     animation-duration: 4s;
     animation-name: moveUp;
