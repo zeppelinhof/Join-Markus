@@ -34,6 +34,8 @@
 
     .taskOverlay {
         left: 0;
+        right: 0;
+        margin: 0 auto;
         width: 370px;
         height: auto;
     }
