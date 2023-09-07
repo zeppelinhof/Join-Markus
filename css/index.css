@@ -174,7 +174,7 @@ input:focus {
 }
 
 .input_mail {
-  background: url("/assets/img/mail.svg");
+  background: url("../assets/img/mail.svg");
   background-repeat: no-repeat;
   background-position: 378px;
   margin-bottom: 16px;
@@ -183,7 +183,7 @@ input:focus {
 }
 
 .input_name {
-  background: url("/assets/img/person.svg");
+  background: url("../assets/img/person.svg");
   background-repeat: no-repeat;
   background-position: 378px;
   margin-bottom: 32px;
@@ -253,32 +253,6 @@ input:focus {
 
 #checkBox_rememberMe {
   cursor: pointer;
-}
-
-#checkBox_empty {
-  width: 24px;
-  height: 24px;
-  background: url("/assets/img/checkbox_empty.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-#checkBox_cutted {
-  width: 24px;
-  height: 24px;
-  background: url("/assets/img/checkbox_cutted.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-#checkBox_mark {
-  width: 24px;
-  height: 24px;
-  background: url("/assets/img/checkbox_mark.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  position: relative;
-  top: -24px;
 }
 
 .password_forgotten {
@@ -549,16 +523,16 @@ input:focus {
 
   .btn_reveal {
     right: 33px;
-    top: 219px;
+    top: 216px;
   }
 
   .signup_reveal1 {
-    top: 267px;
+    top: 261px;
     right: 34px;
   }
 
   .signup_reveal2 {
-    top: 325px;
+    top: 320px;
     right: 34px;
   }
 

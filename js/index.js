@@ -35,12 +35,12 @@ function updateInputState(element, idToToggle) {
     const password = element;
     if (password.value == "") {
         inputState.setState("empty");
-        document.getElementById(idToToggle).src = "../assets/img/lock.svg";
+        document.getElementById(idToToggle).src = "assets/img/lock.svg";
         password.type = "password";
     } else {
         inputState.setState("filled");
         if (password.value.length == 1) {
-            document.getElementById(idToToggle).src = "../assets/img/eye.svg";
+            document.getElementById(idToToggle).src = "assets/img/eye.svg";
         }
     }
     if (document.getElementById('formElement').innerHTML.includes('form_signup')) {
@@ -74,11 +74,11 @@ function toggleReveal(img, id) {
     const password = document.getElementById(id);
     if (inputState.getState() == "filled") {
         if (password.type == "password") {
-            img.src = "../assets/img/eye_close.svg";
+            img.src = "assets/img/eye_close.svg";
             password.type = "text";
         }
         else {
-            img.src = "../assets/img/eye.svg";
+            img.src = "assets/img/eye.svg";
             password.type = "password";
         }
     }
@@ -150,7 +150,7 @@ function resetPassword() {
 
 function forgotPassword() {
     const message = /*html*/ `
-        <img src="../assets/img/email_send.svg"> An Email has been sent to you
+        <img src="assets/img/email_send.svg"> An Email has been sent to you
     `;
     successMessage(message);
     document.getElementById('btn_sendMail').classList.add('d-none');
