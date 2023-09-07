@@ -1,4 +1,5 @@
 let tasks = [];
+let boardStatus = 'to do';
 
 async function initAddTask() {
     await includeHTML();
@@ -102,7 +103,7 @@ async function register_task() {
         prio: document.getElementById('prioStatusAsString').innerText,
         category: selectedCategory.innerText,
         subtasks: subtasks,
-        column: 'to do',
+        column: boardStatus,
         subtaskstate: subtaskstate() 
     });
     await setItem('tasks', JSON.stringify(tasks));

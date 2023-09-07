@@ -70,7 +70,27 @@ function getSubtasksCheckboxState() {
 }
 
 /*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
+//function loopAllTasks() {
+//    for (let q = 0; q < allTasks.length; q++) {
+//        const category = allTasks[q]['category'];
+//        const description = allTasks[q]['description'];
+//        const priority = allTasks[q]['prio'];
+//        const title = allTasks[q]['title'];
+//        const column = allTasks[q]['column'];
+//        const date = allTasks[q]['date'];
+//        const assigned = allTasks[q]['selectAssignedTo'];
+//
+//        loadAllTask(category, title, description, column, q, priority, date, assigned);
+//    }
+//}
+
 function loopAllTasks() {
+    document.getElementById('toDoContainer').innerHTML = '';
+    document.getElementById('feedbackContainer').innerHTML = '';
+    document.getElementById('inProgressContainer').innerHTML = '';
+    document.getElementById('DoneContainer').innerHTML = '';
+    let search = document.getElementById('searchInput').value;
+
     for (let q = 0; q < allTasks.length; q++) {
         const category = allTasks[q]['category'];
         const description = allTasks[q]['description'];
@@ -80,7 +100,11 @@ function loopAllTasks() {
         const date = allTasks[q]['date'];
         const assigned = allTasks[q]['selectAssignedTo'];
 
-        loadAllTask(category, title, description, column, q, priority, date, assigned);
+        if (title.toLowerCase().includes(search.toLowerCase())) {
+
+            loadAllTask(category, title, description, column, q, priority, date, assigned);
+        }
+
     }
 }
 /*----------------------Checkt ob die Kontainer leer sind oder Inhalt haben ----------------------*/
@@ -197,11 +221,6 @@ function assingAllTasks(column, cardHTML, q) {
     const DoneContainer = document.getElementById('DoneContainer');
     const toDoContainer = document.getElementById('toDoContainer');
 
-    inProgressContainer.innerHTML += '';
-    feedBackContainer.innerHTML += '';
-    DoneContainer.innerHTML += '';
-    toDoContainer.innerHTML += '';
-
     if (column === 'to do') {
         toDoContainer.innerHTML += cardHTML;
     } else if (column === 'inProgress') {
@@ -211,7 +230,7 @@ function assingAllTasks(column, cardHTML, q) {
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
-    checkEmptyContainer();
+    //checkEmptyContainer();
     loadInitials(q);
     loadAllTaskNumber(q);
 }
@@ -327,25 +346,8 @@ async function moveTo(column, q) {
 /*-----------------------------------Suchfunktion---------------------------------*/
 document.addEventListener('DOMContentLoaded', function () {
     // Füge den Event-Listener hinzu, sobald das DOM geladen ist
-    document.getElementById('searchInput').addEventListener('input', searchTasks);
+    document.getElementById('searchInput').addEventListener('input', loopAllTasks);
 });
-
-function searchTasks() {
-    const searchInput = document.getElementById('searchInput').value.toLowerCase(); // Suchbegriff in Kleinbuchstaben umwandeln
-    const cards = document.querySelectorAll('.cards');
-
-    for (let q = 0; q < allTasks.length; q++) {
-        const title = allTasks[q]['title'].toLowerCase(); // Titel in Kleinbuchstaben umwandeln
-        const card = cards[q];
-
-        if (title.includes(searchInput)) {
-            card.style.display = 'block'; // Karte anzeigen, wenn der Titel den Suchbegriff enthält
-        } else {
-            card.style.display = 'none'; // Karte ausblenden, wenn der Titel den Suchbegriff nicht enthält
-        }
-        console.log(`Title: ${title}, Search Input: ${searchInput}, Display: ${card.style.display}`);
-    }
-}
 
 //--------------------------------------Löschfunktion der Karte--------------------------------------
 async function deleteCard() {
@@ -378,25 +380,7 @@ function updateProgressBar(q) {
 
 //--------------------------------------------Hinzufügen addTask über + Button--------------------------------------------
 
-
-async function addTaskFeedback() {
-    openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');
-    await addFeedback();
+async function addFeedback(columnStatus) {
+    boardStatus = columnStatus
+    openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')
 }
-
-async function addFeedback() {
-    for (let index = 0; index < allTasks.length; index++) {
-        const column = allTasks[index]['column'];
-        if (column === 'to do') {
-            column = 'feedback';
-        }
-    }
-}
-
-function addTaskInProgress() {
-    column = 'inProgress';
-
-    openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');
-}
-
-
