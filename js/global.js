@@ -161,11 +161,27 @@ async function initInfoPage() {
 }
 
 
-//return the color to the contact index
+//return the color to the contact by index
 function returnContactColor(i) {
     let result = i % contactColors.length
 
     return contactColors[result]['style'];
+}
+
+
+//return the color to the contact by name
+function returnContactColorByName(name) {
+    let index = 0;
+
+    for (let i = 0; i < users.length; i++) {
+        const userName = users[i]['name'];
+        if (userName == name) {
+            index = i;
+            break;
+        }
+    }
+
+    return returnContactColor(index);
 }
 
 

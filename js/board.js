@@ -7,8 +7,8 @@ async function boardInit() {
     await includeHTML();
     userInitials();
     await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+    await loadUsers();
     loopAllTasks();
-    loadUsers();
     await loadTasks();
 }
 /*--------------------------function that exits the complete tasks from the backend--------------------------*/
@@ -224,7 +224,7 @@ function loadInitials(q) {
         document.getElementById(targetElementId).innerHTML += /*html*/`
             <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
 
-        document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
+        document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
     }
 }
 //------------------------------------------function that calls Detailcard and assigns the names to it------------------------------------------
