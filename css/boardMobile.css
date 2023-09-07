@@ -1,121 +1,70 @@
 /*------------------------------------------------Resposive------------------------------------------------*/
-@media (max-width: 1440px) {
-    .TopBarAndBodyContain {
-        width: calc(100% - 232px);
+@media (max-width: 1444px) {
+    .topbar-area {
+        width: 100%;
     }
 
     .bodyContainer {
+        width: 100%;
         height: 100vh;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        left: 0;
-        top: 0;
-        overflow-y: scroll;
-    }
-
-    .boardContainer {
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        padding: 0;
+        overflow: auto;
     }
 
     .headlineBoard {
+        width: 1030px;
+    }
+
+    .boardContainer {
         width: 100%;
-    }
-
-    .headlineBoard1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-
-    .taskOverlay {
-        left: 0;
-        right: 0;
-        margin: 0 auto;
-        width: 370px;
-        height: auto;
-    }
-
-    .frame214,
-    .frame178,
-    .frame179 {
-        width: 100%;
-    }
-
-    #detailCard {
-        margin: 20px;
-    }
-
-    .frame215 {
-        width: 100%;
-    }
-
-    .subtasks {
-        width: 100%;
-    }
-
-    #subtaskContain {
-        width: 100%;
-    }
-
-    #frame204,
-    .contactContain {
-        width: 100%;
-    }
-
-    .frame203 {
-        width: 316px;
-    }
-
-    #taskOverlayHeadline {
-        width: 316px;
-        font-size: 36px;
-    }
-
-    #descriptionContain {
-        max-width: 67%;
+        gap: 12px;
     }
 }
 
-@media screen and (max-width:1200px) {
-    .headlineBoardMobile {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 226px;
-    }
-
-    .boardContainMobile {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
+@media (max-width: 1200px) {
+    .sideBarBoard {
         width: 100%;
-        margin-bottom: 20px;
     }
 
-    .boardContainMobile h1 {
-        padding-bottom: 0;
-        text-align: center;
+    .boardContainer {
+        display: flex;
+        flex-wrap: wrap;
     }
 
     .headlineBoard {
         display: none;
     }
 
+    .headlineBoardMobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+    }
+
+    .boardContainMobile {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+
+    }
+
+    .boardContainMobile h1 {
+        text-align: center;
+        padding-bottom: 0;
+        font-weight: 400;
+    }
+
     .headlineBoard1Mobile {
-        width: 40px;
-        height: 40px;
+        height: 42px;
+        width: 42px;
+
     }
 
     .headlineButton {
-        width: 40px;
-        height: 40px;
+        width: 32px;
+        height: 32px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -123,7 +72,7 @@
 
     .searchContainerMobile {
         display: flex;
-        width: 312px;
+        width: 307px;
         height: 48px;
         border-radius: 10px;
         border: 1px solid #A8A8A8;
@@ -131,52 +80,54 @@
         gap: 10px;
         background-color: #ffffff;
     }
-}
 
-@media (max-width:1000px) {
-    .bodyBoard {
-        width: 100% !important;
-        height: 100vh !important;
-    }
-
-    .area {
-        display: none;
-    }
-
-    .headlineBoard2 {
-        width: 100%;
-    }
-
-    .hlB {
-        width: 100%;
+    .sC1Mobile {
+        width: 280px;
         height: 32px;
         display: flex;
         justify-content: space-between;
     }
+}
 
-    .Todo,
-    .donecontainer,
-    .Feedback,
-    .in_Progress {
-        flex-wrap: wrap;
+@media (max-width: 1000px) {}
+
+@media (max-width: 900px) {
+    .bodyContainer {
+        height: 76vh;
     }
 
     .taskContainer {
-        overflow: hidden;
-        overflow-y: scroll;
+        height: 307px;
+    }
+
+    #detailCard {
         width: 100%;
-        height: 292px;
-        display: grid;
-        gap: 16px;
     }
 
-
-    .separator {
-        display: none;
+    .frame203, .frame179, .frame178, .frame214, #frame204, .frame215 {
+        width: 284px;
     }
 
-    .panel {
-        overflow-y: scroll;
-        display: block !important;
+    #taskOverlayHeadline {
+        width: 284px;
+        font-size: 40px;
+    }
+
+    #descriptionContain {
+        width: 284px;
+    }
+
+    .assignedTo, .contactContain, .subtasks {
+        width: 284px;
+    }
+
+    .taskOverlay {
+        gap: 20px;
+        width: 353px;
+    }
+
+    .frame20 {
+        bottom: 20px;
+        right: 20px;
     }
 }

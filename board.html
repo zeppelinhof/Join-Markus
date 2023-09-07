@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/add_new_contact.css">
     <link rel="stylesheet" href="css/add_task.css">
+    <link rel="stylesheet" href="css/add_taskMobile.css">
     <script src="./js/include_html.js"></script>
     <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
@@ -48,7 +49,7 @@
         id="add-new-task-include-HTML"></div>
 
     <div class="area top-sidebar-area"></div>
-    <div w3-include-html="./template/sidebar_template.html"></div>
+    <div w3-include-html="./template/sidebar_template.html" class="sideBarBoard"></div>
     <div class="TopBarAndBodyContain">
         <div w3-include-html="./template/topbar_template.html"> </div>
         <div class="bodyContainer">
@@ -63,9 +64,9 @@
                     </div>
                 </div>
                 <div class="searchContainerMobile">
-                    <div class="sC1">
-                        <input class="inputBoard" type="search" id="searchInputMobile" placeholder="Find Task"
-                            oninput="emptyContainer()">
+                    <div class="sC1Mobile">
+                        <input class="inputBoard" type="search" id="searchInput" placeholder="Find Task"
+                            oninput="loopAllTasks()">
                         <img class="search" id="searchButton" onclick="searchTasks()" src="assets/img/Frame 122.svg"
                             alt="">
                     </div>
@@ -78,8 +79,8 @@
                         <div class="sC1">
                             <input class="inputBoard" type="search" id="searchInput" placeholder="Find Task"
                                 oninput="loopAllTasks()">
-                            <img class="search" id="searchButton" onclick="loopAllTasks()" src="assets/img/Frame 122.svg"
-                                alt="">
+                            <img class="search" id="searchButton" onclick="loopAllTasks()"
+                                src="assets/img/Frame 122.svg" alt="">
                         </div>
                     </div>
                     <button type="button" class="btn btn-primary headlineButton"
@@ -96,13 +97,13 @@
                         <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                             onclick="addFeedback('to do')">
                     </div>
+                    <div class="noTaskContainer" id="noTask">
+                        <span class="noTaskContainer1">
+                            <p>No tasks To do</p>
+                        </span>
+                    </div>
                     <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')"
                         ondragover="allowDrop(event)">
-                        <div class="noTaskContainer" id="noTask">
-                            <span class="noTaskContainer1">
-                                <p>No tasks To do</p>
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <div class="in_Progress">
@@ -111,13 +112,13 @@
                         <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                             onclick="addFeedback('inProgress')">
                     </div>
+                    <div class="noTaskContainer" id="noProgress">
+                        <span class="noTaskContainer2">
+                            <p>No tasks Progress</p>
+                        </span>
+                    </div>
                     <div class="taskContainer" id="inProgressContainer" ondrop="drop(event, 'inProgress')"
                         ondragover="allowDrop(event)">
-                        <div class="noTaskContainer" id="noProgress">
-                            <span class="noTaskContainer2">
-                                <p>No tasks Progress</p>
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <div class="Feedback">
@@ -126,26 +127,26 @@
                         <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
                             onclick="addFeedback('feedback')">
                     </div>
+                    <div class="noTaskContainer" id="noFeedback">
+                        <span class="noTaskContainer2">
+                            <p>No tasks feedback</p>
+                        </span>
+                    </div>
                     <div class="taskContainer" id="feedbackContainer" ondrop="drop(event, 'feedback')"
                         ondragover="allowDrop(event)">
-                        <div class="noTaskContainer" id="noFeedback">
-                            <span class="noTaskContainer2">
-                                <p>No tasks feedback</p>
-                            </span>
-                        </div>
                     </div>
                 </div>
                 <div class="donecontainer">
                     <div class="hlB">
                         <p>Done</p>
                     </div>
+                    <div class="noTaskContainer" id="noDone">
+                        <span class="noTaskContainer1">
+                            <p>No tasks Done</p>
+                        </span>
+                    </div>
                     <div class="taskContainer" id="DoneContainer" ondrop="drop(event, 'done')"
                         ondragover="allowDrop(event)">
-                        <div class="noTaskContainer" id="noDone">
-                            <span class="noTaskContainer1">
-                                <p>No tasks Done</p>
-                            </span>
-                        </div>
                     </div>
                 </div>
             </div>

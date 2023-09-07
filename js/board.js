@@ -32,7 +32,7 @@ async function emptyContainer() {
     document.getElementById('feedbackContainer').innerHTML = '';
     document.getElementById('inProgressContainer').innerHTML = '';
     document.getElementById('DoneContainer').innerHTML = '';
-    location.reload(loopAllTasks);
+    loopAllTasks();
 }
 // ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH ENDE -----------
 /*-------------------------------------------Open and Close function-------------------------------------------*/
@@ -70,20 +70,6 @@ function getSubtasksCheckboxState() {
 }
 
 /*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
-//function loopAllTasks() {
-//    for (let q = 0; q < allTasks.length; q++) {
-//        const category = allTasks[q]['category'];
-//        const description = allTasks[q]['description'];
-//        const priority = allTasks[q]['prio'];
-//        const title = allTasks[q]['title'];
-//        const column = allTasks[q]['column'];
-//        const date = allTasks[q]['date'];
-//        const assigned = allTasks[q]['selectAssignedTo'];
-//
-//        loadAllTask(category, title, description, column, q, priority, date, assigned);
-//    }
-//}
-
 function loopAllTasks() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -101,10 +87,8 @@ function loopAllTasks() {
         const assigned = allTasks[q]['selectAssignedTo'];
 
         if (title.toLowerCase().includes(search.toLowerCase())) {
-
             loadAllTask(category, title, description, column, q, priority, date, assigned);
         }
-
     }
 }
 /*----------------------Checkt ob die Kontainer leer sind oder Inhalt haben ----------------------*/
@@ -230,7 +214,7 @@ function assingAllTasks(column, cardHTML, q) {
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
-    //checkEmptyContainer();
+    checkEmptyContainer();
     loadInitials(q);
     loadAllTaskNumber(q);
 }
