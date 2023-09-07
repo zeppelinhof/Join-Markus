@@ -78,32 +78,32 @@ let contactColors = [
 ]
 
 let alphabet = [
-    { 'number': 1, 'letter': 'a' },
-    { 'number': 2, 'letter': 'b' },
-    { 'number': 3, 'letter': 'c' },
-    { 'number': 4, 'letter': 'd' },
-    { 'number': 5, 'letter': 'e' },
-    { 'number': 6, 'letter': 'f' },
-    { 'number': 7, 'letter': 'g' },
-    { 'number': 8, 'letter': 'h' },
-    { 'number': 9, 'letter': 'i' },
-    { 'number': 10, 'letter': 'j' },
-    { 'number': 11, 'letter': 'k' },
-    { 'number': 12, 'letter': 'l' },
-    { 'number': 13, 'letter': 'm' },
-    { 'number': 14, 'letter': 'n' },
-    { 'number': 15, 'letter': 'o' },
-    { 'number': 16, 'letter': 'p' },
-    { 'number': 17, 'letter': 'q' },
-    { 'number': 18, 'letter': 'r' },
-    { 'number': 19, 'letter': 's' },
-    { 'number': 20, 'letter': 't' },
-    { 'number': 21, 'letter': 'u' },
-    { 'number': 22, 'letter': 'v' },
-    { 'number': 23, 'letter': 'w' },
-    { 'number': 24, 'letter': 'x' },
-    { 'number': 25, 'letter': 'y' },
-    { 'number': 26, 'letter': 'z' },
+    { 'number': 0, 'letter': 'a' },
+    { 'number': 1, 'letter': 'b' },
+    { 'number': 2, 'letter': 'c' },
+    { 'number': 3, 'letter': 'd' },
+    { 'number': 4, 'letter': 'e' },
+    { 'number': 5, 'letter': 'f' },
+    { 'number': 6, 'letter': 'g' },
+    { 'number': 7, 'letter': 'h' },
+    { 'number': 8, 'letter': 'i' },
+    { 'number': 9, 'letter': 'j' },
+    { 'number': 10, 'letter': 'k' },
+    { 'number': 11, 'letter': 'l' },
+    { 'number': 12, 'letter': 'm' },
+    { 'number': 13, 'letter': 'n' },
+    { 'number': 14, 'letter': 'o' },
+    { 'number': 15, 'letter': 'p' },
+    { 'number': 16, 'letter': 'q' },
+    { 'number': 17, 'letter': 'r' },
+    { 'number': 18, 'letter': 's' },
+    { 'number': 19, 'letter': 't' },
+    { 'number': 20, 'letter': 'u' },
+    { 'number': 21, 'letter': 'v' },
+    { 'number': 22, 'letter': 'w' },
+    { 'number': 23, 'letter': 'x' },
+    { 'number': 24, 'letter': 'y' },
+    { 'number': 25, 'letter': 'z' },
 ];
 
 async function loadTasks() {
@@ -189,7 +189,7 @@ function returnContactColorByName(name) {
 function sortUsers() {
     let alphabetUsers = [];
     let lastAddedContactIndex = 0;
-    let outOfFuction = false;
+    let outOfFunctionFirstLoop = false;
 
     for (let i = 0; i < users.length; i++) {
         const userName = users[i]['name'];
@@ -200,26 +200,36 @@ function sortUsers() {
         if (alphabetUsers.length == 0) {
             alphabetUsers.push(retrunUserJSON(i));
         } else {
-            loop1:
-            for (let k = 0; k < alphabetUsers.length; k++) {
-                const alphabetUsersName = alphabetUsers[k]['name'];
-                let alphabetUserNameWithoutSpace = returnNameWithoutSpaces(alphabetUsersName);
-
-                [alphabetUsers, lastAddedContactIndex, outOfFuction] = compareUsersWithAlphabetUsers(i, k, alphabetUsers, lastAddedContactIndex, outOfFuction, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace);
-
-                if (outOfFuction) {
-                    outOfFuction = false;
-                    break loop1;
-                }
-            }
+            [alphabetUsers, lastAddedContactIndex] = compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser);
         }
     }
 
     return [alphabetUsers, lastAddedContactIndex];
 }
 
-//compare the usernames with the alphabetUser array
-function compareUsersWithAlphabetUsers(i, k, alphabetUsers, lastAddedContactIndex, outOfFuction, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace) {
+
+//sortet compare the usernames with the alphabetUser array first loop
+function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser) {
+    for (let k = 0; k < alphabetUsers.length; k++) {
+        const alphabetUsersName = alphabetUsers[k]['name'];
+        let alphabetUserNameWithoutSpace = returnNameWithoutSpaces(alphabetUsersName);
+
+        [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop] = compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace);
+
+        if (outOfFunctionFirstLoop) {
+            outOfFunctionFirstLoop = false;
+            break;
+        }
+    }
+
+    return [alphabetUsers, lastAddedContactIndex];
+}
+
+
+//sortet compare the usernames with the alphabetUser array second loop
+function compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace) {
+    let outOfFunctionSecondLoop = false;
+
     for (let l = 0; l < alphabetUserNameWithoutSpace.length; l++) {
         const alphabetUserNamerCurrentLetter = alphabetUserNameWithoutSpace[l].toLowerCase();
         const alphabetLetterCurrentAlphabetUser = alphabet.find(element => element['letter'] == alphabetUserNamerCurrentLetter);
@@ -227,33 +237,45 @@ function compareUsersWithAlphabetUsers(i, k, alphabetUsers, lastAddedContactInde
         if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number'] && k < alphabetUsers.length - 1 && l < 1) {
             break;
         }
-        else if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
-            if (k == alphabetUsers.length - 1) {
-                alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
-                outOfFuction = true;
-            }
 
-            lastAddedContactIndex = k + 1;
+        [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop] = addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop, alphabetLetterCurrentUser, alphabetLetterCurrentAlphabetUser, alphabetUserNameWithoutSpace);
 
+        if (outOfFunctionSecondLoop) {
+            outOfFunctionSecondLoop = false;
             break;
-        } else if (alphabetLetterCurrentUser['number'] < alphabetLetterCurrentAlphabetUser['number']) {
-            alphabetUsers.splice(k, 0, retrunUserJSON(i));
-            lastAddedContactIndex = k;
-            outOfFuction = true;
-
-            break;
-        }
-        else {
-            if (l == alphabetUserNameWithoutSpace.length - 1) {
-                alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
-                outOfFuction = true;
-            } else {
-                alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[l + 1].toLowerCase());
-            }
+        } else {
+            alphabetLetterCurrentUser = alphabet.find(element => element['letter'] == userNameWithoutSpace[l + 1].toLowerCase());
         }
     }
 
-    return [alphabetUsers, lastAddedContactIndex, outOfFuction];
+    return [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop];
+}
+
+
+//add contact to alphabet users array
+function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop, alphabetLetterCurrentUser, alphabetLetterCurrentAlphabetUser, alphabetUserNameWithoutSpace) {
+    if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
+        if (k == alphabetUsers.length - 1) {
+            alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
+            outOfFunctionFirstLoop = true;
+        }
+
+        outOfFunctionSecondLoop = true;
+
+        lastAddedContactIndex = k + 1;
+    } else if (alphabetLetterCurrentUser['number'] < alphabetLetterCurrentAlphabetUser['number']) {
+        alphabetUsers.splice(k, 0, retrunUserJSON(i));
+        lastAddedContactIndex = k;
+        outOfFunctionFirstLoop = true;
+        outOfFunctionSecondLoop = true;
+    }
+    else if (l == alphabetUserNameWithoutSpace.length - 1) {
+        alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
+        outOfFunctionFirstLoop = true;
+        outOfFunctionSecondLoop = true;
+    }
+
+    return [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop];
 }
 
 
