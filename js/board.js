@@ -27,7 +27,7 @@ async function emptyContainer() {
     document.getElementById('feedbackContainer').innerHTML = '';
     document.getElementById('inProgressContainer').innerHTML = '';
     document.getElementById('DoneContainer').innerHTML = '';
-    loopAllTasks();
+    location.reload(loopAllTasks);
 }
 /*-------------------------------------------Open and Close function-------------------------------------------*/
 function closeDetailCard() {
@@ -69,6 +69,10 @@ function loopAllTasks() {
     document.getElementById('inProgressContainer').innerHTML = '';
     document.getElementById('DoneContainer').innerHTML = '';
     let search = document.getElementById('searchInput').value;
+    let windowSize = window.matchMedia('(max-width: 1202px)');
+    if (windowSize.matches) {
+        search = document.getElementById('searchInputMobile').value;
+    }
 
     for (let q = 0; q < allTasks.length; q++) {
         const category = allTasks[q]['category'];
