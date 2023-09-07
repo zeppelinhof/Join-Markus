@@ -7,72 +7,46 @@
     <title>Contacts</title>
     <link rel="shortcut icon" href="assets/img/favicon_black.png" type="image/x-icon">
 
-    <!-- local css -->
-    <link rel="stylesheet" href="./css/global.css">
-    <link rel="stylesheet" href="./css/fonts.css">
-    <link rel="stylesheet" href="./css/contacts.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/contacts.css">
 
-    <!-- scripts -->
-    <script src="./js/include_html.js"></script>
-    <script src="./js/topbar.js"></script>
-    <script src="./js/contacts.js"></script>
-    <script src="./js/contacts_html_template.js"></script>
-    <script src="./js/add_new_contact.js"></script>
-    <script src="./js/register.js"></script>
-    <script src="./js/storage.js"></script>
-    <script src="./js/global.js"></script>
+    <script src="js/contacts.js"></script>
+    <script src="js/contacts_html_template.js"></script>
+    <script src="js/add_new_contact.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/global.js"></script>
 </head>
 
 <body onload="initContacts()">
 
     <div class="contacts-loading-sreen contacts-d-none" id="contacts-loading-sreen"></div>
-
-    <!-- add new contact -->
-    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
-
-    <!-- edit contact -->
-    <div class="contacts-d-none" w3-include-html="./edit_contact.html" id="edit-contact-include-HTML"></div>
-
-    <!-- sidebar -->
-    <section w3-include-html="./template/sidebar_template.html"></section>
-
-    <!-- contact + topbare as only -->
+    <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML">
+    </div>
+    <div class="contacts-d-none" w3-include-html="templates/edit_contact.html" id="edit-contact-include-HTML"></div>
+    <section w3-include-html="templates/sidebar_template.html"></section>
     <div class="contact-topbar-area">
-
-        <!-- topbar -->
-        <section w3-include-html="./template/topbar_template.html"></section>
-
+        <section w3-include-html="templates/topbar_template.html"></section>
         <div class="contact-windows">
-
-            <!-- contacts list -->
             <section class="contacts" id="contacts">
-
                 <div class="contacts-area">
-
                     <div class="btn-new-contact-area">
                         <button class="btn-new-contact"
                             onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact', false)">
                             <span class="btn-new-contact-text">Add new contact</span>
-                            <img class="btn-new-contact-icon" src="./assets/img/icon_person_add.png" alt="">
+                            <img class="btn-new-contact-icon" src="assets/img/icon_person_add.png" alt="person">
                         </button>
                     </div>
-
                     <div id="contacts-list">
-
                     </div>
-
                 </div>
-
             </section>
-
-            <!-- contact data -->
-            <section class="contact-data contact-data-d-none" onclick="closeEditContactPointMenu(); notToClose(event)" id="contact-data">
-
-                <img class="contact-data-arrow-left-icon" src="./assets/img/icon_arrow_left.png" alt="" onclick="closeContactData()">
-
+            <section class="contact-data contact-data-d-none" onclick="closeEditContactPointMenu(); notToClose(event)"
+                id="contact-data">
+                <img class="contact-data-arrow-left-icon" src="assets/img/icon_arrow_left.png" alt="back"
+                    onclick="closeContactData()">
                 <div class="contact-data-area">
-
-                    <!-- headline -->
                     <div class="contact-data-headline">
                         <h1 class="contact-data-headline-left">Contacts</h1>
                         <div class="contact-data-headline-subContainer">
@@ -80,21 +54,14 @@
                             <span class="contact-data-headline-right">Better with a team</span>
                         </div>
                     </div>
-
-                    <!-- contact data content -->
                     <div id="contact-data-content">
-
                     </div>
                 </div>
-
             </section>
-
         </div>
-
         <div class="contact-added-slideBox contacts-d-none" id="contact-added-slideBox">
             <span id="contact-slideBox-text">Contact succesfull created</span>
         </div>
-
 </body>
 
 </html>

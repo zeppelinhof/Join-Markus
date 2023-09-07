@@ -21,7 +21,6 @@ async function register_user() {
         password: password.value,
         phone: phone.value
     });
-    // Save local array 'users' in global backend array 'users' via post
     await setItem('users', JSON.stringify(users));
 
     fillAssignedTo();

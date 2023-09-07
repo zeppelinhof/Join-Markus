@@ -11,8 +11,6 @@
     <link rel="stylesheet" href="./css/summary.css">
     <link rel="stylesheet" href="./css/contacts.css">
     <script src="./js/global.js"></script>
-    <script src="./js/include_html.js"></script>
-    <script src="./js/topbar.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/board.js"></script>
     <script src="./js/summary.js"></script>
@@ -20,9 +18,9 @@
 
 <body onload="initSummary()">
 
-    <div w3-include-html="./template/sidebar_template.html"></div>
+    <div w3-include-html="templates/sidebar_template.html"></div>
     <div class="topBarContainer">
-        <div w3-include-html="./template/topbar_template.html"></div>
+        <div w3-include-html="templates/topbar_template.html"></div>
         <div class="contentContainer">
             <div class="headline-subcontainer-panel">
                 <div class="contact-data-headline">
@@ -36,15 +34,15 @@
                     <div class="panelContainer">
                         <div class="panelRow">
                             <div class="tasksPanel" onclick="linkPage('board')">
-                                <div class="variablePanel" id="variablePanel1">12</div>
+                                <div class="variablePanel" id="variablePanel1"></div>
                                 <div class="font20px400">Tasks in<br>Board</div>
                             </div>
                             <div class="tasksPanel" onclick="linkPage('board')">
-                                <div class="variablePanel" id="variablePanel2">2</div>
+                                <div class="variablePanel" id="variablePanel2"></div>
                                 <div class="font20px400">Tasks in<br>Progress</div>
                             </div>
                             <div class="tasksPanel" onclick="linkPage('board')">
-                                <div class="variablePanel" id="variablePanel3">2</div>
+                                <div class="variablePanel" id="variablePanel3"></div>
                                 <div class="font20px400">Awaiting<br>Feedback</div>
                             </div>
                         </div>
@@ -54,7 +52,7 @@
                                     <img src="assets/img/Capa_2_white.svg" alt="arrowUp">
                                 </div>
                                 <div class="urgentTextContainer">
-                                    <div class="variablePanel" id="variablePanel4">2</div>
+                                    <div class="variablePanel" id="variablePanel4"></div>
                                     <div class="font16px400">Urgent</div>
                                 </div>
                             </div>
@@ -70,7 +68,7 @@
                                     <div class="edit-icon"></div>
                                 </div>
                                 <div class="editText">
-                                    <div class="variablePanel" id="variablePanel5">2</div>
+                                    <div class="variablePanel" id="variablePanel5"></div>
                                     <div class="font20px400">To-Do</div>
                                 </div>
                             </div>
@@ -79,7 +77,7 @@
                                     <div class="done-icon"></div>
                                 </div>
                                 <div class="editText">
-                                    <div class="variablePanel" id="variablePanel6">1</div>
+                                    <div class="variablePanel" id="variablePanel6"></div>
                                     <div class="font20px400">Done</div>
                                 </div>
                             </div>

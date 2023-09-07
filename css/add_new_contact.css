@@ -1,5 +1,3 @@
-/* default */
-
 .add-new-contact-slidein-animation {
     animation-duration: 0.5s;
     animation-name: add-new-contact-slidein;
@@ -52,10 +50,6 @@
     }
 }
 
-
-
-/* add new contact */
-
 .add-new-contact-panel {
     position: absolute;
     top: 0;
@@ -75,8 +69,6 @@
     box-sizing: unset !important;
 }
 
-/* add new contact area */
-
 .add-new-contact-area {
     display: flex;
     height: 594px;
@@ -91,10 +83,6 @@
         width: 396px;
     }
 }
-
-
-
-/* add new contact sidebar */
 
 .add-new-contact-sidebar {
     display: flex;
@@ -160,10 +148,6 @@
     border: 3px solid rgb(41, 170, 227);
     border-radius: 3px;
 }
-
-
-
-/* add new contact input mask */
 
 .add-new-contact-input-mask {
     display: flex;

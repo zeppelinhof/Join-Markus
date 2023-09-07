@@ -7,7 +7,7 @@ async function init() {
 
 function loadHTML(destinationId, fileName) {
     const destinationElement = document.getElementById(destinationId);
-    const htmlFilePath = "assets/templates/" + fileName;
+    const htmlFilePath = "templates/" + fileName;
 
     fetch(htmlFilePath)
         .then(response => response.text())

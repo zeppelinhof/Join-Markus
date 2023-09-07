@@ -3,13 +3,6 @@ body {
     height: 100vh;
 }
 
-@media(max-width: 900px) {
-    body {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-}
-
 .topBarContainer {
     display: flex;
     flex-direction: column;
@@ -28,6 +21,11 @@ body {
 }
 
 @media(max-width: 900px) {
+    body {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
     .contentContainerInfo {
         height: calc(100vh - 160px - 30px);
         padding-left: 30px;

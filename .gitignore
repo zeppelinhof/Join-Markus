@@ -1,5 +1,5 @@
 /node_modules
 package-lock.json
 package.json
-test.html
-js/storage.js
+/bin
+.vscode

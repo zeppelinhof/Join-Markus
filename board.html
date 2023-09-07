@@ -4,51 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/board.css">
-    <link rel="stylesheet" href="css/boardMobile.css">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon_black.png">
-    <link rel="stylesheet" href="css/topbar_template.css">
-    <link rel="stylesheet" href="css/sidebar_template.css">
     <title>Board</title>
 
-    <!-- Bootstrap file -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
-    <!-- local css -->
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="/css/fonts.css">
-    <link rel="stylesheet" href="/css/contacts.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/contacts.css">
     <link rel="stylesheet" href="css/add_new_contact.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/add_task.css">
-    <link rel="stylesheet" href="css/add_taskMobile.css">
-    <script src="./js/include_html.js"></script>
-    <script src="./js/topbar.js"></script>
-    <script src="./js/storage.js"></script>
-    <script src="./js/global.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/storage.js"></script>
     <script src="js/add_new_contact.js"></script>
     <script src="js/board.js"></script>
     <script src="js/add_task.js"></script>
-    <script src="./CARD_WORK/load_contacts_CARD.js"></script>
-    <script src="./js/load_contacts_to_add_task.js"></script>
+    <script src="js/load_contacts_to_add_task.js"></script>
 </head>
 
 <body onload="boardInit()" class="bodyBoard">
-    <!-- add new contact -->
-    <div class="contacts-d-none" w3-include-html="./add_new_contact.html" id="add-new-contact-include-HTML"></div>
-
-    <!-- add new task card -->
-    <div class="contacts-d-none" w3-include-html="./CARD_WORK/add_task_source_for_CARD.html"
-        id="add-new-task-include-HTML"></div>
-
+    <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML">
+    </div>
+    <div class="contacts-d-none" w3-include-html="templates/add_task_card.html" id="add-new-task-include-HTML"></div>
     <div class="area top-sidebar-area"></div>
-    <div w3-include-html="./template/sidebar_template.html" class="sideBarBoard"></div>
+    <div w3-include-html="templates/sidebar_template.html" class="sideBarBoard"></div>
     <div class="TopBarAndBodyContain">
-        <div w3-include-html="./template/topbar_template.html"> </div>
+        <div w3-include-html="templates/topbar_template.html"> </div>
         <div class="bodyContainer">
             <div class="headlineBoardMobile">
                 <div class="boardContainMobile">
@@ -91,7 +78,7 @@
                 <div class="Todo">
                     <div class="hlB">
                         <p>To do</p>
-                        <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
+                        <img class="addheadlineButton" src="assets/img/plus button.svg" alt="plus"
                             onclick="addFeedback('to do')">
                     </div>
                     <div class="noTaskContainer" id="noTask">
@@ -106,7 +93,7 @@
                 <div class="in_Progress">
                     <div class="hlB">
                         <p> In progress</p>
-                        <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
+                        <img class="addheadlineButton" src="assets/img/plus button.svg" alt="plus"
                             onclick="addFeedback('inProgress')">
                     </div>
                     <div class="noTaskContainer" id="noProgress">
@@ -121,7 +108,7 @@
                 <div class="Feedback">
                     <div class="hlB">
                         <p> Await feedback</p>
-                        <img class="addheadlineButton" src="assets/img/plus button.svg" alt=""
+                        <img class="addheadlineButton" src="assets/img/plus button.svg" alt="plus"
                             onclick="addFeedback('feedback')">
                     </div>
                     <div class="noTaskContainer" id="noFeedback">
@@ -148,7 +135,6 @@
                 </div>
             </div>
         </div>
-
         <div id="detailCard" style="display: none;">
             <div class="taskOverlay">
                 <div class="frame203" id="frame203">
@@ -156,7 +142,7 @@
                         <p id="taskContain"></p>
                     </span>
                     <div id="close1" onclick="closeDetailCard()">
-                        <img class="close2" src="assets/img/close.svg" alt="">
+                        <img class="close2" src="assets/img/close.svg" alt="close">
                     </div>
                 </div>
                 <p id="taskOverlayHeadline"></p>

@@ -19,8 +19,6 @@ body {
     flex-grow: 1;
 }
 
-
-
 .headline-subcontainer-area {
     display: flex;
 }
@@ -55,8 +53,6 @@ body {
     cursor: pointer;
 }
 
-
-
 .tasksPanel:hover {
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #fff;
@@ -72,8 +68,6 @@ body {
     font-size: 16px;
     font-weight: 400;
 }
-
-
 
 .font20px400 {
     font-size: 20px;
@@ -107,8 +101,6 @@ body {
     cursor: pointer;
 }
 
-
-
 .rowUrgent:hover {
     box-shadow: 0px 4px 4px 0px #00000040;
     color: #fff;
@@ -139,19 +131,15 @@ body {
     align-items: center;
 }
 
-
-
 .urgentImageContainer img {
     width: 34px;
 }
-
 
 .verticalGreyLine {
     width: 0px;
     height: 102px;
     border: solid 1px #D1D1D1;
 }
-
 
 .urgentTextContainer {
     display: flex;
@@ -173,8 +161,6 @@ body {
     cursor: pointer;
 }
 
-
-
 .edit {
     width: 69px;
     height: 69px;
@@ -194,7 +180,6 @@ body {
     width: 30px;
 }
 
-
 .done {
     width: 69px;
     height: 69px;
@@ -213,7 +198,6 @@ body {
     height: 30px;
     width: 30px;
 }
-
 
 .editText {
     display: flex;

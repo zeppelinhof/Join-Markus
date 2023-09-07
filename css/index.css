@@ -80,7 +80,6 @@ input:focus {
   display: none;
 }
 
-
 .form_container {
   position: absolute;
   z-index: 99;
@@ -360,7 +359,6 @@ input:focus {
   visibility: hidden !important;
 }
 
-/* Verstecke die standardmäßige Checkbox */
 .custom-checkbox input[type="checkbox"] {
   display: none;
 }
@@ -379,12 +377,10 @@ input:focus {
   background-size: contain;
 }
 
-/* SVG für den nicht ausgewählten Zustand */
 .custom-checkbox .checkbox-icon {
   background: url("../assets/img/checkbox_empty.svg") no-repeat;
 }
 
-/* SVG für den ausgewählten Zustand */
 .custom-checkbox input[type="checkbox"]:checked+.checkbox-icon {
   background: url("../assets/img/checkbox_cutted.svg"), url("../assets/img/checkbox_mark.svg") no-repeat;
   background-size: contain, 15px;
@@ -424,8 +420,6 @@ input:focus {
     display: none;
   }
 }
-
-
 
 @media (max-width: 900px) {
   .form_forgotPassword {

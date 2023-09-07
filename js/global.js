@@ -1,9 +1,3 @@
-/* 
-* colors from components
-* form left to right
-* and
-* top to buttom
-*/
 let contactColors = [
     {
         'number': 1,
@@ -77,6 +71,7 @@ let contactColors = [
     }
 ]
 
+
 let alphabet = [
     { 'number': 0, 'letter': 'a' },
     { 'number': 1, 'letter': 'b' },
@@ -106,11 +101,30 @@ let alphabet = [
     { 'number': 25, 'letter': 'z' },
 ];
 
+
 async function loadTasks() {
     tasks = JSON.parse(await getItem('tasks'));
 }
 
-//used by topbar_template.html
+
+async function includeHTML() {
+    let includeElements = document.querySelectorAll('[w3-include-html]');
+    let file;
+
+    for (let i = 0; i < includeElements.length; i++) {
+        const element = includeElements[i];
+        file = element.getAttribute('w3-include-html');
+        let resp = await fetch(file);
+
+        if (resp.ok) {
+            element.innerHTML = await resp.text();
+        } else {
+            element.innerHTML = 'Page not found.';
+        };
+    }
+}
+
+
 function showOrHideContextMenu() {
     let contextMenu = document.getElementById('context-menu');
 
@@ -122,7 +136,6 @@ function showOrHideContextMenu() {
 }
 
 
-//used by all main pages
 function queryUserName() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -130,14 +143,13 @@ function queryUserName() {
     return userName;
 }
 
-//used by all main pages
+
 function userInitials() {
     const userName = queryUserName();
     document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
 }
 
 
-//used by all main pages
 function getInitials(contact) {
     initials = contact.charAt(0);
     if (contact.match(' ')) {
@@ -147,13 +159,11 @@ function getInitials(contact) {
 }
 
 
-//used by sidebar buttons to link to other pages
 function linkPage(pageName) {
     window.location.href = pageName + ".html?name=" + encodeURIComponent(queryUserName());
 }
 
 
-//used by Legal Notice and Privacy Policy
 async function initInfoPage() {
     await includeHTML();
     document.getElementById('sidebar-nav').style.display = "none";
@@ -161,7 +171,6 @@ async function initInfoPage() {
 }
 
 
-//return the color to the contact by index
 function returnContactColor(i) {
     let result = i % contactColors.length
 
@@ -169,7 +178,6 @@ function returnContactColor(i) {
 }
 
 
-//return the color to the contact by name
 function returnContactColorByName(name) {
     let index = 0;
 
@@ -185,7 +193,6 @@ function returnContactColorByName(name) {
 }
 
 
-//sortet users by alphabet
 function sortUsers() {
     let alphabetUsers = [];
     let lastAddedContactIndex = 0;
@@ -208,7 +215,6 @@ function sortUsers() {
 }
 
 
-//sortet compare the usernames with the alphabetUser array first loop
 function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser) {
     for (let k = 0; k < alphabetUsers.length; k++) {
         const alphabetUsersName = alphabetUsers[k]['name'];
@@ -226,7 +232,6 @@ function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedConta
 }
 
 
-//sortet compare the usernames with the alphabetUser array second loop
 function compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace) {
     let outOfFunctionSecondLoop = false;
 
@@ -252,7 +257,6 @@ function compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedC
 }
 
 
-//add contact to alphabet users array
 function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop, alphabetLetterCurrentUser, alphabetLetterCurrentAlphabetUser, alphabetUserNameWithoutSpace) {
     if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
         if (k == alphabetUsers.length - 1) {
@@ -279,7 +283,6 @@ function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex
 }
 
 
-//return JSON Object for users
 function retrunUserJSON(i) {
     return {
         name: users[i]['name'],
@@ -290,7 +293,6 @@ function retrunUserJSON(i) {
 }
 
 
-//return username without spaces
 function returnNameWithoutSpaces(name) {
     let splitName = name.split(' ');
     let nameWithoutSpaces = '';

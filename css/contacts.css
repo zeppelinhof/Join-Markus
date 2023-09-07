@@ -10,10 +10,6 @@ body {
     }
 }
 
-
-
-/* default */
-
 .contacts-d-none {
     display: none !important;
 }
@@ -33,9 +29,6 @@ body {
     }
 }
 
-
-
-/* contacts loading sreen */
 .contacts-loading-sreen {
     position: absolute;
     top: 0;
@@ -45,9 +38,6 @@ body {
     background-color: rgba(0 0 0 / 20%);
     z-index: 99;
 }
-
-
-/* contact tobar only window */
 
 .contact-topbar-area {
     display: flex;
@@ -71,10 +61,6 @@ body {
         position: relative;
     }
 }
-
-
-
-/* contacts list */
 
 .contacts {
     width: 456px;
@@ -143,10 +129,6 @@ body {
     }
 }
 
-
-
-/* button new contact */
-
 .btn-new-contact-area {
     position: sticky;
     top: 0;
@@ -206,10 +188,6 @@ body {
     object-fit: contain;
 }
 
-
-
-/* contacts content */
-
 #contacts-list {
     display: flex;
     flex-direction: column;
@@ -223,10 +201,6 @@ body {
     }
 }
 
-
-
-/* letter separator */
-
 .contacts-letter-headline {
     font-size: 20px;
     font-weight: 400;
@@ -236,10 +210,6 @@ body {
 .contacts-separator {
     border: 1px solid lightgray;
 }
-
-
-
-/* contact card */
 
 .contact-card {
     display: flex;
@@ -290,10 +260,6 @@ body {
         color: white !important;
     }
 }
-
-
-
-/* contact data */
 
 .contact-data {
     display: flex;
@@ -351,8 +317,6 @@ body {
         margin-left: 16px;
     }
 }
-
-/* contact data headline */
 
 .contact-data-headline {
     display: flex;
@@ -421,8 +385,6 @@ body {
     }
 }
 
-/* contact data content */
-
 #contact-data-content {
     display: flex;
     flex-direction: column;
@@ -448,7 +410,6 @@ body {
     }
 }
 
-/* contact data name */
 .contact-data-name-area {
     display: flex;
     align-items: center;
@@ -508,7 +469,6 @@ body {
         font-size: 30px;
     }
 }
-
 
 .contacts-point-menu-d-none {
     display: flex !important;
@@ -617,8 +577,6 @@ body {
     height: 24px;
     width: 24px;
 }
-
-/* contact data info */
 
 .contact-data-info-area {
     display: flex;
