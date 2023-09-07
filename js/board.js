@@ -1,9 +1,8 @@
-/*-------------------------------------------Uebergreifende Variablen-------------------------------------------*/
+/*-------------------------------------------global variables-------------------------------------------*/
 let allTasks = [];
 let currentDraggedElement;
 let currentOpenCard;
-
-// ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH (mit Clemens)-----------
+// ------------------------------------function loaded in the body ----------------------------------------
 async function boardInit() {
     await includeHTML();
     userInitials();
@@ -12,10 +11,7 @@ async function boardInit() {
     loadUsers();
     await loadTasks();
 }
-
-
-
-/*--------------------------funktion die das komplette tasks aus dem Backend ausließt--------------------------*/
+/*--------------------------function that exits the complete tasks from the backend--------------------------*/
 async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
@@ -25,8 +21,7 @@ async function refreshData() {
     await emptyContainer();
     loopAllTasks();
 }
-
-//------------------------------Funktion die alle Container nach einem Reloaud leert------------------------------
+//------------------------------function that empties all containers after a reloaud------------------------------
 async function emptyContainer() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -34,7 +29,6 @@ async function emptyContainer() {
     document.getElementById('DoneContainer').innerHTML = '';
     loopAllTasks();
 }
-// ---------VERÄNDERTER CODE NACH UNSEREM GESPRÄCH ENDE -----------
 /*-------------------------------------------Open and Close function-------------------------------------------*/
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
@@ -68,8 +62,7 @@ function getSubtasksCheckboxState() {
     const stringArray = newStates.map(value => String(value));
     return (stringArray);
 }
-
-/*----------------------------------------Lädt alle Karten mit Aufgaben----------------------------------------*/
+/*----------------------------------------loads all cards with tasks----------------------------------------*/
 function loopAllTasks() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -91,7 +84,7 @@ function loopAllTasks() {
         }
     }
 }
-/*----------------------Checkt ob die Kontainer leer sind oder Inhalt haben ----------------------*/
+/*----------------------Checks if the containers are empty or have contents----------------------*/
 function checkEmptyContainer() {
     clearNoTasToDO();
     clearNoTaskProgress();
@@ -138,8 +131,7 @@ function clearNoTaskDone() {
         document.getElementById('noDone').style.display = '';
     }
 }
-
-/*-------------------------------------------lädt den Inhalt der Gesamten Karte-------------------------------------------*/
+/*-------------------------------------------Loads the content of the whole map-------------------------------------------*/
 function loadAllTask(category, title, description, column, q, priority, date, assigned) {
     const priorityIMG = imagePriority(priority);
 
@@ -180,11 +172,9 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                 </div>
             </div>`;
 
-
     assingAllTasks(column, cardHTML, q);
 }
-
-//---------------------------------------------------------------darstellung der Prioimages---------------------------------------------------------------
+//---------------------------------------------------------------display of the PrioImages---------------------------------------------------------------
 function imagePriority(priority) {
     let priorityIMG = '';
 
@@ -197,8 +187,7 @@ function imagePriority(priority) {
     }
     return priorityIMG;
 }
-
-//---------------------------------------------------Zuordnung der Karten in die jeweiligen Kontainer---------------------------------------------------
+//---------------------------------------------------assigns the maps to the respective containers according to their status---------------------------------------------------
 function assingAllTasks(column, cardHTML, q) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
@@ -218,13 +207,11 @@ function assingAllTasks(column, cardHTML, q) {
     loadInitials(q);
     loadAllTaskNumber(q);
 }
-
-//----------------------------------------Darstellung der Initialien in die Karten im Hauptbild----------------------------------------
+//----------------------------------------displaying the initials in the cards in the main image----------------------------------------
 function loadInitials(q) {
     const user = allTasks[q]['selectAssignedTo'];
     const targetElementId = `frame1_${q}`;
 
-    // Leeren Sie den Container, bevor neue Initialen hinzugefügt werden
     document.getElementById(targetElementId).innerHTML = '';
 
     for (let index = 0; index < user.length; index++) {
@@ -236,8 +223,7 @@ function loadInitials(q) {
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColor(index);
     }
 }
-
-//------------------------------------------Funktion die Detailcard aufruft und die Namen zuweist------------------------------------------
+//------------------------------------------function that calls Detailcard and assigns the names to it------------------------------------------
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
     loadAssigned(q);
     loadSubtasks(q);
@@ -268,8 +254,7 @@ function loadAssigned(q) {
         document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
     }
 }
-
-//----------------------------------------------------ab hier werden die Subtasks geladen----------------------------------------------------
+//----------------------------------------------------from here the subtasks are loaded----------------------------------------------------
 function loadSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML = '';
     const subtask = allTasks[q]['subtasks'];
@@ -301,7 +286,6 @@ function updateSubTaskCheckBoxState(element) {
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
 }
-
 /*------------------------------------------------Drag and Drop------------------------------------------------*/
 function allowDrop(ev) {
     ev.preventDefault();
@@ -326,28 +310,25 @@ async function moveTo(column, q) {
         assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
     }
 }
-
-/*-----------------------------------Suchfunktion---------------------------------*/
+/*-----------------------------------SearchFunction---------------------------------*/
 document.addEventListener('DOMContentLoaded', function () {
     // Füge den Event-Listener hinzu, sobald das DOM geladen ist
     document.getElementById('searchInput').addEventListener('input', loopAllTasks);
 });
-
-//--------------------------------------Löschfunktion der Karte--------------------------------------
+//--------------------------------------Delete function of the card-------------------------------------
 async function deleteCard() {
     document.getElementById('detailCard').style.display = 'none';
     await deleteItem('tasks', currentOpenCard);
     location.reload();
 }
-
-//----------------------------------------------------Darstellung der Aufgaben auf der kleinen Karte----------------------------------------------------
+//---------------------------------------------------Display of the tasks on the small card----------------------------------------------------
 function loadAllTaskNumber(q) {
     let subtaskState = allTasks[q]['subtaskstate'];
     let completedTasks = subtaskState.filter(status => status === 'true').length;
     let unfinishedTasks = subtaskState.length;
-    document.getElementById(`allTasksNumber_${q}`).textContent = unfinishedTasks; // Anzahl der erledigten Aufgaben
+    document.getElementById(`allTasksNumber_${q}`).textContent = unfinishedTasks; // Anzahl der unerledigten Aufgaben
     document.getElementById(`TasksNumber_${q}`).textContent = completedTasks; // Anzeige der erledigten Aufgaben
-    // Übergeben Sie die Anzahl der erledigten Aufgaben an die Fortschrittsleistenaktualisierung
+
     updateProgressBar(q, completedTasks);
 }
 
@@ -361,8 +342,7 @@ function updateProgressBar(q) {
 
     progressBar.style.width = `${percent}%`;
 }
-
-//--------------------------------------------Hinzufügen addTask über + Button--------------------------------------------
+//--------------------------------------------Add addTask via + button--------------------------------------------
 
 async function addFeedback(columnStatus) {
     boardStatus = columnStatus
