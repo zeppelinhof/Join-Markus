@@ -10,6 +10,21 @@ body {
     }
 }
 
+.contact-slide-animation {
+    animation-duration: 0.5s;
+    animation-name: contact-slidein;
+}
+
+@keyframes contact-slidein {
+    from {
+        margin-left: 50vw;
+    }
+
+    to {
+        margin-left: 0;
+    }
+}
+
 .contacts-d-none {
     display: none !important;
 }
