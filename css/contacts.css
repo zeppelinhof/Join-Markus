@@ -14,21 +14,6 @@ body {
     display: none !important;
 }
 
-/* .contact-slide-animation {
-    animation-duration: 0.5s;
-    animation-name: contact-slidein;
-}
-
-@keyframes contact-slidein {
-    from {
-        margin-left: 50vw;
-    }
-
-    to {
-        margin-left: 0;
-    }
-} */
-
 .contacts-loading-sreen {
     position: absolute;
     top: 0;
