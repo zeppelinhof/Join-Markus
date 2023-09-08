@@ -150,6 +150,12 @@ function userInitials() {
 }
 
 
+async function initHelp(){
+    await includeHTML();
+    userInitials();
+}
+
+
 function getInitials(contact) {
     initials = contact.charAt(0);
     if (contact.match(' ')) {

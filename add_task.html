@@ -58,7 +58,7 @@
                                 <span>Select Contact</span>
                                 <div class="circleAroundDownArrow" id="downarrow"
                                     onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
-                                    <img src="assets/img/arrow_drop_down.svg">
+                                    <img src="./assets/img/arrow_drop_down.svg">
                                 </div>
                             </div>
                             <div class="contentSearchContact d-none" id="contentSearchContact">
@@ -66,7 +66,7 @@
                                     <input type="text" placeholder="Search" id="searchContactField">
                                     <div class="circleAroundUpArrow d-none" id="uparrow"
                                         onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
-                                        <img src="assets/img/arrow_drop_up.svg">
+                                        <img src="./assets/img/arrow_drop_up.svg">
                                     </div>
                                 </div>
                                 <div style="position: relative;">
@@ -79,7 +79,7 @@
                                             Add new contact
                                         </div>
                                         <div>
-                                            <img src="../assets/img/person_add.svg">
+                                            <img src="./assets/img/person_add.svg">
                                         </div>
                                     </div>
                                 </div>
@@ -101,25 +101,25 @@
                             <label class="form-label">Prio</label>
                             <div class="all-buttons-prio" id="all-buttons-prio"
                                 onmousedown="setBlueBorder('all-buttons-prio', 'prioInvalid');">
-                                <div id="btn_urgent" class="button-prio cursor-pointer" onclick="colorRed();">Urgent
+                                <div id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
                                     <div class="containArrow">
                                         <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
-                                            src="assets/img/Capa_2_white.svg">
-                                        <img id="arrowRedUrgent" class="arrowRedUrgent" src="assets/img/Capa_2.svg">
+                                            src="./assets/img/Capa_2_white.svg">
+                                        <img id="arrowRedUrgent" class="arrowRedUrgent" src="./assets/img/Capa_2.svg">
                                     </div>
                                 </div>
-                                <div id="btn_medium" class="button-prio cursor-pointer" onclick="colorOrange();">Medium
+                                <div id="btn_medium" class="button-prio" onclick="colorOrange();">Medium
                                     <div class="containArrow">
                                         <img id="arrowWhiteMedium" class="arrowWhiteMedium"
-                                            src="assets/img/Prio_media_white.svg">
+                                            src="./assets/img/Prio_media_white.svg">
                                         <img id="arrowOrangeMedium" class="arrowOrangeMedium"
-                                            src="assets/img/Prio_media.svg">
+                                            src="./assets/img/Prio_media.svg">
                                     </div>
                                 </div>
-                                <div id="btn_low" class="button-prio cursor-pointer" onclick="colorGreen();">Low
+                                <div id="btn_low" class="button-prio" onclick="colorGreen();">Low
                                     <div class="containArrow">
-                                        <img id="arrowWhiteLow" class="arrowWhiteLow" src="assets/img/Capa_1_white.svg">
-                                        <img id="arrowGreenLow" class="arrowGreenLow" src="assets/img/Capa_1.svg">
+                                        <img id="arrowWhiteLow" class="arrowWhiteLow" src="./assets/img/Capa_1_white.svg">
+                                        <img id="arrowGreenLow" class="arrowGreenLow" src="./assets/img/Capa_1.svg">
                                     </div>
                                 </div>
                                 <div id="prioStatusAsString" style="display: none;"></div>
@@ -173,7 +173,7 @@
                                     placeholder="Add new subtask" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2" id="subtaskInputfield">
                                 <img id="add_symbol" class="input-group-text white-background cursor-pointer"
-                                    src="assets/img/add_black.svg" onclick="addSubtask()">
+                                    src="./assets/img/add_black.svg" onclick="addSubtask()">
                             </div>
                             <div class="invalidMessage d-none" id="subtaskInvalid">This field is required.</div>
                             <div class="selectedSubtasks bigger-area-mobile" id="selectedSubtasks"></div>
@@ -182,11 +182,11 @@
                             <button class="btn btn-outline-dark button-clear hide-mobile" onclick="resetForm();"
                                 onmouseover="remove_d_none('blue_x'); add_d_none('black_x');"
                                 onmouseleave="add_d_none('blue_x'); remove_d_none('black_x');">Clear<img id="black_x"
-                                    src="assets/img/Vector.svg"> <img id="blue_x" src="assets/img/Vector_blue.svg"
+                                    src="./assets/img/Vector.svg"> <img id="blue_x" src="./assets/img/Vector_blue.svg"
                                     class="d-none"></button>
                             <div>
                                 <button class="btn btn-outline-dark button-create-task" onclick="custValidation();"
-                                    id="buttonCreate">Create Task <img src="assets/img/check.svg"></button>
+                                    id="buttonCreate">Create Task <img src="./assets/img/check.svg"></button>
                             </div>
                         </div>
                     </div>
