@@ -87,7 +87,7 @@ function contactToTaskClickName(i, user) {
         add_d_none(`check_filled${i}`);
         remove_d_none(`check_empty${i}`);
         document.getElementById(`flexCheckDefault${i}`).checked = false;
-        deleteContact(user);
+        deleteContactTask(user);
     }
     else {
         // Create Circles of selected users below list
@@ -109,7 +109,7 @@ function contactToTaskClickCheckbox(i, user) {
         drawContactCirclesBelow();
     }
     else {
-        deleteContact(user);
+        deleteContactTask(user);
     }
 }
 
@@ -132,7 +132,7 @@ function getInitials(contact) {
     return initials;
 }
 
-function deleteContact(contact) {
+function deleteContactTask(contact) {
     for (let i = 0; i < contactsInTask.length; i++) {
         const currentContact = contactsInTask[i];
 
