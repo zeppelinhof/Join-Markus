@@ -857,7 +857,7 @@
 
 @media (max-width: 1444px) {
     .topbar-area {
-        width: 100%;
+        max-width: 100%;
     }
 
     .bodyContainer {
@@ -873,14 +873,11 @@
     .boardContainer {
         width: 100%;
         gap: 12px;
+        height: auto;
     }
 }
 
 @media (max-width: 1200px) {
-    .sideBarBoard {
-        width: 100%;
-    }
-
     .boardContainer {
         display: flex;
         flex-wrap: wrap;
@@ -946,6 +943,10 @@
 }
 
 @media (max-width: 900px) {
+    .sideBarBoard {
+        width: 100%;
+    }
+
     .bodyContainer {
         height: 76vh;
     }
@@ -983,5 +984,9 @@
     .frame20 {
         bottom: 20px;
         right: 20px;
+    }
+
+    #searchInputMobile {
+        width: 215px !important;
     }
 }
