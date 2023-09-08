@@ -14,7 +14,7 @@ body {
     display: none !important;
 }
 
-.contact-slide-animation {
+/* .contact-slide-animation {
     animation-duration: 0.5s;
     animation-name: contact-slidein;
 }
@@ -27,7 +27,7 @@ body {
     to {
         margin-left: 0;
     }
-}
+} */
 
 .contacts-loading-sreen {
     position: absolute;
@@ -658,7 +658,7 @@ body {
     z-index: 2;
     animation-duration: 4s;
     animation-name: moveUp;
-    animation-delay: 500ms;
+    animation-delay: 250ms;
     height: 64px;
     width: 303px;
     display: flex;
@@ -682,7 +682,7 @@ body {
         bottom: -80px;
         animation-duration: 4s;
         animation-name: moveUp;
-        animation-delay: 500ms;
+        animation-delay: 250ms;
     }
 
     @keyframes moveUp {

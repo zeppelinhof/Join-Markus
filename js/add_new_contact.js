@@ -78,7 +78,7 @@ async function loadingScreen() {
         setTimeout(() => {
             loadingScreen.classList.add('contacts-d-none');
         }, 5000);
-    } catch(e) {
+    } catch (e) {
         return;
     }
 }
@@ -88,9 +88,10 @@ async function loadingScreen() {
 async function showNewContactOrInitUsers() {
     try {
         showNewContact();
-    } catch(e) {
+    } catch (e) {
         await loadUsers();
         openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
+        addNewContactClear();
     }
 }
 
