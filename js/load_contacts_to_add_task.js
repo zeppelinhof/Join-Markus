@@ -108,6 +108,9 @@ function contactToTaskClickCheckbox(i, user) {
         contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
         drawContactCirclesBelow();
     }
+    else {
+        deleteContact(user);
+    }
 }
 
 function drawContactCirclesBelow() {
