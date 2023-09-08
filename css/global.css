@@ -163,6 +163,12 @@ body {
     z-index: 1;
 }
 
+.topbar-area *,
+::after,
+::before {
+    box-sizing: unset !important;
+}
+
 @media(max-width: 900px) {
     .topbar-area {
         max-width: 100%;

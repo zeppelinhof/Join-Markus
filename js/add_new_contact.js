@@ -47,12 +47,12 @@ function renderEditContact(i) {
 
 /* added a new contact to users[] */
 async function addNewContact() {
-    let loadingScreen = document.getElementById('contacts-loading-sreen');
+    loadingScreen();
+
     let inputName = document.getElementById('add-new-name').value;
     let inputEmail = document.getElementById('add-new-email').value;
     let inputPhone = document.getElementById('add-new-phone').value;
 
-    loadingScreen.classList.remove('contacts-d-none');
 
     users.push({
         name: inputName,
@@ -61,16 +61,38 @@ async function addNewContact() {
         phone: inputPhone
     });
 
-    
+
     [users, currentContactIndex] = sortUsers();
 
     await setItem('users', JSON.stringify(users))
 
-    showNewContact();
+    await showNewContactOrInitUsers();
+}
 
-    setTimeout(() => {
-        loadingScreen.classList.add('contacts-d-none');
-    }, 4000);
+
+/* a transparent screen on the contacts.html */
+async function loadingScreen() {
+    try {
+        let loadingScreen = document.getElementById('contacts-loading-sreen');
+        loadingScreen.classList.remove('contacts-d-none');
+        setTimeout(() => {
+            loadingScreen.classList.add('contacts-d-none');
+        }, 5000);
+    } catch (e) {
+        return;
+    }
+}
+
+
+/* show new contact on contatcts.html or add_task.html */
+async function showNewContactOrInitUsers() {
+    try {
+        showNewContact();
+    } catch (e) {
+        await loadUsers();
+        openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
+        addNewContactClear();
+    }
 }
 
 
@@ -103,7 +125,7 @@ function addNewContactShowSlideBox(text) {
     setTimeout((() => {
         slideBox.classList.add('contacts-d-none');
     }), 6000);
-    
+
 }
 
 
@@ -144,7 +166,7 @@ async function editContact() {
 
 
 /* deleted the current contact */
-async function deleteContact(i=currentContactIndex, openFalse = true) {
+async function deleteContact(i = currentContactIndex, openFalse = true) {
     let loadingScreen = document.getElementById('contacts-loading-sreen');
     let windowSize = window.matchMedia('(max-width: 1050px)');
     users.splice(i, 1);
