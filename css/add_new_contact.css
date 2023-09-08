@@ -86,13 +86,13 @@
 
 @media(max-height: 760px) {
     .add-new-contact-area {
-        width: 100dvw;
+        height: 100dvh;
     }
 }
 
 @media(max-width: 396px) {
     .add-new-contact-area {
-        height: 100dvh;
+        width: 100dvw;
     }
 }
 
