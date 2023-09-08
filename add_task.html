@@ -27,7 +27,8 @@
 
 <body onload="initAddTask()">
 
-    <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML"></div>
+    <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML">
+    </div>
     <div w3-include-html="templates/sidebar_template.html"></div>
     <div class="outer">
         <div w3-include-html="templates/topbar_template.html"></div>
@@ -38,13 +39,13 @@
                     <div class="left-side-of-panel">
                         <div class="property">
                             <label for="title" class="form-label">Title</label>
-                            <input id="title" type="text" class="form-control height-48px" placeholder="Enter a title"
+                            <input id="title" type="text" class="form-control height-48px cursor-pointer" placeholder="Enter a title"
                                 onkeypress="setBlueBorder('title', 'titleInvalid');">
                             <div class="invalidMessage d-none" id="titleInvalid">This field is required.</div>
                         </div>
                         <div class="property">
                             <label class="form-label">Description</label>
-                            <textarea id="description" class="form-control" placeholder="Enter a Description"
+                            <textarea id="description" class="form-control cursor-pointer" placeholder="Enter a Description"
                                 id="floatingTextarea" onkeypress="setBlueBorder('description', 'descriptionInvalid');"
                                 style="height: 100px"></textarea>
                             <div class="invalidMessage d-none" id="descriptionInvalid">This field is required.</div>
@@ -100,14 +101,14 @@
                             <label class="form-label">Prio</label>
                             <div class="all-buttons-prio" id="all-buttons-prio"
                                 onmousedown="setBlueBorder('all-buttons-prio', 'prioInvalid');">
-                                <div id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
+                                <div id="btn_urgent" class="button-prio cursor-pointer" onclick="colorRed();">Urgent
                                     <div class="containArrow">
                                         <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
                                             src="assets/img/Capa_2_white.svg">
                                         <img id="arrowRedUrgent" class="arrowRedUrgent" src="assets/img/Capa_2.svg">
                                     </div>
                                 </div>
-                                <div id="btn_medium" class="button-prio" onclick="colorOrange();">Medium
+                                <div id="btn_medium" class="button-prio cursor-pointer" onclick="colorOrange();">Medium
                                     <div class="containArrow">
                                         <img id="arrowWhiteMedium" class="arrowWhiteMedium"
                                             src="assets/img/Prio_media_white.svg">
@@ -115,7 +116,7 @@
                                             src="assets/img/Prio_media.svg">
                                     </div>
                                 </div>
-                                <div id="btn_low" class="button-prio" onclick="colorGreen();">Low
+                                <div id="btn_low" class="button-prio cursor-pointer" onclick="colorGreen();">Low
                                     <div class="containArrow">
                                         <img id="arrowWhiteLow" class="arrowWhiteLow" src="assets/img/Capa_1_white.svg">
                                         <img id="arrowGreenLow" class="arrowGreenLow" src="assets/img/Capa_1.svg">
@@ -168,23 +169,25 @@
                             <div class="property-name">Subtasks</div>
                             <div class="input-group" id="subtask_wrapper"
                                 onmousedown="setBlueBorder('subtask_wrapper', 'subtaskInvalid');">
-                                <input type="text" class="form-control border-right-white height-48px"
+                                <input type="text" class="form-control border-right-white height-48px cursor-pointer"
                                     placeholder="Add new subtask" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2" id="subtaskInputfield">
                                 <img id="add_symbol" class="input-group-text white-background cursor-pointer"
                                     src="assets/img/add_black.svg" onclick="addSubtask()">
                             </div>
                             <div class="invalidMessage d-none" id="subtaskInvalid">This field is required.</div>
-                            <div class="selectedSubtasks" id="selectedSubtasks"></div>
+                            <div class="selectedSubtasks bigger-area-mobile" id="selectedSubtasks"></div>
                         </div>
-                        <div class="buttons_clear_create">
+                        <div class="buttons_clear_create fixed-mobile"">
                             <button class="btn btn-outline-dark button-clear hide-mobile" onclick="resetForm();"
                                 onmouseover="remove_d_none('blue_x'); add_d_none('black_x');"
                                 onmouseleave="add_d_none('blue_x'); remove_d_none('black_x');">Clear<img id="black_x"
                                     src="assets/img/Vector.svg"> <img id="blue_x" src="assets/img/Vector_blue.svg"
                                     class="d-none"></button>
-                            <button class="btn btn-outline-dark button-create-task" onclick="custValidation();"
-                                id="buttonCreate">Create Task <img src="assets/img/check.svg"></button>
+                            <div>
+                                <button class="btn btn-outline-dark button-create-task" onclick="custValidation();"
+                                    id="buttonCreate">Create Task <img src="assets/img/check.svg"></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,7 +195,8 @@
         </div>
     </div>
 
-    <!-- <script>
+    <!-- Search contacts by typing letters in field. Please not delete. -->
+    <script>
         const wrapper = document.getElementById('wrapper');
         searchInp = document.getElementById('searchContactField');
         selectAssignedTo = document.getElementById('selectAssignedTo');
@@ -214,7 +218,7 @@
                 }
             }
         });
-    </script> -->
+    </script>
 
 </body>
 
