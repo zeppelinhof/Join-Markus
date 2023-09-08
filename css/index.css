@@ -400,6 +400,11 @@ input:focus {
     width: 786px;
     padding: 18px 28px;
   }
+
+  .backToLogin2 {
+    left: 41px;
+    top: 43px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -436,6 +441,10 @@ input:focus {
     right: 53px;
   }
 
+  .animationOverlay {
+    display: none;
+  }
+
   .animationOverlayMobile {
     position: absolute;
     z-index: 999;
@@ -455,7 +464,7 @@ input:focus {
 
   @keyframes greetingMobile {
     0% {
-      display: block;
+      display: flex;
       opacity: 100%;
     }
 
