@@ -193,11 +193,11 @@ function addSubtask() {
                     <input class="inputChangeSubtask d-none" id="rawDataChange${subtaskNumber}" type="text" value="${subtaskInputfield}">
                 </div>                              
                 <div class="pencil-bin d-none" id="pencil-bin${subtaskNumber}">
-                    <img src="../assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
+                    <img src="./assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
                         onclick="remove_d_none('rawDataChange${subtaskNumber}'); add_d_none('rawData${subtaskNumber}'); add_d_none('pencil${subtaskNumber}'); remove_d_none('submit${subtaskNumber}');">
                     <div class="pencil-bin-separator"></div>
-                    <img src="../assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
-                    <img src="../assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
+                    <img src="./assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
+                    <img src="./assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
                         onclick="saveSubtaskChanges('rawDataChange${subtaskNumber}', 'rawData${subtaskNumber}', '${subtaskNumber}'); 
                         add_d_none('rawDataChange${subtaskNumber}'); remove_d_none('rawData${subtaskNumber}'); 
                         remove_d_none('pencil${subtaskNumber}'); add_d_none('submit${subtaskNumber}')">                                        

@@ -37,6 +37,7 @@ function resetForm() {
 }
 
 function fillAssignedTo() {
+    document.getElementById('selectAssignedTo').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let user = users[i].name;
         document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);

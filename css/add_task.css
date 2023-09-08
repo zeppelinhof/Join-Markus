@@ -131,12 +131,6 @@ li:hover {
     gap: 25px;
 }
 
-@media(max-width: 1100px), (max-height: 900px) {
-    .buttons_clear_create {
-        margin-bottom: 1em;
-    }
-}
-
 .checkbox-modified {
     z-index: 0;
 }
@@ -319,7 +313,7 @@ li:hover {
 }
 
 .input-group {
-    border-radius: 10px;
+    border-radius: 0;
 }
 
 .select-btn {
@@ -519,6 +513,13 @@ ul {
     }
 }
 
+@media(max-width: 1100px), (max-height: 900px) {
+    .buttons_clear_create {
+        margin-bottom: 1em;
+    }
+}
+
+
 @media (max-width: 1200px) {
     .outer-gray-background {
         height: 100vh;
@@ -588,7 +589,8 @@ ul {
         height: 0 !important;
     }
 
-    .form-label, .property-name {
+    .form-label,
+    .property-name {
         display: flex;
         justify-content: flex-start;
     }
@@ -600,5 +602,17 @@ ul {
 
     .property {
         width: 303px;
+    }
+
+    .fixed-mobile {
+        position: fixed;
+        bottom: 65px;
+        width: 85%;
+        background-color: #F6F7F8;
+        padding-bottom: 12px;
+    }
+
+    .bigger-area-mobile{
+        height: 120px !important;
     }
 }
