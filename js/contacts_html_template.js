@@ -32,9 +32,9 @@ function getContactDataHTML(i, colorStyle, firstLetters, name, email, phone) {
                         <div class="contact-data-name-edit"></div>
                         <span>Edit</span>
                     </div>
-                    <div class="contact-data-name-edit-del">
+                    <div class="contact-data-name-edit-del" onclick="deleteContact(${i}, false)">
                         <div class="contact-data-name-delete"></div>
-                        <span onclick="deleteContact(${i}, false)">Delete</span>
+                        <span>Delete</span>
                     </div>
                 </div>
             </div>

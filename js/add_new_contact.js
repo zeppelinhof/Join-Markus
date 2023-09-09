@@ -77,7 +77,7 @@ async function loadingScreen() {
         loadingScreen.classList.remove('contacts-d-none');
         setTimeout(() => {
             loadingScreen.classList.add('contacts-d-none');
-        }, 5000);
+        }, 2000);
     } catch (e) {
         return;
     }

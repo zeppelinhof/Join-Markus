@@ -52,7 +52,7 @@ body {
 
 @media(max-width: 1130px) {
     .contact-windows {
-        height: calc(100vh - 80px - 80px);
+        height: calc(100dvh - 80px - 80px);
     }
 }
 
@@ -398,6 +398,13 @@ body {
     }
 }
 
+/* Test------------------------------------------------------------ */
+/* .contact-windows:has(.contacts) {
+    #contact-data-content {
+        width: 20px !important;
+    }
+} */
+
 @media(max-width: 1200px) {
     #contact-data-content {
         width: 420px;
@@ -656,9 +663,9 @@ body {
     right: -320px;
     bottom: 32px;
     z-index: 2;
-    animation-duration: 4s;
+    animation-duration: 2s;
     animation-name: moveUp;
-    animation-delay: 250ms;
+    animation-delay: 150ms;
     height: 64px;
     width: 303px;
     display: flex;
@@ -680,9 +687,9 @@ body {
     .contact-added-slideBox {
         right: calc(50vw - 151.5px);
         bottom: -80px;
-        animation-duration: 4s;
+        animation-duration: 2s;
         animation-name: moveUp;
-        animation-delay: 250ms;
+        animation-delay: 150ms;
     }
 
     @keyframes moveUp {

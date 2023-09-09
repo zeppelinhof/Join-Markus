@@ -84,7 +84,7 @@
     }
 }
 
-@media(max-height: 760px) {
+@media(max-height: 760px) and (max-width: 396px) {
     .add-new-contact-area {
         height: 100dvh;
     }
