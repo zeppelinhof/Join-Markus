@@ -51,7 +51,7 @@ function getContactDataHTML(i, colorStyle, firstLetters, name, email, phone) {
         </div>
 
         <button class="btn-menu-contact" onclick="openEditContactPointMenu(${i}); notToClose(event)">
-            <img src="./assets/img/point_menu.png" alt="">
+            <img class="btn-menu-contact-img" src="./assets/img/point_menu.png" alt="">
         </button>
     `;
 }
