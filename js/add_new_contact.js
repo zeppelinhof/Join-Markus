@@ -124,7 +124,7 @@ function addNewContactShowSlideBox(text) {
 
     setTimeout((() => {
         slideBox.classList.add('contacts-d-none');
-    }), 6000);
+    }), 1500);
 
 }
 

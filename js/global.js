@@ -281,6 +281,7 @@ function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex
     }
     else if (l == alphabetUserNameWithoutSpace.length - 1) {
         alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
+        lastAddedContactIndex = k + 1;
         outOfFunctionFirstLoop = true;
         outOfFunctionSecondLoop = true;
     }

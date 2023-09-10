@@ -45,7 +45,7 @@ function openContactData(i) {
     let contactCard = document.getElementById(`contactCard-${i}`);
     let conatacts = document.getElementById('contacts');
     let contactData = document.getElementById('contact-data');
-    let windowSize = window.matchMedia('(max-width: 1130px)');
+    let windowSize = window.matchMedia('(max-width: 1350px)');
 
     if (contactCard.classList.contains('contact-card-click')) {
         contactCard.classList.remove('contact-card-click');
@@ -61,27 +61,6 @@ function openContactData(i) {
         renderContactData(i);
     }
 }
-
-
-/* switch between contactlist and contactdata if media matches */
-window.addEventListener('resize', () => {
-    let conatacts = document.getElementById('contacts');
-    let contactData = document.getElementById('contact-data');
-    let contactDataContent = document.getElementById('contact-data-content');
-    let windowSize = window.matchMedia('(max-width: 1130px)');
-
-    if (contactDataContent.childNodes.length == 1) {
-        contactDataContent.innerHTML = '';
-    }
-
-    if (windowSize.matches && contactDataContent.innerHTML > '') {
-        conatacts.classList.add('contact-data-d-none');
-        contactData.classList.remove('contact-data-d-none');
-    } else {
-        conatacts.classList.remove('contact-data-d-none');
-        contactData.classList.add('contact-data-d-none');
-    }
-});
 
 
 /* close the the clicked contactdatas */
@@ -164,3 +143,28 @@ function closeEditContactPointMenu() {
 function notToClose(event) {
     event.stopPropagation();
 }
+
+
+/* ----------- */
+/* media query */
+/* ----------- */
+
+/* switch between contactlist and contactdata if media matches */
+window.addEventListener('resize', () => {
+    let contacts = document.getElementById('contacts');
+    let contactData = document.getElementById('contact-data');
+    let contactDataContent = document.getElementById('contact-data-content');
+    let windowSize = window.matchMedia('(max-width: 1350px)');
+
+    if (contactDataContent.childNodes.length == 1) {
+        contactDataContent.innerHTML = '';
+    }
+
+    if (windowSize.matches && contactDataContent.innerHTML > '') {
+        contacts.classList.add('contact-data-d-none');
+        contactData.classList.remove('contact-data-d-none');
+    } else {
+        contacts.classList.remove('contact-data-d-none');
+        contactData.classList.add('contact-data-d-none');
+    }
+});
