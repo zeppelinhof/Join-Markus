@@ -130,6 +130,13 @@ body {
     }
 }
 
+@media(max-width: 450px) {
+    .contacts-area {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
 .btn-new-contact-area {
     position: sticky;
     top: 0;
@@ -222,6 +229,8 @@ body {
 
 @media(max-width: 450px) {
     .contact-card {
+        padding-left: 8px;
+        padding-right: 8px;
         gap: 16px;
     }
 }
@@ -445,7 +454,7 @@ body {
     }
 }
 
-@media(max-width: 500px) {
+@media(max-width: 450px) {
     .contact-data-name-area {
         flex-direction: column;
         align-items: flex-start;
