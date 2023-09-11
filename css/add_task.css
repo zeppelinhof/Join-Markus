@@ -621,6 +621,14 @@ ul {
         padding-bottom: 12px;
     }
 
+    .fixed-mobile-card {
+        position: fixed;
+        bottom: -25px;
+        width: 85%;
+        background-color: white;
+        padding-bottom: 12px;
+    }
+
     .bigger-area-mobile{
         height: 120px !important;
     }
