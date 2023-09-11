@@ -126,8 +126,8 @@
                         </div>
                         <div class="property">
                             <div class="wrapper-category">
-                                <label for="">Category</label>
-                                <div class="select-btn" onclick="showContentCategory();" id="categoryId">
+                                <label class="form-label" for="">Category</label>
+                                <div class="select-btn form-control" onclick="showContentCategory();" id="categoryId">
                                     <span id="selectedCategory">Select task category</span>
                                     <div class=" circleAroundDownArrow" id="downarrow_cat"
                                         onclick="showContentCategory();">
@@ -148,7 +148,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li class="list-group-item padding-left-16"
+                                    <li class="list-group-item padding-left-16 display-flex"
                                         onclick="selectCategory(2); closeContentCategory();">
                                         <div class="list-item-display-flex">
                                             <div class="list-item-display-flex-icon-name" id="category2">Technical
@@ -160,9 +160,9 @@
                             <div class="invalidMessage d-none" id="categoryInvalid">This field is required.</div>
                         </div>
                         <div class="property">
-                            <div class="property-name">Subtasks</div>
+                            <label for="subtask_wrapper" class="form-label">Subtasks</label>
                             <div class="input-group" id="subtask_wrapper">
-                                <input type="text" class="form-control borderradius-10 height-48px cursor-pointer"
+                                <input type="text" class="form-control white-background borderradius-10 height-48px cursor-pointer"
                                     placeholder="Add new subtask" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2" id="subtaskInputfield">
                                 <img id="add_symbol" class="cursor-pointer"

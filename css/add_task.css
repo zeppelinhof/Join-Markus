@@ -138,7 +138,7 @@ li:hover {
 #subtask_wrapper img{
     position: absolute;
     top: calc(50% - 7px);
-    right: 10px;
+    right: 16px;
     z-index: 5;
 }
 
@@ -320,6 +320,10 @@ li:hover {
     border-top-right-radius: 10px;
 }
 
+.display-flex{
+    display: flex;
+}
+
 .input-group {
     border-radius: 0;
 }
@@ -461,7 +465,7 @@ ul {
 
 .dropdownAbsolutePositioned {
     position: absolute;
-    z-index: 1;
+    z-index: 6;
     border-radius: 10px;
 }
 
