@@ -101,6 +101,13 @@ let alphabet = [
     { 'number': 25, 'letter': 'z' },
 ];
 
+let sidebarNavElements = [
+    'summary',
+    'add_task',
+    'board',
+    'contacts'
+]
+
 
 async function loadTasks() {
     tasks = JSON.parse(await getItem('tasks'));
@@ -150,7 +157,7 @@ function userInitials() {
 }
 
 
-async function initHelp(){
+async function initHelp() {
     await includeHTML();
     userInitials();
 }
@@ -166,8 +173,73 @@ function getInitials(contact) {
 
 
 function linkPage(pageName) {
+    saveSidebarNavHighlights(pageName);
+
     window.location.href = pageName + ".html?name=" + encodeURIComponent(queryUserName());
 }
+
+
+
+/* ------------------------------------------------------------- */
+/*            highlighted side permanently on clicke             */
+/* ------------------------------------------------------------- */
+
+function initSidebarNavHighlighted() {
+    setTimeout((() => {
+        loadSidebarNavHighlights()
+    }), 250);
+}
+
+function setItemLocalStorage(key, value) {
+    localStorage.setItem(key, value)
+}
+
+function getItemLocalStorage(key) {
+    return localStorage.getItem(key);
+}
+
+function saveSidebarNavHighlights(pageName) {
+    setItemLocalStorage('pageName', pageName);
+    setItemLocalStorage('sidebar-t-highlighted', 'sidebar-t-highlighted')
+
+    for (let i = 0; i < sidebarNavElements.length; i++) {
+        const navElement = sidebarNavElements[i];
+
+        if (navElement == pageName) {
+            setItemLocalStorage(`sidebar-icon-${navElement}-highlighted`, `sidebar-icon-${navElement}-highlighted`);
+        }
+    }
+}
+
+function loadSidebarNavHighlights() {
+    let pageName = getItemLocalStorage('pageName');
+    let sidebarClickedIcon = '';
+    let sidebarClickedText = '';
+
+    for (let i = 0; i < sidebarNavElements.length; i++) {
+        const navElement = sidebarNavElements[i];
+
+        if (navElement == pageName) {
+            sidebarClickedText = getItemLocalStorage('sidebar-t-highlighted');
+            sidebarClickedIcon = getItemLocalStorage(`sidebar-icon-${navElement}-highlighted`);
+        }
+    }
+
+    document.getElementById(`sidebar-${pageName}`).classList.add(`${sidebarClickedText}`);
+    document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`${sidebarClickedIcon}`);
+}
+
+
+function removeSibebarNavHighlights() {
+    let pageName = getItemLocalStorage('pageName');
+
+    document.getElementById(`sidebar-${pageName}`).classList.add('sidebar-t-highlighted');
+    document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`sidebar-icon-${pageName}-highlighted`);
+}
+
+/* ------------------------------------------------------------- */
+/* ------------------------------------------------------------- */
+
 
 
 async function initInfoPage() {
