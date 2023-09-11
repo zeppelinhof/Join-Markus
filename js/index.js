@@ -161,14 +161,14 @@ function login() {
     const email = document.getElementById("inputEmail");
     const password = document.getElementById("inputPassword");
     const user = users.find(u => u.email == email.value && u.password == password.value);
-    const wrongPassword = users.find(u => u.email == email.value && u.password != password.value);
+    const wrongPasswordOrUser = users.find(u => u.email != email.value || u.password != password.value);
     const warning = document.getElementById("password_warning");
     const passwordTextbox = document.getElementById("inputPassword");
     if (user) {
         warning.classList.add('invisible');
         passwordTextbox.classList.remove('redBorder');
         window.location.href = "summary.html?name=" + encodeURIComponent(user['name']);
-    } else if (wrongPassword) {
+    } else if (wrongPasswordOrUser) {
         warning.classList.remove('invisible');
         passwordTextbox.classList.add('redBorder');
     } else {
