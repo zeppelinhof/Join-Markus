@@ -82,6 +82,7 @@ input {
 
 .property {
     padding-bottom: 24px;
+    width: 440px;
 }
 
 .list-item-display-flex {
