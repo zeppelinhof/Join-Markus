@@ -181,7 +181,7 @@ function linkPage(pageName) {
 
 
 /* ------------------------------------------------------------- */
-/*            highlighted side permanently on clicke             */
+/*      highlighted nav area sidebar permanently on clicke       */
 /* ------------------------------------------------------------- */
 
 function initSidebarNavHighlighted() {
