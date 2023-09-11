@@ -228,7 +228,6 @@ function assingAllTasks(column, cardHTML, q, category) {
     checkEmptyContainer();
     loadInitials(q);
     loadColorLabel(category, q);
-    //loadAllTaskNumber(q);
     subTaskCard(q);
 }
 //----------------------------------------displaying the initials in the cards in the main image----------------------------------------
