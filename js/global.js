@@ -181,13 +181,17 @@ function linkPage(pageName) {
 
 
 /* ------------------------------------------------------------- */
-/*            highlighted side permanently on clicke             */
+/*      highlighted nav area sidebar permanently on clicke       */
 /* ------------------------------------------------------------- */
 
 function initSidebarNavHighlighted() {
-    setTimeout((() => {
-        loadSidebarNavHighlights()
-    }), 305);
+    try {
+        setTimeout((() => {
+            loadSidebarNavHighlights()
+        }), 325);
+    } catch {
+        return;
+    }
 }
 
 function setItemLocalStorage(key, value) {
