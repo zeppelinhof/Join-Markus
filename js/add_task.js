@@ -307,7 +307,6 @@ function changeWhiteBackground(classname){
 function custValidation() {
 
     let valid = true;
-    //unsetValidationMessages();
 
     title = document.getElementById('title');
     if (title.value == '') {
