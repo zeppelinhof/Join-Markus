@@ -85,6 +85,10 @@ input {
     width: 440px;
 }
 
+.date-format::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+
 .list-item-display-flex {
     display: flex;
     justify-content: space-between;
