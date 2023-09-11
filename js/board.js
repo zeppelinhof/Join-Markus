@@ -11,6 +11,14 @@ async function boardInit() {
     loopAllTasks();
     await loadTasks();
 }
+
+async function renderInit() {
+    userInitials();
+    await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+    await loadUsers();
+    loopAllTasks();
+    await loadTasks();
+}
 /*--------------------------function that exits the complete tasks from the backend--------------------------*/
 async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
@@ -19,7 +27,7 @@ async function boardLoadTasks() {
 async function refreshData() {
     await boardLoadTasks();
     await emptyContainer();
-    loopAllTasks();
+    renderInit();
 }
 //------------------------------function that empties all containers after a reloaud------------------------------
 async function emptyContainer() {
@@ -27,7 +35,7 @@ async function emptyContainer() {
     document.getElementById('feedbackContainer').innerHTML = '';
     document.getElementById('inProgressContainer').innerHTML = '';
     document.getElementById('DoneContainer').innerHTML = '';
-    location.reload(loopAllTasks);
+    return loopAllTasks();
 }
 /*-------------------------------------------Open and Close function-------------------------------------------*/
 function closeDetailCard() {
@@ -142,14 +150,14 @@ function loadAllTask(category, title, description, column, q, priority, date, as
     const cardHTML = /*html*/ `
             <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
                 <div class='frame119'>
-                    <div class='labelsBoardCardlabel'>
+                    <div class='labelsBoardCardlabel' id="BoardCardLabel_${q}">
                         <p id="cardLabel">${category}</p>
                     </div>
                     <div class='frame114'>
-                        <div id='title'>${title}</div>
+                        <div id='boardTitle'>${title}</div>
                         <div id="content">${description}</div>
                     </div>
-                    <div id="progressBar">
+                    <div id="progressBar_${q}" class="prgBar">
                         <div id="progress-container">
                             <div id="bar_${q}" class="bar"></div>
                         </div>
@@ -176,7 +184,16 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                 </div>
             </div>`;
 
-    assingAllTasks(column, cardHTML, q);
+    assingAllTasks(column, cardHTML, q, category);
+}
+//----------------------------------------------------------Darstellung der Farben für cardLabel----------------------------------------------------------
+function loadColorLabel(category, q) {
+    if (category === 'Technical Task') {
+        document.getElementById(`BoardCardLabel_${q}`).classList.add('technicalTask');
+    }
+    if (category === 'User Story') {
+        document.getElementById(`BoardCardLabel_${q}`).classList.add('userStory');
+    }
 }
 //---------------------------------------------------------------display of the PrioImages---------------------------------------------------------------
 function imagePriority(priority) {
@@ -192,7 +209,7 @@ function imagePriority(priority) {
     return priorityIMG;
 }
 //---------------------------------------------------assigns the maps to the respective containers according to their status---------------------------------------------------
-function assingAllTasks(column, cardHTML, q) {
+function assingAllTasks(column, cardHTML, q, category) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
     const DoneContainer = document.getElementById('DoneContainer');
@@ -207,9 +224,12 @@ function assingAllTasks(column, cardHTML, q) {
     } else if (column === 'feedback') {
         feedBackContainer.innerHTML += cardHTML;
     }
+
     checkEmptyContainer();
     loadInitials(q);
-    loadAllTaskNumber(q);
+    loadColorLabel(category, q);
+    //loadAllTaskNumber(q);
+    subTaskCard(q);
 }
 //----------------------------------------displaying the initials in the cards in the main image----------------------------------------
 function loadInitials(q) {
@@ -323,9 +343,19 @@ document.addEventListener('DOMContentLoaded', function () {
 async function deleteCard() {
     document.getElementById('detailCard').style.display = 'none';
     await deleteItem('tasks', currentOpenCard);
-    location.reload();
+    renderInit();
 }
 //---------------------------------------------------Display of the tasks on the small card----------------------------------------------------
+function subTaskCard(q) {
+    const subtaskBoard = allTasks[q]['subtasks'];
+
+    if (subtaskBoard.length <= 0) {
+        document.getElementById(`progressBar_${q}`).style.display = 'none';
+    } else {
+        loadAllTaskNumber(q);
+    }
+}
+
 function loadAllTaskNumber(q) {
     let subtaskState = allTasks[q]['subtaskstate'];
     let completedTasks = subtaskState.filter(status => status === 'true').length;
