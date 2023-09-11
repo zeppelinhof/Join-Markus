@@ -1,3 +1,12 @@
+.technicalTask{
+    background-color:#1fd7c1; 
+    
+}
+
+.userStory{
+    background-color: #0038FF;
+}
+
 .top-sidebar-area {
     display: flex;
     flex-direction: row;
@@ -282,7 +291,6 @@
     gap: 10px;
     display: grid;
     transform: rotate(0deg);
-    background: #0038FF;
 }
 
 #cardLabel {
@@ -308,7 +316,7 @@
     display: grid;
 }
 
-#title {
+#boardTitle {
     width: 220px;
     height: 38px;
     font-family: 'Inter';
@@ -353,7 +361,7 @@
     border-radius: 16px;
 }
 
-#progressBar {
+.prgBar {
     width: 220px;
     height: 16px;
     display: flex;
