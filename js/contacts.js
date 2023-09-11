@@ -60,6 +60,8 @@ function openContactData(i) {
         }
         renderContactData(i);
     }
+
+    currentContactIndex = i;
 }
 
 
@@ -151,20 +153,23 @@ function notToClose(event) {
 
 /* switch between contactlist and contactdata if media matches */
 window.addEventListener('resize', () => {
+    let contactCard = document.getElementById(`contactCard-${currentContactIndex}`);
     let contacts = document.getElementById('contacts');
     let contactData = document.getElementById('contact-data');
     let contactDataContent = document.getElementById('contact-data-content');
     let windowSize = window.matchMedia('(max-width: 1350px)');
+    let flag = false;
 
-    if (contactDataContent.childNodes.length == 1) {
-        contactDataContent.innerHTML = '';
-    }
+    contactDataContent.childNodes.length == 1 ? contactDataContent.innerHTML = '' : null;
 
     if (windowSize.matches && contactDataContent.innerHTML > '') {
         contacts.classList.add('contact-data-d-none');
         contactData.classList.remove('contact-data-d-none');
+        flag = true;
     } else {
         contacts.classList.remove('contact-data-d-none');
         contactData.classList.add('contact-data-d-none');
     }
+
+    flag == true ? contactCard.classList.add('contact-card-click') : null;
 });
