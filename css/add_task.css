@@ -135,6 +135,13 @@ li:hover {
     z-index: 0;
 }
 
+#subtask_wrapper img{
+    position: absolute;
+    top: calc(50% - 7px);
+    right: 16px;
+    z-index: 5;
+}
+
 .button-create-task {
     color: white;
     border-radius: 10px;
@@ -250,8 +257,8 @@ li:hover {
 }
 
 
-.border-right-white {
-    border-right: white;
+.borderradius-10 {
+    border-radius: 10px !important;
 }
 
 .cursor-pointer {
@@ -268,7 +275,7 @@ li:hover {
 
 .selectedSubtasks {
     margin-top: 10px;
-    height: 80px;
+    height: 30px;
     overflow-y: auto;
     padding-right: 8px;
 }
@@ -311,6 +318,10 @@ li:hover {
 .list-group-item:first-child {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+}
+
+.display-flex{
+    display: flex;
 }
 
 .input-group {
@@ -454,7 +465,7 @@ ul {
 
 .dropdownAbsolutePositioned {
     position: absolute;
-    z-index: 1;
+    z-index: 6;
     border-radius: 10px;
 }
 
@@ -465,10 +476,6 @@ ul {
 
 .redBorder {
     border: 1px solid #FF8190;
-}
-
-.blueBorder {
-    border: 1px solid #29ABE2;
 }
 
 .form-control:focus {
@@ -571,7 +578,7 @@ ul {
 
     .all-buttons-prio {
         gap: 8px !important;
-        justify-content: flex-start !important;
+        justify-content: space-between !important;
     }
 
     .containArrow {
