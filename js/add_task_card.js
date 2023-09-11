@@ -349,13 +349,6 @@ function custValidation() {
     }
 }
 
-// function unsetValidationMessages(classBorder, classMessage) {
-//     border = document.getElementById(classBorder);
-//     message = document.getElementById(classMessage);
-//     unsetRedBorder(border);
-//     add_d_none(message.classList);
-// }
-
 function unsetRedBorder(classname) {
     classList = document.getElementById(classname).classList;
 
@@ -365,7 +358,7 @@ function unsetRedBorder(classname) {
 }
 
 function setRedBorder(classname) {
-    unsetBlueBorder(classname);
+    // unsetBlueBorder(classname);
     classList = document.getElementById(classname).classList;
 
     if (!classList.contains('redBorder')) {
@@ -373,24 +366,4 @@ function setRedBorder(classname) {
     }
 }
 
-function unsetBlueBorder(classname) {
-    classList = document.getElementById(classname).classList;
-
-    if (classList.contains('blueBorder')) {
-        classList.remove('blueBorder');
-    }
-}
-
-function setBlueBorder(classnameBorder, classnameMessage) {
-    unsetRedBorder(classnameBorder);
-
-    classListBorder = document.getElementById(classnameBorder).classList;
-
-    if (!classList.contains('blueBorder')) {
-        classList.add('blueBorder');
-    }
-    add_d_none(classnameMessage);
-
-
-}
 //#endregion Validation

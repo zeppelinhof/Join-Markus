@@ -62,11 +62,11 @@ function showDropdown(i, user) {
 `
 }
 
-function returnContactColor(i) {
-    let result = i % contactColors.length
+// function returnContactColor(i) {
+//     let result = i % contactColors.length
 
-    return contactColors[result]['style'];
-}
+//     return contactColors[result]['style'];
+// }
 
 function fillUsername(i, user) {
     document.getElementById(`option${i}`).innerHTML += user;
@@ -116,20 +116,13 @@ function contactToTaskClickCheckbox(i, user) {
 function drawContactCirclesBelow() {
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
     for (let i = 0; i < contactsInTask.length; i++) {
+        const colorStyle = returnContactColor(i);
         const user = contactsInTask[i];
         document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
-            <div class="contactCircle" id ="contactCircleBelow${i}"></div>       
+            <div class="contactCircle" id ="contactCircleBelow${i}" style="background-color: ${colorStyle}"></div>       
         `
         document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
     }
-}
-
-function getInitials(contact) {
-    initials = contact.charAt(0);
-    if (contact.match(' ')) {
-        initials += contact.charAt(contact.match(' ').index + 1);
-    }
-    return initials;
 }
 
 function deleteContactTask(contact) {

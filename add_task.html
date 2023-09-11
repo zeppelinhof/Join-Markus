@@ -25,7 +25,7 @@
     <script src="js/add_new_contact.js"></script>
 </head>
 
-<body onload="initAddTask()">
+<body onload="initAddTask();">
 
     <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML">
     </div>
@@ -39,21 +39,20 @@
                     <div class="left-side-of-panel">
                         <div class="property">
                             <label for="title" class="form-label">Title</label>
-                            <input id="title" type="text" class="form-control height-48px cursor-pointer" placeholder="Enter a title"
-                                onkeypress="setBlueBorder('title', 'titleInvalid');">
+                            <input id="title" type="text" class="form-control height-48px cursor-pointer" placeholder="Enter a title">
                             <div class="invalidMessage d-none" id="titleInvalid">This field is required.</div>
                         </div>
                         <div class="property">
                             <label class="form-label">Description</label>
                             <textarea id="description" class="form-control cursor-pointer" placeholder="Enter a Description"
-                                id="floatingTextarea" onkeypress="setBlueBorder('description', 'descriptionInvalid');"
+                                id="floatingTextarea"
                                 style="height: 100px"></textarea>
                             <div class="invalidMessage d-none" id="descriptionInvalid">This field is required.</div>
                         </div>
                         <div class="property">
                             <label class="form-label">Assigned to</label>
-                            <div class="select-btn"
-                                onclick="selectContactFieldInBackground(); setBlueBorder('selectContactField', 'assignedToInvalid');"
+                            <div class="select-btn form-control"
+                                onclick="selectContactFieldInBackground();"
                                 id="selectContactField">
                                 <span>Select Contact</span>
                                 <div class="circleAroundDownArrow" id="downarrow"
@@ -94,13 +93,12 @@
                         <div class="property">
                             <label class="form-label">Due date</label>
                             <input id="date" type="date" class="form-control height-48px cursor-pointer"
-                                placeholder="dd/mm/yyyy" onmousedown="setBlueBorder('date', 'dateInvalid');">
+                                placeholder="dd/mm/yyyy">
                             <div class="invalidMessage d-none" id="dateInvalid">This field is required.</div>
                         </div>
                         <div class="property">
                             <label class="form-label">Prio</label>
-                            <div class="all-buttons-prio" id="all-buttons-prio"
-                                onmousedown="setBlueBorder('all-buttons-prio', 'prioInvalid');">
+                            <div class="all-buttons-prio" id="all-buttons-prio">
                                 <div id="btn_urgent" class="button-prio" onclick="colorRed();">Urgent
                                     <div class="containArrow">
                                         <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
@@ -129,8 +127,7 @@
                         <div class="property">
                             <div class="wrapper-category">
                                 <label for="">Category</label>
-                                <div class="select-btn" onclick="showContentCategory();" id="categoryId"
-                                    onmousedown="setBlueBorder('categoryId', 'categoryInvalid');">
+                                <div class="select-btn" onclick="showContentCategory();" id="categoryId">
                                     <span id="selectedCategory">Select task category</span>
                                     <div class=" circleAroundDownArrow" id="downarrow_cat"
                                         onclick="showContentCategory();">
@@ -142,8 +139,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="contentSearchContact d-none" id="contentCategory"
-                                onmousedown="setBlueBorder('categoryId', 'categoryInvalid');">
+                            <div class="contentSearchContact d-none" id="contentCategory">
                                 <ul class="selectAssignedTo dropdownAbsolutePositioned">
                                     <li class="list-group-item padding-left-16 list-group-item-category"
                                         onclick="selectCategory(1); closeContentCategory();">
@@ -162,24 +158,21 @@
                                 </ul>
                             </div>
                             <div class="invalidMessage d-none" id="categoryInvalid">This field is required.</div>
-                            <div id="selected-contacts-circles-below">
-                            </div>
                         </div>
                         <div class="property">
                             <div class="property-name">Subtasks</div>
-                            <div class="input-group" id="subtask_wrapper"
-                                onmousedown="setBlueBorder('subtask_wrapper', 'subtaskInvalid');">
-                                <input type="text" class="form-control border-right-white height-48px cursor-pointer"
+                            <div class="input-group" id="subtask_wrapper">
+                                <input type="text" class="form-control borderradius-10 height-48px cursor-pointer"
                                     placeholder="Add new subtask" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2" id="subtaskInputfield">
-                                <img id="add_symbol" class="input-group-text white-background cursor-pointer"
-                                    src="./assets/img/add_black.svg" onclick="addSubtask()">
+                                <img id="add_symbol" class="cursor-pointer"
+                                    src="./assets/img/add_black.svg" onclick="addSubtask();">
                             </div>
                             <div class="invalidMessage d-none" id="subtaskInvalid">This field is required.</div>
                             <div class="selectedSubtasks bigger-area-mobile" id="selectedSubtasks"></div>
                         </div>
                         <div class="buttons_clear_create fixed-mobile"">
-                            <button class="btn btn-outline-dark button-clear hide-mobile" onclick="resetForm();"
+                            <button class="btn btn-outline-dark button-clear hide-mobile" onclick="resetForm2();"
                                 onmouseover="remove_d_none('blue_x'); add_d_none('black_x');"
                                 onmouseleave="add_d_none('blue_x'); remove_d_none('black_x');">Clear<img id="black_x"
                                     src="./assets/img/Vector.svg"> <img id="blue_x" src="./assets/img/Vector_blue.svg"

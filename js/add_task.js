@@ -357,14 +357,8 @@ function custValidation() {
         valid = false;
     }
 
-    if (subtasks.length == 0) {
-        setRedBorder('subtask_wrapper');
-        remove_d_none('subtaskInvalid');
-        valid = false;
-    }
-
     if (valid) {
-        register_task()
+        register_task();
     }
 }
 
@@ -377,7 +371,7 @@ function unsetRedBorder(classname) {
 }
 
 function setRedBorder(classname) {
-    unsetBlueBorder(classname);
+    // unsetBlueBorder(classname);
     classList = document.getElementById(classname).classList;
 
     if (!classList.contains('redBorder')) {
@@ -385,24 +379,4 @@ function setRedBorder(classname) {
     }
 }
 
-function unsetBlueBorder(classname) {
-    classList = document.getElementById(classname).classList;
-
-    if (classList.contains('blueBorder')) {
-        classList.remove('blueBorder');
-    }
-}
-
-function setBlueBorder(classnameBorder, classnameMessage) {
-    unsetRedBorder(classnameBorder);
-
-    classListBorder = document.getElementById(classnameBorder).classList;
-
-    if (!classList.contains('blueBorder')) {
-        classList.add('blueBorder');
-    }
-    add_d_none(classnameMessage);
-
-
-}
 //#endregion Validation
