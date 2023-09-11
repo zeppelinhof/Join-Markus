@@ -185,13 +185,9 @@ function linkPage(pageName) {
 /* ------------------------------------------------------------- */
 
 function initSidebarNavHighlighted() {
-    try {
-        setTimeout((() => {
-            loadSidebarNavHighlights()
-        }), 325);
-    } catch {
-        return;
-    }
+    setTimeout((() => {
+        loadSidebarNavHighlights()
+    }), 325);
 }
 
 function setItemLocalStorage(key, value) {
@@ -229,8 +225,12 @@ function loadSidebarNavHighlights() {
         }
     }
 
-    document.getElementById(`sidebar-${pageName}`).classList.add(`${sidebarClickedText}`);
-    document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`${sidebarClickedIcon}`);
+    try {
+        document.getElementById(`sidebar-${pageName}`).classList.add(`${sidebarClickedText}`);
+        document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`${sidebarClickedIcon}`);
+    } catch (e) {
+        return;
+    }
 }
 
 
