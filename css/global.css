@@ -7,6 +7,11 @@ body {
     text-decoration: none;
 }
 
+.sidebar-t-highlighted {
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(10, 25, 49);
+}
+
 .sidebar-t-d-none:hover {
     color: rgb(255, 255, 255);
     background-color: rgb(10, 25, 49);
@@ -26,6 +31,22 @@ body {
     .sidebar-icon-contacts {
         background-image: url('../assets/img/icon_contacts_side_hover.png');
     }
+}
+
+.sidebar-icon-summary-highlighted {
+    background-image: url('../assets/img/icon_summary_side_hover.png') !important;
+}
+
+.sidebar-icon-add_task-highlighted {
+    background-image: url('../assets/img/icons_add_task_side_hover.png') !important;
+}
+
+.sidebar-icon-board-highlighted {
+    background-image: url('../assets/img/icon_board_side_hover.png') !important;
+}
+
+.sidebar-icon-contacts-highlighted {
+    background-image: url('../assets/img/icon_contacts_side_hover.png') !important;
 }
 
 .sidebar-panel {
