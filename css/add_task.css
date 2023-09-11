@@ -578,7 +578,7 @@ ul {
 
     .all-buttons-prio {
         gap: 8px !important;
-        justify-content: flex-start !important;
+        justify-content: space-between!important;
     }
 
     .containArrow {
