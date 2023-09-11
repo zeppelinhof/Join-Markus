@@ -185,9 +185,13 @@ function linkPage(pageName) {
 /* ------------------------------------------------------------- */
 
 function initSidebarNavHighlighted() {
-    setTimeout((() => {
-        loadSidebarNavHighlights()
-    }), 305);
+    try {
+        setTimeout((() => {
+            loadSidebarNavHighlights()
+        }), 325);
+    } catch {
+        return;
+    }
 }
 
 function setItemLocalStorage(key, value) {
