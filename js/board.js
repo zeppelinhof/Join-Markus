@@ -3,8 +3,12 @@ let allTasks = [];
 let currentDraggedElement;
 let currentOpenCard;
 // ------------------------------------function loaded in the body ----------------------------------------
-async function boardInit() {
+async function includeInit() {
     await includeHTML();
+    boardInit();
+}
+
+async function boardInit() {
     userInitials();
     await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
     await loadUsers();
@@ -81,7 +85,10 @@ function loopAllTasks() {
     if (windowSize.matches) {
         search = document.getElementById('searchInputMobile').value;
     }
+    loopTasks(search);
+}
 
+function loopTasks(search) {
     for (let q = 0; q < allTasks.length; q++) {
         const category = allTasks[q]['category'];
         const description = allTasks[q]['description'];
@@ -309,7 +316,7 @@ function updateSubTaskCheckBoxState(element) {
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
 }
-/*------------------------------------------------Drag and Drop------------------------------------------------*/
+/**Drag and Drop*/
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -321,7 +328,6 @@ function drop(ev, column) {
 function startDragging(q) {
     currentDraggedElement = q;
 }
-
 
 async function moveTo(column, q) {
     const cardHTML = document.getElementById(`cards-${q}`);
