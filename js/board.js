@@ -309,7 +309,7 @@ function updateSubTaskCheckBoxState(element) {
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
 }
-/*------------------------------------------------Drag and Drop------------------------------------------------*/
+/**Drag and Drop*/
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -321,7 +321,6 @@ function drop(ev, column) {
 function startDragging(q) {
     currentDraggedElement = q;
 }
-
 
 async function moveTo(column, q) {
     const cardHTML = document.getElementById(`cards-${q}`);
