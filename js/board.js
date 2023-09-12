@@ -1,8 +1,8 @@
-/*-------------------------------------------global variables-------------------------------------------*/
+
 let allTasks = [];
 let currentDraggedElement;
 let currentOpenCard;
-// ------------------------------------function loaded in the body ----------------------------------------
+
 async function includeInit() {
     await includeHTML();
     boardInit();
@@ -10,7 +10,7 @@ async function includeInit() {
 
 async function boardInit() {
     userInitials();
-    await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+    await boardLoadTasks();
     await loadUsers();
     loopAllTasks();
     await loadTasks();
@@ -18,12 +18,12 @@ async function boardInit() {
 
 async function renderInit() {
     userInitials();
-    await boardLoadTasks();/*funktion die das komplette tasks aus dem Backend ausließt*/
+    await boardLoadTasks();
     await loadUsers();
     loopAllTasks();
     await loadTasks();
 }
-/*--------------------------function that exits the complete tasks from the backend--------------------------*/
+
 async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
@@ -33,7 +33,7 @@ async function refreshData() {
     await emptyContainer();
     renderInit();
 }
-//------------------------------function that empties all containers after a reloaud------------------------------
+
 async function emptyContainer() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -41,7 +41,7 @@ async function emptyContainer() {
     document.getElementById('DoneContainer').innerHTML = '';
     return loopAllTasks();
 }
-/*-------------------------------------------Open and Close function-------------------------------------------*/
+
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
     saveDetailCardData();
@@ -74,7 +74,7 @@ function getSubtasksCheckboxState() {
     const stringArray = newStates.map(value => String(value));
     return (stringArray);
 }
-/*----------------------------------------loads all cards with tasks----------------------------------------*/
+
 function loopAllTasks() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -103,7 +103,7 @@ function loopTasks(search) {
         }
     }
 }
-/*----------------------Checks if the containers are empty or have contents----------------------*/
+
 function checkEmptyContainer() {
     clearNoTasToDO();
     clearNoTaskProgress();
@@ -150,7 +150,7 @@ function clearNoTaskDone() {
         document.getElementById('noDone').style.display = '';
     }
 }
-/*-------------------------------------------Loads the content of the whole map-------------------------------------------*/
+
 function loadAllTask(category, title, description, column, q, priority, date, assigned) {
     const priorityIMG = imagePriority(priority);
 
@@ -193,7 +193,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
 
     assingAllTasks(column, cardHTML, q, category);
 }
-//----------------------------------------------------------Darstellung der Farben für cardLabel----------------------------------------------------------
+
 function loadColorLabel(category, q) {
     if (category === 'Technical Task') {
         document.getElementById(`BoardCardLabel_${q}`).classList.add('technicalTask');
@@ -202,7 +202,7 @@ function loadColorLabel(category, q) {
         document.getElementById(`BoardCardLabel_${q}`).classList.add('userStory');
     }
 }
-//---------------------------------------------------------------display of the PrioImages---------------------------------------------------------------
+
 function imagePriority(priority) {
     let priorityIMG = '';
 
@@ -215,7 +215,7 @@ function imagePriority(priority) {
     }
     return priorityIMG;
 }
-//---------------------------------------------------assigns the maps to the respective containers according to their status---------------------------------------------------
+
 function assingAllTasks(column, cardHTML, q, category) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
@@ -237,7 +237,7 @@ function assingAllTasks(column, cardHTML, q, category) {
     loadColorLabel(category, q);
     subTaskCard(q);
 }
-//----------------------------------------displaying the initials in the cards in the main image----------------------------------------
+
 function loadInitials(q) {
     const user = allTasks[q]['selectAssignedTo'];
     const targetElementId = `frame1_${q}`;
@@ -253,7 +253,7 @@ function loadInitials(q) {
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
     }
 }
-//------------------------------------------function that calls Detailcard and assigns the names to it------------------------------------------
+
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
     loadAssigned(q);
     loadSubtasks(q);
@@ -284,7 +284,7 @@ function loadAssigned(q) {
         document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
     }
 }
-//----------------------------------------------------from here the subtasks are loaded----------------------------------------------------
+
 function loadSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML = '';
     const subtask = allTasks[q]['subtasks'];
@@ -316,7 +316,7 @@ function updateSubTaskCheckBoxState(element) {
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
 }
-/**Drag and Drop*/
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -339,18 +339,18 @@ async function moveTo(column, q) {
         assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
     }
 }
-/*-----------------------------------SearchFunction---------------------------------*/
+
 document.addEventListener('DOMContentLoaded', function () {
     // Füge den Event-Listener hinzu, sobald das DOM geladen ist
     document.getElementById('searchInput').addEventListener('input', loopAllTasks);
 });
-//--------------------------------------Delete function of the card-------------------------------------
+
 async function deleteCard() {
     document.getElementById('detailCard').style.display = 'none';
     await deleteItem('tasks', currentOpenCard);
     renderInit();
 }
-//---------------------------------------------------Display of the tasks on the small card----------------------------------------------------
+
 function subTaskCard(q) {
     const subtaskBoard = allTasks[q]['subtasks'];
 
@@ -381,7 +381,6 @@ function updateProgressBar(q) {
 
     progressBar.style.width = `${percent}%`;
 }
-//--------------------------------------------Add addTask via + button--------------------------------------------
 
 async function addFeedback(columnStatus) {
     boardStatus = columnStatus
