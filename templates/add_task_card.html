@@ -11,12 +11,14 @@
     <div class="contacts-d-none" w3-include-html="add_new_contact.html" id="add-new-contact-include-HTML"></div>
     <div class="outer-gray-background" id="add-new-task">
         <div class="content-white">
-            <div class="add-new-contact-close"
+            <div class="add-new-task-close"
                 onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')"></div>
             <div w3-include-html="./add_task.html"></div>
+            <div w3-include-html="./sidebar_template.html"></div>
             <div class="outer">
+                <div w3-include-html="./topbar_template.html"></div>
                 <div class="wrap">
-                    <div class="contentFlowIn">
+                    <div class="contentFlowIn left-0-top-3em-mobile">
                         <div class="addTaskContain">
                             <h1>Add Task</h1>
                             <div class="panel">

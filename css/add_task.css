@@ -10,13 +10,6 @@ body {
     justify-content: center;
 }
 
-@media(max-width: 900px) {
-    body {
-        display: flex;
-        flex-direction: column-reverse;
-    }
-}
-
 h1 {
     font-weight: 700;
     font-size: 61px;
@@ -133,7 +126,7 @@ li:hover {
 .buttons_clear_create {
     display: flex;
     justify-content: flex-end;
-    gap: 25px;
+    gap: 25px;    
 }
 
 .checkbox-modified {
@@ -512,7 +505,64 @@ ul {
     width: 1000px;
 }
 
-@media(max-width: 1100px) {
+.add-new-task-close {
+    position: absolute;
+    top: 48px;
+    right: 48px;
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+    background-image: url('../assets/img/close.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.add-new-task-close:hover {
+    cursor: pointer;
+    background-image: url('../assets/img/icon_close_hover.png') !important;
+}
+
+/* @media(max-width: 1100px) {
+    
+} */
+
+@media(max-width: 900px) {
+    body {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .fixed-mobile {
+        position: fixed;
+        bottom: 65px;
+        background-color: #F6F7F8;
+        padding-bottom: 12px;
+        width: 302px;
+    }
+
+    .fixed-mobile-card {
+        position: fixed;
+        bottom: 5px;        
+        background-color: white;
+        padding-bottom: 12px;
+        width: 302px;
+    }
+
+    .bigger-area-mobile{
+        height: 120px !important;
+    }
+}
+
+@media(max-width: 1100px), (max-height: 900px) {
+    .buttons_clear_create {
+        margin-bottom: 1em;
+    }
+}
+
+
+@media (max-width: 1264px) {
+
     .hide-mobile {
         display: none;
     }
@@ -524,16 +574,8 @@ ul {
     .block-mobile {
         display: block;
     }
-}
-
-@media(max-width: 1100px), (max-height: 900px) {
-    .buttons_clear_create {
-        margin-bottom: 1em;
-    }
-}
 
 
-@media (max-width: 1200px) {
     .outer-gray-background {
         height: 100vh;
         width: 100%;
@@ -554,9 +596,9 @@ ul {
 
     .wrap {
         flex-wrap: wrap;
-        display: flex;
+        /* display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: center; */
         overflow: hidden;
     }
 
@@ -598,10 +640,6 @@ ul {
         width: 15px !important;
     }
 
-    .selectedSubtasks {
-        height: 0 !important;
-    }
-
     .form-label,
     .property-name {
         display: flex;
@@ -615,25 +653,7 @@ ul {
 
     .property {
         width: 303px;
-    }
+    }    
 
-    .fixed-mobile {
-        position: fixed;
-        bottom: 65px;
-        width: 85%;
-        background-color: #F6F7F8;
-        padding-bottom: 12px;
-    }
-
-    .fixed-mobile-card {
-        position: fixed;
-        bottom: -25px;
-        width: 85%;
-        background-color: white;
-        padding-bottom: 12px;
-    }
-
-    .bigger-area-mobile{
-        height: 120px !important;
-    }
+    
 }
