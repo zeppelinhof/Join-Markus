@@ -213,7 +213,7 @@
     flex-direction: column;
     height: 570px;
     width: 260px;
-    gap: 24px;
+    gap: 14px;
     overflow: auto;
 }
 
@@ -273,6 +273,7 @@
     display: grid;
     background: #FFFFFF;
     box-shadow: 0px 0px 10px 3px #00000014;
+    margin-bottom: 10px;
 }
 
 .cards:hover {
