@@ -5,7 +5,7 @@ async function initAddTask() {
     await includeHTML();
     await loadUsers();
     await loadTasks();
-    userInitials();
+    userInitials();    
 }
 
 async function loadTasks() {
@@ -28,6 +28,7 @@ function colorRed() {
     whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
     whiteBackgroundGreenArrow(document.getElementById('btn_low'));
 }
+
 function colorOrange() {
     let btn = document.getElementById('btn_medium');
     if (btn.classList.length > 1) {
@@ -43,6 +44,7 @@ function colorOrange() {
     whiteBackgroundRedArrow(document.getElementById('btn_urgent'));
     whiteBackgroundGreenArrow(document.getElementById('btn_low'));
 }
+
 function colorGreen() {
     let btn = document.getElementById('btn_low');
     if (btn.classList.length > 1) {
@@ -379,3 +381,16 @@ function setRedBorder(classname) {
 }
 
 //#endregion Validation
+
+//#region set Date Minimum for Datepicker
+async function setDateOfTodayForDatepicker(){
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("date")[0].setAttribute('min', today);    
+}
+
+function setDateOfTodayForDatepickerCard() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("dateCard")[0].setAttribute('min', today);
+}
+//#endregion set Date Minimum for Datepicker
+

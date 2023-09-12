@@ -15,6 +15,7 @@ function colorRed() {
     whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
     whiteBackgroundGreenArrow(document.getElementById('btn_low'));
 }
+
 function colorOrange() {
     let btn = document.getElementById('btn_medium');
     if (btn.classList.length > 1) {
@@ -30,6 +31,7 @@ function colorOrange() {
     whiteBackgroundRedArrow(document.getElementById('btn_urgent'));
     whiteBackgroundGreenArrow(document.getElementById('btn_low'));
 }
+
 function colorGreen() {
     let btn = document.getElementById('btn_low');
     if (btn.classList.length > 1) {
