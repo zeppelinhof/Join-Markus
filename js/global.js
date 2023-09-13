@@ -101,6 +101,7 @@ let alphabet = [
     { 'number': 25, 'letter': 'z' },
 ];
 
+
 let sidebarNavElements = [
     'summary',
     'add_task',
@@ -109,11 +110,17 @@ let sidebarNavElements = [
 ]
 
 
+/**
+ * This function loads all tasks from backend.
+ */
 async function loadTasks() {
     tasks = JSON.parse(await getItem('tasks'));
 }
 
 
+/**
+ * This function includes HTML templates into a document.
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     let file;
@@ -132,6 +139,9 @@ async function includeHTML() {
 }
 
 
+/**
+ * This function toggles visibility of the menu on top right of the top-navigation bar.
+ */
 function showOrHideContextMenu() {
     let contextMenu = document.getElementById('context-menu');
 
@@ -143,6 +153,10 @@ function showOrHideContextMenu() {
 }
 
 
+/**
+ * This function returns the name of the user from URL parameters.
+ * @returns 
+ */
 function queryUserName() {
     var queryString = window.location.search;
     var urlParams = new URLSearchParams(queryString);
@@ -151,18 +165,29 @@ function queryUserName() {
 }
 
 
+/**
+ * This function sets the initials of the username to the top right icon of the top-navigation bar.
+ */
 function userInitials() {
     const userName = queryUserName();
     document.getElementById('topbar-user-profile-letter').innerHTML = getInitials(userName);
 }
 
 
+/**
+ * This function initializes the "Help" page.
+ */
 async function initHelp() {
     await includeHTML();
     userInitials();
 }
 
 
+/**
+ * This function return the first characters of the first and second string separated by space.
+ * @param {*} contact defines the username.
+ * @returns First characters of the username.
+ */
 function getInitials(contact) {
     initials = contact.charAt(0);
     if (contact.match(' ')) {
@@ -172,17 +197,15 @@ function getInitials(contact) {
 }
 
 
+/**
+ * This function refers to another page with URL encoded username.
+ * @param {*} pageName defines the name of the page to be linked to.
+ */
 function linkPage(pageName) {
     saveSidebarNavHighlights(pageName);
-
     window.location.href = pageName + ".html?name=" + encodeURIComponent(queryUserName());
 }
 
-
-
-/* ------------------------------------------------------------- */
-/*      highlighted nav area sidebar permanently on clicke       */
-/* ------------------------------------------------------------- */
 
 function initSidebarNavHighlighted() {
     setTimeout((() => {
@@ -190,13 +213,16 @@ function initSidebarNavHighlighted() {
     }), 325);
 }
 
+
 function setItemLocalStorage(key, value) {
     localStorage.setItem(key, value)
 }
 
+
 function getItemLocalStorage(key) {
     return localStorage.getItem(key);
 }
+
 
 function saveSidebarNavHighlights(pageName) {
     setItemLocalStorage('pageName', pageName);
@@ -210,6 +236,7 @@ function saveSidebarNavHighlights(pageName) {
         }
     }
 }
+
 
 function loadSidebarNavHighlights() {
     let pageName = getItemLocalStorage('pageName');
@@ -241,11 +268,10 @@ function removeSibebarNavHighlights() {
     document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`sidebar-icon-${pageName}-highlighted`);
 }
 
-/* ------------------------------------------------------------- */
-/* ------------------------------------------------------------- */
 
-
-
+/**
+ * This function is called on onload of pages privacypolicy and legalnotice.
+ */
 async function initInfoPage() {
     await includeHTML();
     document.getElementById('sidebar-nav').style.display = "none";
@@ -253,13 +279,22 @@ async function initInfoPage() {
 }
 
 
+/**
+ * This function returns the color to set the background color of user icons.
+ * @param {*} i defines the index of the color to be returned.
+ * @returns color value
+ */
 function returnContactColor(i) {
     let result = i % contactColors.length
-
     return contactColors[result]['style'];
 }
 
 
+/**
+ * This function returns the index of the color assigned to a user.
+ * @param {*} name defines the name of the user.
+ * @returns 
+ */
 function returnContactColorByName(name) {
     let index = 0;
 
@@ -275,6 +310,10 @@ function returnContactColorByName(name) {
 }
 
 
+/**
+ * This function sorts "users" array by alphabetical order of usernames.
+ * @returns [alphabetUsers] = array of sorted users; [lastAddedContactIndex] = index of the latest added user.
+ */
 function sortUsers() {
     let alphabetUsers = [];
     let lastAddedContactIndex = 0;
@@ -366,6 +405,11 @@ function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex
 }
 
 
+/**
+ * This function returns a registered users data as an JSON object.
+ * @param {*} i 
+ * @returns 
+ */
 function retrunUserJSON(i) {
     return {
         name: users[i]['name'],
@@ -385,4 +429,11 @@ function returnNameWithoutSpaces(name) {
     }
 
     return nameWithoutSpaces;
+}
+
+/**
+ * This function is being called upon logout. It deletes its saved email address from local storage.
+ */
+function logoutUser() {
+    localStorage.removeItem('email');
 }
