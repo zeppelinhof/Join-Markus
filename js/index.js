@@ -271,5 +271,5 @@ function getUserFromEmail(email) {
  * This function handles login as a "Guest".
  */
 function guest() {
-    window.location.href = "summary.html?name=" + encodeURIComponent("Guest");
+    window.location.href = "join.html?name=" + encodeURIComponent("Guest");
 }
