@@ -2,7 +2,7 @@
 function getAddTask() {
     loadHTML('dynamicContent', 'add_task.html');
     initAddTask();
-    document.getElementById('body_join').innerHTML += getAddTaskScript();
+    //document.getElementById('body_join').innerHTML += getAddTaskScript();
 }
 
 function getAddTaskScript() {
@@ -58,13 +58,7 @@ function getSummary() {
 
 //#region Contacts
 function getContacts() {
-    document.getElementById('dynamicContent').innerHTML = getContactsContent();
-    // initSummary();
-}
-
-function getContactsContent(){
-    return /*html*/`
-        
-    `
+    loadHTML('dynamicContent', 'contacts.html');
+    initContacts();
 }
 //#endregion Contacts

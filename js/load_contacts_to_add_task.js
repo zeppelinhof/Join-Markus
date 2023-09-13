@@ -7,9 +7,10 @@ let subtasks = [];
 async function initUsers() {
     includeHTML();
     loadUsers();
+    fillAssignedTo();
 }
 
-async function loadUsers() {
+async function loadUsers_AddTask() {
     users = JSON.parse(await getItem('users'));
     fillAssignedTo();
 }

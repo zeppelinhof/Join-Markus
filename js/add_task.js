@@ -4,7 +4,7 @@ let boardStatus = 'to do';
 async function initAddTask() {
     // await getBars();
     await includeHTML();
-    await loadUsers();
+    await loadUsers_AddTask();
     await loadTasks();
     userInitials();
 }
