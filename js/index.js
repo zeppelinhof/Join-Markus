@@ -1,3 +1,6 @@
+/**
+ * This function initialize the landing page and preloads all registered Users to match them against input of the current user of the page.
+ */
 async function init() {
     animateJoinLogo();
     loadHTML('formElement', "login.html");
@@ -6,6 +9,11 @@ async function init() {
 }
 
 
+/**
+ * This function loads an HTML template into an element with a specific ID. 
+ * @param {*} destinationId is the ID of the element the HTML template will be loaded into.
+ * @param {*} fileName is the filename of the HTML template to be included in to the page.
+ */
 function loadHTML(destinationId, fileName) {
     const destinationElement = document.getElementById(destinationId);
     const htmlFilePath = "templates/" + fileName;
@@ -23,6 +31,10 @@ function loadHTML(destinationId, fileName) {
 }
 
 
+/**
+ * This function toggles elements of the landing page (index.html) if any other form than "login" is active on the page. 
+ * @param {*} filename defines the HTML template name of the current active form.
+ */
 function toggleUiElements(filename) {
     if (filename != 'login.html') {
         document.getElementById('not-a-user-box').classList.add('d-none');
@@ -32,24 +44,9 @@ function toggleUiElements(filename) {
 }
 
 
-function updateInputState(element, idToToggle) {
-    const password = element;
-    if (password.value == "") {
-        inputState.setState("empty");
-        document.getElementById(idToToggle).src = "assets/img/lock.svg";
-        password.type = "password";
-    } else {
-        inputState.setState("filled");
-        if (password.value.length == 1) {
-            document.getElementById(idToToggle).src = "assets/img/eye.svg";
-        }
-    }
-    if (document.getElementById('formElement').innerHTML.includes('form_signup')) {
-        validateSignUp();
-    }
-}
-
-
+/**
+ * This class is saving the current state of the input field. This class is used in function updateInputState() and toggleReveal().
+ */
 class InputState {
 
     constructor() {
@@ -71,6 +68,34 @@ class InputState {
 const inputState = new InputState();
 
 
+/**
+ * This function toggles the icon of the password input field. If the field contains more than one character it switches the icon and switches back if the field is empty again.
+ * @param {*} element defines the input field.
+ * @param {*} idToToggle defines the ID of the icon-element to be toggled.
+ */
+function updateInputState(element, idToToggle) {
+    const password = element;
+    if (password.value == "") {
+        inputState.setState("empty");
+        document.getElementById(idToToggle).src = "assets/img/lock.svg";
+        password.type = "password";
+    } else {
+        inputState.setState("filled");
+        if (password.value.length == 1) {
+            document.getElementById(idToToggle).src = "assets/img/eye.svg";
+        }
+    }
+    if (document.getElementById('formElement').innerHTML.includes('form_signup')) {
+        validateSignUp();
+    }
+}
+
+
+/**
+ * This function lets the user reveal the password in password input fields.
+ * @param {*} img defines the image element to be toggled upon password reveal or hide.
+ * @param {*} id defines the password input field.
+ */
 function toggleReveal(img, id) {
     const password = document.getElementById(id);
     if (inputState.getState() == "filled") {
@@ -87,6 +112,9 @@ function toggleReveal(img, id) {
 }
 
 
+/**
+ * This function validates the input of user on signing up. Things being checked through sub-functions: passwords are identical, username and email are not empty.
+ */
 function validateSignUp() {
     const credentials = validatecredentials();
     const match = validatePasswords();
@@ -100,6 +128,10 @@ function validateSignUp() {
 }
 
 
+/**
+ * This function checks if both username or email are empty.
+ * @returns boolean state wether username and email address are empty.
+ */
 function validatecredentials() {
     const username = document.getElementById('username').value;
     const email = document.getElementById('email').value;
@@ -111,6 +143,10 @@ function validatecredentials() {
 }
 
 
+/**
+ * This function check if password and confirm password values are identical.
+ * @returns boolean state for passwords being identical or not.
+ */
 function validatePasswords() {
     const password = document.getElementById('inputPassword2').value;
     const passwordConfirm = document.getElementById('inputPassword3').value;
@@ -124,6 +160,9 @@ function validatePasswords() {
 }
 
 
+/**
+ * Animates the JoinLogo upon first loading of the page in desktop screen.
+ */
 function animateJoinLogo() {
     const animationOverlay = document.getElementById("animationOverlay");
     animationOverlay.classList.remove('d-none');
@@ -134,6 +173,9 @@ function animateJoinLogo() {
 }
 
 
+/**
+ * Animates a message (sliding up box) upon successfull registration and other events.
+ */
 function successMessage(message) {
     const slideBox = document.getElementById("slideBox");
     slideBox.classList.remove('d-none');
@@ -144,11 +186,17 @@ function successMessage(message) {
 }
 
 
+/**
+ * If password is reset, it triggers a message.
+ */
 function resetPassword() {
     successMessage('You reset your password');
 }
 
 
+/**
+ * If password is sent to user, it triggers a message.
+ */
 function forgotPassword() {
     const message = /*html*/ `
         <img src="assets/img/email_send.svg"> An Email has been sent to you
@@ -158,6 +206,9 @@ function forgotPassword() {
 }
 
 
+/**
+ * This function handles login of the user and takes actions on UI elements in case of wrong user credentials.
+ */
 function login() {
     const email = document.getElementById("inputEmail");
     const password = document.getElementById("inputPassword");
@@ -180,6 +231,10 @@ function login() {
 }
 
 
+/**
+ * This function sets the emailaddress of a user to local storage in case the "rememberMe" checkbox is checked. I am aware this is a complete unsafe way to handle this option.
+ * @param {*} email 
+ */
 function rememberLogin(email) {
     if (document.getElementById('myCheckbox').checked) {
         localStorage.setItem('email', email);
@@ -187,6 +242,9 @@ function rememberLogin(email) {
 }
 
 
+/**
+ * This function checks if a user has "rememberMe" option selected on last login.
+ */
 function checkRememberLogin() {
     const email = localStorage.getItem('email');
     if (email) {
@@ -196,6 +254,11 @@ function checkRememberLogin() {
 }
 
 
+/**
+ * This function returns the username of registered users linked to a matching email address.
+ * @param {*} email 
+ * @returns 
+ */
 function getUserFromEmail(email) {
     for (let i = 0; i < users.length; i++) {
         const element = users[i]['email'];
@@ -204,6 +267,9 @@ function getUserFromEmail(email) {
 }
 
 
+/**
+ * This function handles login as a "Guest".
+ */
 function guest() {
     window.location.href = "summary.html?name=" + encodeURIComponent("Guest");
 }
