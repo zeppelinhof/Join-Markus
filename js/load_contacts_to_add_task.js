@@ -1,4 +1,4 @@
-let users = [];
+// let users = [];
 let contactsInTask = [];
 let subtasks = [];
 
@@ -7,11 +7,6 @@ let subtasks = [];
 async function initUsers() {
     includeHTML();
     loadUsers();
-    fillAssignedTo();
-}
-
-async function loadUsers_AddTask() {
-    users = JSON.parse(await getItem('users'));
     fillAssignedTo();
 }
 
@@ -37,7 +32,7 @@ function resetForm() {
     location.reload();
 }
 
-function fillAssignedTo() {
+async function fillAssignedTo() {
     document.getElementById('selectAssignedTo').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let user = users[i].name;

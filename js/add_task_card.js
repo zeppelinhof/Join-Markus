@@ -158,10 +158,10 @@ function remove_d_none(classname) {
     }
 }
 
-function selectContactFieldInBackground() {
+function selectContactFieldInBackground(field) {
     add_d_none('selectContactField');
-    if (document.getElementById('contentSearchContact').classList.contains('d-none')) {
-        remove_d_none('contentSearchContact');
+    if (document.getElementById(field).classList.contains('d-none')) {
+        remove_d_none(field);
         remove_d_none('uparrow');
     }
 }

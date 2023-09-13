@@ -45,7 +45,7 @@
                                     <div class="property">
                                         <div class="wrapper">
                                             <label class="form-label">Assigned to</label>
-                                            <div class="select-btn" onclick="selectContactFieldInBackground();"
+                                            <div class="select-btn" onclick="selectContactFieldInBackground('contentSearchContactCard');"
                                                 id="selectContactField">
                                                 <span>Select Contact</span>
                                                 <div class="circleAroundDownArrow" id="downarrow"
@@ -54,11 +54,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="contentSearchContact d-none" id="contentSearchContact">
+                                        <div class="contentSearchContact d-none" id="contentSearchContactCard">
                                             <div class="search">
                                                 <input type="text" placeholder="Search" id="searchContactField">
                                                 <div class="circleAroundUpArrow d-none" id="uparrow"
-                                                    onclick="add_d_none('contentSearchContact'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
+                                                    onclick="add_d_none('contentSearchContactCard'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
                                                     <img src="./assets/img/arrow_drop_up.svg">
                                                 </div>
                                             </div>
@@ -209,7 +209,7 @@
     </div>
 </body>
 
-<script>
+<!-- <script>
     // select contact logic        
     const wrapper = document.getElementById('wrapper');
     searchInp = document.getElementById('searchContactField');
@@ -238,7 +238,7 @@
     });
 
     
-</script>
+</script> -->
 
 
 </html>
