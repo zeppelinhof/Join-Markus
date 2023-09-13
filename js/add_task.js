@@ -2,10 +2,70 @@ let tasks = [];
 let boardStatus = 'to do';
 
 async function initAddTask() {
+    await getBars();
     await includeHTML();
     await loadUsers();
     await loadTasks();
-    userInitials();    
+    userInitials();
+}
+
+async function getBars() {
+    document.getElementById('containerSidebar').innerHTML = contentSidebar();
+    document.getElementById('containerTopbar').innerHTML = contentTopbar();
+}
+
+function contentSidebar() {
+    return /*html*/`
+        <div class="sidebar-panel">
+            <img class="sidebar-logo" src="../assets/img/join_logo_white.png" alt="logo">
+            <nav class="sidebar-nav" id="sidebar-nav">
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../summary')" id="sidebar-summary">
+                    <div class="sidebar-icon sidebar-icon-summary"></div>
+                    <span class="sidebar-text">Summary</span>
+                </a>
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../add_task')" id="sidebar-add_task">
+                    <div class="sidebar-icon sidebar-icon-add_task"></div>
+                    <span class="sidebar-text">Add Task</span>
+                </a>
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../board')" id="sidebar-board">
+                    <div class="sidebar-icon sidebar-icon-board"></div>
+                    <span class="sidebar-text">Board</span>
+                </a>
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../contacts')" id="sidebar-contacts">
+                    <div class="sidebar-icon sidebar-icon-contacts"></div>
+                    <span class="sidebar-text">Contacts</span>
+                </a>
+            </nav>
+            <footer class="sidebar-footer">
+                <a href="privacypolicy.html" class="sidebar-nav-member sidebar-t-d-none" target="_blank">Privacy Policy</a>
+                <a href="legalnotice.html" class="sidebar-nav-member sidebar-t-d-none" target="_blank">Legal Notice</a>
+            </footer>
+        </div>
+    `
+}
+
+function contentTopbar() {
+    return /*html*/`
+    <div class="topbar-area">
+        <div class="topbar-panel">
+            <img class="topbar-logo" src="assets/img/join_logo.svg" alt="logo">
+            <h3 class="topbar-area-headline">Kanban Project Management Tool</h3>
+            <nav class="topbar-nav" id="topbar-nav">
+                <a href="#">
+                    <img class="topbar-icon" src="assets/img/icon_help.png" alt="help" onclick="linkPage('help')">
+                </a>
+                <div class="topbar-user-profile" onclick="showOrHideContextMenu()">
+                    <span id="topbar-user-profile-letter"></span>
+                </div>
+            </nav>
+        </div>
+        <div id="context-menu" class="topbar-d-none">
+            <a href="legalnotice.html" class="context-menu-member topbar-t-d-none" target="_blank">Legal Notice</a>
+            <a href="privacypolicy.html" class="context-menu-member topbar-t-d-none" target="_blank">Privacy Policy</a>
+            <a href="index.html" class="context-menu-member topbar-t-d-none">Log out</a>
+        </div>
+    </div>
+    `
 }
 
 async function loadTasks() {
@@ -106,7 +166,7 @@ async function register_task() {
         category: selectedCategory.innerText,
         subtasks: subtasks,
         column: boardStatus,
-        subtaskstate: subtaskstate() 
+        subtaskstate: subtaskstate()
     });
     await setItem('tasks', JSON.stringify(tasks));
     resetForm2();
@@ -237,7 +297,7 @@ function saveSubtaskChanges(changedValue, goal, subtaskNumber) {
     document.getElementById(`rawData${subtaskNumber}`).innerHTML = /*html*/`
         ${document.getElementById(changedValue).value}
     `
-    
+
 }
 
 function fillSubtaskArray() {
@@ -291,12 +351,12 @@ function deleteSubtask(x) {
     fillSubtaskArray();
 }
 
-function changeWhiteBackground(classname){
+function changeWhiteBackground(classname) {
     let surface = document.getElementById(classname).classList
-    if(surface.contains('white-background')){
+    if (surface.contains('white-background')) {
         surface.remove('white-background');
     }
-    else{
+    else {
         surface.add('white-background');
     }
 }
@@ -383,9 +443,9 @@ function setRedBorder(classname) {
 //#endregion Validation
 
 //#region set Date Minimum for Datepicker
-async function setDateOfTodayForDatepicker(){
+async function setDateOfTodayForDatepicker() {
     let today = new Date().toISOString().split('T')[0];
-    document.getElementsByName("date")[0].setAttribute('min', today);    
+    document.getElementsByName("date")[0].setAttribute('min', today);
 }
 
 function setDateOfTodayForDatepickerCard() {
