@@ -207,6 +207,11 @@ function linkPage(pageName) {
 }
 
 
+
+
+/* ##################################################################### */
+/* dieser code wird fuer das heighlighten der navbar nicht mehr benötigt */
+/* ##################################################################### */
 function initSidebarNavHighlighted() {
     setTimeout((() => {
         loadSidebarNavHighlights()
@@ -266,6 +271,51 @@ function removeSibebarNavHighlights() {
 
     document.getElementById(`sidebar-${pageName}`).classList.add('sidebar-t-highlighted');
     document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`sidebar-icon-${pageName}-highlighted`);
+}
+/* ##################################################################### */
+/* ##################################################################### */
+/* ##################################################################### */
+
+
+
+
+/**
+ * This function highlighted the current pagename in the navarea on the sidebar that was clicked.
+ * @param {*} pageName defines the name of the page to be linked to.
+ */
+function setSidebarNavActive(pageName) {
+    removeSibebarNavActive();
+
+    let sidebarClickedIcon = '';
+    let sidebarClickedText = '';
+
+    for (let i = 0; i < sidebarNavElements.length; i++) {
+        const navElement = sidebarNavElements[i];
+
+        if (navElement == pageName) {
+            sidebarClickedText = 'sidebar-t-highlighted';
+            sidebarClickedIcon = `sidebar-icon-${navElement}-highlighted`;
+        }
+    }
+
+    document.getElementById(`sidebar-${pageName}`).classList.add(`${sidebarClickedText}`);
+    document.getElementById(`sidebar-${pageName}`).children[0].classList.add(`${sidebarClickedIcon}`);
+}
+
+/**
+ * This function removed all highlightes in the navarea on sidebar.
+ */
+function removeSibebarNavActive() {
+    for (let i = 0; i < sidebarNavElements.length; i++) {
+        const navElement = sidebarNavElements[i];
+
+        try {
+            document.getElementById(`sidebar-${navElement}`).classList.remove('sidebar-t-highlighted');
+            document.getElementById(`sidebar-${navElement}`).children[0].classList.remove(`sidebar-icon-${navElement}-highlighted`);
+        } catch {
+            continue;
+        }
+    }
 }
 
 

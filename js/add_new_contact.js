@@ -1,6 +1,12 @@
 let currentContactIndex = 0;
 
-/* open and close the add new and edit contact overlay */
+/**
+ * This function opens and close the 'add new -' and 'edit contact' overlay.
+ * @param {string} id1 is the id in the template from the parent container.
+ * @param {string} id2 is the id from the includet container in the mainpage.
+ * @param {boolean} renderEdit call the renderfunction from 'edit contact' overlay.
+ * @param {number} i is the index number from the array users and have a default value.
+ */
 function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
     let addNewContactInlcudeHTML = document.getElementById(id1);
     let addNewContact = document.getElementById(id2)
@@ -25,7 +31,10 @@ function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
 }
 
 
-/* rendert the edit contact overly with contact data */
+/**
+ * This function rendert the contact information on 'edit contact' overlay.
+ * @param {number} i is the index number from array users.
+ */
 function renderEditContact(i) {
     const editProfileIcon = document.getElementById('edit-contact-profile-icon');
     const inputEditName = document.getElementById('edit-name');
@@ -45,7 +54,10 @@ function renderEditContact(i) {
 }
 
 
-/* added a new contact to users[] */
+/**
+ * This function added a new contact to the array users.
+ * @param {number} i is the index number from array users.
+ */
 async function addNewContact() {
     loadingScreen();
 
@@ -70,7 +82,10 @@ async function addNewContact() {
 }
 
 
-/* a transparent screen on the contacts.html */
+/**
+ * This function opens and close the loadingscreen on the contacts side.
+ * As long as the loading screen is open, no actions can be carried out on the page.
+ */
 async function loadingScreen() {
     try {
         let loadingScreen = document.getElementById('contacts-loading-sreen');

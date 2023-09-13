@@ -41,16 +41,19 @@ function getAddTaskScript() {
 }
 
 function getBoard() {
+    setSidebarNavActive('board');
     loadHTML('dynamicContent', 'board.html');
     boardInit();
 }
 
 function getSummary() {
+    setSidebarNavActive('summary');
     loadHTML('dynamicContent', 'summary.html');
     initSummary();
 }
 
 function getContacts() {
+    setSidebarNavActive('contacts');
     loadHTML('dynamicContent', 'contacts.html');
     initContacts();
 }
