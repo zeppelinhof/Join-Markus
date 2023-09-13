@@ -483,7 +483,9 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    width: 80%;
+    width: 100%;
+    left: 0;
+    top: 0;
     position: absolute;
 }
 
@@ -757,6 +759,7 @@
 
 #subtaskContain {
     overflow-y: scroll;
+    height: 69px;
 }
 
 #subtaskContain::-webkit-scrollbar {
@@ -972,17 +975,14 @@
         height: 307px;
     }
 
-    #detailCard {
-        width: 100%;
-    }
-
     .frame203, .frame179, .frame178, .frame214, #frame204, .frame215 {
         width: 284px;
     }
 
     #taskOverlayHeadline {
         width: 284px;
-        font-size: 40px;
+        font-size: 34px;
+        line-height: 38px;
     }
 
     #descriptionContain {

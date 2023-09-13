@@ -1,8 +1,18 @@
-
+/**
+ * here allTasks are stored from the array tasks
+ */
 let allTasks = [];
+/**
+ * variable used in Drag and Drop
+ */
 let currentDraggedElement;
+/**
+ * this variable is used to store the status for the subtasks
+ */
 let currentOpenCard;
-
+/**
+ * function loaded in the body
+ */
 async function includeInit() {
     await includeHTML();
     boardInit();
@@ -23,7 +33,9 @@ async function renderInit() {
     loopAllTasks();
     await loadTasks();
 }
-
+/**
+ * function that exits the complete tasks from the backend
+ */
 async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
@@ -33,7 +45,10 @@ async function refreshData() {
     await emptyContainer();
     renderInit();
 }
-
+/**
+ * function that empries all containers after a reloaud
+ * @returns reloads the loopAllTasks card
+ */
 async function emptyContainer() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -41,7 +56,9 @@ async function emptyContainer() {
     document.getElementById('DoneContainer').innerHTML = '';
     return loopAllTasks();
 }
-
+/**
+ * Open and Close function detailCard
+ */
 function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
     saveDetailCardData();
@@ -75,6 +92,19 @@ function getSubtasksCheckboxState() {
     return (stringArray);
 }
 
+// Warten Sie auf das "DOMContentLoaded"-Ereignis, um sicherzustellen, dass das DOM vollständig geladen ist.
+//document.addEventListener('DOMContentLoaded', function () {
+//    // Überprüfen Sie, ob das 'searchInput'-Element vorhanden ist, bevor Sie den Event-Listener hinzufügen.
+//    const search = document.getElementById('searchInput');
+//    if (search) {
+//        search.addEventListener('input', loopAllTasks);
+//    } else {
+//        console.error('Das "searchInput"-Element wurde nicht gefunden.');
+//    }
+//});
+/**
+ * loads all cards with tasks
+ */
 function loopAllTasks() {
     document.getElementById('toDoContainer').innerHTML = '';
     document.getElementById('feedbackContainer').innerHTML = '';
@@ -103,7 +133,9 @@ function loopTasks(search) {
         }
     }
 }
-
+/**
+ * check if there are any cards in the container, if yes then the container should be hidden with the content 'no Tasks
+ */
 function checkEmptyContainer() {
     clearNoTasToDO();
     clearNoTaskProgress();
@@ -150,7 +182,10 @@ function clearNoTaskDone() {
         document.getElementById('noDone').style.display = '';
     }
 }
-
+/**
+ * loads the content of the whole map
+ * all parameters are passed from loopAllTasks
+ */
 function loadAllTask(category, title, description, column, q, priority, date, assigned) {
     const priorityIMG = imagePriority(priority);
 
@@ -193,7 +228,11 @@ function loadAllTask(category, title, description, column, q, priority, date, as
 
     assingAllTasks(column, cardHTML, q, category);
 }
-
+/**
+ * 
+ * @param {*} category 
+ * @param {*} q 
+ */
 function loadColorLabel(category, q) {
     if (category === 'Technical Task') {
         document.getElementById(`BoardCardLabel_${q}`).classList.add('technicalTask');
@@ -339,12 +378,6 @@ async function moveTo(column, q) {
         assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
     }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Füge den Event-Listener hinzu, sobald das DOM geladen ist
-    document.getElementById('searchInput').addEventListener('input', loopAllTasks);
-});
-
 async function deleteCard() {
     document.getElementById('detailCard').style.display = 'none';
     await deleteItem('tasks', currentOpenCard);
