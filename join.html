@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="css/summary.css">
     <script src="js/global.js"></script>
+    <script src="js/register.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/add_task.js"></script>
     <script src="js/load_contacts_to_add_task.js"></script>
@@ -42,8 +43,7 @@
         <div class="sidebar-panel">
             <img class="sidebar-logo" src="../assets/img/join_logo_white.png" alt="logo">
             <nav class="sidebar-nav" id="sidebar-nav">
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="getSummary();"
-                    id="sidebar-summary">
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="getSummary();" id="sidebar-summary">
                     <div class="sidebar-icon sidebar-icon-summary"></div>
                     <span class="sidebar-text">Summary</span>
                 </a>
@@ -51,13 +51,11 @@
                     <div class="sidebar-icon sidebar-icon-add_task"></div>
                     <span class="sidebar-text">Add Task</span>
                 </a>
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="getBoard();"
-                    id="sidebar-board">
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="getBoard();" id="sidebar-board">
                     <div class="sidebar-icon sidebar-icon-board"></div>
                     <span class="sidebar-text">Board</span>
                 </a>
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="getContacts();"
-                    id="sidebar-contacts">
+                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="getContacts();" id="sidebar-contacts">
                     <div class="sidebar-icon sidebar-icon-contacts"></div>
                     <span class="sidebar-text">Contacts</span>
                 </a>
@@ -99,5 +97,29 @@
         </div>
     </div>
 </body>
+
+<script>
+    const wrapper = document.getElementById('wrapper');
+    searchInp = document.getElementById('searchContactField');
+    selectAssignedTo = document.getElementById('selectAssignedTo');
+    searchInp.addEventListener("keyup", () => {
+        if (document.getElementById('searchContactField').value == '') {
+            document.getElementById('selectAssignedTo').innerHTML = '';
+            fillAssignedTo();
+        }
+        else {
+            document.getElementById('selectAssignedTo').innerHTML = '';
+            let arr = [];
+            let searchedVal = searchInp.value.toLowerCase();
+            for (let i = 0; i < users.length; i++) {
+                const user = users[i];
+                if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
+                    document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+                    fillUsername(i, user.name);
+                }
+            }
+        }
+    });
+</script>
 
 </html>

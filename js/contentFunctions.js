@@ -39,26 +39,18 @@ function getAddTaskScript() {
         </script>
     `
 }
-// #endregion Add Task
 
-//#region Board
 function getBoard() {
     loadHTML('dynamicContent', 'board.html');
     boardInit();
 }
 
-//#endregion Board
-
-//#region Summary
 function getSummary() {
     loadHTML('dynamicContent', 'summary.html');
     initSummary();
 }
-//#endregion Summary
 
-//#region Contacts
 function getContacts() {
     loadHTML('dynamicContent', 'contacts.html');
     initContacts();
 }
-//#endregion Contacts
