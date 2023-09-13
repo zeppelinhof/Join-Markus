@@ -2,17 +2,17 @@ let tasks = [];
 let boardStatus = 'to do';
 
 async function initAddTask() {
-    await getBars();
+    // await getBars();
     await includeHTML();
     await loadUsers();
     await loadTasks();
     userInitials();
 }
 
-async function getBars() {
-    document.getElementById('containerSidebar').innerHTML = contentSidebar();
-    document.getElementById('containerTopbar').innerHTML = contentTopbar();
-}
+// async function getBars() {
+//     document.getElementById('containerSidebar').innerHTML = contentSidebar();
+//     document.getElementById('containerTopbar').innerHTML = contentTopbar();
+// }
 
 function contentSidebar() {
     return /*html*/`
@@ -68,9 +68,9 @@ function contentTopbar() {
     `
 }
 
-async function loadTasks() {
-    tasks = JSON.parse(await getItem('tasks'));
-}
+// async function loadTasks() {
+//     tasks = JSON.parse(await getItem('tasks'));
+// }
 
 // #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
 function colorRed() {
@@ -151,6 +151,25 @@ function setPrioStatusAsString(status) {
     document.getElementById('prioStatusAsString').innerHTML = status;
 }
 
+function clearPrioButtons(){
+    btnUrgent = document.getElementById('btn_urgent')
+    btnMedium = document.getElementById('btn_medium')
+    btnLow = document.getElementById('btn_low')
+
+    if (btnUrgent.classList.length > 1) {
+        whiteBackgroundRedArrow(btnUrgent);
+        setPrioStatusAsString('');
+    }
+    if (btnMedium.classList.length > 1) {
+        whiteBackgroundRedArrow(btnMedium);
+        setPrioStatusAsString('');
+    }
+    if (btnLow.classList.length > 1) {
+        whiteBackgroundRedArrow(btnLow);
+        setPrioStatusAsString('');
+    }
+}
+
 // #endregion region Coloring Buttons Urgent Medium Low
 
 // #region Data from Add Task to Backend
@@ -191,12 +210,13 @@ function resetForm2() {
     title.value = '';
     description.value = '';
     contactsInTask = [];
-    selectAssignedTo.value = '';
+    selectAssignedTo.innerHTML = '';
     date.value = '';
     subtasks = [];
     document.getElementById('selectedSubtasks').innerHTML = '';
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
-    location.reload();
+    clearPrioButtons();
+    // location.reload();
 }
 
 // #endregion Data from Add Task to Backend
@@ -384,7 +404,7 @@ function custValidation() {
         valid = false;
     }
 
-    assignedToInvalid = document.getElementById('selected-contacts-circles-below');
+    selectAssignedTo = document.getElementById('selected-contacts-circles-below');
     if (selectAssignedTo.innerText == '') {
         setRedBorder(assignedToInvalid);
         remove_d_none('selected-contacts-circles-below');

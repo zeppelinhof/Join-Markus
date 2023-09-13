@@ -78,6 +78,25 @@ function setPrioStatusAsString(status) {
     document.getElementById('prioStatusAsString').innerHTML = status;
 }
 
+function clearPrioButtons(){
+    btnUrgent = document.getElementById('btn_urgent')
+    btnMedium = document.getElementById('btn_medium')
+    btnLow = document.getElementById('btn_low')
+
+    if (btnUrgent.classList.length > 1) {
+        whiteBackgroundRedArrow(btnUrgent);
+        setPrioStatusAsString('');
+    }
+    if (btnMedium.classList.length > 1) {
+        whiteBackgroundRedArrow(btnMedium);
+        setPrioStatusAsString('');
+    }
+    if (btnLow.classList.length > 1) {
+        whiteBackgroundRedArrow(btnLow);
+        setPrioStatusAsString('');
+    }
+}
+
 // #endregion region Coloring Buttons Urgent Medium Low
 
 // #region Data from Add Task to Backend
@@ -105,19 +124,20 @@ async function register_task() {
 
     await setItem('tasks', JSON.stringify(tasks));
 
-    resetForm();
+    resetForm2();
 }
 
-function resetForm() {
+function resetForm2() {
     title.value = '';
     description.value = '';
     contactsInTask = [];
-    selectAssignedTo.value = '';
+    selectAssignedTo.innerHTML = '';
     date.value = '';
     subtasks = [];
     document.getElementById('selectedSubtasks').innerHTML = '';
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
-    location.reload();
+    clearPrioButtons();
+    //location.reload();
 }
 
 // #endregion Data from Add Task to Backend
@@ -306,7 +326,7 @@ function custValidation() {
         valid = false;
     }
 
-    assignedToInvalid = document.getElementById('selected-contacts-circles-below');
+    selectAssignedTo = document.getElementById('selected-contacts-circles-below');
     if (selectAssignedTo.innerText == '') {
         setRedBorder(assignedToInvalid);
         remove_d_none('selected-contacts-circles-below');
