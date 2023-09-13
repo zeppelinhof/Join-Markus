@@ -386,3 +386,8 @@ function returnNameWithoutSpaces(name) {
 
     return nameWithoutSpaces;
 }
+
+
+function logoutUser() {
+    localStorage.removeItem('email');
+}

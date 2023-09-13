@@ -2,6 +2,7 @@ async function init() {
     animateJoinLogo();
     loadHTML('formElement', "login.html");
     await loadUsers();
+    checkRememberLogin();
 }
 
 
@@ -167,6 +168,7 @@ function login() {
     if (user) {
         warning.classList.add('invisible');
         passwordTextbox.classList.remove('redBorder');
+        rememberLogin(email.value);
         window.location.href = "summary.html?name=" + encodeURIComponent(user['name']);
     } else if (wrongPasswordOrUser) {
         warning.classList.remove('invisible');
@@ -174,6 +176,30 @@ function login() {
     } else {
         warning.classList.add('invisible');
         passwordTextbox.classList.remove('redBorder');
+    }
+}
+
+
+function rememberLogin(email) {
+    if (document.getElementById('myCheckbox').checked) {
+        localStorage.setItem('email', email);
+    }
+}
+
+
+function checkRememberLogin() {
+    const email = localStorage.getItem('email');
+    if (email) {
+        const user = getUserFromEmail(email);
+        window.location.href = "summary.html?name=" + encodeURIComponent(user);
+    }
+}
+
+
+function getUserFromEmail(email) {
+    for (let i = 0; i < users.length; i++) {
+        const element = users[i]['email'];
+        if (element === email) return users[i]['name']
     }
 }
 
