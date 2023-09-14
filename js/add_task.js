@@ -9,61 +9,11 @@ async function initAddTask() {
     userInitials();
 }
 
-function contentSidebar() {
-    return /*html*/`
-        <div class="sidebar-panel">
-            <img class="sidebar-logo" src="../assets/img/join_logo_white.png" alt="logo">
-            <nav class="sidebar-nav" id="sidebar-nav">
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../summary')" id="sidebar-summary">
-                    <div class="sidebar-icon sidebar-icon-summary"></div>
-                    <span class="sidebar-text">Summary</span>
-                </a>
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../add_task')" id="sidebar-add_task">
-                    <div class="sidebar-icon sidebar-icon-add_task"></div>
-                    <span class="sidebar-text">Add Task</span>
-                </a>
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../board')" id="sidebar-board">
-                    <div class="sidebar-icon sidebar-icon-board"></div>
-                    <span class="sidebar-text">Board</span>
-                </a>
-                <a href="#" class="sidebar-nav-member sidebar-t-d-none" onclick="linkPage('../contacts')" id="sidebar-contacts">
-                    <div class="sidebar-icon sidebar-icon-contacts"></div>
-                    <span class="sidebar-text">Contacts</span>
-                </a>
-            </nav>
-            <footer class="sidebar-footer">
-                <a href="privacypolicy.html" class="sidebar-nav-member sidebar-t-d-none" target="_blank">Privacy Policy</a>
-                <a href="legalnotice.html" class="sidebar-nav-member sidebar-t-d-none" target="_blank">Legal Notice</a>
-            </footer>
-        </div>
-    `
-}
-
-function contentTopbar() {
-    return /*html*/`
-    <div class="topbar-area">
-        <div class="topbar-panel">
-            <img class="topbar-logo" src="assets/img/join_logo.svg" alt="logo">
-            <h3 class="topbar-area-headline">Kanban Project Management Tool</h3>
-            <nav class="topbar-nav" id="topbar-nav">
-                <a href="#">
-                    <img class="topbar-icon" src="assets/img/icon_help.png" alt="help" onclick="linkPage('help')">
-                </a>
-                <div class="topbar-user-profile" onclick="showOrHideContextMenu()">
-                    <span id="topbar-user-profile-letter"></span>
-                </div>
-            </nav>
-        </div>
-        <div id="context-menu" class="topbar-d-none">
-            <a href="legalnotice.html" class="context-menu-member topbar-t-d-none" target="_blank">Legal Notice</a>
-            <a href="privacypolicy.html" class="context-menu-member topbar-t-d-none" target="_blank">Privacy Policy</a>
-            <a href="index.html" class="context-menu-member topbar-t-d-none">Log out</a>
-        </div>
-    </div>
-    `
-}
-
 // #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
+
+/**
+ * By clicking a Prio burron color change to red, orange or green
+ */
 function colorRed() {
     let btn = document.getElementById('btn_urgent');
     if (btn.classList.length > 1) {
@@ -112,6 +62,11 @@ function colorGreen() {
     whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
 }
 
+/**
+ * By clicking a prio button twice it changed to white (neutral)
+ * 
+ * @param {object} btn - one of the Prio buttons
+ */
 function whiteBackgroundRedArrow(btn) {
     btn.classList.remove('button-red');
     document.getElementById('arrowWhiteUrgent').classList.remove('z-index-1');
@@ -142,6 +97,9 @@ function setPrioStatusAsString(status) {
     document.getElementById('prioStatusAsString').innerHTML = status;
 }
 
+/**
+ * by reloading page change all prio buttons to neutral
+ */
 function clearPrioButtons(){
     btnUrgent = document.getElementById('btn_urgent')
     btnMedium = document.getElementById('btn_medium')
@@ -165,7 +123,11 @@ function clearPrioButtons(){
 
 // #region Data from Add Task to Backend
 
-
+/**
+ * clicking Create task saves task data in array and reset current page
+ * 
+ * @param {*} validatedPage - superior page of calling function
+ */
 async function register_task(validatedPage) {
     tasks.push({
         title: cleanInputString(title.value),
@@ -182,6 +144,9 @@ async function register_task(validatedPage) {
     resetForm2(validatedPage);
 }
 
+/**
+ * set subtaskstate for all tasks to false
+ */
 function subtaskstate() {
     let subtaskstate = [];
     for (let i = 0; i < subtasks.length; i++) {
@@ -190,6 +155,12 @@ function subtaskstate() {
     return subtaskstate;
 }
 
+/**
+ * To avoid error by enter bad title
+ * 
+ * @param {string} input - content of field for input
+ * @returns {string} - corrected input data
+ */
 function cleanInputString(input) {
     const pattern = /[<>&"'/\\]/g;
     const sanitizedInput = input.replace(pattern, '');
@@ -197,6 +168,11 @@ function cleanInputString(input) {
     return trimmedInput;
 }
 
+/**
+ * clear all temporary arrays of add task and reload page
+ * 
+ * @param {*} validatedPage - superior page of calling function
+ */
 function resetForm2(validatedPage) {
     title.value = '';
     description.value = '';
@@ -390,6 +366,11 @@ function deleteSubtask(x) {
     fillSubtaskArray();
 }
 
+/**
+ * reset Add Task: set white background if colored
+ * 
+ * @param {string} classname - id of prio button
+ */
 function changeWhiteBackground(classname) {
     let surface = document.getElementById(classname).classList
     if (surface.contains('white-background')) {
@@ -404,7 +385,11 @@ function changeWhiteBackground(classname) {
 
 //#region Validation
 
-
+/**
+ * check mandatory fields of Add Task 
+ * 
+ * @param {string} validatedPage - superior page of calling function
+ */
 function custValidation(validatedPage) {
 
     let valid = true;
@@ -462,14 +447,11 @@ function custValidation(validatedPage) {
     }
 }
 
-function unsetRedBorder(classname) {
-    classList = document.getElementById(classname).classList;
-
-    if (classList.contains('redBorder')) {
-        classList.remove('redBorder');
-    }
-}
-
+/**
+ * invalid containers are colored red
+ * 
+ * @param {string} classname - id of container to color red because it is not valid
+ */
 function setRedBorder(classname) {
     // unsetBlueBorder(classname);
     classList = document.getElementById(classname).classList;
@@ -482,6 +464,10 @@ function setRedBorder(classname) {
 //#endregion Validation
 
 //#region set Date Minimum for Datepicker
+
+/**
+ * functions to set today's date for disable past calendar days
+ */
 async function setDateOfTodayForDatepicker() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementsByName("date")[0].setAttribute('min', today);
@@ -493,6 +479,11 @@ function setDateOfTodayForDatepickerCard() {
 }
 //#endregion set Date Minimum for Datepicker
 
+/**
+ * after page has been validated, reload it
+ * 
+ * @param {*} validatedPage - superior page of calling function
+ */
 function reloadPage(validatedPage){
     clearPrioButtons();
     if (validatedPage=='add_task') {

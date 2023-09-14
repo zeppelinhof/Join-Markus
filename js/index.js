@@ -220,7 +220,7 @@ function login() {
         warning.classList.add('invisible');
         passwordTextbox.classList.remove('redBorder');
         rememberLogin(email.value);
-        window.location.href = "summary.html?name=" + encodeURIComponent(user['name']);
+        window.location.href = "join.html?name=" + encodeURIComponent(user['name']);
     } else if (wrongPasswordOrUser) {
         warning.classList.remove('invisible');
         passwordTextbox.classList.add('redBorder');
@@ -249,7 +249,7 @@ function checkRememberLogin() {
     const email = localStorage.getItem('email');
     if (email) {
         const user = getUserFromEmail(email);
-        window.location.href = "summary.html?name=" + encodeURIComponent(user);
+        window.location.href = "join.html?name=" + encodeURIComponent(user);
     }
 }
 

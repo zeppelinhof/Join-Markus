@@ -13,6 +13,7 @@
     <script src="./js/global.js"></script>
     <script src="./js/storage.js"></script>
     <script src="./js/summary.js"></script>
+    <script src="./js/contentFunctions.js"></script>
 </head>
 
 <body onload="initSummary(); initSidebarNavHighlighted()">
@@ -32,20 +33,20 @@
                 <div class="contentSubcontainer">
                     <div class="panelContainer">
                         <div class="panelRow">
-                            <div class="tasksPanel" onclick="linkPage('board')">
+                            <div class="tasksPanel" onclick="getBoard();">
                                 <div class="variablePanel" id="variablePanel1"></div>
                                 <div class="font20px400">Tasks in<br>Board</div>
                             </div>
-                            <div class="tasksPanel" onclick="linkPage('board')">
+                            <div class="tasksPanel" onclick="getBoard();">
                                 <div class="variablePanel" id="variablePanel2"></div>
                                 <div class="font20px400">Tasks in<br>Progress</div>
                             </div>
-                            <div class="tasksPanel" onclick="linkPage('board')">
+                            <div class="tasksPanel" onclick="getBoard();">
                                 <div class="variablePanel" id="variablePanel3"></div>
                                 <div class="font20px400">Awaiting<br>Feedback</div>
                             </div>
                         </div>
-                        <div class="rowUrgent" onclick="linkPage('board')">
+                        <div class="rowUrgent" onclick="getBoard();">
                             <div class="urgentTask">
                                 <div class="urgentImageContainer">
                                     <img src="assets/img/Capa_2_white.svg" alt="arrowUp">
@@ -62,7 +63,7 @@
                             </div>
                         </div>
                         <div class="panelRow">
-                            <div class="otherTasksContainer" onclick="linkPage('board')">
+                            <div class="otherTasksContainer" onclick="getBoard();">
                                 <div class="edit">
                                     <div class="edit-icon"></div>
                                 </div>
@@ -71,7 +72,7 @@
                                     <div class="font20px400">To-Do</div>
                                 </div>
                             </div>
-                            <div class="otherTasksContainer" onclick="linkPage('board')">
+                            <div class="otherTasksContainer" onclick="getBoard();">
                                 <div class="done">
                                     <div class="done-icon"></div>
                                 </div>
