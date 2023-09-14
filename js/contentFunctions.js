@@ -1,6 +1,7 @@
 // #region Add Task
 function getAddTask() {
     prepareIncludeAddTask_Standard_Or_Card('standard');
+    setSidebarNavActive('add_task');
     loadHTML('dynamicContent', 'add_task.html');
     initAddTask();
     //document.getElementById('body_join').innerHTML += getAddTaskScript();
