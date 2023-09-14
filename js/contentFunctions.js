@@ -1,6 +1,7 @@
 // #region Add Task
 function getAddTask() {
     prepareIncludeAddTask_Standard_Or_Card('standard');
+    setSidebarNavActive('add_task');
     loadHTML('dynamicContent', 'add_task.html');
     initAddTask();
     //document.getElementById('body_join').innerHTML += getAddTaskScript();
@@ -58,6 +59,11 @@ function getContacts() {
     setSidebarNavActive('contacts');
     loadHTML('dynamicContent', 'contacts.html');
     initContacts();
+}
+
+function getHelp() {
+    loadHTML('dynamicContent', 'help.html');
+    initHelp();
 }
 
 function prepareIncludeAddTask_Standard_Or_Card(typeOfAddTask) {
