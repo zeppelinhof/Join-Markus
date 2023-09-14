@@ -1,3 +1,8 @@
+/**
+ * This function returns html code which is needed for the kontaktlist.
+ * @param {char} firstLetter is the first letter by the named contact.
+ * @returns {object} html code.
+ */
 function getLetterHeadlineHTML(firstLetter) {
     return /*html*/`
         <span class="contacts-letter-headline">${firstLetter}</span>
@@ -6,6 +11,15 @@ function getLetterHeadlineHTML(firstLetter) {
 }
 
 
+/**
+ * This function returns html code which is needed for the kontaktlist.
+ * @param {integer} i is the index number from array users.
+ * @param {string} colorStyle is the rgb code from array contactColors. 
+ * @param {string} firstLetters is the first letter from the frist and second name from the contact.
+ * @param {string} name is the full name from the contact.
+ * @param {string} email is the email address from the contact.
+ * @returns {object} html code.
+ */
 function getContactCardHTML(i, colorStyle, firstLetters, name, email) {
     return /*html*/`
         <div class="contact-card" onclick="openContactData(${i}, '${colorStyle}')" id='contactCard-${i}'>
@@ -21,6 +35,16 @@ function getContactCardHTML(i, colorStyle, firstLetters, name, email) {
 }
 
 
+/**
+ * This function returns html code which is needed for the contact data window.
+ * @param {integer} i is the index number from array users.
+ * @param {string} colorStyle is the rgb code from array contactColors. 
+ * @param {string} firstLetters is the first letter from the frist and second name from the contact.
+ * @param {string} name is the full name from the contact.
+ * @param {string} email is the email address from the contact.
+ * @param {string} phone is the phone number from the contact.
+ * @returns {object} html code.
+ */
 function getContactDataHTML(i, colorStyle, firstLetters, name, email, phone) {
     return /*html*/ `
         <div class="contact-data-name-area">

@@ -362,7 +362,8 @@ function returnContactColorByName(name) {
 
 /**
  * This function sorts "users" array by alphabetical order of usernames.
- * @returns [alphabetUsers] = array of sorted users; [lastAddedContactIndex] = index of the latest added user.
+ * @returns {(object|array)} alphabetUsers is the status from all current sortet users/contacts.
+ * @returns {integer} lastAddedContactIndex is the index number from the current added contact/contacts in alphabetUsers.
  */
 function sortUsers() {
     let alphabetUsers = [];
@@ -386,6 +387,17 @@ function sortUsers() {
 }
 
 
+/**
+ * This fuction loops through the array alphabetUsers.
+ * @param {integer} i is the index number from array users.
+ * @param {(object|array)} alphabetUsers is the status from all current sortet users/contacts.
+ * @param {integer} lastAddedContactIndex is the index number from the current added contact/contacts in alphabetUsers.
+ * @param {boolean} outOfFunctionFirstLoop is the exit to leave the loop in the function compareUsersWithAlphabetUsersFirstLoop.
+ * @param {string} userNameWithoutSpace is the current user/contact without space from array users.
+ * @param {char} alphabetLetterCurrentUser is the current letter from the current user/contact from array users.
+ * @returns {(object|array)} alphabetUsers is the status from all current sortet users/contacts.
+ * @returns {integer} lastAddedContactIndex is the index number from the current added user/contact in alphabetUsers.
+ */
 function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser) {
     for (let k = 0; k < alphabetUsers.length; k++) {
         const alphabetUsersName = alphabetUsers[k]['name'];
@@ -403,6 +415,21 @@ function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedConta
 }
 
 
+/**
+ * This function loops throuhg the string alphabetUserNameWithoutSpace,
+ * and compare the letters with those from the current user from the user array.
+ * @param {integer} i is the index number from array users.
+ * @param {integer} k  is the index number from array alphabetUsers.
+ * @param {(object|array)} alphabetUsers is the status from all current sortet users/contacts. 
+ * @param {integer} lastAddedContactIndex is the index number from the current added user/contact in alphabetUsers.
+ * @param {boolean} outOfFunctionFirstLoop is the exit to leave the looper in the funtion compareUsersWithAlphabetUsersFirstLoop.
+ * @param {string} userNameWithoutSpace is the current user/contact without space from array users.
+ * @param {char} alphabetLetterCurrentUser is the current letter from the current user/contact from array users.
+ * @param {string} alphabetUserNameWithoutSpace is the current user/contact without space from array alphabetUsers.
+ * @returns {(object|array)} alphabetUsers is the status from all current sortet users/contacts.
+ * @returns {integer} lastAddedContactIndex is the index number from the current added user/contact in alphabetUsers.
+ * @returns {boolean} outOfFunctionFirstLoop is the exit to leave the looper in the funtion compareUsersWithAlphabetUsersFirstLoop.
+ */
 function compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace) {
     let outOfFunctionSecondLoop = false;
 
@@ -428,6 +455,23 @@ function compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedC
 }
 
 
+/**
+ * This function checks whether where a user/contact needs to be classified.
+ * @param {*} i is the index number from array users.
+ * @param {*} k is the index number from array alphabetUsers.
+ * @param {*} l is the index number from the letter in alphabetUserNameWithouSpace.
+ * @param {*} alphabetUsers is the status from all current sortet users/contacts.
+ * @param {*} lastAddedContactIndex is the index number from the current added user/contact in alphabetUsers.
+ * @param {*} outOfFunctionFirstLoop is the exit to leave the looper in function compareUsersWithAlphabetUsersFirstLoop.
+ * @param {*} outOfFunctionSecondLoop is the exit to leave the looper in function compareUsersWithAlphabetUsersSecondLoop.
+ * @param {*} alphabetLetterCurrentUser is the current letter from the current user/contact from array users.
+ * @param {*} alphabetLetterCurrentAlphabetUser is the current letter from the current user/contact from array alphabetUsers.
+ * @param {*} alphabetUserNameWithoutSpace is the current user/contact without space from array alphabetUsers.
+ * @returns {(object|array)} alphabetUsers is the status from all current sortet users/contacts.
+ * @returns {integer} lastAddedContactIndex is the index number from the current added user/contact in alphabetUsers.
+ * @returns {boolean} outOfFunctionFirstLoop is the exit to leave the looper in the funtion compareUsersWithAlphabetUsersFirstLoop.
+ * @returns {boolean} outOfFunctionSecondLoop is the exit to leave the looper in the funtion compareUsersWithAlphabetUsersSecondLoop.
+ */
 function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop, alphabetLetterCurrentUser, alphabetLetterCurrentAlphabetUser, alphabetUserNameWithoutSpace) {
     if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
         if (k == alphabetUsers.length - 1) {
@@ -457,8 +501,8 @@ function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex
 
 /**
  * This function returns a registered users data as an JSON object.
- * @param {*} i 
- * @returns 
+ * @param {integer} i is the index number from array users.
+ * @returns {object} JSON object.
  */
 function retrunUserJSON(i) {
     return {
@@ -470,6 +514,11 @@ function retrunUserJSON(i) {
 }
 
 
+/**
+ * This function splitet the input name and returns this name withouht space.
+ * @param {string} name the name from the current user/contact
+ * @returns {string} nameWithoutSpace is the input name without space.
+ */
 function returnNameWithoutSpaces(name) {
     let splitName = name.split(' ');
     let nameWithoutSpaces = '';

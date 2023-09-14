@@ -5,7 +5,7 @@ let currentContactIndex = 0;
  * @param {string} id1 is the id in the template from the parent container.
  * @param {string} id2 is the id from the includet container in the mainpage.
  * @param {boolean} renderEdit call the renderfunction from 'edit contact' overlay.
- * @param {number} i is the index number from the array users and have a default value.
+ * @param {integer} i is the index number from the array users and have a default value.
  */
 function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
     let addNewContactInlcudeHTML = document.getElementById(id1);
@@ -33,7 +33,7 @@ function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
 
 /**
  * This function rendert the contact information on 'edit contact' overlay.
- * @param {number} i is the index number from array users.
+ * @param {integer} i is the index number from array users.
  */
 function renderEditContact(i) {
     const editProfileIcon = document.getElementById('edit-contact-profile-icon');
@@ -56,7 +56,7 @@ function renderEditContact(i) {
 
 /**
  * This function added a new contact to the array users.
- * @param {number} i is the index number from array users.
+ * @param {integer} i is the index number from array users.
  */
 async function addNewContact() {
     loadingScreen();
@@ -99,7 +99,11 @@ async function loadingScreen() {
 }
 
 
-/* show new contact on contatcts.html or add_task.html */
+/**
+ * This function is there to choose between two function calls.
+ * Since addNewContact is used by several pages,
+ * it is necessary to switch to the functions intended for this purpose.
+ */
 async function showNewContactOrInitUsers() {
     try {
         showNewContact();
@@ -111,7 +115,10 @@ async function showNewContactOrInitUsers() {
 }
 
 
-/* show the new contact in the contactdata screen */
+/**
+* This function show the new added contact with contact data,
+* and highlightetd the current card in the contactlist.
+*/
 function showNewContact() {
     renderContacts();
     openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
@@ -128,7 +135,11 @@ function showNewContact() {
 }
 
 
-/* show a little box with status form added, changed or deleted contact */
+/**
+* This function show's a box with a slide effect.
+* The box shows with text the current action that was executed.
+* @param {string} text is the text form the action. 
+*/
 function addNewContactShowSlideBox(text) {
     let slideBox = document.getElementById('contact-added-slideBox');
     let slideBoxText = document.getElementById('contact-slideBox-text');
@@ -144,7 +155,9 @@ function addNewContactShowSlideBox(text) {
 }
 
 
-/* blanks the add new contact overlay */
+/**
+ * This function clears the input fields in the 'add new contact' overlay.
+ */
 function addNewContactClear() {
     document.getElementById('add-new-name').value = '';
     document.getElementById('add-new-email').value = '';
@@ -152,7 +165,10 @@ function addNewContactClear() {
 }
 
 
-/* changed contact datas from current contact */
+/**
+ * This fuction change the date from the current contact in array users,
+ * and show the changing data.
+ */
 async function editContact() {
     loadingScreen();
 
@@ -176,7 +192,12 @@ async function editContact() {
 }
 
 
-/* deleted the current contact */
+/**
+ * This function delete the current contact in array users,
+ * and show the result.
+ * @param {integer} i is the index number from array users.
+ * @param {boolean} openFalse decides whether the function is executed or not, default is true.
+ */
 async function deleteContact(i = currentContactIndex, openFalse = true) {
     loadingScreen();
 

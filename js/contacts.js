@@ -1,6 +1,9 @@
 let existLetterHeadline = '';
 
 
+/**
+ * This function initalized the function to load the contacts side.
+ */
 async function initContacts() {
     await loadUsers();
     renderContacts();
@@ -9,7 +12,9 @@ async function initContacts() {
 }
 
 
-/* rendert all contacts from users[] as contactlist */
+/**
+ * This function rendes the contacts in the contactlist.
+ */
 function renderContacts() {
     let contactsList = document.getElementById('contacts-list');
     contactsList.innerHTML = '';
@@ -32,6 +37,11 @@ function renderContacts() {
 
 
 /* added the letter category for contacts A, B, C etc. */
+/**
+ * This fuction added the letter to display the contacts alphabetically.
+ * @param {char} firstLetter is the first letter from the current username.
+ * @param {object} contactsList is the container to added the content.
+ */
 function addLetterHeadline(firstLetter, contactsList) {
     if (existLetterHeadline.toLocaleLowerCase() != firstLetter.toLocaleLowerCase() || existLetterHeadline == '') {
         contactsList.innerHTML += getLetterHeadlineHTML(firstLetter.toUpperCase());
@@ -40,7 +50,10 @@ function addLetterHeadline(firstLetter, contactsList) {
 }
 
 
-/* open the datas from clicked contact from the contactlist */
+/**
+ * This fuction shows all data from the clicked contcat in a separate window.
+ * @param {integer} i is the index from arry users.
+ */
 function openContactData(i) {
     let contactCard = document.getElementById(`contactCard-${i}`);
     let conatacts = document.getElementById('contacts');
@@ -65,7 +78,9 @@ function openContactData(i) {
 }
 
 
-/* close the the clicked contactdatas */
+/**
+ * This fuction close the contact data which were shown in a separate window.
+ */
 function closeContactData() {
     let conatacts = document.getElementById('contacts');
     let contactData = document.getElementById('contact-data');
@@ -78,6 +93,11 @@ function closeContactData() {
 
 
 /* render the screen 'contactdata' with the datas from clicked contact */
+/**
+ * This function renders the contactdata in separate window,
+ * and show this with a slide effect.
+ * @param {integer} i is the index number from the array users.
+ */
 function renderContactData(i) {
     let content = document.getElementById('contact-data-content');
     content.innerHTML = '';
@@ -96,7 +116,9 @@ function renderContactData(i) {
 }
 
 
-/* blanks the contactdatas */
+/**
+ * This function clears the container with the contactdatas.
+ */
 function clearContactData() {
     let content = document.getElementById('contact-data-content');
 
@@ -105,7 +127,9 @@ function clearContactData() {
 }
 
 
-/* ensures that only one contact is marked as clicked */
+/**
+ * This function search contacts that have been highlighted as clicket and removed this. 
+ */
 function closeAllContactClicks() {
     clearContactData();
 
@@ -119,7 +143,9 @@ function closeAllContactClicks() {
 }
 
 
-/* open the context menu in the responsive view for edit and delete contact */
+/**
+ * open the ponit menu in the responsive view and lets it slide in.
+ */
 function openEditContactPointMenu() {
     let editContactPointMenu = document.getElementById('contact-data-name-edit-del-area')
 
@@ -141,17 +167,18 @@ function closeEditContactPointMenu() {
 }
 
 
-/* excludes a child container from the parent container's onclick method */
+/**
+ * This function excludes a child container from the parent container's onclick method. 
+ */
 function notToClose(event) {
     event.stopPropagation();
 }
 
 
-/* ----------- */
-/* media query */
-/* ----------- */
+/**
+ * This function switch between contactlist and contactdata if media matches.
+ */
 
-/* switch between contactlist and contactdata if media matches */
 window.addEventListener('resize', () => {
     let contactCard = document.getElementById(`contactCard-${currentContactIndex}`);
     let contacts = document.getElementById('contacts');
