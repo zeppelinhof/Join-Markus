@@ -45,7 +45,7 @@ function getBoard() {
     prepareIncludeAddTask_Standard_Or_Card('card');
     setSidebarNavActive('board');
     loadHTML('dynamicContent', 'board.html');
-    boardInit();
+    boardInit();    
 }
 
 function getSummary() {

@@ -416,6 +416,7 @@ ul {
     max-height: 180px;
     overflow-y: auto;
     padding-right: 8px;
+    margin-top: 16px;
 }
 
 .selectAssignedTo::-webkit-scrollbar {

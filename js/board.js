@@ -416,6 +416,7 @@ function updateProgressBar(q) {
 }
 
 async function addFeedback(columnStatus) {
+    fillAssignedTo();
     boardStatus = columnStatus
     openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')
 }
