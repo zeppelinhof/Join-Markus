@@ -61,6 +61,11 @@ function getContacts() {
     initContacts();
 }
 
+function getHelp() {
+    loadHTML('dynamicContent', 'help.html');
+    initHelp();
+}
+
 function prepareIncludeAddTask_Standard_Or_Card(typeOfAddTask) {
     if (typeOfAddTask == 'standard') {
         document.getElementById('addTaskCARD_include').innerHTML = '';
