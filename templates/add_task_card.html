@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/js/add_task_card.js"></script>
+    <!-- <script src="/js/add_task_card.js"></script> -->
 </head>
 
 <body onload="initAddTask(); includeHTML(); initUsers(); initTasks();">
@@ -195,7 +195,7 @@
                                                 id="black_x" src="./assets/img/Vector.svg"> <img id="blue_x"
                                                 src="./assets/img/Vector_blue.svg" class="d-none"></button>
                                         <button class="btn btn-outline-dark button-create-task"
-                                            onclick="custValidation();" id="buttonCreate">Create
+                                            onclick="custValidation('board');" id="buttonCreate">Create
                                             Task <img src="./assets/img/check.svg"></button>
                                     </div>
                                 </div>

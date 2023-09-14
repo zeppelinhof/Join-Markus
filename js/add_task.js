@@ -2,18 +2,12 @@ let tasks = [];
 let boardStatus = 'to do';
 
 async function initAddTask() {
-    // await getBars();
     await includeHTML();
     await loadUsers();
     await fillAssignedTo();
     await loadTasks();
     userInitials();
 }
-
-// async function getBars() {
-//     document.getElementById('containerSidebar').innerHTML = contentSidebar();
-//     document.getElementById('containerTopbar').innerHTML = contentTopbar();
-// }
 
 function contentSidebar() {
     return /*html*/`
@@ -68,10 +62,6 @@ function contentTopbar() {
     </div>
     `
 }
-
-// async function loadTasks() {
-//     tasks = JSON.parse(await getItem('tasks'));
-// }
 
 // #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
 function colorRed() {
@@ -162,11 +152,11 @@ function clearPrioButtons(){
         setPrioStatusAsString('');
     }
     if (btnMedium.classList.length > 1) {
-        whiteBackgroundRedArrow(btnMedium);
+        whiteBackgroundOrangeArrow(btnMedium);
         setPrioStatusAsString('');
     }
     if (btnLow.classList.length > 1) {
-        whiteBackgroundRedArrow(btnLow);
+        whiteBackgroundGreenArrow(btnLow);
         setPrioStatusAsString('');
     }
 }
@@ -176,7 +166,7 @@ function clearPrioButtons(){
 // #region Data from Add Task to Backend
 
 
-async function register_task() {
+async function register_task(validatedPage) {
     tasks.push({
         title: cleanInputString(title.value),
         description: cleanInputString(description.value),
@@ -189,7 +179,7 @@ async function register_task() {
         subtaskstate: subtaskstate()
     });
     await setItem('tasks', JSON.stringify(tasks));
-    resetForm2();
+    resetForm2(validatedPage);
 }
 
 function subtaskstate() {
@@ -207,7 +197,7 @@ function cleanInputString(input) {
     return trimmedInput;
 }
 
-function resetForm2() {
+function resetForm2(validatedPage) {
     title.value = '';
     description.value = '';
     contactsInTask = [];
@@ -216,8 +206,7 @@ function resetForm2() {
     subtasks = [];
     document.getElementById('selectedSubtasks').innerHTML = '';
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
-    clearPrioButtons();
-    // location.reload();
+    reloadPage(validatedPage);
 }
 
 // #endregion Data from Add Task to Backend
@@ -226,18 +215,33 @@ function resetForm2() {
 let categoryClosed = false;
 let subtaskNumber = 0;
 
+/**
+ * function for hiding containers
+ * 
+ * @param {string} classname - contains id of container
+ */
 function add_d_none(classname) {
     if (!document.getElementById(classname).classList.contains('d-none')) {
         document.getElementById(classname).classList.add('d-none');
     }
 }
 
+/**
+ * function for hiding containers
+ * 
+ * @param {string} classname - contains id of container
+ */
 function remove_d_none(classname) {
     if (document.getElementById(classname).classList.contains('d-none')) {
         document.getElementById(classname).classList.remove('d-none');
     }
 }
 
+/**
+ * push dropdown of contacts to background (close Dropdown)
+ * 
+ * @param {string} field - contains id of container
+ */
 function selectContactFieldInBackground(field) {
     add_d_none('selectContactField');
     if (document.getElementById(field).classList.contains('d-none')) {
@@ -282,6 +286,10 @@ function borderLightblue(id) {
 // #endregiion select contact logic
 
 // #region add Subtask
+
+/**
+ * Add a subtask. Optional field. Plus button only working when filled field.
+ */
 function addSubtask() {
     if (document.getElementById('subtaskInputfield').value) {
         subtaskInputfield = document.getElementById('subtaskInputfield').value;
@@ -312,6 +320,13 @@ function addSubtask() {
     }
 }
 
+/**
+ * User can change a written subtask. To confrim changes he can click on hook to save the changes
+ * 
+ * @param {string} changedValue - include the changes
+ * @param {string} goal - includes previous text of subtask
+ * @param {string} subtaskNumber - sveral subtasks are possible, hence a subtask number
+ */
 function saveSubtaskChanges(changedValue, goal, subtaskNumber) {
     document.getElementById(goal).value = document.getElementById(changedValue).value;
     fillSubtaskArrayAsValue();
@@ -327,7 +342,7 @@ function fillSubtaskArray() {
         let element = document.getElementById('rawData' + i)
 
         if (element) {
-            subtasks.push(element.innerText);  // hier als innerText
+            subtasks.push(element.innerText);
         }
 
     }
@@ -356,6 +371,11 @@ function closeEdit(x) {
     classList.add('d-none');
 }
 
+/**
+ * delete a specific subtask
+ * 
+ * @param {string} x - number of subtask to be delted
+ */
 function deleteSubtask(x) {
     let oneSubtaskToDelete = document.getElementById(`oneSubtask${x}`);
 
@@ -366,9 +386,7 @@ function deleteSubtask(x) {
             subtasks.splice(i, 1);
         }
     }
-
     oneSubtaskToDelete.innerHTML = '';
-
     fillSubtaskArray();
 }
 
@@ -387,7 +405,7 @@ function changeWhiteBackground(classname) {
 //#region Validation
 
 
-function custValidation() {
+function custValidation(validatedPage) {
 
     let valid = true;
 
@@ -407,7 +425,7 @@ function custValidation() {
 
     selectAssignedTo = document.getElementById('selected-contacts-circles-below');
     if (selectAssignedTo.innerText == '') {
-        setRedBorder(assignedToInvalid);
+        setRedBorder('selectAssignedTo');
         remove_d_none('selected-contacts-circles-below');
         valid = false;
     }
@@ -440,7 +458,7 @@ function custValidation() {
     }
 
     if (valid) {
-        register_task();
+        register_task(validatedPage);
     }
 }
 
@@ -475,3 +493,13 @@ function setDateOfTodayForDatepickerCard() {
 }
 //#endregion set Date Minimum for Datepicker
 
+function reloadPage(validatedPage){
+    clearPrioButtons();
+    if (validatedPage=='add_task') {
+        getAddTask();
+    }
+    else{
+        getBoard();
+    }
+    
+}
