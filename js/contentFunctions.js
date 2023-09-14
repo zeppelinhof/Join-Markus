@@ -1,5 +1,6 @@
 // #region Add Task
 function getAddTask() {
+    prepareIncludeAddTask_Standard_Or_Card('standard');
     loadHTML('dynamicContent', 'add_task.html');
     initAddTask();
     //document.getElementById('body_join').innerHTML += getAddTaskScript();
@@ -41,6 +42,7 @@ function getAddTaskScript() {
 }
 
 function getBoard() {
+    prepareIncludeAddTask_Standard_Or_Card('card');
     setSidebarNavActive('board');
     loadHTML('dynamicContent', 'board.html');
     boardInit();
@@ -56,4 +58,17 @@ function getContacts() {
     setSidebarNavActive('contacts');
     loadHTML('dynamicContent', 'contacts.html');
     initContacts();
+}
+
+function prepareIncludeAddTask_Standard_Or_Card(typeOfAddTask) {
+    if (typeOfAddTask == 'standard') {
+        document.getElementById('addTaskCARD_include').innerHTML = '';
+    }
+    else {
+        document.getElementById('addTaskCARD_include').innerHTML = /*html*/`
+        <div class="contacts-d-none" w3-include-html="templates/add_task_card.html" id="add-new-task-include-HTML"></div>
+        `
+        includeHTML();
+    }
+
 }
