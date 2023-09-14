@@ -100,7 +100,7 @@ function setPrioStatusAsString(status) {
 /**
  * by reloading page change all prio buttons to neutral
  */
-function clearPrioButtons(){
+function clearPrioButtons() {
     btnUrgent = document.getElementById('btn_urgent')
     btnMedium = document.getElementById('btn_medium')
     btnLow = document.getElementById('btn_low')
@@ -484,13 +484,39 @@ function setDateOfTodayForDatepickerCard() {
  * 
  * @param {*} validatedPage - superior page of calling function
  */
-function reloadPage(validatedPage){
+function reloadPage(validatedPage) {
     clearPrioButtons();
-    if (validatedPage=='add_task') {
+    if (validatedPage == 'add_task') {
         getAddTask();
     }
-    else{
+    else {
         getBoard();
     }
-    
+
+}
+
+// Search input
+
+function searchInputAddTask() {
+    searchInp = document.getElementById('searchContactField');
+    selectAssignedTo = document.getElementById('selectAssignedTo');
+
+    if (document.getElementById('searchContactField').value == '') {
+        document.getElementById('selectAssignedTo').innerHTML = '';
+        fillAssignedTo();
+        let keyEvent = new KeyboardEvent('keypress', {key: 'Enter', shiftKey:true});
+        document.getElementById('searchContactField').dispatchEvent(keyEvent);
+    }
+    else {
+        document.getElementById('selectAssignedTo').innerHTML = '';
+        let arr = [];
+        let searchedVal = searchInp.value.toLowerCase();
+        for (let i = 0; i < users.length; i++) {
+            const user = users[i];
+            if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
+                document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+                fillUsername(i, user.name);
+            }
+        }
+    }
 }

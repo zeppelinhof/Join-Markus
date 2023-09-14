@@ -336,6 +336,7 @@ li:hover {
     padding: 0 20px;
     border-radius: 10px;
     background: #fff;
+    border: 1px solid #DEE2E6;
 }
 
 .contentSearchContact {

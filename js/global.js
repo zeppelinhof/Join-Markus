@@ -210,7 +210,7 @@ function linkPage(pageName) {
 
 
 /* ##################################################################### */
-/* dieser code wird fuer das heighlighten der navbar nicht mehr benötigt */
+/* dieser code wird fuer das highlighten der navbar nicht mehr benötigt */
 /* ##################################################################### */
 function initSidebarNavHighlighted() {
     setTimeout((() => {
