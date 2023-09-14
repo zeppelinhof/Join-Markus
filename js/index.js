@@ -23,7 +23,6 @@ function loadHTML(destinationId, fileName) {
         .then(htmlContent => {
             destinationElement.innerHTML = "";
             destinationElement.innerHTML = htmlContent;
-            toggleUiElements(fileName);
         })
         .catch(error => {
             console.error("Error loading HTML file:", error);

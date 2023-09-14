@@ -1,5 +1,5 @@
 <form class="form_container form_signup">
-    <div class="backToLogin2" onclick="loadHTML('formElement', 'login.html')"><img src="assets/img/arrowLeft.svg"></div>
+    <div class="backToLogin2" onclick="loadHTML('formElement', 'login.html'); toggleUiElements('login.html');"><img src="assets/img/arrowLeft.svg"></div>
     <div class="login_headline">Sign up</div>
     <i class="blueLine"></i>
     <input type="text" autocomplete="username" class="form-control input_login input_name" style="margin-bottom: -16px !important;"
@@ -28,7 +28,7 @@
             <span class="checkbox-icon"></span>
             I accept the
         </label>
-        <a href="#" style="text-decoration: none; color: #29ABE2;" onclick="linkPage('privacypolicy')">Privacy policy</a>
+        <a href="privacypolicy.html" style="text-decoration: none; color: #29ABE2;" target="_blank">Privacy policy</a>
     </div>
     <button type="submit" class="btn_filled btn_join invisible" id="btn_signUpUser"
         onclick="register(); return false;">Sign up</button>

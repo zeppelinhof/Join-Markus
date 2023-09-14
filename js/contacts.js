@@ -7,7 +7,6 @@ let existLetterHeadline = '';
 async function initContacts() {
     await loadUsers();
     renderContacts();
-    await includeHTML();
     userInitials();
 }
 
