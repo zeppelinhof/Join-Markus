@@ -206,8 +206,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                         <div class="progressAdvanced">
                             <div class="Subtasks">
                                 <div id="sumOfTasks">
-                                    <b id="TasksNumber_${q}"></b>/
-                                    <b id="allTasksNumber_${q}"></b>
+                                    <b id="TasksNumber_${q}"></b>/<b id="allTasksNumber_${q}"></b>
                                 </div>    
                                 <p class="boardSubtask">Subtasks</p>
                             </div>

@@ -18,8 +18,9 @@
 }
 
 .boardSubtask {
-    font-size: 13px;
+    font-size: 12px;
     margin-bottom: 0;
+    margin-left: 2px;
 }
 
 .is-hidden {
