@@ -177,7 +177,6 @@ function notToClose(event) {
 /**
  * This function switch between contactlist and contactdata if media matches.
  */
-
 window.addEventListener('resize', () => {
     let contactCard = document.getElementById(`contactCard-${currentContactIndex}`);
     let contacts = document.getElementById('contacts');
@@ -185,17 +184,17 @@ window.addEventListener('resize', () => {
     let contactDataContent = document.getElementById('contact-data-content');
     let windowSize = window.matchMedia('(max-width: 1350px)');
     let flag = false;
+    try {
+        contactDataContent.childNodes.length == 1 ? contactDataContent.innerHTML = '' : null;
+        if (windowSize.matches && contactDataContent.innerHTML > '') {
+            contacts.classList.add('contact-data-d-none');
+            contactData.classList.remove('contact-data-d-none');
+            flag = true;
+        } else {
+            contacts.classList.remove('contact-data-d-none');
+            contactData.classList.add('contact-data-d-none');
+        }
 
-    contactDataContent.childNodes.length == 1 ? contactDataContent.innerHTML = '' : null;
-
-    if (windowSize.matches && contactDataContent.innerHTML > '') {
-        contacts.classList.add('contact-data-d-none');
-        contactData.classList.remove('contact-data-d-none');
-        flag = true;
-    } else {
-        contacts.classList.remove('contact-data-d-none');
-        contactData.classList.add('contact-data-d-none');
-    }
-
-    flag == true ? contactCard.classList.add('contact-card-click') : null;
+        flag == true ? contactCard.classList.add('contact-card-click') : null;
+    } catch (e) { }
 });

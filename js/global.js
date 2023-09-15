@@ -462,5 +462,5 @@ function returnNameWithoutSpaces(name) {
  * This function is being called upon logout. It deletes its saved email address from local storage.
  */
 function logoutUser() {
-    localStorage.removeItem('email');
+    window.localStorage.clear();
 }
