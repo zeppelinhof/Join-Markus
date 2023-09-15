@@ -64,7 +64,9 @@ function closeDetailCard() {
     saveDetailCardData();
     refreshData();
 }
-
+/**
+ * 
+ */
 async function saveDetailCardData() {
     const q = currentOpenCard;
     const newCheckboxStates = getSubtasksCheckboxState();
@@ -92,16 +94,6 @@ function getSubtasksCheckboxState() {
     return (stringArray);
 }
 
-// Warten Sie auf das "DOMContentLoaded"-Ereignis, um sicherzustellen, dass das DOM vollständig geladen ist.
-//document.addEventListener('DOMContentLoaded', function () {
-//    // Überprüfen Sie, ob das 'searchInput'-Element vorhanden ist, bevor Sie den Event-Listener hinzufügen.
-//    const search = document.getElementById('searchInput');
-//    if (search) {
-//        search.addEventListener('input', loopAllTasks);
-//    } else {
-//        console.error('Das "searchInput"-Element wurde nicht gefunden.');
-//    }
-//});
 /**
  * loads all cards with tasks
  */
@@ -228,9 +220,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
     assingAllTasks(column, cardHTML, q, category);
 }
 /**
- * 
- * @param {*} category 
- * @param {*} q 
+ * function to load the respective colors for the heading  
  */
 function loadColorLabel(category, q) {
     if (category === 'Technical Task') {
@@ -253,7 +243,12 @@ function imagePriority(priority) {
     }
     return priorityIMG;
 }
-
+/**
+ * in the function the respective containers for the cards are filled
+ * @param {*} column in the parameter Column the status of the respective card is stored
+ * @param {*} cardHTML with the parameter cardHTML the content of the cardHTML is transferred
+ * @param {*} q parameter q is passed as card number
+ */
 function assingAllTasks(column, cardHTML, q, category) {
     const inProgressContainer = document.getElementById('inProgressContainer');
     const feedBackContainer = document.getElementById('feedbackContainer');
@@ -275,7 +270,10 @@ function assingAllTasks(column, cardHTML, q, category) {
     loadColorLabel(category, q);
     subTaskCard(q);
 }
-
+/**
+ * function to load the initials
+ * @param {*} q parameter q is passed as card number
+ */
 function loadInitials(q) {
     const user = allTasks[q]['selectAssignedTo'];
     const targetElementId = `frame1_${q}`;
@@ -291,6 +289,17 @@ function loadInitials(q) {
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
     }
 }
+/**
+ * function to open the detailcard of the selected cards
+ * @param {*} q parameter q is passed as card number
+ * @param {*} title in the parameter title the title is passed
+ * @param {*} description description of the task is passed in the description parameter
+ * @param {*} category in the parameter category the category is passed
+ * @param {*} priority in the parameter priority the priority is passed
+ * @param {*} date in the parameter date the date is passed
+ * @param {*} priorityIMG in the parameter priorityIMG the priorityIMG is passed
+ * @param {*} assigned 
+ */
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
     loadAssigned(q);
@@ -304,7 +313,10 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
     currentOpenCard = q;
 }
-
+/**
+ * here the names and initials are loaded
+ * @param {*} q parameter q is passed as card number
+ */
 function loadAssigned(q) {
     document.getElementById('frame204').innerHTML = '';
 
@@ -322,7 +334,10 @@ function loadAssigned(q) {
         document.getElementById('profileBadge' + n).style.backgroundColor = returnContactColor(n);
     }
 }
-
+/**
+ * function loads the subtask and adds the checkbox
+ * @param {*} q parameter q is passed as card number
+ */
 function loadSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML = '';
     const subtask = allTasks[q]['subtasks'];
@@ -354,7 +369,9 @@ function updateSubTaskCheckBoxState(element) {
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
     allTasks[currentOpenCard]['subtaskstate'][afterSubstring] = currentState === 'true' ? 'false' : 'true';
 }
-
+/**
+ * Drag and Drop function
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -377,12 +394,18 @@ async function moveTo(column, q) {
         assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
     }
 }
+/**
+ * function to delete the card
+ */
 async function deleteCard() {
     document.getElementById('detailCard').style.display = 'none';
     await deleteItem('tasks', currentOpenCard);
     renderInit();
 }
-
+/**
+ * function to check if subtask is present if no then hide the container
+ * @param {*} q parameter q is passed as card number
+ */
 function subTaskCard(q) {
     const subtaskBoard = allTasks[q]['subtasks'];
 
@@ -392,7 +415,10 @@ function subTaskCard(q) {
         loadAllTaskNumber(q);
     }
 }
-
+/**
+ * here the number of subtasks are loaded
+ * @param {*} q parameter q is passed as card number
+ */
 function loadAllTaskNumber(q) {
     let subtaskState = allTasks[q]['subtaskstate'];
     let completedTasks = subtaskState.filter(status => status === 'true').length;
