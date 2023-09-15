@@ -280,7 +280,7 @@ body {
         justify-content: center;
     }
 
-    .contact-data-headline {
+    .summary-headline {
         padding-left: 96px;
     }
 
@@ -393,7 +393,7 @@ body {
 }
 
 @media (max-width: 500px) {
-    .contact-data-headline {
+    .summary-headline {
         padding-left: 16px !important;
         gap: 4px;
         margin-bottom: 16px;
