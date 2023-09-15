@@ -42,10 +42,10 @@ function getAddTaskScript() {
     `
 }
 
-function getBoard() {
+async function getBoard() {
     prepareIncludeAddTask_Standard_Or_Card('card');
     setSidebarNavActive('board');
-    loadHTML('dynamicContent', 'board.html');
+    await loadHTML('dynamicContent', 'board.html');
     boardInit();    
 }
 
@@ -55,14 +55,14 @@ async function getSummary() {
     initSummary();
 }
 
-function getContacts() {
+async function getContacts() {
     setSidebarNavActive('contacts');
-    loadHTML('dynamicContent', 'contacts.html');
+    await loadHTML('dynamicContent', 'contacts.html');
     initContacts();
 }
 
-function getHelp() {
-    loadHTML('dynamicContent', 'help.html');
+async function getHelp() {
+    await loadHTML('dynamicContent', 'help.html');
     initHelp();
 }
 
