@@ -49,9 +49,9 @@ function getBoard() {
     boardInit();    
 }
 
-function getSummary() {
+async function getSummary() {
     setSidebarNavActive('summary');
-    loadHTML('dynamicContent', 'summary.html');
+    await loadHTML('dynamicContent', 'summary.html');
     initSummary();
 }
 

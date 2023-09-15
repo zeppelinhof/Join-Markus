@@ -143,7 +143,7 @@ function validatecredentials() {
 
 
 /**
- * This function check if password and confirm password values are identical.
+ * This function checks if password and confirm password values are identical.
  * @returns boolean state for passwords being identical or not.
  */
 function validatePasswords() {
@@ -231,8 +231,8 @@ function login() {
 
 
 /**
- * This function sets the emailaddress of a user to local storage in case the "rememberMe" checkbox is checked. I am aware this is a complete unsafe way to handle this option.
- * @param {*} email 
+ * This function sets the emailaddress of a user to local storage in case the "rememberMe" checkbox is checked. I am aware this is a unsafe way to handle this option.
+ * @param {*} email user Email address
  */
 function rememberLogin(email) {
     if (document.getElementById('myCheckbox').checked) {
