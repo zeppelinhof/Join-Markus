@@ -209,7 +209,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                                     <b id="TasksNumber_${q}"></b>/
                                     <b id="allTasksNumber_${q}"></b>
                                 </div>    
-                                <p style="margin-bottom:0;">Subtasks</p>
+                                <p class="boardSubtask">Subtasks</p>
                             </div>
                         </div>
                     </div>

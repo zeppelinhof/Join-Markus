@@ -17,6 +17,11 @@
     height: 232px;
 }
 
+.boardSubtask {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
 .is-hidden {
     display: none;
 }
