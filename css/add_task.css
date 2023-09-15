@@ -26,7 +26,7 @@ h1 {
     .contentStandard {
         height: calc(100vh - 80px - 80px);
         padding-top: unset;
-        overflow: scroll;
+        overflow: scroll;        
     }
 
     .contentStandard::-webkit-scrollbar {
@@ -658,4 +658,9 @@ ul {
     }    
 
     
+}
+@media(min-width: 1264px){
+    .contentStandard{
+        height: 100vw;
+    }
 }
