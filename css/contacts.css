@@ -329,13 +329,20 @@ body {
 
 @media(max-width: 750px) {
     .contact-data-area {
-        margin-top: 32px;
+        margin-top: 24px;
         margin-left: 16px;
+    }
+}
+
+@media(max-height: 900px) {
+    .contact-data-area {
+        margin-top: 24px;
     }
 }
 
 @media(max-height: 750px) {
     .contact-data-area {
+        gap: 36px;
         margin-top: 8px;
     }
 }
@@ -363,12 +370,20 @@ body {
 
 .contact-data-headline-left {
     font-size: 61px;
+    padding: unset;
     margin: 0;
 }
 
 @media(max-width: 750px) {
     .contact-data-headline-left {
         font-size: 47px;
+    }
+}
+
+
+@media(max-height: 750px) {
+    .contact-data-headline-left {
+        line-height: 56px;
     }
 }
 
@@ -419,7 +434,12 @@ body {
     }
 }
 
+.contact-data-content-parent {
+    position: relative;
+}
+
 #contact-data-content {
+    position: absolute;
     display: flex;
     flex-direction: column;
     width: 640px;
@@ -491,13 +511,19 @@ body {
 .contact-data-name {
     font-size: 47px;
     font-weight: 500;
-    margin-top: 0;
-    margin-bottom: 8px;
+    margin: unset;
+    padding: unset;
 }
 
 @media(max-width: 750px) {
     .contact-data-name {
         font-size: 36px;
+    }
+}
+
+@media(max-width: 450px) {
+    .contact-data-name {
+        line-height: 48px;
     }
 }
 
@@ -521,7 +547,7 @@ body {
 
 @media(max-width: 1350px) {
     .contact-data-name-edit-del-area {
-        position: absolute;
+        position: fixed;
         right: 8px;
         bottom: 16px;
         height: 100px;
@@ -538,6 +564,7 @@ body {
         border-top-right-radius: 20px;
         padding-left: 20px;
         z-index: 2;
+        box-sizing: content-box;
     }
 
     .contact-data-name-edit-del-area-slidein-animation {
@@ -568,6 +595,12 @@ body {
         to {
             right: -116px;
         }
+    }
+}
+
+@media(max-width: 900px) {
+    .contact-data-name-edit-del-area {
+        bottom: 96px;
     }
 }
 
@@ -666,7 +699,7 @@ body {
 
 @media(max-width: 1350px) {
     .btn-menu-contact {
-        position: absolute;
+        position: fixed;
         right: 16px;
         bottom: 48px;
         height: 56px;
@@ -685,6 +718,12 @@ body {
         height: 24px;
         width: 24px;
         object-fit: contain;
+    }
+}
+
+@media(max-width: 900px) {
+    .btn-menu-contact {
+        bottom: 128px;
     }
 }
 
