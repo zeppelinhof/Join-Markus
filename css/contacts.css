@@ -380,7 +380,6 @@ body {
     }
 }
 
-
 @media(max-height: 750px) {
     .contact-data-headline-left {
         line-height: 56px;
@@ -744,10 +743,10 @@ body {
     position: absolute;
     right: -320px;
     bottom: 48px;
-    z-index: 2;
+    z-index: 9;
     animation-duration: 1.5s;
     animation-name: moveUp;
-    animation-delay: 150ms;
+    animation-delay: 200ms;
     height: 64px;
     width: 303px;
     display: flex;

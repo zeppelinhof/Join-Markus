@@ -119,9 +119,11 @@ async function showNewContactOrInitUsers() {
 * This function show the new added contact with contact data,
 * and highlightetd the current card in the contactlist.
 */
-function showNewContact() {
+function showNewContact(overlayAddNew = true) {
     renderContacts();
-    openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
+    if (overlayAddNew) {
+        openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
+    }
     openContactData(currentContactIndex);
 
     let scrollPositionElement = document.getElementById(`contactCard-${currentContactIndex}`);
@@ -189,6 +191,7 @@ async function editContact() {
 
     openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact');
     addNewContactShowSlideBox('Contact changed');
+    showNewContact(false);
 }
 
 

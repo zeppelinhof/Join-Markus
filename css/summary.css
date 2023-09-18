@@ -254,6 +254,10 @@ body {
 
 @media(max-width: 900px),
 (max-height: 900px) {
+    .panelContainer {
+        margin-top: 48px;
+    }
+
     .font16px400 {
         font-size: 14px;
     }
@@ -281,6 +285,7 @@ body {
     }
 
     .summary-headline {
+        margin-top: 16px;
         padding-left: 96px;
     }
 
@@ -291,6 +296,7 @@ body {
 
     .variablePanel {
         font-size: 47px;
+        line-height: 58px;
     }
 
     .rowUrgent {
@@ -389,6 +395,12 @@ body {
         font-size: 47px;
         font-weight: 700;
         color: #29ABE2;
+    }
+}
+
+@media (max-width: 750px) {
+    .summary-headline {
+        margin-top: 0;
     }
 }
 

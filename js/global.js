@@ -99,6 +99,7 @@ let alphabet = [
     { 'number': 23, 'letter': 'x' },
     { 'number': 24, 'letter': 'y' },
     { 'number': 25, 'letter': 'z' },
+    { 'number': 26, 'letter': '.' },
 ];
 
 
