@@ -277,7 +277,7 @@ body {
     }
 
     .contentSubcontainer {
-        justify-content: center;
+        padding-left: 96px;
     }
 
     .summary-headline {
@@ -401,6 +401,11 @@ body {
 
     .contentContainer {
         padding-left: 0;
+    }
+
+    .contentSubcontainer {
+        padding-left: unset;
+        justify-content: center;
     }
 
     .panelContainer {
