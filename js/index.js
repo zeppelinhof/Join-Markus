@@ -14,11 +14,11 @@ async function init() {
  * @param {*} destinationId is the ID of the element the HTML template will be loaded into.
  * @param {*} fileName is the filename of the HTML template to be included in to the page.
  */
-function loadHTML(destinationId, fileName) {
+async function loadHTML(destinationId, fileName) {
     const destinationElement = document.getElementById(destinationId);
     const htmlFilePath = "templates/" + fileName;
 
-    fetch(htmlFilePath)
+    await fetch(htmlFilePath)
         .then(response => response.text())
         .then(htmlContent => {
             destinationElement.innerHTML = "";
