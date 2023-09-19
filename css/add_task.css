@@ -45,6 +45,8 @@ h1 {
 @media(max-height: 900px) {
     .left-0-top-3em-mobile {
         padding-top: 1em;
+        display: flex;
+        justify-content: center;
     }
 }
 
