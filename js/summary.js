@@ -1,3 +1,6 @@
+/**
+ * This function initialize the summary page.
+ */
 async function initSummary() {
     await loadTasks();
     renderSummary();
@@ -5,7 +8,9 @@ async function initSummary() {
     mobileGreetings();
 }
 
-
+/**
+ * This function renders all elements of summary page with dynamic data.
+ */
 function renderSummary() {
     document.getElementById('variablePanel1').innerHTML = tasks.length;
     document.getElementById('variablePanel2').innerHTML = tasksOfCategory('inProgress');
@@ -17,7 +22,11 @@ function renderSummary() {
     document.getElementById('greetingName').innerHTML = queryUserName();
 }
 
-
+/**
+ * This function returns the count of tasks inside a specific category.
+ * @param {string} category f.e. 'to do'
+ * @returns 
+ */
 function tasksOfCategory(category) {
     let count = 0;
     for (let i = 0; i < tasks.length; i++) {
@@ -29,7 +38,10 @@ function tasksOfCategory(category) {
     return count;
 }
 
-
+/**
+ * This function returns the count of tasks with priority "urgent".
+ * @returns 
+ */
 function urgentTasks() {
     let count = 0;
     for (let i = 0; i < tasks.length; i++) {
@@ -41,7 +53,9 @@ function urgentTasks() {
     return count;
 }
 
-
+/**
+ * This function returns the most closest upcoming date of all task".
+ */
 function upcomingDeadline() {
     let deadline;
     const currentDate = new Date();
@@ -61,7 +75,9 @@ function upcomingDeadline() {
     return deadline;
 }
 
-
+/**
+ * This function sets the Username into the Greeting animation.
+ */
 function mobileGreetings() {
     const username = queryUserName();
     
