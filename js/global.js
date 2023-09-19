@@ -99,7 +99,10 @@ let alphabet = [
     { 'number': 23, 'letter': 'x' },
     { 'number': 24, 'letter': 'y' },
     { 'number': 25, 'letter': 'z' },
-    { 'number': 26, 'letter': '.' },
+    { 'number': 26, 'letter': 'ä' },
+    { 'number': 27, 'letter': 'ö' },
+    { 'number': 28, 'letter': 'ü' },
+    { 'number': 29, 'letter': '.' },
 ];
 
 
@@ -331,6 +334,9 @@ function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedConta
     for (let k = 0; k < alphabetUsers.length; k++) {
         const alphabetUsersName = alphabetUsers[k]['name'];
         let alphabetUserNameWithoutSpace = returnNameWithoutSpaces(alphabetUsersName);
+
+        console.log(userNameWithoutSpace);
+        console.log(alphabetUserNameWithoutSpace);
 
         [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop] = compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace);
 
