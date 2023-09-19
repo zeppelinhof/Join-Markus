@@ -190,8 +190,8 @@ async function editContact() {
     renderContactData(currentContactIndex, currentColorStyle);
 
     openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact');
-    addNewContactShowSlideBox('Contact changed');
     showNewContact(false);
+    addNewContactShowSlideBox('Contact changed');
 }
 
 
@@ -204,7 +204,7 @@ async function editContact() {
 async function deleteContact(i = currentContactIndex, openFalse = true) {
     loadingScreen();
 
-    let windowSize = window.matchMedia('(max-width: 1050px)');
+    let windowSize = window.matchMedia('(max-width: 1350px)');
     users.splice(i, 1);
 
     await setItem('users', JSON.stringify(users));

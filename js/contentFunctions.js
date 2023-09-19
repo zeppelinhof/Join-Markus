@@ -56,7 +56,7 @@ async function getSummary() {
 }
 
 async function getContacts() {
-    includeHTML();
+    await includeHTML();
     setSidebarNavActive('contacts');
     await loadHTML('dynamicContent', 'contacts.html');
     initContacts();
