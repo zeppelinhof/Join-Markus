@@ -1,15 +1,20 @@
-// #region Add Task
+/**
+ * This function does something
+ */
 function getAddTask() {
     prepareIncludeAddTask_Standard_Or_Card('standard');
     setSidebarNavActive('add_task');
     loadHTML('dynamicContent', 'add_task.html');
     initAddTask();
-    //document.getElementById('body_join').innerHTML += getAddTaskScript();
 }
 
+
+/**
+ * This function injects a search function into addTask page.
+ * @returns 
+ */
 function getAddTaskScript() {
     return /*html*/`
-        <!-- Search contacts by typing letters in field. Please do not delete. -->
         <script>
             try{
                 const wrapper = document.getElementById('wrapper');
@@ -42,6 +47,10 @@ function getAddTaskScript() {
     `
 }
 
+
+/**
+ * This function loads "board"-HTML-template  into the page and executes required Init-function.
+ */
 async function getBoard() {
     prepareIncludeAddTask_Standard_Or_Card('card');
     setSidebarNavActive('board');
@@ -49,12 +58,20 @@ async function getBoard() {
     boardInit();    
 }
 
+
+/**
+ * This function loads "summary"-HTML-template  into the page and executes required Init-function.
+ */
 async function getSummary() {
     setSidebarNavActive('summary');
     await loadHTML('dynamicContent', 'summary.html');
     initSummary();
 }
 
+
+/**
+ * This function loads "contacts"-HTML-template  into the page and executes required Init-function.
+ */
 async function getContacts() {
     await includeHTML();
     setSidebarNavActive('contacts');
@@ -62,11 +79,20 @@ async function getContacts() {
     initContacts();
 }
 
+
+/**
+ * This function loads "Help"-HTML-template into the page and executes required Init-function.
+ */
 async function getHelp() {
     await loadHTML('dynamicContent', 'help.html');
     initHelp();
 }
 
+
+/**
+ * This function check which addTask HTML-template needs to be included into current page. 
+ * @param {*} typeOfAddTask 
+ */
 function prepareIncludeAddTask_Standard_Or_Card(typeOfAddTask) {
     if (typeOfAddTask == 'standard') {
         document.getElementById('addTaskCARD_include').innerHTML = '';
