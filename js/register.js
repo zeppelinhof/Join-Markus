@@ -1,6 +1,9 @@
 let users = [];
 
 
+/**
+ * Pulling user data from backend server.
+ */
 async function loadUsers() {
     try {
         users = JSON.parse(await getItem('users'));
@@ -10,6 +13,9 @@ async function loadUsers() {
 }
 
 
+/**
+ * This function is registering a user on signup and saves the data to backend.
+ */
 async function register() {
     const registerBtn = document.getElementById('btn_signUpUser');
     const username = document.getElementById('username');
@@ -34,6 +40,14 @@ async function register() {
 }
 
 
+/**
+ * This function clears the Signup form.
+ * @param {*} username 
+ * @param {*} usermail 
+ * @param {*} password 
+ * @param {*} passwordConfirm 
+ * @param {*} registerBtn 
+ */
 function resetForm(username, usermail, password, passwordConfirm, registerBtn) {
     username.value = "";
     usermail.value = "";
