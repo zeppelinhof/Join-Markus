@@ -156,6 +156,24 @@ function addNewContactShowSlideBox(text) {
 
 }
 
+/**
+* same as above for created tasks
+* @param {string} text is the text form the action. 
+*/
+function addNewTaskShowSlideBox(text) {
+    let slideBox = document.getElementById('task-added-slideBox');
+    let slideBoxText = document.getElementById('task-slideBox-text');
+
+    slideBoxText.innerHTML = text;
+
+    slideBox.classList.remove('contacts-d-none');
+
+    setTimeout((() => {
+        slideBox.classList.add('contacts-d-none');
+    }), 1500);
+
+}
+
 
 /**
  * This function clears the input fields in the 'add new contact' overlay.
