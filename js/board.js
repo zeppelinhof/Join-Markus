@@ -496,6 +496,8 @@ function saveEdit(q) {
     const newDescription = document.getElementById('editDescriptionInput').value;
     // Hier weitere Werte aus den editierbaren Feldern holen und speichern
     // Senden der Daten an das Backend, um die Änderungen zu speichern
+    // tasks[q].title = newTitle;
+    // tasks[q].description = newDescription;
 
     // Nach dem Speichern den Bearbeiten-Modus beenden
     cancelEdit(q);
