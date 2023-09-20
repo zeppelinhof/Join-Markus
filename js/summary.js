@@ -13,40 +13,26 @@ async function initSummary() {
  */
 function renderSummary() {
     document.getElementById('variablePanel1').innerHTML = tasks.length;
-    document.getElementById('variablePanel2').innerHTML = tasksOfCategory('inProgress');
-    document.getElementById('variablePanel3').innerHTML = tasksOfCategory('feedback');
-    document.getElementById('variablePanel4').innerHTML = urgentTasks();
+    document.getElementById('variablePanel2').innerHTML = filterTasks('column', 'inProgress');
+    document.getElementById('variablePanel3').innerHTML = filterTasks('column', 'feedback');
+    document.getElementById('variablePanel4').innerHTML = filterTasks('prio', 'urgent');
     document.getElementById('deadlineDate').innerHTML = upcomingDeadline();
-    document.getElementById('variablePanel5').innerHTML = tasksOfCategory('to do');
-    document.getElementById('variablePanel6').innerHTML = tasksOfCategory('done');
+    document.getElementById('variablePanel5').innerHTML = filterTasks('column', 'to do');
+    document.getElementById('variablePanel6').innerHTML = filterTasks('column', 'done');
     document.getElementById('greetingName').innerHTML = queryUserName();
 }
 
 /**
- * This function returns the count of tasks inside a specific category.
- * @param {string} category f.e. 'to do'
- * @returns 
+ * This function returns the number of tasks of a category "key" filtered by "filter".
+ * @param {string} key key to be used in JSON object.
+ * @param {string} filter criteria to filter for
+ * @returns total number of tasks which match criteria "filter" in element "key" of a task-object. 
  */
-function tasksOfCategory(category) {
+function filterTasks(key, filter) {
     let count = 0;
     for (let i = 0; i < tasks.length; i++) {
-        const element = tasks[i]['column'];
-        if (element === category) {
-            count += 1;
-        }
-    }
-    return count;
-}
-
-/**
- * This function returns the count of tasks with priority "urgent".
- * @returns 
- */
-function urgentTasks() {
-    let count = 0;
-    for (let i = 0; i < tasks.length; i++) {
-        const element = tasks[i]['prio'];
-        if (element === 'urgent') {
+        const element = tasks[i][key];
+        if (element === filter) {
             count += 1;
         }
     }
