@@ -500,14 +500,15 @@ function reloadPage(validatedPage) {
     validatedPage == 'add_task' ? getAddTask() : getBoard();
 }
 
-// Search input
-
+/**
+ * filter the contacts according user input
+ */
 function filterNames() {
     let search = document.getElementById('searchContactField').value;
     search = search.toLowerCase();
 
     document.getElementById('selectAssignedTo').innerHTML = '';
-    for (let i = 0; i < users.length; i++) {
+    for (let i = 0; i < users.length; i++) {    
         let user = users[i].name;
         if(user.toLowerCase().includes(search)){
             document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
@@ -515,15 +516,3 @@ function filterNames() {
         }
     }
 }
-
-// window.onload=function()
-// {
-//     var hidediv=document.getElementById('contentSearchContact');
-//     document.onclick=function(div)
-//     {
-//         if(div.target.id !=='contentSearchContact')
-//         {
-//             hidediv.classList.add('d-none');
-//         }
-//     }
-// }
