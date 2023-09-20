@@ -871,9 +871,28 @@
     align-items: center;
 }
 
-.editContacts:hover {
+.saveContacts {
+    width: 62px;
+    height: 24px;
+    gap: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.editContacts:hover, .saveContacts:hover {
     cursor: pointer;
 }
+
+.inputBoard{
+    width: 100%;
+}
+
+.saveButton {
+    border-radius: 9px;
+    background-color: rgb(42, 54, 71);
+    color: rgb(255, 255, 255);
+}
+
 
 .editIcon {
     width: 18.27604103088379px;

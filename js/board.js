@@ -312,6 +312,7 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
     currentOpenCard = q;
+    editButton(q, title);
 }
 /**
  * here the names and initials are loaded
@@ -444,4 +445,68 @@ async function addFeedback(columnStatus) {
     fillAssignedTo();
     boardStatus = columnStatus
     openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')
+}
+
+function editButton(q, title) {
+    document.getElementById('editContacts').innerHTML = /*html*/ `
+        <div class="editContain" id="editContain">
+            <img src="assets/img/edit.svg" onclick="addEdit('${q}', '${title}')" class="editIcon">
+        </div>
+        <p class="editText">Edit</p>
+    `;
+}
+
+function addEdit(q, title) {
+    saveEditButton();
+    document.getElementById('editContacts').style.display = 'none';
+    document.getElementById('saveContacts').style.display = '';
+    document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `
+    <input class="inputBoard" id='title' value='${title}'>
+    `;
+    console.log(q, title);
+}
+
+function saveEditButton() {
+    document.getElementById('saveContacts').innerHTML = /*html*/ `
+        <button class="saveButton">Save</button>
+    `;
+
+}
+
+//function (q, title) {
+//    // Hier kannst du die editierbaren Felder hinzufügen oder anzeigen
+//    const editContainer = document.getElementById('taskOverlayHeadline');
+//    editContainer.innerHTML = /*html*/ `
+//        <div class="editContain" id="editContain">
+//            <!-- Füge hier deine editierbaren Felder hinzu, z.B. Input-Felder -->
+//            <input type="text" id="editTitleInput" value="${title}">
+//            <textarea id="editDescriptionInput">Aktuelle Beschreibung</textarea>
+//            <!-- Weitere editierbare Felder hinzufügen -->
+//
+//            <!-- Speichern- und Abbrechen-Buttons -->
+//            <button onclick="saveEdit(${q})">Speichern</button>
+//            <button onclick="cancelEdit(${q})">Abbrechen</button>
+//        </div>
+//    `;
+//}
+
+function saveEdit(q) {
+    // Hier kannst du die Änderungen speichern, z.B. Daten an das Backend senden
+    const newTitle = document.getElementById('editTitleInput').value;
+    const newDescription = document.getElementById('editDescriptionInput').value;
+    // Hier weitere Werte aus den editierbaren Feldern holen und speichern
+    // Senden der Daten an das Backend, um die Änderungen zu speichern
+
+    // Nach dem Speichern den Bearbeiten-Modus beenden
+    cancelEdit(q);
+}
+
+function cancelEdit(q) {
+    // Hier den Bearbeiten-Modus beenden und die editierbaren Felder ausblenden
+    const editContainer = document.getElementById('editContacts');
+    editContainer.innerHTML = '';
+
+    // Hier kannst du die statischen Daten erneut anzeigen oder aktualisieren
+    // Zum Beispiel, indem du die Daten erneut aus dem Backend abrufst und anzeigst
+    // Oder indem du die Daten aus einer vorherigen Ansicht wiederherstellst
 }

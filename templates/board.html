@@ -13,8 +13,7 @@
             <div class="sC1Mobile">
                 <input class="inputBoard" type="search" id="searchInputMobile" placeholder="Find Task"
                     oninput="loopAllTasks()">
-                <img class="search" id="searchButton" onclick="searchTasks()" src="assets/img/Frame 122.svg"
-                    alt="">
+                <img class="search" id="searchButton" onclick="searchTasks()" src="assets/img/Frame 122.svg" alt="">
             </div>
         </div>
     </div>
@@ -25,8 +24,8 @@
                 <div class="sC1">
                     <input class="inputBoard" type="search" id="searchInput" placeholder="Find Task"
                         oninput="loopAllTasks()">
-                    <img class="search" id="searchButton" onclick="loopAllTasks()"
-                        src="assets/img/Frame 122.svg" alt="">
+                    <img class="search" id="searchButton" onclick="loopAllTasks()" src="assets/img/Frame 122.svg"
+                        alt="">
                 </div>
             </div>
             <button type="button" class="btn btn-primary headlineButton"
@@ -48,8 +47,7 @@
                     <p>No tasks To do</p>
                 </span>
             </div>
-            <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')"
-                ondragover="allowDrop(event)">
+            <div class="taskContainer" id="toDoContainer" ondrop="drop(event, 'to do')" ondragover="allowDrop(event)">
             </div>
 
         </div>
@@ -92,8 +90,7 @@
                     <p>No tasks Done</p>
                 </span>
             </div>
-            <div class="taskContainer" id="DoneContainer" ondrop="drop(event, 'done')"
-                ondragover="allowDrop(event)">
+            <div class="taskContainer" id="DoneContainer" ondrop="drop(event, 'done')" ondragover="allowDrop(event)">
             </div>
         </div>
     </div>
@@ -139,12 +136,8 @@
                 <p class="deleteText">Delete</p>
             </div>
             <span class="vector3"></span>
-            <div class="editContacts">
-                <div class="editContain">
-                    <img src="assets/img/edit.svg" alt="" class="editIcon">
-                </div>
-                <p class="editText">Edit</p>
-            </div>
+            <div class="editContacts" id="editContacts"></div>
+            <div class="saveContacts" id="saveContacts" style="display: none;"></div>
         </div>
     </div>
 </div>
