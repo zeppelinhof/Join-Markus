@@ -478,7 +478,6 @@ async function saveEdit(q) {
     showButton();
     await refreshData();
     await saveDetailCardData();
-
 }
 
 function hideButton() {
