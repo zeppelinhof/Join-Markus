@@ -468,7 +468,7 @@ function addEdit(q, title) {
 
 function saveEditButton() {
     document.getElementById('saveContacts').innerHTML = /*html*/ `
-        <button class="saveButton">Save</button>
+        <button class="saveButton" onclick=''>Save</button>
     `;
 
 }
