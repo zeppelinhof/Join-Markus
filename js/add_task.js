@@ -12,7 +12,7 @@ async function initAddTask() {
 // #region Coloring Buttons Urgent, Medium, Low / Set status of Prio for transfer to Board
 
 /**
- * By clicking a Prio burron color change to red, orange or green
+ * By clicking a Prio button color change to red, orange or green
  */
 function colorRed() {
     let btn = document.getElementById('btn_urgent');
@@ -183,6 +183,7 @@ function resetForm2(validatedPage) {
     document.getElementById('selectedSubtasks').innerHTML = '';
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
     reloadPage(validatedPage);
+    addNewTaskShowSlideBox('Task created');
 }
 
 // #endregion Data from Add Task to Backend
@@ -225,6 +226,16 @@ function selectContactFieldInBackground(field) {
         remove_d_none('uparrow');
     }
 }
+
+function closeContactList() {
+    if (!document.getElementById('contentSearchContact').classList.contains('d-none')) {
+        add_d_none('contentSearchContact');
+        remove_d_none('selectContactField');
+        add_d_none('uparrow');
+        remove_d_none('downarrow');
+    }
+}
+
 
 function showContentCategory() {
     if (document.getElementById('contentCategory').classList.contains('d-none') && (categoryClosed == false)) {
@@ -486,37 +497,22 @@ function setDateOfTodayForDatepickerCard() {
  */
 function reloadPage(validatedPage) {
     clearPrioButtons();
-    if (validatedPage == 'add_task') {
-        getAddTask();
-    }
-    else {
-        getBoard();
-    }
-
+    validatedPage == 'add_task' ? getAddTask() : getBoard();
 }
 
-// Search input
+/**
+ * filter the contacts according user input
+ */
+function filterNames() {
+    let search = document.getElementById('searchContactField').value;
+    search = search.toLowerCase();
 
-function searchInputAddTask() {
-    searchInp = document.getElementById('searchContactField');
-    selectAssignedTo = document.getElementById('selectAssignedTo');
-
-    if (document.getElementById('searchContactField').value == '') {
-        document.getElementById('selectAssignedTo').innerHTML = '';
-        fillAssignedTo();
-        let keyEvent = new KeyboardEvent('keypress', {key: 'Enter', shiftKey:true});
-        document.getElementById('searchContactField').dispatchEvent(keyEvent);
-    }
-    else {
-        document.getElementById('selectAssignedTo').innerHTML = '';
-        let arr = [];
-        let searchedVal = searchInp.value.toLowerCase();
-        for (let i = 0; i < users.length; i++) {
-            const user = users[i];
-            if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
-                document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
-                fillUsername(i, user.name);
-            }
+    document.getElementById('selectAssignedTo').innerHTML = '';
+    for (let i = 0; i < users.length; i++) {    
+        let user = users[i].name;
+        if(user.toLowerCase().includes(search)){
+            document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+        fillUsername(i, user);
         }
     }
 }

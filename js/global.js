@@ -407,30 +407,30 @@ function compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedC
  * @returns {boolean} outOfFunctionFirstLoop is the exit to leave the looper in the funtion compareUsersWithAlphabetUsersFirstLoop.
  * @returns {boolean} outOfFunctionSecondLoop is the exit to leave the looper in the funtion compareUsersWithAlphabetUsersSecondLoop.
  */
-function addContactToAlphabetUsers(i, k, l, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop, alphabetLetterCurrentUser, alphabetLetterCurrentAlphabetUser, alphabetUserNameWithoutSpace) {
-    if (alphabetLetterCurrentUser['number'] > alphabetLetterCurrentAlphabetUser['number']) {
-        if (k == alphabetUsers.length - 1) {
-            alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
-            outOfFunctionFirstLoop = true;
+function addContactToAlphabetUsers() {
+    if (arguments[7]['number'] > arguments[8]['number']) {
+        if (arguments[1] == arguments[3].length - 1) {
+            arguments[3].splice(arguments[1] + 1, 0, retrunUserJSON(arguments[0]));
+            arguments[5] = true;
         }
 
-        outOfFunctionSecondLoop = true;
+        arguments[6] = true;
 
-        lastAddedContactIndex = k + 1;
-    } else if (alphabetLetterCurrentUser['number'] < alphabetLetterCurrentAlphabetUser['number']) {
-        alphabetUsers.splice(k, 0, retrunUserJSON(i));
-        lastAddedContactIndex = k;
-        outOfFunctionFirstLoop = true;
-        outOfFunctionSecondLoop = true;
+        arguments[4] = arguments[1] + 1;
+    } else if (arguments[7]['number'] < arguments[8]['number']) {
+        arguments[3].splice(arguments[1], 0, retrunUserJSON(arguments[0]));
+        arguments[4] = arguments[1];
+        arguments[5] = true;
+        arguments[6] = true;
     }
-    else if (l == alphabetUserNameWithoutSpace.length - 1) {
-        alphabetUsers.splice(k + 1, 0, retrunUserJSON(i));
-        lastAddedContactIndex = k + 1;
-        outOfFunctionFirstLoop = true;
-        outOfFunctionSecondLoop = true;
+    else if (arguments[2] == arguments[9].length - 1) {
+        arguments[3].splice(arguments[1] + 1, 0, retrunUserJSON(arguments[0]));
+        arguments[4] = arguments[1] + 1;
+        arguments[5] = true;
+        arguments[6] = true;
     }
 
-    return [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, outOfFunctionSecondLoop];
+    return [arguments[3], arguments[4], arguments[5], arguments[6]];
 }
 
 
