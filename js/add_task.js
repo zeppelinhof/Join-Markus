@@ -502,26 +502,16 @@ function reloadPage(validatedPage) {
 
 // Search input
 
-function searchInputAddTask() {
-    searchInp = document.getElementById('searchContactField');
-    selectAssignedTo = document.getElementById('selectAssignedTo');
+function filterNames() {
+    let search = document.getElementById('searchContactField').value;
+    search = search.toLowerCase();
 
-    if (document.getElementById('searchContactField').value == '') {
-        document.getElementById('selectAssignedTo').innerHTML = '';
-        fillAssignedTo();
-        let keyEvent = new KeyboardEvent('keypress', { key: 'Enter', shiftKey: true });
-        document.getElementById('searchContactField').dispatchEvent(keyEvent);
-    }
-    else {
-        document.getElementById('selectAssignedTo').innerHTML = '';
-        let arr = [];
-        let searchedVal = searchInp.value.toLowerCase();
-        for (let i = 0; i < users.length; i++) {
-            const user = users[i];
-            if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
-                document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
-                fillUsername(i, user.name);
-            }
+    document.getElementById('selectAssignedTo').innerHTML = '';
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i].name;
+        if(user.toLowerCase().includes(search)){
+            document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
+        fillUsername(i, user);
         }
     }
 }

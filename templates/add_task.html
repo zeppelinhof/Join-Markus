@@ -28,7 +28,7 @@
                     </div>
                     <div class="contentSearchContact d-none" id="contentSearchContact">
                         <div class="search">
-                            <input type="text" placeholder="Search" id="searchContactField" onkeydown="searchInputAddTask();">
+                            <input type="text" placeholder="Search" id="searchContactField" onkeydown="filterNames();">
                             <div class="circleAroundUpArrow d-none" id="uparrow"
                                 onclick="closeContactList();">
                                 <img src="./assets/img/arrow_drop_up.svg">
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="separator hide-mobile"></div>
-            <div class="right-side-of-panel">
+            <div class="right-side-of-panel" onclick="closeContactList();">
                 <div class="property">
                     <label class="form-label">Due date</label>
                     <input id="date" name="date" type="date"
