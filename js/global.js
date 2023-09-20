@@ -335,9 +335,6 @@ function compareUsersWithAlphabetUsersFirstLoop(i, alphabetUsers, lastAddedConta
         const alphabetUsersName = alphabetUsers[k]['name'];
         let alphabetUserNameWithoutSpace = returnNameWithoutSpaces(alphabetUsersName);
 
-        console.log(userNameWithoutSpace);
-        console.log(alphabetUserNameWithoutSpace);
-
         [alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop] = compareUsersWithAlphabetUsersSecondLoop(i, k, alphabetUsers, lastAddedContactIndex, outOfFunctionFirstLoop, userNameWithoutSpace, alphabetLetterCurrentUser, alphabetUserNameWithoutSpace);
 
         if (outOfFunctionFirstLoop) {

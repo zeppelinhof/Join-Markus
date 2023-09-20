@@ -309,6 +309,13 @@
     object-fit: contain;
 }
 
+.add-new-contact-input-phone::-webkit-outer-spin-button,
+.add-new-contact-input-phone::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
 .add-new-contact-input {
     background-repeat: no-repeat;
     background-position-x: calc(422px - 48px);
