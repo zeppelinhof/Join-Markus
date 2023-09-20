@@ -457,58 +457,38 @@ function editButton(q, title) {
 }
 
 function addEdit(q, title) {
-    saveEditButton();
-    document.getElementById('editContacts').style.display = 'none';
-    document.getElementById('saveContacts').style.display = '';
+    saveEditButton(q);
+    hideButton();
     document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `
-    <input class="inputBoard" id='title' value='${title}'>
+    <input class="inputBoard" id='inputTitleBoard' value='${title}'>
     `;
     console.log(q, title);
 }
 
-function saveEditButton() {
+function saveEditButton(q, title) {
     document.getElementById('saveContacts').innerHTML = /*html*/ `
-        <button class="saveButton" onclick=''>Save</button>
+        <button class="saveButton" onclick="saveEdit(${q})">Save</button>
     `;
 
 }
 
-//function (q, title) {
-//    // Hier kannst du die editierbaren Felder hinzufügen oder anzeigen
-//    const editContainer = document.getElementById('taskOverlayHeadline');
-//    editContainer.innerHTML = /*html*/ `
-//        <div class="editContain" id="editContain">
-//            <!-- Füge hier deine editierbaren Felder hinzu, z.B. Input-Felder -->
-//            <input type="text" id="editTitleInput" value="${title}">
-//            <textarea id="editDescriptionInput">Aktuelle Beschreibung</textarea>
-//            <!-- Weitere editierbare Felder hinzufügen -->
-//
-//            <!-- Speichern- und Abbrechen-Buttons -->
-//            <button onclick="saveEdit(${q})">Speichern</button>
-//            <button onclick="cancelEdit(${q})">Abbrechen</button>
-//        </div>
-//    `;
-//}
+async function saveEdit(q) {
+    const newTitle = document.getElementById('inputTitleBoard').value;
+    tasks[q].title = newTitle;
+    showButton();
+    await refreshData();
+    await saveDetailCardData();
 
-function saveEdit(q) {
-    // Hier kannst du die Änderungen speichern, z.B. Daten an das Backend senden
-    const newTitle = document.getElementById('editTitleInput').value;
-    const newDescription = document.getElementById('editDescriptionInput').value;
-    // Hier weitere Werte aus den editierbaren Feldern holen und speichern
-    // Senden der Daten an das Backend, um die Änderungen zu speichern
-    // tasks[q].title = newTitle;
-    // tasks[q].description = newDescription;
-
-    // Nach dem Speichern den Bearbeiten-Modus beenden
-    cancelEdit(q);
 }
 
-function cancelEdit(q) {
-    // Hier den Bearbeiten-Modus beenden und die editierbaren Felder ausblenden
-    const editContainer = document.getElementById('editContacts');
-    editContainer.innerHTML = '';
-
-    // Hier kannst du die statischen Daten erneut anzeigen oder aktualisieren
-    // Zum Beispiel, indem du die Daten erneut aus dem Backend abrufst und anzeigst
-    // Oder indem du die Daten aus einer vorherigen Ansicht wiederherstellst
+function hideButton() {
+    document.getElementById('editContacts').style.display = 'none';
+    document.getElementById('saveContacts').style.display = '';
 }
+
+function showButton() {
+    document.getElementById('saveContacts').style.display = 'none';
+    document.getElementById('editContacts').style.display = '';
+}
+
+
