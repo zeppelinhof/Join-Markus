@@ -108,6 +108,13 @@
     outline: none;
 }
 
+.inputBoard1{
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #f6f7f8;
+}
+
 .inputBoard::placeholder {
     width: 100px;
     height: 24px;
@@ -662,7 +669,7 @@
 }
 
 #medium {
-    width: 76px;
+    width: 100px;
     height: 24px;
     font-family: Inter;
     font-size: 20px;

@@ -312,7 +312,7 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
     currentOpenCard = q;
-    editButton(q, title);
+    editButton(q, title, description, date, priority);
 }
 /**
  * here the names and initials are loaded
@@ -395,99 +395,3 @@ async function moveTo(column, q) {
         assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
     }
 }
-/**
- * function to delete the card
- */
-async function deleteCard() {
-    document.getElementById('detailCard').style.display = 'none';
-    await deleteItem('tasks', currentOpenCard);
-    renderInit();
-}
-/**
- * function to check if subtask is present if no then hide the container
- * @param {*} q parameter q is passed as card number
- */
-function subTaskCard(q) {
-    const subtaskBoard = allTasks[q]['subtasks'];
-
-    if (subtaskBoard.length <= 0) {
-        document.getElementById(`progressBar_${q}`).style.display = 'none';
-    } else {
-        loadAllTaskNumber(q);
-    }
-}
-/**
- * here the number of subtasks are loaded
- * @param {*} q parameter q is passed as card number
- */
-function loadAllTaskNumber(q) {
-    let subtaskState = allTasks[q]['subtaskstate'];
-    let completedTasks = subtaskState.filter(status => status === 'true').length;
-    let unfinishedTasks = subtaskState.length;
-    document.getElementById(`allTasksNumber_${q}`).textContent = unfinishedTasks; // Anzahl der unerledigten Aufgaben
-    document.getElementById(`TasksNumber_${q}`).textContent = completedTasks; // Anzeige der erledigten Aufgaben
-
-    updateProgressBar(q, completedTasks);
-}
-
-function updateProgressBar(q) {
-    const subtaskState = allTasks[q]['subtaskstate'];
-    const completedTasks = subtaskState.filter(status => status === 'true').length;
-    const totalTasks = subtaskState.length;
-
-    const progressBar = document.getElementById(`bar_${q}`);
-    const percent = (completedTasks / totalTasks) * 100;
-
-    progressBar.style.width = `${percent}%`;
-}
-
-async function addFeedback(columnStatus) {
-    fillAssignedTo();
-    boardStatus = columnStatus
-    openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')
-}
-
-function editButton(q, title) {
-    document.getElementById('editContacts').innerHTML = /*html*/ `
-        <div class="editContain" id="editContain">
-            <img src="assets/img/edit.svg" onclick="addEdit('${q}', '${title}')" class="editIcon">
-        </div>
-        <p class="editText">Edit</p>
-    `;
-}
-
-function addEdit(q, title) {
-    saveEditButton(q);
-    hideButton();
-    document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `
-    <input class="inputBoard" id='inputTitleBoard' value='${title}'>
-    `;
-    console.log(q, title);
-}
-
-function saveEditButton(q, title) {
-    document.getElementById('saveContacts').innerHTML = /*html*/ `
-        <button class="saveButton" onclick="saveEdit(${q})">Save</button>
-    `;
-
-}
-
-async function saveEdit(q) {
-    const newTitle = document.getElementById('inputTitleBoard').value;
-    tasks[q].title = newTitle;
-    showButton();
-    await refreshData();
-    await saveDetailCardData();
-}
-
-function hideButton() {
-    document.getElementById('editContacts').style.display = 'none';
-    document.getElementById('saveContacts').style.display = '';
-}
-
-function showButton() {
-    document.getElementById('saveContacts').style.display = 'none';
-    document.getElementById('editContacts').style.display = '';
-}
-
-
