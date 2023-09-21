@@ -479,14 +479,14 @@ function setRedBorder(classname) {
 /**
  * functions to set today's date for disable past calendar days
  */
-async function setDateOfTodayForDatepicker() {
+async function setDateOfTodayForDatepicker(inputName) {
     let today = new Date().toISOString().split('T')[0];
-    document.getElementsByName("date")[0].setAttribute('min', today);
+    document.getElementsByName(inputName)[0].setAttribute('min', today);
 }
 
-function setDateOfTodayForDatepickerCard() {
+function setDateOfTodayForDatepickerCard(inputId) {
     let today = new Date().toISOString().split('T')[0];
-    document.getElementsByName("dateCard")[0].setAttribute('min', today);
+    document.getElementsByName(inputId)[0].setAttribute('min', today);
 }
 //#endregion set Date Minimum for Datepicker
 
