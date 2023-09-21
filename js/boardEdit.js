@@ -75,11 +75,8 @@ function addEdit(q, title, description, date, priority) {
 }
 
 function editSubtasks(q) {
-    for (let q = 0; q < allTasks.length; q++) {
-        const element = allTasks[q]['subtasks'];
-        document.getElementById('subtaskContain').innerHTML += /*html*/ `
-            <input class="inputBoard1" type="text" id="inputSubtasks" value='${element}'>`;
-    }
+    document.getElementById('subtaskContain').innerHTML += /*html*/ `
+        <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
 }
 
 function editPrioBoard(priority) {
@@ -104,7 +101,9 @@ async function saveEdit(q) {
     const newDescription = document.getElementById('inputDescriptionContain').value;
     const newDate = document.getElementById('inputBoardDate').value;
     const newPriority = document.getElementById('inputPrio').value;
-    const newSubtasks = document.getElementById('inputSubtasks').value;
+    const newSubtasksInput = document.getElementById('inputSubtasks');
+
+    const newSubtasks = newSubtasksInput.value.split('\n').map(subtask => subtask.trim());
 
     tasks[q].title = newTitle;
     tasks[q].description = newDescription;
@@ -113,6 +112,8 @@ async function saveEdit(q) {
     tasks[q].subtasks = newSubtasks;
     setItem('tasks', JSON.stringify(tasks));
     showButton();
+    await refreshData();
+    saveDetailCardData();
     closeDetailCard();
 }
 
