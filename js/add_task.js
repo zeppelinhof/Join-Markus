@@ -190,7 +190,6 @@ function resetForm2(validatedPage) {
 
 // #region select contact logic
 let categoryClosed = false;
-let subtaskNumber = 0;
 
 /**
  * function for hiding containers
@@ -277,6 +276,9 @@ function borderLightblue(id) {
 /**
  * Add a subtask. Optional field. Plus button only working when filled field.
  */
+
+let subtaskNumber = 0;
+
 function addSubtask() {
     if (document.getElementById('subtaskInputfield').value) {
         subtaskInputfield = document.getElementById('subtaskInputfield').value;
@@ -291,7 +293,7 @@ function addSubtask() {
                 </div>                              
                 <div class="pencil-bin d-none" id="pencil-bin${subtaskNumber}">
                     <img src="assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
-                        onclick="remove_d_none('rawDataChange${subtaskNumber}'); add_d_none('rawData${subtaskNumber}'); add_d_none('pencil${subtaskNumber}'); remove_d_none('submit${subtaskNumber}');">
+                        onclick="editSubtask(${subtaskNumber});">
                     <div class="pencil-bin-separator"></div>
                     <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
                     <img src="assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
@@ -307,6 +309,13 @@ function addSubtask() {
     }
 }
 
+function editSubtask(subtaskNumber){
+    remove_d_none('rawDataChange'+subtaskNumber);
+    add_d_none('rawData'+subtaskNumber);
+    add_d_none('pencil'+subtaskNumber);
+    remove_d_none('submit'+subtaskNumber);
+}
+
 /**
  * User can change a written subtask. To confrim changes he can click on hook to save the changes
  * 
@@ -316,7 +325,7 @@ function addSubtask() {
  */
 function saveSubtaskChanges(changedValue, goal, subtaskNumber) {
     document.getElementById(goal).value = document.getElementById(changedValue).value;
-    fillSubtaskArrayAsValue();
+    fillSubtaskArrayAsValue(subtaskNumber);
     document.getElementById(`rawData${subtaskNumber}`).innerHTML = /*html*/`
         ${document.getElementById(changedValue).value}
     `
@@ -335,16 +344,16 @@ function fillSubtaskArray() {
     }
 }
 
-function fillSubtaskArrayAsValue() {
-    subtasks = [];
-    for (let i = 0; i < 100; i++) {
-        let element = document.getElementById('rawData' + i)
+function fillSubtaskArrayAsValue(subtaskNumber) {
+    // subtasks = [];
+    // for (let i = 0; i < 100; i++) {
+        let element = document.getElementById('rawData' + subtaskNumber)
 
         if (element) {
-            subtasks.push(element.value);  // hier als value
+            subtasks[subtaskNumber]= element.value;  // hier als value
         }
 
-    }
+    // }
 }
 
 function showEdit(x) {
