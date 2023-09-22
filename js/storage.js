@@ -7,7 +7,7 @@ const STORAGE_URL = 'https://remote-storage.developerakademie.org/item';
  * @param {string} value is the value to be saved
  * @returns The payload (header)
  */
-async function setItem(key, value) {
+async function setItem(key, value) {    
     const payload = { key, value, token: STORAGE_TOKEN };
     return fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload) })
         .then(res => res.json());
