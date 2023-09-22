@@ -59,10 +59,11 @@ async function emptyContainer() {
 /**
  * Open and Close function detailCard
  */
-function closeDetailCard() {
+async function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
+    await refreshData();
     saveDetailCardData();
-    refreshData();
+    showButton();
 }
 /**
  * 
@@ -88,7 +89,12 @@ function getSubtasksCheckboxState() {
     const subtask = allTasks[currentOpenCard]['subtasks'];
     const newStates = [];
     for (let i = 0; i < subtask.length; i++) {
-        newStates[i] = document.getElementById('subtask' + i).checked;
+        checkboxElement = document.getElementById('subtask' + i);
+        if (checkboxElement) {
+            newStates[i] = checkboxElement.checked;
+        } else {
+            newStates[i] = false;
+        }
     }
     const stringArray = newStates.map(value => String(value));
     return (stringArray);
@@ -349,6 +355,7 @@ function loadSubtasks(q) {
                 <input type="checkbox" id="subtask${p}" onclick="updateSubTaskCheckBoxState(this.id)">
                 <span class="checkbox-icon"></span>
                 ${subtasks}
+                <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard" onclick="deleteSubtask('${q}', '${subtasks}')" style="display:none">
             </label><br>
         `;
     }
@@ -393,5 +400,7 @@ async function moveTo(column, q) {
         allTasks[q]['column'] = column;
         await setItem('tasks', JSON.stringify(allTasks));
         assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
+        tasks[q].column = column;
+        await setItem('tasks', JSON.stringify(tasks));
     }
 }

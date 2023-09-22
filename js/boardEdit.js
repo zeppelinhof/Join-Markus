@@ -75,6 +75,19 @@ function addEdit(q, title, description, date, priority) {
 }
 
 function editSubtasks(q) {
+    if (tasks[q].subtasks && tasks[q].subtaskstate) {
+        // Schleife durch die Subtasks und ihren Status
+        for (let i = 0; i < tasks[q].subtasks.length; i++) {
+            // Hier wird überprüft, ob der Status "true" oder "false" ist
+            if (tasks[q].subtaskstate[i] === 'true') {
+                // Wenn der Status bereits "true" ist, behalte ihn bei
+                continue;
+            }
+
+            // Hier kannst du den Subtask-Status aktualisieren, wenn er "false" ist
+            tasks[q].subtaskstate[i] = 'true';
+        }
+    }
     document.getElementById('subtaskContain').innerHTML += /*html*/ `
         <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
 }
@@ -103,28 +116,67 @@ async function saveEdit(q) {
     const newPriority = document.getElementById('inputPrio').value;
     const newSubtasksInput = document.getElementById('inputSubtasks');
 
-    const newSubtasks = newSubtasksInput.value.split('\n').map(subtask => subtask.trim());
+    const newSubtasks = newSubtasksInput.value
+        .split('\n')
+        .map(subtask => subtask.trim())
+        .filter(subtask => subtask !== '');
+
+    if (tasks[q].subtasks) {
+        tasks[q].subtasks = tasks[q].subtasks.concat(newSubtasks);
+    } else {
+        tasks[q].subtasks = newSubtasks;
+    }
 
     tasks[q].title = newTitle;
     tasks[q].description = newDescription;
     tasks[q].date = newDate;
     tasks[q].prio = newPriority;
-    tasks[q].subtasks = newSubtasks;
-    setItem('tasks', JSON.stringify(tasks));
+    await setItem('tasks', JSON.stringify(tasks));
+
     showButton();
     await refreshData();
-    saveDetailCardData();
     closeDetailCard();
 }
 
 function hideButton() {
     document.getElementById('editContacts').style.display = 'none';
     document.getElementById('prioMedia').style.display = 'none';
+    document.getElementById('deleteButtonBoard').style.display = '';
     document.getElementById('saveContacts').style.display = '';
 }
 
 function showButton() {
     document.getElementById('saveContacts').style.display = 'none';
+    //document.getElementById('deleteButtonBoard').style.display = 'none';
     document.getElementById('prioMedia').style.display = '';
     document.getElementById('editContacts').style.display = '';
+}
+
+//function deleteSubtask(q) {
+//    const subtas = tasks[q]['subtasks']
+//    for (let w = 0; w < subtas.length; w++) {
+//        const subtasksEdit = subtas[w];
+//
+//        if (w >= 0 && w < subtasksEdit.length) {
+//            subtasksEdit.splice(w, 1);
+//            tasks[q]['subtasks'] = subtasksEdit;
+//            closeDetailCard();
+//        } else {
+//            console.error('Ungültiger Index für Subtask-Löschung.');
+//        }
+//    }
+//}
+
+function deleteSubtask(q, subtaskName) {
+    const subtasksArray = tasks[q]['subtasks'];
+
+    // Suche den Index des Subtasks anhand seines Namens
+    const subtaskIndex = subtasksArray.indexOf(subtaskName);
+
+    if (subtaskIndex !== -1) {
+        subtasksArray.splice(subtaskIndex, 1);
+        closeDetailCard();
+    } else {
+        console.error('Subtask mit dem Namen nicht gefunden.');
+    }
 }
