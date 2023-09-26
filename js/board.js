@@ -353,25 +353,19 @@ function loadSubtasks(q) {
         const subtasks = subtask[p];
         document.getElementById('subtaskContain').innerHTML += /*html*/`
             <label class="custom-checkbox">
-                <input type="checkbox" id="subtask${p}" onclick="updateSubTaskCheckBoxState(this.id)">
-                <span class="checkbox-icon"></span>
-                ${subtasks}
-                <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard${p}" onclick="deleteSubtask('${q}', '${p}', '${subtasks}')">
-            </label><br>
+                <div class="curser">
+                    <input type="checkbox" id="subtask${p}" onclick="updateSubTaskCheckBoxState(this.id)">
+                    <span class="checkbox-icon"></span>
+                    ${subtasks}
+                </div>
+                <div class="curser">
+                    <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard${p}" style="display:none;">
+                </div>
+            </label>
         `;
     }
     setCheckBoxState(q);
 }
-
-//function setCheckBoxState(q) {
-//    const subTaskState = allTasks[q]['subtaskstate'];
-//    for (let i = 0; i < subTaskState.length; i++) {
-//        subTaskState[i] = subTaskState[i] === 'true';
-//        const state = subTaskState[i];
-//        const subtaskid = 'subtask' + i;
-//        document.getElementById(subtaskid).checked = state;
-//    }
-//}
 
 function setCheckBoxState(q) {
     const subTaskState = allTasks[q]['subtaskstate'];

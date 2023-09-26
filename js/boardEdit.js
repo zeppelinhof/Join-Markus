@@ -72,14 +72,14 @@ function addEdit(q, title, description, date, priority) {
     document.getElementById('taskOverlayNumber').innerHTML =/*html*/`
     <input class="inputBoard1" type="date" name="inputBoard" id="inputBoardDate" value='${date}' onmouseover="setDateOfTodayForDatepickerCard('inputBoard');">`;
     editPrioBoard(priority);
-
     editSubtasks(q);
+    showDeleteIcons(q);
 }
 
 function editSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML += /*html*/ `
         <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
-        
+
     if (tasks[q].subtaskstate) {
         for (let i = 0; i < tasks[q].subtasks.length; i++) {
             if (tasks[q].subtaskstate[i] === 'true') {
@@ -87,7 +87,6 @@ function editSubtasks(q) {
             }
         }
     }
-
 }
 
 function editPrioBoard(priority) {
@@ -130,8 +129,6 @@ async function saveEdit(q) {
     tasks[q].date = newDate;
     tasks[q].prio = newPriority;
     await setItem('tasks', JSON.stringify(tasks));
-
-    showButton();
     await refreshData();
     closeDetailCard();
 }
@@ -144,7 +141,6 @@ function hideButton() {
 
 function showButton() {
     document.getElementById('saveContacts').style.display = 'none';
-    //document.getElementById('deleteButtonBoard').style.display = 'none';
     document.getElementById('prioMedia').style.display = '';
     document.getElementById('editContacts').style.display = '';
 }
@@ -164,5 +160,16 @@ async function deleteSubtask(q, p, subtaskName) {
         closeDetailCard();
     } else {
         console.error('Subtask mit dem Namen nicht gefunden.');
+    }
+}
+
+function showDeleteIcons(q) {
+    const subtask = allTasks[q]['subtasks'];
+
+    for (let p = 0; p < subtask.length; p++) {
+        const deleteButtonBoard = document.getElementById(`deleteButtonBoard${p}`);
+        if (deleteButtonBoard) {
+            deleteButtonBoard.style.display = 'block';
+        }
     }
 }
