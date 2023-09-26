@@ -149,7 +149,7 @@ async function deleteSubtask(q, p, subtaskName) {
     const subtasksArray = tasks[q]['subtasks'];
     const subtaskStateArray = tasks[q]['subtaskstate'];
 
-    const subtaskIndex = p; // Verwende p, da es sich bereits um den Index handelt
+    const subtaskIndex = p;
 
     if (subtaskIndex >= 0 && subtaskIndex < subtasksArray.length) {
         subtasksArray.splice(subtaskIndex, 1);
@@ -157,8 +157,6 @@ async function deleteSubtask(q, p, subtaskName) {
         await setItem('tasks', JSON.stringify(tasks));
         await refreshData();
         closeDetailCard();
-    } else {
-        console.error('Ungültiger Index für die Unteraufgabe.');
     }
 }
 

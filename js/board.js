@@ -400,11 +400,11 @@ function startDragging(q) {
 async function moveTo(column, q) {
     const cardHTML = document.getElementById(`cards-${q}`);
     if (cardHTML) {
-        cardHTML.remove(); // Entferne das Element aus dem alten Container
+        cardHTML.remove();
 
         allTasks[q]['column'] = column;
         await setItem('tasks', JSON.stringify(allTasks));
-        assingAllTasks(column, cardHTML.outerHTML, q); // Hier wird q übergeben
+        assingAllTasks(column, cardHTML.outerHTML, q);
         tasks[q].column = column;
         await setItem('tasks', JSON.stringify(tasks));
     }
