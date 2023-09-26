@@ -150,21 +150,6 @@ function showButton() {
     document.getElementById('editContacts').style.display = '';
 }
 
-//function deleteSubtask(q) {
-//    const subtas = tasks[q]['subtasks']
-//    for (let w = 0; w < subtas.length; w++) {
-//        const subtasksEdit = subtas[w];
-//
-//        if (w >= 0 && w < subtasksEdit.length) {
-//            subtasksEdit.splice(w, 1);
-//            tasks[q]['subtasks'] = subtasksEdit;
-//            closeDetailCard();
-//        } else {
-//            console.error('Ungültiger Index für Subtask-Löschung.');
-//        }
-//    }
-//}
-
 async function deleteSubtask(q, p, subtaskName) {
     const subtasksArray = tasks[q]['subtasks'];
     const subtask = subtasksArray[p];
