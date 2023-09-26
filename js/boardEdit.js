@@ -72,23 +72,22 @@ function addEdit(q, title, description, date, priority) {
     document.getElementById('taskOverlayNumber').innerHTML =/*html*/`
     <input class="inputBoard1" type="date" name="inputBoard" id="inputBoardDate" value='${date}' onmouseover="setDateOfTodayForDatepickerCard('inputBoard');">`;
     editPrioBoard(priority);
+
     editSubtasks(q);
 }
 
 function editSubtasks(q) {
-    if (tasks[q].subtask && tasks[q].subtaskstate) {
-        for (let i = 0; i < tasks[q].subtasks.length; i++) {
-            if (tasks[q].subtaskstate[i] === 'true') {
-                document.getElementById('subtask${i}').checked = true;
-                continue;
-            }
-
-            tasks[q].subtaskstate[i] = 'true';
-        }
-    }
     document.getElementById('subtaskContain').innerHTML += /*html*/ `
         <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
-    setCheckBoxState(q);
+        
+    if (tasks[q].subtaskstate) {
+        for (let i = 0; i < tasks[q].subtasks.length; i++) {
+            if (tasks[q].subtaskstate[i] === 'true') {
+                document.getElementById(`subtask${i}`).checked = true;
+            }
+        }
+    }
+
 }
 
 function editPrioBoard(priority) {
@@ -137,7 +136,7 @@ async function saveEdit(q) {
     closeDetailCard();
 }
 
-function hideButton(p) {
+function hideButton() {
     document.getElementById('editContacts').style.display = 'none';
     document.getElementById('prioMedia').style.display = 'none';
     document.getElementById('saveContacts').style.display = '';

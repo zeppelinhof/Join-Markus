@@ -363,13 +363,23 @@ function loadSubtasks(q) {
     setCheckBoxState(q);
 }
 
+//function setCheckBoxState(q) {
+//    const subTaskState = allTasks[q]['subtaskstate'];
+//    for (let i = 0; i < subTaskState.length; i++) {
+//        subTaskState[i] = subTaskState[i] === 'true';
+//        const state = subTaskState[i];
+//        const subtaskid = 'subtask' + i;
+//        document.getElementById(subtaskid).checked = state;
+//    }
+//}
+
 function setCheckBoxState(q) {
     const subTaskState = allTasks[q]['subtaskstate'];
     for (let i = 0; i < subTaskState.length; i++) {
-        subTaskState[i] = subTaskState[i] === 'true';
-        const state = subTaskState[i];
-        const subtaskid = 'subtask' + i;
-        document.getElementById(subtaskid).checked = state;
+        if (subTaskState[i] === 'true') {
+            const subtaskid = 'subtask' + i;
+            document.getElementById(subtaskid).checked = true;
+        }
     }
 }
 
