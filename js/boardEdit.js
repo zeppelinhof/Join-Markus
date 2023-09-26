@@ -147,19 +147,18 @@ function showButton() {
 
 async function deleteSubtask(q, p, subtaskName) {
     const subtasksArray = tasks[q]['subtasks'];
-    const subtask = subtasksArray[p];
     const subtaskStateArray = tasks[q]['subtaskstate'];
 
-    const subtaskIndex = subtasksArray.indexOf(subtaskName);
+    const subtaskIndex = p; // Verwende p, da es sich bereits um den Index handelt
 
-    if (subtaskIndex !== -1) {
+    if (subtaskIndex >= 0 && subtaskIndex < subtasksArray.length) {
         subtasksArray.splice(subtaskIndex, 1);
         subtaskStateArray.splice(subtaskIndex, 1);
         await setItem('tasks', JSON.stringify(tasks));
         await refreshData();
         closeDetailCard();
     } else {
-        console.error('Subtask mit dem Namen nicht gefunden.');
+        console.error('Ungültiger Index für die Unteraufgabe.');
     }
 }
 

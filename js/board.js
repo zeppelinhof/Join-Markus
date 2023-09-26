@@ -359,7 +359,7 @@ function loadSubtasks(q) {
                     ${subtasks}
                 </div>
                 <div class="curser">
-                    <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard${p}" style="display:none;">
+                    <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard${p}" onclick="deleteSubtask('${q}', '${p}', '${subtasks}')" style="display:none;">
                 </div>
             </label>
         `;
