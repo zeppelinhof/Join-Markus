@@ -76,9 +76,10 @@ function addEdit(q, title, description, date, priority) {
 }
 
 function editSubtasks(q) {
-    if (tasks[q].subtasks && tasks[q].subtaskstate) {
+    if (tasks[q].subtask && tasks[q].subtaskstate) {
         for (let i = 0; i < tasks[q].subtasks.length; i++) {
             if (tasks[q].subtaskstate[i] === 'true') {
+                document.getElementById('subtask${i}').checked = true;
                 continue;
             }
 
@@ -87,6 +88,7 @@ function editSubtasks(q) {
     }
     document.getElementById('subtaskContain').innerHTML += /*html*/ `
         <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
+    setCheckBoxState(q);
 }
 
 function editPrioBoard(priority) {

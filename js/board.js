@@ -60,17 +60,18 @@ async function emptyContainer() {
  * Open and Close function detailCard
  */
 async function closeDetailCard() {
+    await saveDetailCardData();
     document.getElementById('detailCard').style.display = 'none';
     await refreshData();
-    saveDetailCardData();
     showButton();
 }
+
+
 /**
  * 
  */
 async function saveDetailCardData() {
     const q = currentOpenCard;
-    const newCheckboxStates = getSubtasksCheckboxState();
     newItem = {
         title: allTasks[q]['title'],
         description: allTasks[q]['description'],
@@ -82,7 +83,7 @@ async function saveDetailCardData() {
         subtasks: allTasks[q]['subtasks'],
         subtaskstate: getSubtasksCheckboxState()
     };
-    updateItem('tasks', currentOpenCard, newItem);
+    await updateItem('tasks', currentOpenCard, newItem);
 }
 
 function getSubtasksCheckboxState() {
