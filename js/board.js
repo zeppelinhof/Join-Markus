@@ -355,7 +355,7 @@ function loadSubtasks(q) {
                 <input type="checkbox" id="subtask${p}" onclick="updateSubTaskCheckBoxState(this.id)">
                 <span class="checkbox-icon"></span>
                 ${subtasks}
-                <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard" onclick="deleteSubtask('${q}', '${subtasks}')" style="display:none">
+                <img src="assets/img/delete.svg" alt="" id="deleteButtonBoard${p}" onclick="deleteSubtask('${q}', '${p}', '${subtasks}')">
             </label><br>
         `;
     }

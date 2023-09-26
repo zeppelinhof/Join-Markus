@@ -62,6 +62,7 @@ function editButton(q, title, description, date, priority) {
 function addEdit(q, title, description, date, priority) {
     saveEditButton(q);
     hideButton();
+    loadSubtasks(q);
     document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `
     <input class="inputBoard1" id='inputTitleBoard' value='${title}'>`;
 
@@ -76,15 +77,11 @@ function addEdit(q, title, description, date, priority) {
 
 function editSubtasks(q) {
     if (tasks[q].subtasks && tasks[q].subtaskstate) {
-        // Schleife durch die Subtasks und ihren Status
         for (let i = 0; i < tasks[q].subtasks.length; i++) {
-            // Hier wird überprüft, ob der Status "true" oder "false" ist
             if (tasks[q].subtaskstate[i] === 'true') {
-                // Wenn der Status bereits "true" ist, behalte ihn bei
                 continue;
             }
 
-            // Hier kannst du den Subtask-Status aktualisieren, wenn er "false" ist
             tasks[q].subtaskstate[i] = 'true';
         }
     }
@@ -138,10 +135,9 @@ async function saveEdit(q) {
     closeDetailCard();
 }
 
-function hideButton() {
+function hideButton(p) {
     document.getElementById('editContacts').style.display = 'none';
     document.getElementById('prioMedia').style.display = 'none';
-    document.getElementById('deleteButtonBoard').style.display = '';
     document.getElementById('saveContacts').style.display = '';
 }
 
@@ -167,14 +163,18 @@ function showButton() {
 //    }
 //}
 
-function deleteSubtask(q, subtaskName) {
+async function deleteSubtask(q, p, subtaskName) {
     const subtasksArray = tasks[q]['subtasks'];
+    const subtask = subtasksArray[p];
+    const subtaskStateArray = tasks[q]['subtaskstate'];
 
-    // Suche den Index des Subtasks anhand seines Namens
     const subtaskIndex = subtasksArray.indexOf(subtaskName);
 
     if (subtaskIndex !== -1) {
         subtasksArray.splice(subtaskIndex, 1);
+        subtaskStateArray.splice(subtaskIndex, 1);
+        await setItem('tasks', JSON.stringify(tasks));
+        await refreshData();
         closeDetailCard();
     } else {
         console.error('Subtask mit dem Namen nicht gefunden.');
