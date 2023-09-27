@@ -69,7 +69,9 @@ function editButton(q, title, description, date, priority) {
 }
 
 function addEdit(q, title, description, date, priority) {
-    hideAssigned();
+    fillAssignedToBoard(q);
+    loadUsers();
+    hideAssigned(q);
     saveEditButton(q);
     hideButton();
     loadSubtasks(q);
@@ -202,10 +204,32 @@ function showDeleteIcons(q) {
     }
 }
 
-function hideAssigned() {
-    document.getElementById('frame214').style.opacity = 0.2;
+function hideAssigned(q) {
+    document.getElementById('frame202').innerHTML = /*html*/`
+        <div class="frameInput">
+            <div>
+                <input class="inputContactBoard" onkeydown="filterNames('inputfield', 'frame201')" type="text" id="inputfield" placeholder="Select contacts to assign">
+            </div>
+            <div>
+                <img src="./assets/img/arrow_drop_down.svg" alt="">
+            </div>
+        </div>
+    `;
+
+    document.getElementById('frame222').style.display = 'block';
+    document.getElementById('frame204').style.display = 'none';
 }
 
-function visibleAssigned(){
-    document.getElementById('frame214').style.opacity = 1;
+function visibleAssigned() {
+    document.getElementById('frame214').style.display = '';
 }
+
+function fillAssignedToBoard() {
+    document.getElementById('frame201').innerHTML = '';
+    for (let i = 0; i < users.length; i++) {
+        let user = users[i].name;
+        document.getElementById('frame201').innerHTML += showDropdown(i, user);
+        fillUsername(i, user);
+    }
+}
+

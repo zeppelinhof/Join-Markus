@@ -312,6 +312,8 @@ function loadInitials(q) {
  */
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
+    document.getElementById('frame222').style.display = 'none';
+    document.getElementById('frame204').style.display = 'block';
     loadColorLabelDetailCard(category);
     loadAssigned(q);
     loadSubtasks(q);

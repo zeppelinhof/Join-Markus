@@ -3,6 +3,23 @@
 
 }
 
+.inputContactBoard {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: #f6f7f8;
+}
+
+.frameInput {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #f6f7f8;
+}
+
 .userStory {
     background-color: #0038FF;
 }
@@ -48,6 +65,7 @@
 .curser {
     cursor: pointer;
 }
+
 .bodyBoard {
     margin: 0;
     height: 100vh !important;
@@ -118,7 +136,7 @@
     outline: none;
 }
 
-.inputBoard1{
+.inputBoard1 {
     width: 100%;
     border: none;
     outline: none;
@@ -543,6 +561,25 @@
     align-items: center;
 }
 
+#frame222 {
+    overflow: hidden;
+}
+
+#frame201 {
+    overflow-y: scroll;
+    height: 90px;
+}
+
+#frame201::-webkit-scrollbar {
+    width: 5px;
+    background-color: #f1f1f1;
+}
+
+#frame201::-webkit-scrollbar-thumb {
+    background-color: #A8A8A8;
+    border-radius: 5px;
+}
+
 #frame113 {
     min-width: 160px;
     max-width: 203px;
@@ -807,6 +844,7 @@
     background-color: #A8A8A8;
     border-radius: 5px;
 }
+
 .subtasksCheck {
     width: 344px;
     height: 32px;
@@ -911,7 +949,7 @@
     cursor: pointer;
 }
 
-.inputBoard{
+.inputBoard {
     width: 100%;
 }
 
@@ -1069,7 +1107,7 @@
     }
 
     .taskOverlay {
-        gap: 20px;
+        gap: 15px;
         width: 353px;
     }
 
