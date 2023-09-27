@@ -49,7 +49,14 @@ async function addFeedback(columnStatus) {
     boardStatus = columnStatus
     openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task')
 }
-
+/**
+ * 
+ * @param {*} q parameter of the map
+ * @param {*} title Title parameters 
+ * @param {*} description comment parameter
+ * @param {*} date date parameter
+ * @param {*} priority priority parameter
+ */
 function editButton(q, title, description, date, priority) {
     document.getElementById('editContacts').innerHTML = /*html*/ `
         <div class="editContain" id="editContain">
@@ -62,6 +69,14 @@ function editButton(q, title, description, date, priority) {
 function addEdit(q, title, description, date, priority) {
     saveEditButton(q);
     hideButton();
+    loadSubtasks(q);
+    valueContain(title, description, date);
+    editPrioBoard(priority);
+    editSubtasks(q);
+    showDeleteIcons(q);
+}
+
+function valueContain(title, description, date) {
     document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `
     <input class="inputBoard1" id='inputTitleBoard' value='${title}'>`;
 
@@ -70,13 +85,19 @@ function addEdit(q, title, description, date, priority) {
 
     document.getElementById('taskOverlayNumber').innerHTML =/*html*/`
     <input class="inputBoard1" type="date" name="inputBoard" id="inputBoardDate" value='${date}' onmouseover="setDateOfTodayForDatepickerCard('inputBoard');">`;
-    editPrioBoard(priority);
-    editSubtasks(q);
 }
 
 function editSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML += /*html*/ `
         <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
+
+    if (tasks[q].subtaskstate) {
+        for (let i = 0; i < tasks[q].subtasks.length; i++) {
+            if (tasks[q].subtaskstate[i] === 'true') {
+                document.getElementById(`subtask${i}`).checked = true;
+            }
+        }
+    }
 }
 
 function editPrioBoard(priority) {
@@ -95,7 +116,9 @@ function saveEditButton(q) {
         <button class="saveButton" onclick="saveEdit(${q})">Save</button>
     `;
 }
-
+/**
+ * function to save the changes
+ */
 async function saveEdit(q) {
     const newTitle = document.getElementById('inputTitleBoard').value;
     const newDescription = document.getElementById('inputDescriptionContain').value;
@@ -103,18 +126,33 @@ async function saveEdit(q) {
     const newPriority = document.getElementById('inputPrio').value;
     const newSubtasksInput = document.getElementById('inputSubtasks');
 
-    const newSubtasks = newSubtasksInput.value.split('\n').map(subtask => subtask.trim());
+    low(q, newSubtasksInput);
+    await pushTasks(q, newTitle, newDescription, newDate, newPriority);
+    await refreshData();
+    closeDetailCard();
+}
 
+function low(q, newSubtasksInput) {
+    const newSubtasks = newSubtasksInput.value
+        .split('\n')
+        .map(subtask => subtask.trim())
+        .filter(subtask => subtask !== '');
+
+    if (tasks[q].subtasks) {
+        tasks[q].subtasks = tasks[q].subtasks.concat(newSubtasks);
+    } else {
+        tasks[q].subtasks = newSubtasks;
+    }
+}
+/**
+ * function to upload the changes to the backend
+ */
+async function pushTasks(q, newTitle, newDescription, newDate, newPriority) {
     tasks[q].title = newTitle;
     tasks[q].description = newDescription;
     tasks[q].date = newDate;
     tasks[q].prio = newPriority;
-    tasks[q].subtasks = newSubtasks;
-    setItem('tasks', JSON.stringify(tasks));
-    showButton();
-    await refreshData();
-    saveDetailCardData();
-    closeDetailCard();
+    await setItem('tasks', JSON.stringify(tasks));
 }
 
 function hideButton() {
@@ -127,4 +165,36 @@ function showButton() {
     document.getElementById('saveContacts').style.display = 'none';
     document.getElementById('prioMedia').style.display = '';
     document.getElementById('editContacts').style.display = '';
+}
+/**
+ * delete function for the selected subtask
+ */
+async function deleteSubtask(q, p) {
+    const subtasksArray = tasks[q]['subtasks'];
+    const subtaskStateArray = tasks[q]['subtaskstate'];
+
+    const subtaskIndex = p;
+
+    if (subtaskIndex >= 0 && subtaskIndex < subtasksArray.length) {
+        subtasksArray.splice(subtaskIndex, 1);
+        subtaskStateArray.splice(subtaskIndex, 1);
+        await setItem('tasks', JSON.stringify(tasks));
+        await refreshData();
+        closeDetailCard();
+    }
+}
+/**
+ * 
+ * @param {*} q parameter of the map
+ * here the delete icon is displayed
+ */
+function showDeleteIcons(q) {
+    const subtask = allTasks[q]['subtasks'];
+
+    for (let p = 0; p < subtask.length; p++) {
+        const deleteButtonBoard = document.getElementById(`deleteButtonBoard${p}`);
+        if (deleteButtonBoard) {
+            deleteButtonBoard.style.display = 'block';
+        }
+    }
 }

@@ -38,6 +38,16 @@
     flex-direction: column;
 }
 
+.custom-checkbox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.curser {
+    cursor: pointer;
+}
 .bodyBoard {
     margin: 0;
     height: 100vh !important;
@@ -791,8 +801,13 @@
 
 #subtaskContain::-webkit-scrollbar {
     width: 5px;
+    background-color: #f1f1f1;
 }
 
+#subtaskContain::-webkit-scrollbar-thumb {
+    background-color: #A8A8A8;
+    border-radius: 5px;
+}
 .subtasksCheck {
     width: 344px;
     height: 32px;
@@ -808,8 +823,8 @@
     gap: 8px;
     display: flex;
     position: absolute;
-    bottom: 40px;
-    right: 40px;
+    bottom: 17px;
+    right: 17px;
 }
 
 #contactForm {
