@@ -8,7 +8,8 @@
 </head>
 
 <body onload="initAddTask(); includeHTML(); initUsers(); initTasks();">
-    <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML"></div>
+    <div class="contacts-d-none" w3-include-html="templates/add_new_contact.html" id="add-new-contact-include-HTML">
+    </div>
     <div class="outer-gray-background" id="add-new-task">
         <div class="content-white">
             <div class="add-new-task-close"
@@ -42,23 +43,25 @@
                                     </div>
 
                                     <!-- Assigned to User -->
-                                    <div class="property">
+                                    <div class="property" onclick="areaClickedCauseClosingListOuter();">
                                         <div class="wrapper">
                                             <label class="form-label">Assigned to</label>
-                                            <div class="select-btn" onclick="selectContactFieldInBackground('contentSearchContactCard');"
+                                            <div class="select-btn"
+                                                onclick="selectContactFieldInBackground('contentSearchContactCard');"
                                                 id="selectContactField">
                                                 <span>Select Contact</span>
                                                 <div class="circleAroundDownArrow" id="downarrow"
-                                                    onclick="add_d_none('downarrow'); remove_d_none('uparrow');">
+                                                    onclick="add_d_none('downarrow'); remove_d_none('uparrow'); areaClickedCauseClosingList();">
                                                     <img src="./assets/img/arrow_drop_down.svg">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="contentSearchContact d-none" id="contentSearchContactCard">
                                             <div class="search">
-                                                <input type="text" placeholder="Search" id="searchContactField" onkeydown="filterNames();">
+                                                <input type="text" placeholder="Search" id="searchContactField"
+                                                    onkeydown="filterNames();">
                                                 <div class="circleAroundUpArrow d-none" id="uparrow"
-                                                    onclick="add_d_none('contentSearchContactCard'); remove_d_none('selectContactField'); add_d_none('uparrow'); remove_d_none('downarrow');">
+                                                    onclick="closeContactList('contentSearchContactCard');">
                                                     <img src="./assets/img/arrow_drop_up.svg">
                                                 </div>
                                             </div>
@@ -92,7 +95,8 @@
                                         <label class="form-label">Due date</label>
                                         <input id="date" name="dateCard" type="date"
                                             class="form-control height-48px date-format cursor-pointer"
-                                            placeholder="dd/mm/yyyy" onmouseover="setDateOfTodayForDatepickerCard('dateCard');">
+                                            placeholder="dd/mm/yyyy"
+                                            onmouseover="setDateOfTodayForDatepickerCard('dateCard');">
                                         <div class="invalidMessage d-none" id="dateInvalid">This field is required.
                                         </div>
                                     </div>
@@ -189,7 +193,7 @@
 
                                     <div class="buttons_clear_create fixed-mobile-card">
                                         <button class="btn btn-outline-dark button-clear hide-mobile"
-                                            onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task');"
+                                            onclick="openAndCloseAddNewEditContact('add-new-task-include-HTML', 'add-new-task'); resetForm2('add_task_card', false);"
                                             onmouseover="remove_d_none('blue_x'); add_d_none('black_x');"
                                             onmouseleave="add_d_none('blue_x'); remove_d_none('black_x');">Clear<img
                                                 id="black_x" src="./assets/img/Vector.svg"> <img id="blue_x"
@@ -204,40 +208,10 @@
                     </div>
                 </div>
             </div>
+            <div class="areaClickedCauseClosingList d-none" id="areaClickedCauseClosingList"
+                onclick="closeContactList('contentSearchContactCard');"></div>
         </div>
     </div>
 </body>
-
-<!-- <script>
-    // select contact logic        
-    const wrapper = document.getElementById('wrapper');
-    searchInp = document.getElementById('searchContactField');
-    selectAssignedTo = document.getElementById('selectAssignedTo');
-
-
-
-    searchInp.addEventListener("keyup", () => {
-        if (document.getElementById('searchContactField').value == '') {
-            document.getElementById('selectAssignedTo').innerHTML = '';
-            fillAssignedTo();
-        }
-
-        else {
-            document.getElementById('selectAssignedTo').innerHTML = '';
-            let arr = [];
-            let searchedVal = searchInp.value.toLowerCase();
-            for (let i = 0; i < users.length; i++) {
-                const user = users[i];
-                if (user.name.toLowerCase().startsWith(searchedVal) && searchedVal != "") {
-                    document.getElementById('selectAssignedTo').innerHTML += showDropdown(i, user);
-                    fillUsername(i, user.name);
-                }
-            }
-        }
-    });
-
-    
-</script> -->
-
 
 </html>

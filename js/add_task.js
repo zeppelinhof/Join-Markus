@@ -1,5 +1,6 @@
 let tasks = [];
 let boardStatus = 'to do';
+let listClosed = false;
 
 async function initAddTask() {
     await includeHTML();
@@ -19,7 +20,7 @@ function colorRed() {
     if (btn.classList.length > 1) {
         whiteBackgroundRedArrow(btn);
         setPrioStatusAsString('');
-    }    
+    }
     else {
         btn.classList.add('button-red');
         pushToFront('arrowWhiteUrgent');
@@ -141,8 +142,8 @@ async function register_task(validatedPage) {
         column: boardStatus,
         subtaskstate: subtaskstate()
     });
-    await setItem('tasks', JSON.stringify(tasks));    
-    resetForm2(validatedPage);
+    await setItem('tasks', JSON.stringify(tasks));
+    resetForm2(validatedPage, true); // true means that Created Task (not Clear)
 }
 
 /**
@@ -174,7 +175,7 @@ function cleanInputString(input) {
  * 
  * @param {*} validatedPage - superior page of calling function
  */
-function resetForm2(validatedPage) {
+function resetForm2(validatedPage, created) {
     title.value = '';
     description.value = '';
     contactsInTask = [];
@@ -184,7 +185,9 @@ function resetForm2(validatedPage) {
     document.getElementById('selectedSubtasks').innerHTML = '';
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
     reloadPage(validatedPage);
-    addNewTaskShowSlideBox('Task created');
+    if (created) {
+        addNewTaskShowSlideBox('Task created');
+    }
 }
 
 // #endregion Data from Add Task to Backend
@@ -227,14 +230,29 @@ function selectContactFieldInBackground(field) {
     }
 }
 
-function closeContactList() {
-    if (!document.getElementById('contentSearchContact').classList.contains('d-none')) {
-        add_d_none('contentSearchContact');
+function closeContactList(field) {
+    if (!document.getElementById(field).classList.contains('d-none')) {
+        add_d_none(field);
         remove_d_none('selectContactField');
         add_d_none('uparrow');
         remove_d_none('downarrow');
+        add_d_none('areaClickedCauseClosingList');
+        listClosed = true;
     }
 }
+
+function areaClickedCauseClosingList() {
+    remove_d_none('areaClickedCauseClosingList');
+}
+
+function areaClickedCauseClosingListOuter() {
+    if (!listClosed) {
+        remove_d_none('areaClickedCauseClosingList');
+    }else{
+        listClosed = false;
+    }
+}
+
 
 
 function showContentCategory() {
