@@ -59,14 +59,17 @@ async function addFeedback(columnStatus) {
  */
 function editButton(q, title, description, date, priority) {
     document.getElementById('editContacts').innerHTML = /*html*/ `
-        <div class="editContain" id="editContain">
-            <img src="assets/img/edit.svg" onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}')" class="editIcon">
+        <div onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}')" class="editButton">
+            <div class="editContain" id="editContain">
+                <img src="assets/img/edit.svg"  class="editIcon">
+            </div>
+            <p class="editText">Edit</p>
         </div>
-        <p class="editText">Edit</p>
     `;
 }
 
 function addEdit(q, title, description, date, priority) {
+    hideAssigned();
     saveEditButton(q);
     hideButton();
     loadSubtasks(q);
@@ -197,4 +200,12 @@ function showDeleteIcons(q) {
             deleteButtonBoard.style.display = 'block';
         }
     }
+}
+
+function hideAssigned() {
+    document.getElementById('frame214').style.opacity = 0.2;
+}
+
+function visibleAssigned(){
+    document.getElementById('frame214').style.opacity = 1;
 }

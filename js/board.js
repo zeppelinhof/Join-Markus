@@ -64,6 +64,7 @@ async function closeDetailCard() {
     document.getElementById('detailCard').style.display = 'none';
     await refreshData();
     showButton();
+    visibleAssigned();
 }
 
 
@@ -129,6 +130,8 @@ function loopTasks(search) {
 
         if (title.toLowerCase().includes(search.toLowerCase())) {
             loadAllTask(category, title, description, column, q, priority, date, assigned);
+        } else {
+            checkEmptyContainer();
         }
     }
 }
@@ -309,6 +312,7 @@ function loadInitials(q) {
  */
 
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
+    loadColorLabelDetailCard(category);
     loadAssigned(q);
     loadSubtasks(q);
     document.getElementById('detailCard').style.display = '';
@@ -320,6 +324,15 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
     currentOpenCard = q;
     editButton(q, title, description, date, priority);
+}
+
+function loadColorLabelDetailCard(category) {
+    if (category === 'Technical Task') {
+        document.getElementById(`frame113`).classList.add('technicalTask');
+    }
+    if (category === 'User Story') {
+        document.getElementById(`frame113`).classList.add('userStory');
+    }
 }
 /**
  * here the names and initials are loaded
