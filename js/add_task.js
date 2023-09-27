@@ -523,15 +523,15 @@ function reloadPage(validatedPage) {
 /**
  * filter the contacts according user input
  */
-function filterNames(field) {
-    let search = document.getElementById('searchContactField').value;
+function filterNames(inputfield, contactfield) {
+    let search = document.getElementById(inputfield).value;
     search = search.toLowerCase();
 
-    document.getElementById(field).innerHTML = '';
+    document.getElementById(contactfield).innerHTML = '';
     for (let i = 0; i < users.length; i++) {
         let user = users[i].name;
         if (user.toLowerCase().includes(search)) {
-            document.getElementById(field).innerHTML += showDropdown(i, user);
+            document.getElementById(contactfield).innerHTML += showDropdown(i, user);
             fillUsername(i, user);
         }
     }
