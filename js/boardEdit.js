@@ -69,10 +69,7 @@ function editButton(q, title, description, date, priority, assigned) {
 }
 
 function addEdit(q, title, description, date, priority, assigned) {
-    fillAssignedToBoard(q, assigned);
-    //contact(q, assigned);
-    loadUsers();
-    hideAssigned(q);
+    hideAssigned(q, assigned);
     saveEditButton(q);
     hideButton();
     loadSubtasks(q);
@@ -80,6 +77,7 @@ function addEdit(q, title, description, date, priority, assigned) {
     editPrioBoard(priority);
     editSubtasks(q);
     showDeleteIcons(q);
+    fillAssignedToBoard(q, assigned);
 }
 
 function valueContain(title, description, date) {
@@ -204,12 +202,17 @@ function showDeleteIcons(q) {
         }
     }
 }
+/**
+ * editing the assigned names
+ * @param {parameters of the map} q 
+ * @param {Name parameters} assigned 
+ */
 
-function hideAssigned(q) {
+function hideAssigned(q, assigned) {
     document.getElementById('frame202').innerHTML = /*html*/`
         <div class="frameInput">
             <div>
-                <input class="inputContactBoard" type="text" id="inputfieldBoard" placeholder="Select contacts to assign" oninput="filterUsersBoard()">
+                <input class="inputContactBoard" type="text" id="inputfieldBoard" placeholder="Select contacts to assign" oninput="fillAssignedToBoard('${q}', '${assigned}')">
             </div>
             <div>
                 <img src="./assets/img/arrow_drop_down.svg" alt="">
@@ -228,54 +231,67 @@ function fillAssignedToBoard(q, assigned) {
     document.getElementById('frame201').innerHTML = '';
     const assignedUsers = assigned.split(',');
 
-    for (let u = 0; u < assignedUsers.length; u++) {
-        const element = assignedUsers[u];
-        addUsersToFrame(element);
-    }
+    addUsersToFrame(assignedUsers, q);
 }
-
-function addUsersToFrame(element) {
+/**
+ * search function and display of all names
+ * @param {conversion to array} assignedUsers 
+ * @param {parameter der Karte} q 
+ */
+function addUsersToFrame(assignedUsers, q) {
+    let search = document.getElementById('inputfieldBoard').value;
     for (let i = 0; i < users.length; i++) {
         const userBoard = users[i].name;
-        const isAssigned = element === userBoard;
-        addContactBoardElement(i, userBoard, isAssigned);
+        const isAssigned = assignedUsers.indexOf(userBoard);
+        if (userBoard.toLowerCase().includes(search.toLowerCase())) {
+            addContactBoardElement(i, userBoard, isAssigned, q);
+        }
     }
 }
 
-function addContactBoardElement(i, userBoard, isAssigned) {
+function addContactBoardElement(i, userBoard, isAssigned, q) {
     document.getElementById('frame201').innerHTML += /*html*/ `
-        <div  class="contactBoard" onclick="addContactBoard(${i})">
+        <div id="contactBoard${i}" class="contactBoard" onclick="addContactBoard(${i}, ${q})">
             <div>
                 <span id='userNameBoard${i}'>${userBoard}</span> 
             </div>
-            <img id='checkEmptyBoard${i}' src="assets/img/Check_button_empty.svg" alt="" style="display: ${isAssigned ? 'none' : 'block'}">
-            <img id='checkFilledBoard${i}' src="assets/img/Check_button_filled.svg" alt="" style="display: ${isAssigned ? 'block' : 'none'}">
+            <img id='checkEmptyBoard${i}' src="assets/img/Check_button_empty.svg" alt="">
+            <img id='checkFilledBoard${i}' src="assets/img/Check_button_filled.svg" alt="">
         </div>
     `;
+    isAssignedBoard(i, isAssigned);
 }
 
-function addContactBoard(index) {
+function isAssignedBoard(i, isAssigned) {
+    if (isAssigned != -1) {
+        document.getElementById(`checkFilledBoard${i}`).style.display = 'block';
+        document.getElementById(`contactBoard${i}`).style.backgroundColor = 'rgb(246,247,248)';
+        document.getElementById(`checkEmptyBoard${i}`).style.display = 'none';
+    } else {
+        document.getElementById(`checkEmptyBoard${i}`).style.display = 'block';
+        document.getElementById(`contactBoard${i}`).style.backgroundColor = '';
+        document.getElementById(`checkFilledBoard${i}`).style.display = 'none';
+    }
+}
+/**
+ * function to add or remove from the map
+ * @param {number of the name} index 
+ * @param {parameter der Karte} q 
+ */
+async function addContactBoard(index, q) {
     const checkEmptyElement = document.getElementById(`checkEmptyBoard${index}`);
     const checkFilledElement = document.getElementById(`checkFilledBoard${index}`);
+    const userNameElement = document.getElementById(`userNameBoard${index}`);
+    const userName = userNameElement.textContent;
 
-    if (checkEmptyElement.style.display === 'none') {
-
-        checkEmptyElement.style.display = 'block';
-        checkFilledElement.style.display = 'none';
-    } else {
+    if (checkFilledElement.style.display === 'none') {
         checkEmptyElement.style.display = 'none';
         checkFilledElement.style.display = 'block';
+        tasks[q].selectAssignedTo.push(userName);
+    } else {
+        checkEmptyElement.style.display = 'block';
+        checkFilledElement.style.display = 'none';
+        tasks[q].selectAssignedTo.splice(tasks[q].selectAssignedTo.indexOf(userName), 1);
     }
-}
-
-function filterUsersBoard() {
-    let search = document.getElementById('inputfieldBoard').value;
-    for (let p = 0; p < users.length; p++) {
-        const element = users[p];
-
-        if (element.toLowerCase()) {
-            
-        }
-        
-    }
+    await setItem('tasks', JSON.stringify(tasks));
 }
