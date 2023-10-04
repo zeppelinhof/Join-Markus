@@ -57,9 +57,9 @@ async function addFeedback(columnStatus) {
  * @param {*} date date parameter
  * @param {*} priority priority parameter
  */
-function editButton(q, title, description, date, priority) {
+function editButton(q, title, description, date, priority, assigned) {
     document.getElementById('editContacts').innerHTML = /*html*/ `
-        <div onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}')" class="editButton">
+        <div onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}', '${assigned}')" class="editButton">
             <div class="editContain" id="editContain">
                 <img src="assets/img/edit.svg"  class="editIcon">
             </div>
@@ -68,8 +68,9 @@ function editButton(q, title, description, date, priority) {
     `;
 }
 
-function addEdit(q, title, description, date, priority) {
-    fillAssignedToBoard(q);
+function addEdit(q, title, description, date, priority, assigned) {
+    fillAssignedToBoard(q, assigned);
+    //contact(q, assigned);
     loadUsers();
     hideAssigned(q);
     saveEditButton(q);
@@ -208,14 +209,13 @@ function hideAssigned(q) {
     document.getElementById('frame202').innerHTML = /*html*/`
         <div class="frameInput">
             <div>
-                <input class="inputContactBoard" onkeydown="filterNames('inputfield', 'frame201')" type="text" id="inputfield" placeholder="Select contacts to assign">
+                <input class="inputContactBoard" type="text" id="inputfieldBoard" placeholder="Select contacts to assign" oninput="filterUsersBoard()">
             </div>
             <div>
                 <img src="./assets/img/arrow_drop_down.svg" alt="">
             </div>
         </div>
     `;
-
     document.getElementById('frame222').style.display = 'block';
     document.getElementById('frame204').style.display = 'none';
 }
@@ -224,12 +224,58 @@ function visibleAssigned() {
     document.getElementById('frame214').style.display = '';
 }
 
-function fillAssignedToBoard() {
+function fillAssignedToBoard(q, assigned) {
     document.getElementById('frame201').innerHTML = '';
-    for (let i = 0; i < users.length; i++) {
-        let user = users[i].name;
-        document.getElementById('frame201').innerHTML += showDropdown(i, user);
-        fillUsername(i, user);
+    const assignedUsers = assigned.split(',');
+
+    for (let u = 0; u < assignedUsers.length; u++) {
+        const element = assignedUsers[u];
+        addUsersToFrame(element);
     }
 }
 
+function addUsersToFrame(element) {
+    for (let i = 0; i < users.length; i++) {
+        const userBoard = users[i].name;
+        const isAssigned = element === userBoard;
+        addContactBoardElement(i, userBoard, isAssigned);
+    }
+}
+
+function addContactBoardElement(i, userBoard, isAssigned) {
+    document.getElementById('frame201').innerHTML += /*html*/ `
+        <div  class="contactBoard" onclick="addContactBoard(${i})">
+            <div>
+                <span id='userNameBoard${i}'>${userBoard}</span> 
+            </div>
+            <img id='checkEmptyBoard${i}' src="assets/img/Check_button_empty.svg" alt="" style="display: ${isAssigned ? 'none' : 'block'}">
+            <img id='checkFilledBoard${i}' src="assets/img/Check_button_filled.svg" alt="" style="display: ${isAssigned ? 'block' : 'none'}">
+        </div>
+    `;
+}
+
+function addContactBoard(index) {
+    const checkEmptyElement = document.getElementById(`checkEmptyBoard${index}`);
+    const checkFilledElement = document.getElementById(`checkFilledBoard${index}`);
+
+    if (checkEmptyElement.style.display === 'none') {
+
+        checkEmptyElement.style.display = 'block';
+        checkFilledElement.style.display = 'none';
+    } else {
+        checkEmptyElement.style.display = 'none';
+        checkFilledElement.style.display = 'block';
+    }
+}
+
+function filterUsersBoard() {
+    let search = document.getElementById('inputfieldBoard').value;
+    for (let p = 0; p < users.length; p++) {
+        const element = users[p];
+
+        if (element.toLowerCase()) {
+            
+        }
+        
+    }
+}

@@ -325,7 +325,7 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
     document.getElementById('prioMedia').innerHTML = /*html*/`<img class="prioMedia"src="${priorityIMG}">`;
     currentOpenCard = q;
-    editButton(q, title, description, date, priority);
+    editButton(q, title, description, date, priority, assigned);
 }
 
 function loadColorLabelDetailCard(category) {

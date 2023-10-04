@@ -10,6 +10,16 @@
     background-color: #f6f7f8;
 }
 
+.contactBoard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contactBoard:hover{
+    cursor: pointer;
+}
+
 .frameInput {
     display: flex;
     align-items: center;
