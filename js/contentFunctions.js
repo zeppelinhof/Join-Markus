@@ -60,7 +60,7 @@ async function getBoard() {
 
 
 /**
- * This function loads "summary"-HTML-template  into the page and executes required Init-function.
+ * This function loads "summary"-HTML-template into the page and executes required Init-function.
  */
 async function getSummary() {
     setSidebarNavActive('summary');
@@ -70,7 +70,7 @@ async function getSummary() {
 
 
 /**
- * This function loads "contacts"-HTML-template  into the page and executes required Init-function.
+ * This function loads "contacts"-HTML-template into the page and executes required Init-function.
  */
 async function getContacts() {
     await includeHTML();
