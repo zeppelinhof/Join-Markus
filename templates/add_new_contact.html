@@ -19,7 +19,7 @@
                 <div class="add-new-contact-close"
                     onclick="openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact')"></div>
                 <span class="add-new-contact-profile-icon"></span>
-                <form class="add-new-contact-form" onsubmit="addNewContact(); return false">
+                <form class="add-new-contact-form" onsubmit="addNewContact(); initAddTask(); return false">
                     <input class="add-new-contact-input-name add-new-contact-input" type="text" placeholder="Name"
                         required id="add-new-name">
                     <input class="add-new-contact-input-email add-new-contact-input" type="email" placeholder="Email"
@@ -33,7 +33,7 @@
                             <span>Cancel</span>
                             <div class="add-new-contact-button-left-icon"></div>
                         </button>
-                        <button type="submit" class="add-new-contact-button-right" onclick="initAddTask();">
+                        <button type="submit" class="add-new-contact-button-right">
                             <span>Create contact</span>
                             <img class="add-new-contact-button-right-icon" src="./assets/img/check.svg" alt="">
                         </button>

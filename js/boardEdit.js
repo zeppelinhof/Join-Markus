@@ -57,9 +57,9 @@ async function addFeedback(columnStatus) {
  * @param {*} date date parameter
  * @param {*} priority priority parameter
  */
-function editButton(q, title, description, date, priority) {
+function editButton(q, title, description, date, priority, assigned) {
     document.getElementById('editContacts').innerHTML = /*html*/ `
-        <div onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}')" class="editButton">
+        <div onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}', '${assigned}')" class="editButton">
             <div class="editContain" id="editContain">
                 <img src="assets/img/edit.svg"  class="editIcon">
             </div>
@@ -68,8 +68,8 @@ function editButton(q, title, description, date, priority) {
     `;
 }
 
-function addEdit(q, title, description, date, priority) {
-    hideAssigned();
+function addEdit(q, title, description, date, priority, assigned) {
+    hideAssigned(q, assigned);
     saveEditButton(q);
     hideButton();
     loadSubtasks(q);
@@ -77,6 +77,7 @@ function addEdit(q, title, description, date, priority) {
     editPrioBoard(priority);
     editSubtasks(q);
     showDeleteIcons(q);
+    fillAssignedToBoard(q, assigned);
 }
 
 function valueContain(title, description, date) {
@@ -201,11 +202,96 @@ function showDeleteIcons(q) {
         }
     }
 }
+/**
+ * editing the assigned names
+ * @param {parameters of the map} q 
+ * @param {Name parameters} assigned 
+ */
 
-function hideAssigned() {
-    document.getElementById('frame214').style.opacity = 0.2;
+function hideAssigned(q, assigned) {
+    document.getElementById('frame202').innerHTML = /*html*/`
+        <div class="frameInput">
+            <div>
+                <input class="inputContactBoard" type="text" id="inputfieldBoard" placeholder="Select contacts to assign" oninput="fillAssignedToBoard('${q}', '${assigned}')">
+            </div>
+            <div>
+                <img src="./assets/img/arrow_drop_down.svg" alt="">
+            </div>
+        </div>
+    `;
+    document.getElementById('frame222').style.display = 'block';
+    document.getElementById('frame204').style.display = 'none';
 }
 
-function visibleAssigned(){
-    document.getElementById('frame214').style.opacity = 1;
+function visibleAssigned() {
+    document.getElementById('frame214').style.display = '';
+}
+
+function fillAssignedToBoard(q, assigned) {
+    document.getElementById('frame201').innerHTML = '';
+    const assignedUsers = assigned.split(',');
+
+    addUsersToFrame(assignedUsers, q);
+}
+/**
+ * search function and display of all names
+ * @param {conversion to array} assignedUsers 
+ * @param {parameter der Karte} q 
+ */
+function addUsersToFrame(assignedUsers, q) {
+    let search = document.getElementById('inputfieldBoard').value;
+    for (let i = 0; i < users.length; i++) {
+        const userBoard = users[i].name;
+        const isAssigned = assignedUsers.indexOf(userBoard);
+        if (userBoard.toLowerCase().includes(search.toLowerCase())) {
+            addContactBoardElement(i, userBoard, isAssigned, q);
+        }
+    }
+}
+
+function addContactBoardElement(i, userBoard, isAssigned, q) {
+    document.getElementById('frame201').innerHTML += /*html*/ `
+        <div id="contactBoard${i}" class="contactBoard" onclick="addContactBoard(${i}, ${q})">
+            <div>
+                <span id='userNameBoard${i}'>${userBoard}</span> 
+            </div>
+            <img id='checkEmptyBoard${i}' src="assets/img/Check_button_empty.svg" alt="">
+            <img id='checkFilledBoard${i}' src="assets/img/Check_button_filled.svg" alt="">
+        </div>
+    `;
+    isAssignedBoard(i, isAssigned);
+}
+
+function isAssignedBoard(i, isAssigned) {
+    if (isAssigned != -1) {
+        document.getElementById(`checkFilledBoard${i}`).style.display = 'block';
+        document.getElementById(`contactBoard${i}`).style.backgroundColor = 'rgb(246,247,248)';
+        document.getElementById(`checkEmptyBoard${i}`).style.display = 'none';
+    } else {
+        document.getElementById(`checkEmptyBoard${i}`).style.display = 'block';
+        document.getElementById(`contactBoard${i}`).style.backgroundColor = '';
+        document.getElementById(`checkFilledBoard${i}`).style.display = 'none';
+    }
+}
+/**
+ * function to add or remove from the map
+ * @param {number of the name} index 
+ * @param {parameter der Karte} q 
+ */
+async function addContactBoard(index, q) {
+    const checkEmptyElement = document.getElementById(`checkEmptyBoard${index}`);
+    const checkFilledElement = document.getElementById(`checkFilledBoard${index}`);
+    const userNameElement = document.getElementById(`userNameBoard${index}`);
+    const userName = userNameElement.textContent;
+
+    if (checkFilledElement.style.display === 'none') {
+        checkEmptyElement.style.display = 'none';
+        checkFilledElement.style.display = 'block';
+        tasks[q].selectAssignedTo.push(userName);
+    } else {
+        checkEmptyElement.style.display = 'block';
+        checkFilledElement.style.display = 'none';
+        tasks[q].selectAssignedTo.splice(tasks[q].selectAssignedTo.indexOf(userName), 1);
+    }
+    await setItem('tasks', JSON.stringify(tasks));
 }
