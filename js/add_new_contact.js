@@ -11,6 +11,15 @@ function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
     let addNewContactInlcudeHTML = document.getElementById(id1);
     let addNewContact = document.getElementById(id2)
 
+    slideInOrOutOverlyContacts(addNewContactInlcudeHTML, addNewContact);
+
+    if (renderEdit) {
+        renderEditContact(i);
+    };
+}
+
+
+function slideInOrOutOverlyContacts(addNewContactInlcudeHTML, addNewContact) {
     if (addNewContactInlcudeHTML.classList.contains('contacts-d-none')) {
         addNewContact.classList.remove('add-new-contact-slideout-animation');
         addNewContact.classList.add('add-new-contact-slidein-animation');
@@ -24,10 +33,6 @@ function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
             addNewContactInlcudeHTML.classList.add('contacts-d-none');
         }, 450);
     }
-
-    if (renderEdit) {
-        renderEditContact(i);
-    };
 }
 
 
@@ -59,12 +64,9 @@ function renderEditContact(i) {
  * @param {integer} i is the index number from array users.
  */
 async function addNewContact() {
-    loadingScreen();
-
     let inputName = document.getElementById('add-new-name').value;
     let inputEmail = document.getElementById('add-new-email').value;
     let inputPhone = document.getElementById('add-new-phone').value;
-
 
     users.push({
         name: inputName,
@@ -73,11 +75,15 @@ async function addNewContact() {
         phone: inputPhone
     });
 
-
     [users, currentContactIndex] = sortUsers();
 
-    await setItem('users', JSON.stringify(users))
+    await callFunctionsToAddNewContact();
+}
 
+
+async function callFunctionsToAddNewContact() {
+    loadingScreen();
+    await setItem('users', JSON.stringify(users))
     await showNewContactOrInitUsers();
 }
 
@@ -121,9 +127,11 @@ async function showNewContactOrInitUsers() {
 */
 function showNewContact(overlayAddNew = true) {
     renderContacts();
+
     if (overlayAddNew) {
         openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
     }
+
     openContactData(currentContactIndex);
 
     let scrollPositionElement = document.getElementById(`contactCard-${currentContactIndex}`);
@@ -153,7 +161,6 @@ function addNewContactShowSlideBox(text) {
     setTimeout((() => {
         slideBox.classList.add('contacts-d-none');
     }), 1500);
-
 }
 
 /**
@@ -171,7 +178,6 @@ function addNewTaskShowSlideBox(text) {
     setTimeout((() => {
         slideBox.classList.add('contacts-d-none');
     }), 1500);
-
 }
 
 
@@ -190,9 +196,6 @@ function addNewContactClear() {
  * and show the changing data.
  */
 async function editContact() {
-    loadingScreen();
-
-
     let inputName = document.getElementById('edit-name').value;
     let inputEmail = document.getElementById('edit-email').value;
     let inputPhone = document.getElementById('edit-phone').value;
@@ -201,6 +204,13 @@ async function editContact() {
     users[currentContactIndex]['name'] = inputName;
     users[currentContactIndex]['email'] = inputEmail;
     users[currentContactIndex]['phone'] = inputPhone;
+
+    await callFunctionsToEditContact(currentColorStyle);
+}
+
+
+async function callFunctionsToEditContact(currentColorStyle) {
+    loadingScreen();
 
     await setItem('users', JSON.stringify(users))
 
@@ -220,15 +230,10 @@ async function editContact() {
  * @param {boolean} openFalse decides whether the function is executed or not, default is true.
  */
 async function deleteContact(i = currentContactIndex, openFalse = true) {
-    loadingScreen();
-
     let windowSize = window.matchMedia('(max-width: 1350px)');
     users.splice(i, 1);
 
     await setItem('users', JSON.stringify(users));
-
-    renderContacts();
-    clearContactData();
 
     if (openFalse) {
         openAndCloseAddNewEditContact('edit-contact-include-HTML', 'edit-contact');
@@ -238,5 +243,13 @@ async function deleteContact(i = currentContactIndex, openFalse = true) {
         closeContactData();
     }
 
+    callFunctionsToDeleteContact();
+}
+
+
+function callFunctionsToDeleteContact() {
+    loadingScreen();
+    renderContacts();
+    clearContactData();
     addNewContactShowSlideBox('Contact deleted');
 }

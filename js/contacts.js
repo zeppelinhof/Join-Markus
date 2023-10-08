@@ -20,8 +20,7 @@ function renderContacts() {
     let colorNumberIndex = 0;
 
     for (let i = 0; i < users.length; i++) {
-        const [name, email] = [users[i]['name'], users[i]['email']];
-        const firstLetter = users[i]['name'].charAt(0);
+        const [name, email, firstLetter] = [users[i]['name'], users[i]['email'], users[i]['name'].charAt(0)];
         const colorStyle = returnContactColor(i);
 
         addLetterHeadline(firstLetter, contactsList);
@@ -55,16 +54,31 @@ function addLetterHeadline(firstLetter, contactsList) {
  */
 function openContactData(i) {
     let contactCard = document.getElementById(`contactCard-${i}`);
-    let conatacts = document.getElementById('contacts');
+    let contacts = document.getElementById('contacts');
     let contactData = document.getElementById('contact-data');
     let windowSize = window.matchMedia('(max-width: 1350px)');
 
+    contactCardClick(contactCard, contacts, contactData, windowSize, i);
+
+    currentContactIndex = i;
+}
+
+
+/**
+ * This fuction marked a contact as clicked. 
+ * @param {object} contactCard is the contatiner from clicked contact.
+ * @param {object} conatacts is the container with all listed contacts.
+ * @param {object} contactData is the area to showed contactdatas by clicked.
+ * @param {object} windowSize is the windowsize to action show or hide contacts or contactdata.
+ * @param {integer} i is the index from clicked user in array users.
+ */
+function contactCardClick(contactCard, contacts, contactData, windowSize, i) {
     if (contactCard.classList.contains('contact-card-click')) {
         contactCard.classList.remove('contact-card-click');
         clearContactData();
     } else {
         if (windowSize.matches) {
-            conatacts.classList.add('contact-data-d-none');
+            contacts.classList.add('contact-data-d-none');
             contactData.classList.remove('contact-data-d-none');
         } else {
             closeAllContactClicks();
@@ -72,8 +86,6 @@ function openContactData(i) {
         }
         renderContactData(i);
     }
-
-    currentContactIndex = i;
 }
 
 
@@ -143,7 +155,7 @@ function closeAllContactClicks() {
 
 
 /**
- * open the ponit menu in the responsive view and lets it slide in.
+ * Open the ponit menu in the responsive view and lets it slide in.
  */
 function openEditContactPointMenu() {
     let editContactPointMenu = document.getElementById('contact-data-name-edit-del-area')
@@ -154,6 +166,9 @@ function openEditContactPointMenu() {
     editContactPointMenu.classList.remove('contacts-point-menu-d-none');
 }
 
+/**
+ * Close the ponit menu in the responsive view and lets it slide in.
+ */
 function closeEditContactPointMenu() {
     let editContactPointMenu = document.getElementById('contact-data-name-edit-del-area')
 
@@ -184,8 +199,15 @@ window.addEventListener('resize', () => {
     let contactDataContent = document.getElementById('contact-data-content');
     let windowSize = window.matchMedia('(max-width: 1350px)');
     let flag = false;
+
+    showOrHideByChangWindowSize(contactCard, contacts, contactData, contactDataContent, windowSize, flag);
+});
+
+
+function showOrHideByChangWindowSize(contactCard, contacts, contactData, contactDataContent, windowSize, flag) {
     try {
         contactDataContent.childNodes.length == 1 ? contactDataContent.innerHTML = '' : null;
+
         if (windowSize.matches && contactDataContent.innerHTML > '') {
             contacts.classList.add('contact-data-d-none');
             contactData.classList.remove('contact-data-d-none');
@@ -196,5 +218,6 @@ window.addEventListener('resize', () => {
         }
 
         flag == true ? contactCard.classList.add('contact-card-click') : null;
+        
     } catch (e) { }
-});
+}
