@@ -307,8 +307,13 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
-function closeContactBoard(){
-    document.getElementById('contactBoard3').style.display = 'block';
-    document.getElementById('contactBoard1').style.display = 'none';
-    document.getElementById('contactBoard4').style.display = 'none';
+function closeContactBoard() {
+    let contactBoard5 = document.getElementById('contactBoard3');
+    if (contactBoard5 && contactBoard5.style.display === 'none') {
+        contactBoard5.style.display = 'block';
+        document.getElementById('contactBoard1').style.display = 'none';
+        document.getElementById('contactBoard4').style.display = 'none';
+    }
 }
+
+
