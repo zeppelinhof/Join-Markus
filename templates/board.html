@@ -95,8 +95,8 @@
         </div>
     </div>
 </div>
-<div id="detailCard" style="display: none;">
-    <div class="taskOverlay">
+<div id="detailCard" style="display: none;" onclick="closeDetailCard()">
+    <div class="taskOverlay" onclick="doNotClose(event)">
         <div class="frame203" id="frame203">
             <span class="frame113" id="frame113">
                 <p id="taskContain"></p>
@@ -122,7 +122,7 @@
             <p class="assignedTo">Assigned To:</p>
             <div id="frame222">
                 <div class="selectAssignedTo" id="frame202"></div>
-                <div>
+                <div id="contactBoard1" style="display: none;">
                     <ul id="frame201" class=""></ul>
                 </div>
             </div>

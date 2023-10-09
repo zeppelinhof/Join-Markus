@@ -65,6 +65,7 @@ async function closeDetailCard() {
     await refreshData();
     showButton();
     visibleAssigned();
+    closeContactBoard();
 }
 
 

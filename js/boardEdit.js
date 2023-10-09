@@ -215,12 +215,19 @@ function hideAssigned(q, assigned) {
                 <input class="inputContactBoard" type="text" id="inputfieldBoard" placeholder="Select contacts to assign" oninput="fillAssignedToBoard('${q}', '${assigned}')">
             </div>
             <div>
-                <img src="./assets/img/arrow_drop_down.svg" alt="">
+                <img id="contactBoard4" src="assets/img/arrow_drop_up.svg" onclick="closeContactBoard()" style='display:none'>
+                <img id="contactBoard3" src="./assets/img/arrow_drop_down.svg" onclick="openContactBoard()">
             </div>
         </div>
     `;
     document.getElementById('frame222').style.display = 'block';
     document.getElementById('frame204').style.display = 'none';
+}
+
+function openContactBoard() {
+    document.getElementById('contactBoard3').style.display = 'none';
+    document.getElementById('contactBoard1').style.display = 'block';
+    document.getElementById('contactBoard4').style.display = 'block';
 }
 
 function visibleAssigned() {
@@ -294,4 +301,14 @@ async function addContactBoard(index, q) {
         tasks[q].selectAssignedTo.splice(tasks[q].selectAssignedTo.indexOf(userName), 1);
     }
     await setItem('tasks', JSON.stringify(tasks));
+}
+
+function doNotClose(event) {
+    event.stopPropagation();
+}
+
+function closeContactBoard(){
+    document.getElementById('contactBoard3').style.display = 'block';
+    document.getElementById('contactBoard1').style.display = 'none';
+    document.getElementById('contactBoard4').style.display = 'none';
 }
