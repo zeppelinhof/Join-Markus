@@ -193,8 +193,9 @@ function loadAllTask(category, title, description, column, q, priority, date, as
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
-            <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
-                <div class='frame119'>
+            <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCardBoard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
+                <div class="notesDetail" id="notesDetail" style="display:none"></div>
+            <div class='frame119'>
                     <div class='labelsBoardCardlabel' id="BoardCardLabel_${q}">
                         <p id="cardLabel">${category}</p>
                     </div>
@@ -300,6 +301,19 @@ function loadInitials(q) {
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
     }
 }
+function openDetailCardBoard(q, title, description, category, priority, date, priorityIMG, assigned) {
+    let windowSizeDetailCard = window.matchMedia('(max-width: 900px)');
+
+    if (windowSizeDetailCard.matches) {
+        console.log(`Funktionstest läuft gut! Das ist Kartennummer: ${q}`);
+        openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned);
+    } else {
+        openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned);
+    }
+
+}
+//openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')
+
 /**
  * function to open the detailcard of the selected cards
  * @param {*} q parameter q is passed as card number

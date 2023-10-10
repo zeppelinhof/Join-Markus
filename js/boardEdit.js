@@ -316,4 +316,12 @@ function closeContactBoard() {
     }
 }
 
+function openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned) {
+    document.getElementById('notesDetail').style.display = 'block';
+    let notes = document.getElementById('notesDetail');
+    notes.innerHTML = /*html*/ `
+    <span onclick="openDetailCard('${q}', '${title}', '${description}', '${category}','${priority}','${date}','${priorityIMG}','${assigned}')">Edit</span>
+    `;
+}
+
 

@@ -16,7 +16,7 @@
     justify-content: space-between;
 }
 
-.contactBoard:hover{
+.contactBoard:hover {
     cursor: pointer;
 }
 
@@ -1088,6 +1088,24 @@
 @media (max-width: 900px) {
     .sideBarBoard {
         width: 100%;
+    }
+
+    .cards {
+        position: relative;
+    }
+
+    .notesDetail {
+        position: absolute;
+        height: 180px;
+        width: 180px;
+        background-color: greenyellow;
+        position: absolute;
+        z-index: 1;
+        right: 20px;
+        top: 15px;
+        border-top-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+        border-bottom-right-radius: 16px;
     }
 
     .bodyContainer {
