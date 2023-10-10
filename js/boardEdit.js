@@ -317,11 +317,21 @@ function closeContactBoard() {
 }
 
 function openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned) {
-    document.getElementById('notesDetail').style.display = 'block';
-    let notes = document.getElementById('notesDetail');
+    document.getElementById(`notesDetail_${q}`).style.display = 'block';
+    let notes = document.getElementById(`notesDetail_${q}`);
     notes.innerHTML = /*html*/ `
-    <span onclick="openDetailCard('${q}', '${title}', '${description}', '${category}','${priority}','${date}','${priorityIMG}','${assigned}')">Edit</span>
+    <span onclick="openDetailCard('${q}', '${title}', '${description}', '${category}','${priority}','${date}','${priorityIMG}','${assigned}')" class="textMobileBoardContain"><p class="textContain6">Edit</p></span>
+    <div class="textMobileBoardContain1"><p class="textContain7">Container</p></div>
+    <div class="textMobileBoardContain1"><p class="textContain7">Container</p></div>
+    <div class="textMobileBoardContain1"><p class="textContain7">Container</p></div>
     `;
+    closeDetailCardMobile(q);
+}
+
+function closeDetailCardMobile(q) {
+    setTimeout(() => {
+        document.getElementById(`notesDetail_${q}`).style.display = 'none';
+    }, 2500);
 }
 
 

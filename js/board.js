@@ -194,7 +194,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
 
     const cardHTML = /*html*/ `
             <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCardBoard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
-                <div class="notesDetail" id="notesDetail" style="display:none"></div>
+                <div class="notesDetail" id="notesDetail_${q}" style="display:none"></div>
             <div class='frame119'>
                     <div class='labelsBoardCardlabel' id="BoardCardLabel_${q}">
                         <p id="cardLabel">${category}</p>
