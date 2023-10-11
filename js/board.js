@@ -139,51 +139,22 @@ function loopTasks(search) {
 /**
  * check if there are any cards in the container, if yes then the container should be hidden with the content 'no Tasks
  */
+function clearNoTask(containerId, messageElementId) {
+    const container = document.getElementById(containerId);
+    const messageElement = document.getElementById(messageElementId);
+
+    if (container.querySelector('.cards')) {
+        messageElement.style.display = 'none';
+    } else {
+        messageElement.style.display = '';
+    }
+}
+
 function checkEmptyContainer() {
-    clearNoTasToDO();
-    clearNoTaskProgress();
-    clearNoTaskFeedback();
-    clearNoTaskDone();
-}
-
-function clearNoTaskProgress() {
-    const inProgressContainer = document.getElementById('inProgressContainer');
-
-    if (inProgressContainer.querySelector('.cards')) {
-        document.getElementById('noProgress').style.display = 'none';
-    } else {
-        document.getElementById('noProgress').style.display = '';
-    }
-}
-
-function clearNoTasToDO() {
-    const toDoContainer = document.getElementById('toDoContainer');
-
-    if (toDoContainer.querySelector('.cards')) {
-        document.getElementById('noTask').style.display = 'none';
-    } else {
-        document.getElementById('noTask').style.display = '';
-    }
-}
-
-function clearNoTaskFeedback() {
-    const feedbackContainer = document.getElementById('feedbackContainer');
-
-    if (feedbackContainer.querySelector('.cards')) {
-        document.getElementById('noFeedback').style.display = 'none';
-    } else {
-        document.getElementById('noFeedback').style.display = '';
-    }
-}
-
-function clearNoTaskDone() {
-    const DoneContainer = document.getElementById('DoneContainer');
-
-    if (DoneContainer.querySelector('.cards')) {
-        document.getElementById('noDone').style.display = 'none';
-    } else {
-        document.getElementById('noDone').style.display = '';
-    }
+    clearNoTask('toDoContainer', 'noTask');
+    clearNoTask('inProgressContainer', 'noProgress');
+    clearNoTask('feedbackContainer', 'noFeedback');
+    clearNoTask('DoneContainer', 'noDone');
 }
 /**
  * loads the content of the whole map
@@ -193,7 +164,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
     const priorityIMG = imagePriority(priority);
 
     const cardHTML = /*html*/ `
-            <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCardBoard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')">
+            <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCardBoard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}', '${column}')">
                 <div class="notesDetail" id="notesDetail_${q}" style="display:none"></div>
             <div class='frame119'>
                     <div class='labelsBoardCardlabel' id="BoardCardLabel_${q}">
@@ -301,17 +272,17 @@ function loadInitials(q) {
         document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
     }
 }
-function openDetailCardBoard(q, title, description, category, priority, date, priorityIMG, assigned) {
-    let windowSizeDetailCard = window.matchMedia('(max-width: 900px)');
+function openDetailCardBoard(q, title, description, category, priority, date, priorityIMG, assigned, column) {
+    let windowSizeDetailCard = window.matchMedia('(max-width: 400px)');
 
     if (windowSizeDetailCard.matches) {
-        console.log(`Funktionstest läuft gut! Das ist Kartennummer: ${q}`);
-        openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned);
+        openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned, column);
     } else {
         openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned);
     }
 
 }
+
 //openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')
 
 /**
@@ -438,4 +409,5 @@ async function moveTo(column, q) {
         tasks[q].column = column;
         await setItem('tasks', JSON.stringify(tasks));
     }
+    loopAllTasks();
 }

@@ -316,22 +316,43 @@ function closeContactBoard() {
     }
 }
 
-function openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned) {
+function generateMobileDetailHTML(q, title, description, category, priority, date, priorityIMG, assigned, column) {
+    const isTodo = (column === 'to do');
+    const isProgress = (column == 'inProgress');
+    const isFeedback = (column == 'feedback');
+    const isDone = (column == 'done');
+
+    return /*html*/ `
+    <span ontouchstart="openDetailCard('${q}', '${title}', '${description}', '${category}','${priority}','${date}','${priorityIMG}','${assigned}')" class="textMobileBoardContain"><p class="textContain6">Edit</p></span>
+    <div class="textContain8">Move To:</div>
+    <div class="textMobileBoardContain1" ontouchstart="touchTask('${q}', 'to do')" style="display: ${isTodo ? 'none' : 'block'}"><p class="textContain7">Todo</p></div>
+    <div class="textMobileBoardContain1" ontouchstart="touchTask('${q}', 'inProgress')" style="display: ${isProgress ? 'none' : 'block'}"><p class="textContain7">in Progress</p></div>
+    <div class="textMobileBoardContain1" ontouchstart="touchTask('${q}', 'feedback')" style="display: ${isFeedback ? 'none' : 'block'}"><p class="textContain7">await Feedback</p></div>
+    <div class="textMobileBoardContain1" ontouchstart="touchTask('${q}', 'done')" style="display: ${isDone ? 'none' : 'block'}"><p class="textContain7">Done</p></div>
+    `;
+}
+
+function openDetailCardMobile(q, title, description, category, priority, date, priorityIMG, assigned, column) {
     document.getElementById(`notesDetail_${q}`).style.display = 'block';
     let notes = document.getElementById(`notesDetail_${q}`);
-    notes.innerHTML = /*html*/ `
-    <span onclick="openDetailCard('${q}', '${title}', '${description}', '${category}','${priority}','${date}','${priorityIMG}','${assigned}')" class="textMobileBoardContain"><p class="textContain6">Edit</p></span>
-    <div class="textMobileBoardContain1"><p class="textContain7">Container</p></div>
-    <div class="textMobileBoardContain1"><p class="textContain7">Container</p></div>
-    <div class="textMobileBoardContain1"><p class="textContain7">Container</p></div>
-    `;
+
+    notes.innerHTML = generateMobileDetailHTML(q, title, description, category, priority, date, priorityIMG, assigned, column);
     closeDetailCardMobile(q);
 }
 
 function closeDetailCardMobile(q) {
-    setTimeout(() => {
-        document.getElementById(`notesDetail_${q}`).style.display = 'none';
-    }, 2500);
+    const element = document.getElementById(`notesDetail_${q}`);
+    if (element) {
+        setTimeout(() => {
+            element.style.display = 'none';
+        }, 1500);
+    }
 }
 
-
+function touchTask(q, column) {
+    document.getElementById(`notesDetail_${q}`).style.display = 'none';
+    ev = event || window.event;
+    allowDrop(ev);
+    startDragging(q);
+    drop(ev, column);
+}

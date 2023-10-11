@@ -1119,12 +1119,14 @@
         align-items: flex-start;
         flex-direction: column;
         justify-content: center;
+        border-bottom-style: solid;
+        margin-top: 10px;
     }
 
     .textMobileBoardContain1 {
         border-bottom: rgb(205, 205, 205);
         width: 160px;
-        height: 36px;
+        height: 24px;
         padding-left: 10px;
         margin-left: 10px;
         margin-right: 10px;
@@ -1146,11 +1148,18 @@
         margin-bottom: 0;
     }
 
-    .textMobileBoardContain:hover {
-        border-bottom-style: solid;
+    .textContain8 {
+        font-size: 20px;
+        color: rgb(205, 205, 205);
+        margin-bottom: 0;
+        padding-left: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
-    .textContain6:hover, .textContain7:hover {
+    .textContain6:hover, .textContain7:hover, .textContain6.active, .textContain7.active {
         cursor: pointer;
     }
 
