@@ -80,20 +80,27 @@ function initialsInCircle_List(i, contact) {
 function contactToTaskClickName(i, user) {
     let checkbox = document.getElementById(`flexCheckDefault${i}`);
     if (checkbox.checked) {
-        add_d_none(`check_filled${i}`);
-        remove_d_none(`check_empty${i}`);
-        document.getElementById(`flexCheckDefault${i}`).checked = false;
-        deleteContactTask(user);
+        removeListUser(i, user);
     }
     else {
-        // Create Circles of selected users below list
-        remove_d_none(`check_filled${i}`);
-        add_d_none(`check_empty${i}`);
-        contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
-        drawContactCirclesBelow();
-
-        document.getElementById(`flexCheckDefault${i}`).checked = true;
+        addListUser(i);
     }
+}
+
+function removeListUser(i, user) {
+    add_d_none(`check_filled${i}`);
+    remove_d_none(`check_empty${i}`);
+    document.getElementById(`flexCheckDefault${i}`).checked = false;
+    deleteContactTask(user);
+}
+
+function addListUser(i) {
+    // Create Circles of selected users below list
+    remove_d_none(`check_filled${i}`);
+    add_d_none(`check_empty${i}`);
+    contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
+    drawContactCirclesBelow();
+    document.getElementById(`flexCheckDefault${i}`).checked = true;
 }
 
 // #endregion Load Users to Dropdown
