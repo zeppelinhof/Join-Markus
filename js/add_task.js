@@ -18,7 +18,7 @@ async function initAddTask() {
 function colorRed() {
     let btn = document.getElementById('btn_urgent');
     if (btn.classList.length > 1) {
-        whiteBackgroundRedArrow(btn);
+        whiteBackgroundColoredArrow(btn, 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
         setPrioStatusAsString('');
     }
     else {
@@ -27,14 +27,14 @@ function colorRed() {
         pushToBackground('arrowRedUrgent');
         setPrioStatusAsString('urgent');
     }
-    whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
-    whiteBackgroundGreenArrow(document.getElementById('btn_low'));
+    whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
+    whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
 }
 
 function colorOrange() {
     let btn = document.getElementById('btn_medium');
     if (btn.classList.length > 1) {
-        whiteBackgroundOrangeArrow(btn);
+        whiteBackgroundColoredArrow(btn, 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
         setPrioStatusAsString('');
     }
     else {
@@ -43,14 +43,14 @@ function colorOrange() {
         pushToBackground('arrowOrangeMedium');
         setPrioStatusAsString('medium');
     }
-    whiteBackgroundRedArrow(document.getElementById('btn_urgent'));
-    whiteBackgroundGreenArrow(document.getElementById('btn_low'));
+    whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
+    whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
 }
 
 function colorGreen() {
     let btn = document.getElementById('btn_low');
     if (btn.classList.length > 1) {
-        whiteBackgroundGreenArrow(btn);
+        whiteBackgroundColoredArrow(btn, 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
         setPrioStatusAsString('');
     }
     else {
@@ -59,8 +59,8 @@ function colorGreen() {
         pushToBackground('arrowGreenLow');
         setPrioStatusAsString('low');
     }
-    whiteBackgroundRedArrow(document.getElementById('btn_urgent'));
-    whiteBackgroundOrangeArrow(document.getElementById('btn_medium'));
+    whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
+    whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
 }
 
 /**
@@ -68,22 +68,11 @@ function colorGreen() {
  * 
  * @param {object} btn - one of the Prio buttons
  */
-function whiteBackgroundRedArrow(btn) {
-    btn.classList.remove('button-red');
-    document.getElementById('arrowWhiteUrgent').classList.remove('z-index-1');
-    document.getElementById('arrowRedUrgent').classList.remove('z-index-n1');
-}
 
-function whiteBackgroundOrangeArrow(btn) {
-    btn.classList.remove('button-orange');
-    document.getElementById('arrowWhiteMedium').classList.remove('z-index-1');
-    document.getElementById('arrowOrangeMedium').classList.remove('z-index-n1');
-}
-
-function whiteBackgroundGreenArrow(btn) {
-    btn.classList.remove('button-green');
-    document.getElementById('arrowWhiteLow').classList.remove('z-index-1');
-    document.getElementById('arrowGreenLow').classList.remove('z-index-n1');
+function whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio){
+    btn.classList.remove(button_color);
+    document.getElementById(arrowWhitePrio).classList.remove('z-index-1');
+    document.getElementById(arrowColorPrio).classList.remove('z-index-n1');
 }
 
 function pushToFront(obj) {
@@ -107,15 +96,15 @@ function clearPrioButtons() {
     btnLow = document.getElementById('btn_low')
 
     if (btnUrgent.classList.length > 1) {
-        whiteBackgroundRedArrow(btnUrgent);
+        whiteBackgroundColoredArrow(btnUrgent, 'arrowWhiteUrgent', 'arrowRedUrgent');
         setPrioStatusAsString('');
     }
     if (btnMedium.classList.length > 1) {
-        whiteBackgroundOrangeArrow(btnMedium);
+        whiteBackgroundColoredArrow(btnMedium, 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
         setPrioStatusAsString('');
     }
     if (btnLow.classList.length > 1) {
-        whiteBackgroundGreenArrow(btnLow);
+        whiteBackgroundColoredArrow(btnLow, 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
         setPrioStatusAsString('');
     }
 }
