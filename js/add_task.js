@@ -84,8 +84,7 @@ function clearPrioButtons() {
         setPrioStatusAsString('');
     }
     if (btnLow.classList.length > 1) {
-        whiteBackgroundColoredArrow(btnLow, 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
-        btn, button_color, arrowWhitePrio, arrowColorPrio
+        whiteBackgroundColoredArrow(btnLow, 'button-green', 'arrowWhiteLow', 'arrowGreenLow');
         setPrioStatusAsString('');
     }
 }
