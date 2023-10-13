@@ -1008,7 +1008,7 @@
     .boardContainer {
         width: 100%;
         gap: 12px;
-        height: auto;
+        height: 90vh;
     }
 }
 
