@@ -15,52 +15,32 @@ async function initAddTask() {
 /**
  * By clicking a Prio button color change to red, orange or green
  */
-function colorRed() {
-    let btn = document.getElementById('btn_urgent');
-    if (btn.classList.length > 1) {
-        whiteBackgroundColoredArrow(btn, 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
-        setPrioStatusAsString('');
-    }
-    else {
-        btn.classList.add('button-red');
-        pushToFront('arrowWhiteUrgent');
-        pushToBackground('arrowRedUrgent');
-        setPrioStatusAsString('urgent');
-    }
-    whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
-    whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
-}
 
-function colorOrange() {
-    let btn = document.getElementById('btn_medium');
+function colorButton(btn_prio, button_color, arrowWhitePrio, arrowColorPrio, prio) {
+    let btn = document.getElementById(btn_prio);
     if (btn.classList.length > 1) {
-        whiteBackgroundColoredArrow(btn, 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
+        whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio);
         setPrioStatusAsString('');
     }
     else {
-        btn.classList.add('button-orange');
-        pushToFront('arrowWhiteMedium');
-        pushToBackground('arrowOrangeMedium');
-        setPrioStatusAsString('medium');
+        btn.classList.add(button_color);
+        pushToFront(arrowWhitePrio);
+        pushToBackground(arrowColorPrio);
+        setPrioStatusAsString(prio);
     }
-    whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
-    whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
-}
+    if (prio == 'urgent') {
+        whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
+        whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
+    }
+    if (prio == 'medium') {
+        whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
+        whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
+    }
+    if (prio == 'low') {
+        whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
+        whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
+    }
 
-function colorGreen() {
-    let btn = document.getElementById('btn_low');
-    if (btn.classList.length > 1) {
-        whiteBackgroundColoredArrow(btn, 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
-        setPrioStatusAsString('');
-    }
-    else {
-        btn.classList.add('button-green');
-        pushToFront('arrowWhiteLow');
-        pushToBackground('arrowGreenLow');
-        setPrioStatusAsString('low');
-    }
-    whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
-    whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
 }
 
 /**
@@ -69,7 +49,7 @@ function colorGreen() {
  * @param {object} btn - one of the Prio buttons
  */
 
-function whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio){
+function whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio) {
     btn.classList.remove(button_color);
     document.getElementById(arrowWhitePrio).classList.remove('z-index-1');
     document.getElementById(arrowColorPrio).classList.remove('z-index-n1');
@@ -96,7 +76,7 @@ function clearPrioButtons() {
     btnLow = document.getElementById('btn_low')
 
     if (btnUrgent.classList.length > 1) {
-        whiteBackgroundColoredArrow(btnUrgent, 'arrowWhiteUrgent', 'arrowRedUrgent');
+        whiteBackgroundColoredArrow(btnUrgent, 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
         setPrioStatusAsString('');
     }
     if (btnMedium.classList.length > 1) {
@@ -105,6 +85,7 @@ function clearPrioButtons() {
     }
     if (btnLow.classList.length > 1) {
         whiteBackgroundColoredArrow(btnLow, 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
+        btn, button_color, arrowWhitePrio, arrowColorPrio
         setPrioStatusAsString('');
     }
 }
