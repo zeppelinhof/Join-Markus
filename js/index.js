@@ -218,6 +218,12 @@ function sendMail(event, emailForgotPassword){
         headers: {
             'Accept': 'application/json'
         }
+    }).then(() => {
+        setTimeout(()=>{
+            window.location.href = "../index.html";
+        }, 3000);
+    }).catch((error) => {
+        console.log(error);
     });
 }
 
