@@ -196,14 +196,30 @@ function resetPassword() {
 /**
  * If password is sent to user, it triggers a message.
  */
-function forgotPassword() {
+function forgotPassword(event, emailForgotPassword) {
     const message = /*html*/ `
         <img src="assets/img/email_send.svg"> An Email has been sent to you
     `;
     successMessage(message);
     document.getElementById('btn_sendMail').classList.add('d-none');
+    sendMail(event, emailForgotPassword);
 }
 
+function sendMail(event, emailForgotPassword){
+    const user = users.find(u => u.email == emailForgotPassword);
+    const thePassword = user.password;
+    // password has to be included in mail. (tbd)
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    fetch("https://formspree.io/f/xpzgkvpj", {
+        method: "POST",
+        body: new FormData(event.target),
+        headers: {
+            'Accept': 'application/json'
+        }
+    });
+}
 
 /**
  * This function handles login of the user and takes actions on UI elements in case of wrong user credentials.
