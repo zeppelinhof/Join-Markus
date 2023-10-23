@@ -68,7 +68,7 @@ function editButton(q, title, description, date, priority, assigned) {
     `;
 }
 
-function addEdit(q, title, description, date, priority, assigned) {
+function addEdit(q, title, description, date, priority, assigned) {    
     hideAssigned(q, assigned);
     saveEditButton(q);
     hideButton();
@@ -78,6 +78,7 @@ function addEdit(q, title, description, date, priority, assigned) {
     editSubtasks(q);
     showDeleteIcons(q);
     fillAssignedToBoard(q, assigned);
+    openContactBoard();
 }
 
 function valueContain(title, description, date) {
