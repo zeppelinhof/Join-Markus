@@ -27,7 +27,7 @@ h1 {
 }
 
 .contentStandard {
-    /* padding-left: 100px; */
+    padding-left: 100px;
     padding-top: 100px;
     position: relative;
 }
@@ -38,7 +38,7 @@ h1 {
         height: calc(100vh - 80px - 80px);
         padding-top: unset;
         overflow: scroll;
-    }
+    }    
 
     .contentStandard::-webkit-scrollbar {
         display: none;
@@ -49,8 +49,8 @@ h1 {
     .left-0-top-3em-mobile {
         display: flex;
         justify-content: center;
-        /* padding-left: 16px;
-        padding-right: 16px; */
+        padding-left: 16px;
+        /* padding-right: 16px; */
         padding-top: 3em;
     }
 }
@@ -99,7 +99,7 @@ input {
 
 .property {
     padding-bottom: 24px;
-    width: 440px;
+    max-width: 440px;
 }
 
 .date-format::-webkit-calendar-picker-indicator {
@@ -619,6 +619,10 @@ ul {
         font-size: clamp(3rem, 1rem + 5vw, 7rem);
     }
 
+    .headlineAddTask {
+        text-align: center;
+        }
+
     .block-mobile {
         display: block;
     }
@@ -667,7 +671,7 @@ ul {
     }
 
     .button-prio {
-        width: 90px !important;
+        width: calc(33% - 12px);
         padding: 8px 5px 8px 5px !important;
     }
 
@@ -700,7 +704,7 @@ ul {
     }
 
     .property {
-        width: 22rem;
+        width: 70vw;
     }
 }
 
