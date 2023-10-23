@@ -1,7 +1,7 @@
 // let users = [];
 let contactsInTask = [];
 let subtasks = [];
-
+let maxVisibleCirclesBelow = 4;
 
 // #region Load Users from Backend
 async function initUsers() {
@@ -118,14 +118,43 @@ function contactToTaskClickCheckbox(i, user) {
 
 function drawContactCirclesBelow() {
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
+    let lastCircleDrawed = false;
     for (let i = 0; i < contactsInTask.length; i++) {
-        const colorStyle = returnContactColor(i);
-        const user = contactsInTask[i];
-        document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
-            <div class="contactCircle" id ="contactCircleBelow${i}" style="background-color: ${colorStyle}"></div>       
-        `
-        document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
+        if (i < maxVisibleCirclesBelow) {
+            drawNewCircle(i);
+        } else {
+            onlySummedUpCircle(i, lastCircleDrawed);
+            lastCircleDrawed = true;
+        }
     }
+}
+
+function drawNewCircle(i) {    
+    const colorStyle = returnContactColor(i);
+    const user = contactsInTask[i];
+    document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
+        <div class="contactCircle" id ="contactCircleBelow${i}" style="background-color: ${colorStyle}"></div>       
+    `
+    document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
+}
+
+function onlySummedUpCircle(i, lastCircleDrawed) {    
+    if (!lastCircleDrawed) {        
+        firstSummedUpCircle(i);
+    } else {
+        furtherSummedUpCircle(i);
+    }
+}
+
+function firstSummedUpCircle(i) {    
+    const colorStyle = returnContactColor(maxVisibleCirclesBelow);
+    document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
+    <div class="contactCircle" id ="contactCircleBelow${maxVisibleCirclesBelow}" style="background-color: ${colorStyle}">+${i + 1 - maxVisibleCirclesBelow}</div>       
+    `
+}
+
+function furtherSummedUpCircle(i){
+    document.getElementById(`contactCircleBelow${maxVisibleCirclesBelow}`).innerHTML = '+' + (i + 1 - maxVisibleCirclesBelow);
 }
 
 function deleteContactTask(contact) {

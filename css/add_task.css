@@ -99,7 +99,7 @@ input {
 
 .property {
     padding-bottom: 24px;
-    max-width: 440px;
+    width: 440px;
 }
 
 .date-format::-webkit-calendar-picker-indicator {
@@ -141,8 +141,8 @@ li:hover {
 
 #selected-contacts-circles-below {
     display: flex;
-    gap: 8px;
-    width: 200px;
+    gap: -2px;
+    width: 100%;
     flex-wrap: wrap;
     padding-top: 8px;
 }
@@ -617,6 +617,10 @@ ul {
 
     h1 {
         font-size: clamp(3rem, 1rem + 5vw, 7rem);
+    }
+
+    .contentStandard {
+        padding-left: 0;
     }
 
     .headlineAddTask {

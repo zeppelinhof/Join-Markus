@@ -263,15 +263,53 @@ function loadInitials(q) {
 
     document.getElementById(targetElementId).innerHTML = '';
 
+    let lastCircleDrawed = false;
+
     for (let index = 0; index < user.length; index++) {
         const element = user[index];
         const UserInitials = getInitials(element);
-        document.getElementById(targetElementId).innerHTML += /*html*/`
-            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
-
-        document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
+        if (index < maxVisibleCirclesBelow) {
+            drawNewCircle_Board(index, targetElementId, UserInitials, q, element);
+        } else {
+            onlySummedUpCircle_Board(index, q, targetElementId, lastCircleDrawed);
+            lastCircleDrawed = true;
+        }
     }
 }
+
+/**
+ * 
+ * @param {number} index -  number of user in task
+ * @param {string} targetElementId - field for colored circles
+ * @param {string} UserInitials 
+ * @param {number} q - add task card number
+ * @param {string} element - rgb for color
+ */
+function drawNewCircle_Board(index, targetElementId, UserInitials, q, element) {
+    document.getElementById(targetElementId).innerHTML += /*html*/`
+            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
+
+    document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
+}
+
+function onlySummedUpCircle_Board(index, q, targetElementId, lastCircleDrawed) {
+    if (!lastCircleDrawed) {
+        firstSummedUpCircle_Board(index, q, targetElementId);
+    } else {
+        furtherSummedUpCircle_Board(index, q);
+    }
+}
+
+function firstSummedUpCircle_Board(index, q, targetElementId) {
+    document.getElementById(targetElementId).innerHTML += /*html*/`
+    <div class="profileBadge" id="initials${maxVisibleCirclesBelow}_${q}">+${index + 1 - maxVisibleCirclesBelow}</div>
+    `
+}
+
+function furtherSummedUpCircle_Board(index, q) {
+    document.getElementById(`initials${maxVisibleCirclesBelow}_${q}`).innerHTML = '+' + (index + 1 - maxVisibleCirclesBelow);
+}
+
 function openDetailCardBoard(q, title, description, category, priority, date, priorityIMG, assigned, column) {
     let windowSizeDetailCard = window.matchMedia('(max-width: 400px)');
 
@@ -280,7 +318,6 @@ function openDetailCardBoard(q, title, description, category, priority, date, pr
     } else {
         openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned);
     }
-
 }
 
 //openDetailCard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}')
