@@ -94,7 +94,7 @@ function valueContain(title, description, date) {
 
 function editSubtasks(q) {
     document.getElementById('subtaskContain').innerHTML += /*html*/ `
-        <input class="inputBoard1" type="text" id="inputSubtasks" value=''>`;
+        <input class="inputBoard1" type="text" id="inputSubtasks" value='' placeholder="Enter a and add it with Save.">`;
 
     if (tasks[q].subtaskstate) {
         for (let i = 0; i < tasks[q].subtasks.length; i++) {
