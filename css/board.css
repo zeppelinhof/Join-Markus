@@ -1012,7 +1012,7 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1460px) {
     .boardContainer {
         display: flex;
         flex-wrap: wrap;
