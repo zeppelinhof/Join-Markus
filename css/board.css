@@ -638,7 +638,7 @@
 .taskOverlineHeadline {
     width: 445px;
     font-family: 'Inter';
-    font-size: 61px;
+    font-size: 36px;
     font-weight: 700;
     line-height: 73px;
     letter-spacing: 0em;
@@ -1183,7 +1183,7 @@
 
     #taskOverlayHeadline {
         width: 284px;
-        font-size: 34px;
+        font-size: 36px;
         line-height: 38px;
     }
 

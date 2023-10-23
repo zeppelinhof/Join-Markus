@@ -171,7 +171,7 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                         <p id="cardLabel">${category}</p>
                     </div>
                     <div class='frame114'>
-                        <div id='boardTitle'>${title}</div>
+                        <div id='boardTitle'>${shortenString(title, 40)}</div>
                         <div id="content">${description}</div>
                     </div>
                     <div id="progressBar_${q}" class="prgBar">
@@ -339,10 +339,10 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('frame204').style.display = 'block';
     loadColorLabelDetailCard(category);
     loadAssigned(q);
-    loadSubtasks(q);
+    loadSubtasks(q);    
     document.getElementById('detailCard').style.display = '';
     document.getElementById('taskContain').innerHTML = /*html*/ `${category}`;
-    document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `${title}`;
+    document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `${shortenString(title, 40)}`;
     document.getElementById('descriptionContain').innerHTML = /*html*/ `${description}`;
     document.getElementById('taskOverlayNumber').innerHTML = /*html*/`${date}`;
     document.getElementById('medium').innerHTML = /*html*/`${priority}`;
@@ -447,4 +447,11 @@ async function moveTo(column, q) {
         await setItem('tasks', JSON.stringify(tasks));
     }
     loopAllTasks();
+}
+
+function shortenString(text, countLetters){
+    if(text.length>30){
+        return text.slice(0,countLetters) + '...';
+    }
+    return text;    
 }
