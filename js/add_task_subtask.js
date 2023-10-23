@@ -28,13 +28,13 @@ function oneSelectedSubtask(){
                 </div>                              
                 <div class="pencil-bin d-none" id="pencil-bin${subtaskNumber}">
                     <img src="assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
-                        onclick="editSubtask(${subtaskNumber});">
+                        onclick="editSubtask(${subtaskNumber});" class="cursor-pointer">
                     <div class="pencil-bin-separator"></div>
-                    <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber})>
+                    <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber}) class="cursor-pointer">
                     <img src="assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
                         onclick="saveSubtaskChanges('rawDataChange${subtaskNumber}', 'rawData${subtaskNumber}', '${subtaskNumber}'); 
                         add_d_none('rawDataChange${subtaskNumber}'); remove_d_none('rawData${subtaskNumber}'); 
-                        remove_d_none('pencil${subtaskNumber}'); add_d_none('submit${subtaskNumber}')">                                        
+                        remove_d_none('pencil${subtaskNumber}'); add_d_none('submit${subtaskNumber}')" class="cursor-pointer">                                        
                 </div>    
             </div>  
     `
