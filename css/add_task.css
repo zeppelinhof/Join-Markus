@@ -620,7 +620,7 @@ ul {
     }
 
     .headlineAddTask {
-        text-align: center;
+        text-align: left;
         }
 
     .block-mobile {
@@ -717,5 +717,10 @@ ul {
 @media(min-width: 1264px) {
     .contentStandard {
         height: 100vh;
+    }
+}
+@media(max-width: 445px){
+    .hideTextMobile{
+        display: none;
     }
 }
