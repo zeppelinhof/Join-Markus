@@ -27,22 +27,6 @@
             <a href="index.html" class="context-menu-member topbar-t-d-none" onclick="logoutUser()">Log out</a>
         </div>
     </div>
-    <script>
-        const container = document.getElementById('context-menu');
-
-        // Event-Listener für Klickereignisse auf das gesamte Dokument
-        document.addEventListener('click', function (event) {
-            if (!container.contains(event.target)) {
-                // Der Klick war außerhalb des Containers, schließe den Container
-                container.style.display = 'none';
-            }
-        });
-
-        // Zeige den Container (optional)
-        function zeigeContainer() {
-            container.style.display = 'block';
-        }
-    </script>
 </body>
 
 
