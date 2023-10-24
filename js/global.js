@@ -263,3 +263,14 @@ function returnContactColorByName(name) {
 function logoutUser() {
     window.localStorage.clear();
 }
+
+/**
+ * close context menu if open
+ * 
+ * @param {string} field - id of context-menu
+ */
+function closeContextMenu(field) {
+    if (!document.getElementById(field).classList.contains('topbar-d-none')) {
+        document.getElementById(field).classList.add('topbar-d-none');
+    }
+}
