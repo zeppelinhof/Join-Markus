@@ -66,20 +66,28 @@
                 <div class="property">
                     <label class="form-label">Prio<span class="redAsterisk">*</span></label>
                     <div class="all-buttons-prio" id="all-buttons-prio">
-                        <div id="btn_urgent" class="button-prio" onclick="colorButton('btn_urgent', 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent', 'urgent');"><div class="hideTextMobile">Urgent</div>
+                        <div id="btn_urgent" class="button-prio"
+                            onclick="colorButton('btn_urgent', 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent', 'urgent','add_task');">
+                            <div class="hideTextMobile">Urgent</div>
                             <div class="containArrow">
-                                <img id="arrowWhiteUrgent" class="arrowWhiteUrgent" src="./assets/img/Capa_2_white.svg">
+                                <img id="arrowWhiteUrgent" class="arrowWhiteUrgent"
+                                    src="./assets/img/Capa_2_white.svg">
                                 <img id="arrowRedUrgent" class="arrowRedUrgent" src="./assets/img/Capa_2.svg">
                             </div>
                         </div>
-                        <div id="btn_medium" class="button-prio" onclick="colorButton('btn_medium', 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium', 'medium');"><div class="hideTextMobile">Medium</div>
+                        <div id="btn_medium" class="button-prio"
+                            onclick="colorButton('btn_medium', 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium', 'medium','add_task');">
+                            <div class="hideTextMobile">Medium</div>
                             <div class="containArrow">
                                 <img id="arrowWhiteMedium" class="arrowWhiteMedium"
                                     src="./assets/img/Prio_media_white.svg">
-                                <img id="arrowOrangeMedium" class="arrowOrangeMedium" src="./assets/img/Prio_media.svg">
+                                <img id="arrowOrangeMedium" class="arrowOrangeMedium"
+                                    src="./assets/img/Prio_media.svg">
                             </div>
                         </div>
-                        <div id="btn_low" class="button-prio" onclick="colorButton('btn_low', 'button-green', 'arrowWhiteLow', 'arrowGreenLow', 'low');"><div class="hideTextMobile">Low</div>
+                        <div id="btn_low" class="button-prio"
+                            onclick="colorButton('btn_low', 'button-green', 'arrowWhiteLow', 'arrowGreenLow', 'low','add_task');">
+                            <div class="hideTextMobile">Low</div>
                             <div class="containArrow">
                                 <img id="arrowWhiteLow" class="arrowWhiteLow" src="./assets/img/Capa_1_white.svg">
                                 <img id="arrowGreenLow" class="arrowGreenLow" src="./assets/img/Capa_1.svg">
@@ -144,14 +152,15 @@
                         onmouseleave="add_d_none('blue_x'); remove_d_none('black_x');">Clear<img id="black_x"
                             src="./assets/img/Vector.svg"> <img id="blue_x" src="./assets/img/Vector_blue.svg"
                             class="d-none">
-                    </button>    
+                    </button>
 
                     <div>
-                        <div class="requiredInfo-fixed-mobile hide-desktop hide-mobile"><span class="redAsterisk">*</span>This field is required</div>
+                        <div class="requiredInfo-fixed-mobile hide-desktop hide-mobile"><span
+                                class="redAsterisk">*</span>This field is required</div>
                         <button class="btn btn-outline-dark button-create-task" onclick="custValidation('add_task');"
                             id="buttonCreate">Create Task <img src="./assets/img/check.svg"></button>
                     </div>
-                                                                            
+
                 </div>
             </div>
         </div>

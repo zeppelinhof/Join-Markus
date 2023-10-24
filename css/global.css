@@ -316,3 +316,15 @@ body {
     color: rgb(255, 255, 255);
     background-color: rgb(10, 25, 49);
 }
+
+.d-none{
+    display: none;
+}
+
+.d-block{
+    display: block;
+}
+
+.just-cont-flex-end{
+    justify-content: flex-end !important;
+}

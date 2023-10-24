@@ -68,7 +68,7 @@ function editButton(q, title, description, date, priority, assigned) {
     `;
 }
 
-function addEdit(q, title, description, date, priority, assigned) {    
+function addEdit(q, title, description, date, priority, assigned) {
     hideAssigned(q, assigned);
     saveEditButton(q);
     hideButton();
@@ -79,6 +79,33 @@ function addEdit(q, title, description, date, priority, assigned) {
     showDeleteIcons(q);
     fillAssignedToBoard(q, assigned);
     openContactBoard();
+    switchClasses();
+    callCorrectColoredPrioButton(priority);
+}
+
+/**
+ * turn on/off containers for special Edit view: prio buttons, category
+ */
+function switchClasses() {
+    switchClassOfElement('all-buttons-prio_board', 'd-none'); // button view area
+    switchClassOfElement('frame203', 'just-cont-flex-end'); // Category view
+    switchClassOfElement('frame178', 'd-block'); // frame178 = priority area in Edit
+    switchClassOfElement('frame113', 'd-none'); // frame113 = Category in Edit
+    switchClassOfElement('descriptionContainer', 'd-none');
+}
+
+/**
+ * Color Button in depency of priority
+ * @param {string} priority - red, orange or green
+ */
+function callCorrectColoredPrioButton(priority) {
+    if (priority == 'urgent') {
+        colorButton('btn_urgent_board', 'button-red', 'arrowWhiteUrgent_board', 'arrowRedUrgent_board', 'urgent', 'board');
+    } else if (priority == 'medium') {
+        colorButton('btn_medium_board', 'button-orange', 'arrowWhiteMedium_board', 'arrowOrangeMedium_board', 'medium', 'board');
+    } else {
+        colorButton('btn_low_board', 'button-green', 'arrowWhiteLow_board', 'arrowGreenLow_board', 'low', 'board');
+    }
 }
 
 function valueContain(title, description, date) {
@@ -109,7 +136,7 @@ function editPrioBoard(priority) {
     const priorities = ["urgent", "medium", "low"];
     const dropdown = document.getElementById('medium');
     dropdown.innerHTML = `
-        <select class="inputBoard1" id="inputPrio">
+        <select class="inputBoard1 d-none" id="inputPrio">
             ${priorities.map(p => `<option>${p}</option>`).join('')}
         </select>`;
     const inputPrio = document.getElementById('inputPrio');
@@ -135,6 +162,7 @@ async function saveEdit(q) {
     await pushTasks(q, newTitle, newDescription, newDate, newPriority);
     await refreshData();
     closeDetailCard();
+    switchClasses();
 }
 
 function low(q, newSubtasksInput) {
@@ -273,7 +301,7 @@ function addContactBoardElement(i, userBoard, isAssigned, q) {
 function isAssignedBoard(i, isAssigned) {
     if (isAssigned != -1) {
         document.getElementById(`checkFilledBoard${i}`).style.display = 'block';
-        document.getElementById(`contactBoard${i}`).style.backgroundColor = 'rgb(246,247,248)';
+        // document.getElementById(`contactBoard${i}`).style.backgroundColor = 'rgb(246,247,248)';
         document.getElementById(`checkEmptyBoard${i}`).style.display = 'none';
     } else {
         document.getElementById(`checkEmptyBoard${i}`).style.display = 'block';

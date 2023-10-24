@@ -14,47 +14,89 @@ async function initAddTask() {
 
 /**
  * By clicking a Prio button color change to red, orange or green
+ * 
+ * @param {string} btn_prio -       id of selcted button
+ * @param {string} button_color -   class of colred button
+ * @param {string} arrowWhitePrio - id of white arrow
+ * @param {string} arrowColorPrio - id of colored arrow
+ * @param {string} prio - as text
+ * @param {string} callingPage - page which calls this function (add_task or board)
  */
-
-function colorButton(btn_prio, button_color, arrowWhitePrio, arrowColorPrio, prio) {
+function colorButton(btn_prio, button_color, arrowWhitePrio, arrowColorPrio, prio, callingPage) {
     let btn = document.getElementById(btn_prio);
-    if (btn.classList.length > 1) {
+    if (coloredBackground(btn)) { //already colored background
         whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio);
-        setPrioStatusAsString('');
+        setPrioStatusAsString(''); arrowWhitePrio, arrowColorPrio
     }
     else {
-        btn.classList.add(button_color);
-        pushToFront(arrowWhitePrio);
+        btn.classList.add(button_color);  //color background
+        pushToFront(arrowWhitePrio); // z-index of white arrow to 1
         pushToBackground(arrowColorPrio);
         setPrioStatusAsString(prio);
     }
-    changeWhiteBackgroundColoredArrow(prio);
+    changeWhiteBackgroundColoredArrow(prio, callingPage); // all other Button to neutral (white)
+    saveChanges(callingPage, prio);
 }
 
 /**
- * set background of button to white according to click event in Prio
+ * 
+ * @param {object} btn - selected button
+ * @returns button is colored (selected) yes/no
+ */
+function coloredBackground(btn) {
+    return btn.classList.length > 1
+}
+
+/**
+ * save (new) prio status
+ * @param {string} callingPage - page which calls this function
+ * @param {string} prio - prio selected
+ */
+function saveChanges(callingPage, prio) {
+    if (callingPage == 'board') {
+        document.getElementById('inputPrio').value = prio;
+    }
+}
+
+/**
+ * set background of other (not clicked) buttons to white
  * 
  * @param {string} prio - urgent, medium or low
  */
-function changeWhiteBackgroundColoredArrow(prio) {
+function changeWhiteBackgroundColoredArrow(prio, callingPage) {
+
+    let btn_urgent = callingPage == 'add_task' ? 'btn_urgent' : 'btn_urgent_board';
+    let btn_medium = callingPage == 'add_task' ? 'btn_medium' : 'btn_medium_board';
+    let btn_low = callingPage == 'add_task' ? 'btn_low' : 'btn_low_board';
+
+    let arrowWhiteMedium = callingPage == 'add_task' ? 'arrowWhiteMedium' : 'arrowWhiteMedium_board';
+    let arrowOrangeMedium = callingPage == 'add_task' ? 'arrowOrangeMedium' : 'arrowOrangeMedium_board';
+    let arrowWhiteLow = callingPage == 'add_task' ? 'arrowWhiteLow' : 'arrowWhiteLow_board';
+    let arrowGreenLow = callingPage == 'add_task' ? 'arrowGreenLow' : 'arrowGreenLow_board';
+    let arrowWhiteUrgent = callingPage == 'add_task' ? 'arrowWhiteUrgent' : 'arrowWhiteUrgent_board';
+    let arrowRedUrgent = callingPage == 'add_task' ? 'arrowRedUrgent' : 'arrowRedUrgent_board';
+
     if (prio == 'urgent') {
-        whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
-        whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
+        whiteBackgroundColoredArrow(document.getElementById(btn_medium), 'button-orange', arrowWhiteMedium, arrowOrangeMedium);
+        whiteBackgroundColoredArrow(document.getElementById(btn_low), 'button-green', arrowWhiteLow, arrowGreenLow)
     }
     if (prio == 'medium') {
-        whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
-        whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
+        whiteBackgroundColoredArrow(document.getElementById(btn_urgent), 'button-red', arrowWhiteUrgent, arrowRedUrgent);
+        whiteBackgroundColoredArrow(document.getElementById(btn_low), 'button-green', arrowWhiteLow, arrowGreenLow)
     }
     if (prio == 'low') {
-        whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
-        whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
+        whiteBackgroundColoredArrow(document.getElementById(btn_urgent), 'button-red', arrowWhiteUrgent, arrowRedUrgent);
+        whiteBackgroundColoredArrow(document.getElementById(btn_medium), 'button-orange', arrowWhiteMedium, arrowOrangeMedium);
     }
 }
 
 /**
- * By clicking a prio button twice it changed to white (neutral)
+ * By clicking a prio button twice it changed to white and arrow change to colored (neutral status)
  * 
  * @param {object} btn - one of the Prio buttons
+ * @param {string} button_color - class of colored button
+ * @param {string} arrowWhitePrio - id of white arrow
+ * @param {string} arrowColorPrio - id of colored arrow
  */
 function whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio) {
     btn.classList.remove(button_color);
@@ -90,7 +132,7 @@ function setPrioStatusAsString(status) {
 /**
  * by reloading page change all prio buttons to neutral
  */
-function clearPrioButtons() {
+function clearPrioButtons(callingPage) {
     btnUrgent = document.getElementById('btn_urgent')
     btnMedium = document.getElementById('btn_medium')
     btnLow = document.getElementById('btn_low')
@@ -301,7 +343,7 @@ function setDateOfTodayForDatepickerCard(inputId) {
  * @param {*} validatedPage - superior page of calling function
  */
 function reloadPage(validatedPage) {
-    clearPrioButtons();
+    clearPrioButtons(validatedPage);
     validatedPage == 'add_task' ? getAddTask() : getBoard();
 }
 

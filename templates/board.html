@@ -106,33 +106,83 @@
                 <img class="close2" src="assets/img/close.svg" alt="close">
             </div>
         </div>
-        <p id="taskOverlayHeadline"></p>
-        <p id="descriptionContain"></p>
-        <div class="frame179">
-            <p class="taskOverlayDate">Due date:</p>
-            <span id="taskOverlayNumber"></span>
-        </div>
-        <div class="frame178">
-            <p class="priority">Priority:</p>
-            <div id="priorityButton">
-                <p id="medium"></p>
-                <span id="prioMedia"></span>
-            </div>
-        </div>
-        <div class="frame214" id="frame214">
-            <p class="assignedTo">Assigned To:</p>
-            <div id="frame222">
-                <div class="selectAssignedTo" id="frame202"></div>
-                <div id="contactBoard1" style="display: none;">
-                    <ul id="frame201" class=""></ul>
-                </div>
-            </div>
-            <div id="frame204"></div>
-        </div>
-        <div class="frame215">
-            <p class="subtasks">Subtasks</p>
-            <div class="frame204" id="subtaskContain">
 
+        <div>
+            <label for="taskOverlayHeadline">Title</label>
+            <p id="taskOverlayHeadline"></p>
+        </div>
+
+        <div>
+            <label for="descriptionContain" id="descriptionContainer" class="d-none">Description</label>
+            <p id="descriptionContain"></p>
+        </div>
+
+        <div>
+            <label for="frame179">Due Date:</label>
+            <div class="frame179" id="frame179">
+                <span id="taskOverlayNumber"></span>
+            </div>
+        </div>
+        <div>
+            <div class="frame178" id="frame178">
+                <label for="frame179">Priority:</label>
+                <div style="display: flex; gap: 12px;">
+                    <p id="medium"></p>
+                    <span id="prioMedia"></span>
+                </div>
+                <!-- HIER MEINE VARIANTE REIN -->
+                <!-- Anfang -->
+                <div class="all-buttons-prio_board d-none" id="all-buttons-prio_board">
+                    <div id="btn_urgent_board" class="button-prio"
+                        onclick="colorButton('btn_urgent_board', 'button-red', 'arrowWhiteUrgent_board', 'arrowRedUrgent_board', 'urgent', 'board');">
+                        <div class="hideTextMobile">Urgent</div>
+                        <div class="containArrow">
+                            <img id="arrowWhiteUrgent_board" class="arrowWhiteUrgent"
+                                src="./assets/img/Capa_2_white.svg">
+                            <img id="arrowRedUrgent_board" class="arrowRedUrgent" src="./assets/img/Capa_2.svg">
+                        </div>
+                    </div>
+                    <div id="btn_medium_board" class="button-prio"
+                        onclick="colorButton('btn_medium_board', 'button-orange', 'arrowWhiteMedium_board', 'arrowOrangeMedium_board', 'medium', 'board');">
+                        <div class="hideTextMobile">Medium</div>
+                        <div class="containArrow">
+                            <img id="arrowWhiteMedium_board" class="arrowWhiteMedium"
+                                src="./assets/img/Prio_media_white.svg">
+                            <img id="arrowOrangeMedium_board" class="arrowOrangeMedium"
+                                src="./assets/img/Prio_media.svg">
+                        </div>
+                    </div>
+                    <div id="btn_low_board" class="button-prio"
+                        onclick="colorButton('btn_low_board', 'button-green', 'arrowWhiteLow_board', 'arrowGreenLow_board', 'low', 'board');">
+                        <div class="hideTextMobile">Low</div>
+                        <div class="containArrow">
+                            <img id="arrowWhiteLow_board" class="arrowWhiteLow" src="./assets/img/Capa_1_white.svg">
+                            <img id="arrowGreenLow_board" class="arrowGreenLow" src="./assets/img/Capa_1.svg">
+                        </div>
+                    </div>
+                    <div id="prioStatusAsString" style="display: none;"></div>
+                </div>
+                <!-- Ende -->
+            </div>
+        </div>
+        <div>
+            <div class="frame214" id="frame214">
+                <label for="frame222">Assigned To:</label>
+                <div id="frame222">
+                    <div class="selectAssignedTo" id="frame202"></div>
+                    <div id="contactBoard1" class="editTaskInBoard">
+                        <ul id="frame201" class=""></ul>
+                    </div>
+                </div>
+                <div id="frame204"></div>
+            </div>
+        </div>
+        <div>
+            <div class="frame215">
+                <label for="frame204">Subtasks:</label>
+                <div class="frame204" id="subtaskContain">
+    
+                </div>
             </div>
         </div>
         <div class="frame20" id="frame20">

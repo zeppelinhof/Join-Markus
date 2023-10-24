@@ -151,15 +151,24 @@
     border: none;
     outline: none;
     background-color: #f6f7f8;
+    border: 1px solid #DEE2E6;
 }
 
 .inputBoard::placeholder {
     width: 100px;
     height: 24px;
     font-weight: 400;
-    font-size: 5px;
+    font-size: 20px;
     line-height: 24px;
     color: #D1D1D1;
+    border: 1px solid #DEE2E6;
+}
+
+.editTaskInBoard{
+    display: none;
+    border: 1px solid #DEE2E6;
+    border-radius: 10px;
+    background-color: white;
 }
 
 .searchContainer {
@@ -566,6 +575,14 @@
     z-index: 3;
 }
 
+/* .taskOverlay *{
+    background-color: white;
+} */
+
+/* .container .all-buttons-prio_board {
+    background-color: transparent;
+  } */
+
 .frame203 {
     display: flex;
     justify-content: space-between;
@@ -601,6 +618,7 @@
     gap: 10px;
     transform: rotate(0deg);
 }
+
 
 #taskContain {
     min-width: 112px;
@@ -639,9 +657,9 @@
 .taskOverlineHeadline {
     width: 445px;
     font-family: 'Inter';
-    font-size: 36px;
+    font-size: 48px;
     font-weight: 700;
-    line-height: 73px;
+    line-height: 50px;
     letter-spacing: 0em;
     text-align: left;
     color: #000000;
@@ -695,9 +713,8 @@
 }
 
 .frame178 {
-    width: 445px;
-    height: 32px;
     display: flex;
+    width: 445px;
     gap: 25px;
     align-items: center;
 }
@@ -726,7 +743,6 @@
 }
 
 #medium {
-    width: 100px;
     height: 24px;
     font-family: Inter;
     font-size: 20px;
@@ -1233,3 +1249,83 @@
         line-height: 73px;
     }
 }
+
+/*#region Prop buttons */
+.all-buttons-prio_board {
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 10px;
+    gap: 16px;
+}
+
+.button-prio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 136px;
+    height: 56px;
+    border: 0px;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 20%);
+    border-radius: 10px;
+    padding: 16px 10px 16px 10px;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.button-prio:hover {
+    box-shadow: 0 5px 4px 0 rgba(0, 0, 0, 20%);
+}
+
+.button-red {
+    background-color: #FF3D00;
+    color: white;
+}
+
+.button-orange {
+    background-color: #FFA800;
+    color: white;
+}
+
+.button-green {
+    background-color: #7AE229;
+    color: white;
+}
+
+.containArrow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 14.51px;
+}
+
+.arrowRedUrgent {
+    position: absolute;
+}
+
+.arrowWhiteUrgent {
+    position: absolute;
+}
+
+.arrowOrangeMedium {
+    position: absolute;
+}
+
+.arrowWhiteMedium {
+    position: absolute;
+}
+
+.arrowGreenLow {
+    position: absolute;
+}
+
+.arrowWhiteLow {
+    position: absolute;
+}
+
+.white-background {
+    background-color: white;
+    cursor: pointer;
+}
+/*#endregion Prop buttons */

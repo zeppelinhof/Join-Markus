@@ -274,3 +274,18 @@ function closeContextMenu(field) {
         document.getElementById(field).classList.add('topbar-d-none');
     }
 }
+
+/**
+ * If the container has not a class it add it, orherwise vice versa
+ * 
+ * @param {string} elementId - id of element container
+ * @param {string} classChange - classname to add or remove
+ */
+function switchClassOfElement(elementId, classChange){
+    let elementClassList = document.getElementById(elementId).classList;
+    if (!elementClassList.contains(classChange)) {
+        elementClassList.add(classChange)
+    } else{
+        elementClassList.remove(classChange)
+    }
+}
