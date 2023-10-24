@@ -6,6 +6,9 @@
 
 let subtaskNumber = 0;
 
+/**
+ * add subtask and switch input field
+ */
 function addSubtask() {
     if (document.getElementById('subtaskInputfield').value) {
         subtaskInputfield = document.getElementById('subtaskInputfield').value;
@@ -17,6 +20,10 @@ function addSubtask() {
     }
 }
 
+/**
+ * 
+ * @returns HTML for feature of single subtask
+ */
 function oneSelectedSubtask(){
     return /*html*/`
         <div class="oneSelectedSubtask" onmouseover="showEdit('pencil-bin${subtaskNumber}');" onmouseout="closeEdit('pencil-bin${subtaskNumber}')" id="oneSubtask${subtaskNumber}">                
@@ -57,7 +64,7 @@ function editSubtask(subtaskNumber) {
  * 
  * @param {string} changedValue - include the changes
  * @param {string} goal - includes previous text of subtask
- * @param {string} subtaskNumber - sveral subtasks are possible, hence a subtask number
+ * @param {string} subtaskNumber - several subtasks are possible, hence a subtask number
  */
 function saveSubtaskChanges(changedValue, goal, subtaskNumber) {
     document.getElementById(goal).value = document.getElementById(changedValue).value;
@@ -80,18 +87,27 @@ function fillSubtaskArray() {
     }
 }
 
+/**
+ * fill array for subtasks with a current subtask
+ * 
+ * @param {string} subtaskNumber 
+ */
 function fillSubtaskArrayAsValue(subtaskNumber) {
     let element = document.getElementById('rawData' + subtaskNumber)
 
     if (element) {
-        subtasks[subtaskNumber] = element.value;  // hier als value
+        subtasks[subtaskNumber] = element.value;  // here as a value
     }
 }
 
+/**
+ * on mouseover subtask show pencil for edit
+ * 
+ * @param {string} x 
+ */
 function showEdit(x) {
     let classList = document.getElementById(x).classList;
     classList.remove('d-none');
-    // remove_d_none('pencil-bin'+i);
 }
 
 function closeEdit(x) {

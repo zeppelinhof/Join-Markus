@@ -7,8 +7,22 @@
  */
 function custValidation(validatedPage) {
 
-    let valid = true;
+    let validLeftSide = true;
+    let validRightSide = true;
 
+    validLeftSide = checkFieldsOnLeftSide();
+    validRightSide = checkFieldsOnRightSide();
+
+    if (validLeftSide && validRightSide) {
+        register_task(validatedPage);
+    }
+}
+
+/**
+ * here are checked the fields title, description and selected-contacts-circles-below
+ */
+function checkFieldsOnLeftSide() {
+    valid = true;
     title = document.getElementById('title');
     if (title.value == '') {
         setRedBorder('title');
@@ -29,7 +43,14 @@ function custValidation(validatedPage) {
         remove_d_none('selected-contacts-circles-below');
         valid = false;
     }
+    return valid;
+}
 
+/**
+ * here are checked the fields date, Prio, category. Subtask is optional.
+ */
+function checkFieldsOnRightSide() {
+    valid = true;
     date = document.getElementById('date');
     if (date.value == '') {
         setRedBorder('date');
@@ -56,10 +77,7 @@ function custValidation(validatedPage) {
         remove_d_none('categoryInvalid');
         valid = false;
     }
-
-    if (valid) {
-        register_task(validatedPage);
-    }
+    return valid;
 }
 
 /**

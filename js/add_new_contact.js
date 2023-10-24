@@ -18,17 +18,20 @@ function openAndCloseAddNewEditContact(id1, id2, renderEdit, i = 0) {
     };
 }
 
-
+/**
+ * slide animation when contact changed
+ * 
+ * @param {string} addNewContactInlcudeHTML - id of html to include contact
+ * @param {string} addNewContact - id of info message that contact included
+ */
 function slideInOrOutOverlyContacts(addNewContactInlcudeHTML, addNewContact) {
     if (addNewContactInlcudeHTML.classList.contains('contacts-d-none')) {
         addNewContact.classList.remove('add-new-contact-slideout-animation');
         addNewContact.classList.add('add-new-contact-slidein-animation');
-
         addNewContactInlcudeHTML.classList.remove('contacts-d-none');
     } else {
         addNewContact.classList.remove('add-new-contact-slidein-animation');
         addNewContact.classList.add('add-new-contact-slideout-animation');
-
         setTimeout(() => {
             addNewContactInlcudeHTML.classList.add('contacts-d-none');
         }, 450);
@@ -46,7 +49,6 @@ function renderEditContact(i) {
     const inputEditEmail = document.getElementById('edit-email');
     const inputEditPhone = document.getElementById('edit-phone');
     const colorStyle = returnContactColor(i);
-
 
     editProfileIcon.innerHTML = getInitials(users[i]['name']);
     editProfileIcon.style = `background-color: ${colorStyle}; margin-bottom: 48px;`;
@@ -127,13 +129,10 @@ async function showNewContactOrInitUsers() {
 */
 function showNewContact(overlayAddNew = true) {
     renderContacts();
-
     if (overlayAddNew) {
         openAndCloseAddNewEditContact('add-new-contact-include-HTML', 'add-new-contact');
     }
-
     openContactData(currentContactIndex);
-
     let scrollPositionElement = document.getElementById(`contactCard-${currentContactIndex}`);
     scrollPositionElement.scrollIntoView({
         block: "end",
@@ -155,7 +154,6 @@ function addNewContactShowSlideBox(text) {
     let slideBoxText = document.getElementById('contact-slideBox-text');
 
     slideBoxText.innerHTML = text;
-
     slideBox.classList.remove('contacts-d-none');
 
     setTimeout((() => {
@@ -172,7 +170,6 @@ function addNewTaskShowSlideBox(text) {
     let slideBoxText = document.getElementById('task-slideBox-text');
 
     slideBoxText.innerHTML = text;
-
     slideBox.classList.remove('contacts-d-none');
 
     setTimeout((() => {
@@ -246,7 +243,9 @@ async function deleteContact(i = currentContactIndex, openFalse = true) {
     callFunctionsToDeleteContact();
 }
 
-
+/**
+ * there are necessary functions to delete a contact
+ */
 function callFunctionsToDeleteContact() {
     loadingScreen();
     renderContacts();

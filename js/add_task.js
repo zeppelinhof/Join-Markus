@@ -28,6 +28,15 @@ function colorButton(btn_prio, button_color, arrowWhitePrio, arrowColorPrio, pri
         pushToBackground(arrowColorPrio);
         setPrioStatusAsString(prio);
     }
+    changeWhiteBackgroundColoredArrow(prio);
+}
+
+/**
+ * set background of button to white according to click event in Prio
+ * 
+ * @param {string} prio - urgent, medium or low
+ */
+function changeWhiteBackgroundColoredArrow(prio) {
     if (prio == 'urgent') {
         whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
         whiteBackgroundColoredArrow(document.getElementById('btn_low'), 'button-green', 'arrowWhiteLow', 'arrowGreenLow')
@@ -40,7 +49,6 @@ function colorButton(btn_prio, button_color, arrowWhitePrio, arrowColorPrio, pri
         whiteBackgroundColoredArrow(document.getElementById('btn_urgent'), 'button-red', 'arrowWhiteUrgent', 'arrowRedUrgent');
         whiteBackgroundColoredArrow(document.getElementById('btn_medium'), 'button-orange', 'arrowWhiteMedium', 'arrowOrangeMedium');
     }
-
 }
 
 /**
@@ -48,21 +56,33 @@ function colorButton(btn_prio, button_color, arrowWhitePrio, arrowColorPrio, pri
  * 
  * @param {object} btn - one of the Prio buttons
  */
-
 function whiteBackgroundColoredArrow(btn, button_color, arrowWhitePrio, arrowColorPrio) {
     btn.classList.remove(button_color);
     document.getElementById(arrowWhitePrio).classList.remove('z-index-1');
     document.getElementById(arrowColorPrio).classList.remove('z-index-n1');
 }
 
+/**
+ * push to front by set z-index = 1
+ * @param {string} obj - id
+ */
 function pushToFront(obj) {
     document.getElementById(obj).classList.add('z-index-1');
 }
 
+/**
+ * push to front by set z-index = -1
+ * @param {string} obj - id
+ */
 function pushToBackground(obj) {
     document.getElementById(obj).classList.add('z-index-n1');
 }
 
+/**
+ * status im string format for evaluation
+ * 
+ * @param {string} status -urgent ...
+ */
 function setPrioStatusAsString(status) {
     document.getElementById('prioStatusAsString').innerHTML = status;
 }
@@ -112,7 +132,7 @@ async function register_task(validatedPage) {
         subtaskstate: subtaskstate()
     });
     await setItem('tasks', JSON.stringify(tasks));
-    resetForm2(validatedPage, true); // true means that Created Task (not Clear)
+    resetFormAddTask(validatedPage, true); // true means that Created Task (not Clear)
 }
 
 /**
@@ -144,7 +164,7 @@ function cleanInputString(input) {
  * 
  * @param {*} validatedPage - superior page of calling function
  */
-function resetForm2(validatedPage, created) {
+function resetFormAddTask(validatedPage, created) {
     title.value = '';
     description.value = '';
     contactsInTask = [];
@@ -210,10 +230,16 @@ function closeContactList(field) {
     }
 }
 
+/**
+ * are to be clicked an close a list
+ */
 function areaClickedCauseClosingList() {
     remove_d_none('areaClickedCauseClosingList');
 }
 
+/**
+ * when list not closed then show it
+ */
 function areaClickedCauseClosingListOuter() {
     if (!listClosed) {
         remove_d_none('areaClickedCauseClosingList');
@@ -223,7 +249,9 @@ function areaClickedCauseClosingListOuter() {
 }
 
 
-
+/**
+ * manage visibilty of container Category list
+ */
 function showContentCategory() {
     if (document.getElementById('contentCategory').classList.contains('d-none') && (categoryClosed == false)) {
         remove_d_none('contentCategory');

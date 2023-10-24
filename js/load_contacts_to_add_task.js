@@ -1,4 +1,3 @@
-// let users = [];
 let contactsInTask = [];
 let subtasks = [];
 let maxVisibleCirclesBelow = 4;
@@ -10,6 +9,9 @@ async function initUsers() {
     fillAssignedTo();
 }
 
+/**
+ * push auser data to array users
+ */
 async function register_user() {
     users.push({
         name: _name.value,
@@ -23,6 +25,9 @@ async function register_user() {
     resetForm();
 }
 
+/**
+ * reset the users data and reload page
+ */
 function resetForm() {
     _name.value = '';
     email.value = '';
@@ -68,12 +73,23 @@ function showDropdown(i, user) {
 `
 }
 
+/**
+ * write name and find initials
+ * 
+ * @param {number} i -
+ * @param {string} user - username
+ */
 function fillUsername(i, user) {
     document.getElementById(`option${i}`).innerHTML += user;
     initialsInCircle_List(i, user);
 }
 
-// Create Circles in list
+/**
+ * call initials function
+ * 
+ * @param {*} i 
+ * @param {*} contact - same as user
+ */
 function initialsInCircle_List(i, contact) {
     document.getElementById(`contactCircle${i}`).innerHTML = getInitials(contact);
 }
@@ -110,7 +126,6 @@ function removeListUser(i, user) {
  * @param {number} i - index of user in list
  */
 function addListUser(i) {
-    // Create Circles of selected users below list
     remove_d_none(`check_filled${i}`);
     add_d_none(`check_empty${i}`);
     contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
@@ -120,6 +135,9 @@ function addListUser(i) {
 
 // #endregion Load Users to Dropdown
 
+/**
+ * If a user is selcted draw a colred circle below
+ */
 function drawContactCirclesBelow() {
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
     let lastCircleDrawed = false;
