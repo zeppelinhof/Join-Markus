@@ -251,6 +251,7 @@
     font-size: 20px;
     line-height: 24px;
     margin: 0;
+    margin-left: 12px;
 }
 
 .addheadlineButton {
@@ -955,7 +956,8 @@
     align-items: center;
 }
 
-.editContacts:hover, .saveContacts:hover {
+.editContacts:hover,
+.saveContacts:hover {
     cursor: pointer;
 }
 
@@ -1159,7 +1161,10 @@
         margin-bottom: 10px;
     }
 
-    .textContain6:hover, .textContain7:hover, .textContain6.active, .textContain7.active {
+    .textContain6:hover,
+    .textContain7:hover,
+    .textContain6.active,
+    .textContain7.active {
         cursor: pointer;
     }
 
@@ -1177,7 +1182,12 @@
         height: 307px;
     }
 
-    .frame203, .frame179, .frame178, .frame214, #frame204, .frame215 {
+    .frame203,
+    .frame179,
+    .frame178,
+    .frame214,
+    #frame204,
+    .frame215 {
         width: 284px;
     }
 
@@ -1191,7 +1201,9 @@
         width: 284px;
     }
 
-    .assignedTo, .contactContain, .subtasks {
+    .assignedTo,
+    .contactContain,
+    .subtasks {
         width: 284px;
     }
 
@@ -1205,7 +1217,19 @@
         right: 20px;
     }
 
-    #searchInputMobile {
+    /* #searchInputMobile {
         width: 215px !important;
+    } */
+}
+
+@media (max-width: 320px) {
+    .searchContainerMobile {
+        width: 80vw;
+    }
+
+    .boardContainMobile h1 {
+        font-size: 36px;
+        font-weight: 700;
+        line-height: 73px;
     }
 }

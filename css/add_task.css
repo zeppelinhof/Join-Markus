@@ -624,7 +624,8 @@ ul {
     }
 
     .headlineAddTask {
-        text-align: left;
+            text-align: left;
+            font-size: 36px;
         }
 
     .block-mobile {

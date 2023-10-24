@@ -32,6 +32,9 @@ function resetForm() {
     location.reload();
 }
 
+/**
+ * go through all users registered in backend
+ */
 async function fillAssignedTo() {
     document.getElementById('selectAssignedTo').innerHTML = '';
     for (let i = 0; i < users.length; i++) {
@@ -41,6 +44,13 @@ async function fillAssignedTo() {
     }
 }
 
+/**
+ * add a list list element for user in unsorted list (dropdown)
+ * 
+ * @param {number} i -index of user in list
+ * @param {string} user 
+ * @returns 
+ */
 function showDropdown(i, user) {
     const colorStyle = returnContactColor(i);
     return /*html*/`
@@ -57,12 +67,6 @@ function showDropdown(i, user) {
     </li>                  
 `
 }
-
-// function returnContactColor(i) {
-//     let result = i % contactColors.length
-
-//     return contactColors[result]['style'];
-// }
 
 function fillUsername(i, user) {
     document.getElementById(`option${i}`).innerHTML += user;
@@ -87,6 +91,12 @@ function contactToTaskClickName(i, user) {
     }
 }
 
+/**
+ * Uncheck name in the list, remove by deleteContactTask()
+ * 
+ * @param {number} i - index of user in list
+ * @param {string} user -to remove
+ */
 function removeListUser(i, user) {
     add_d_none(`check_filled${i}`);
     remove_d_none(`check_empty${i}`);
@@ -94,6 +104,11 @@ function removeListUser(i, user) {
     deleteContactTask(user);
 }
 
+/**
+ * Check name in the list, save in array and draw colored circle
+ * 
+ * @param {number} i - index of user in list
+ */
 function addListUser(i) {
     // Create Circles of selected users below list
     remove_d_none(`check_filled${i}`);
@@ -104,17 +119,6 @@ function addListUser(i) {
 }
 
 // #endregion Load Users to Dropdown
-
-function contactToTaskClickCheckbox(i, user) {
-    let checkbox = document.getElementById(`flexCheckDefault${i}`);
-    if (checkbox.checked) {
-        contactsInTask.push(document.getElementById(`option${i}`).innerHTML);
-        drawContactCirclesBelow();
-    }
-    else {
-        deleteContactTask(user);
-    }
-}
 
 function drawContactCirclesBelow() {
     document.getElementById('selected-contacts-circles-below').innerHTML = '';
@@ -157,6 +161,10 @@ function furtherSummedUpCircle(i){
     document.getElementById(`contactCircleBelow${maxVisibleCirclesBelow}`).innerHTML = '+' + (i + 1 - maxVisibleCirclesBelow);
 }
 
+/**
+ * 
+ * @param {obj} contact - contact by clicking name in Assigned To list
+ */
 function deleteContactTask(contact) {
     for (let i = 0; i < contactsInTask.length; i++) {
         const currentContact = contactsInTask[i];
