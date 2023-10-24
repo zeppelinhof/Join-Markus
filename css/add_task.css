@@ -609,7 +609,7 @@ ul {
 }
 
 
-@media (max-width: 1264px), (max-height: 800px) {
+@media (max-width: 1264px), (max-height: 750px) {
 
     .hide-mobile {
         display: none;
