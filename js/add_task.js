@@ -54,6 +54,7 @@ function coloredBackground(btn) {
  */
 function saveChanges(callingPage, prio) {
     if (callingPage == 'board') {
+        editPrioBoard(prio);
         document.getElementById('inputPrio').value = prio;
     }
 }

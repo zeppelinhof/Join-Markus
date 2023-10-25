@@ -108,16 +108,16 @@
         </div>
 
         <div>
-            <label for="taskOverlayHeadline">Title</label>
+            <label for="taskOverlayHeadline" id="titleLabel">Title</label>
             <p id="taskOverlayHeadline"></p>
         </div>
 
         <div>
-            <label for="descriptionContain" id="descriptionContainer" class="d-none">Description</label>
+            <label for="descriptionContain" id="descriptionContainer">Description</label>
             <p id="descriptionContain"></p>
         </div>
 
-        <div>
+        <div class="dateContainer" id="dateContainer">
             <label for="frame179">Due Date:</label>
             <div class="frame179" id="frame179">
                 <span id="taskOverlayNumber"></span>
@@ -126,7 +126,7 @@
         <div>
             <div class="frame178" id="frame178">
                 <label for="frame179">Priority:</label>
-                <div style="display: flex; gap: 12px;">
+                <div class="prioTextImage" id="prioTextImage">
                     <p id="medium"></p>
                     <span id="prioMedia"></span>
                 </div>
@@ -177,6 +177,7 @@
                 <div id="frame204"></div>
             </div>
         </div>
+        <div class="assignedToBelow_Edit d-none" id="assignedToBelow_Edit"></div>
         <div>
             <div class="frame215">
                 <label for="frame204">Subtasks:</label>

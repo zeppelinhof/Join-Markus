@@ -59,7 +59,7 @@ async function addFeedback(columnStatus) {
  */
 function editButton(q, title, description, date, priority, assigned) {
     document.getElementById('editContacts').innerHTML = /*html*/ `
-        <div onclick="addEdit('${q}', '${title}', '${description}', '${date}', '${priority}', '${assigned}')" class="editButton">
+        <div onclick="addEdit(${q}, '${title}', '${description}', '${date}', '${priority}', '${assigned}', true)" class="editButton">
             <div class="editContain" id="editContain">
                 <img src="assets/img/edit.svg"  class="editIcon">
             </div>
@@ -79,19 +79,70 @@ function addEdit(q, title, description, date, priority, assigned) {
     showDeleteIcons(q);
     fillAssignedToBoard(q, assigned);
     openContactBoard();
-    switchClasses();
-    callCorrectColoredPrioButton(priority);
+    switchClasses(false, priority);
+    loadInitials_Edit(q);
 }
 
 /**
  * turn on/off containers for special Edit view: prio buttons, category
+ * @param {boolean} closeCard - is action to close or to open the card?
+ * @param {string} priority - urgent, medium or low
  */
-function switchClasses() {
-    switchClassOfElement('all-buttons-prio_board', 'd-none'); // button view area
-    switchClassOfElement('frame203', 'just-cont-flex-end'); // Category view
-    switchClassOfElement('frame178', 'd-block'); // frame178 = priority area in Edit
-    switchClassOfElement('frame113', 'd-none'); // frame113 = Category in Edit
-    switchClassOfElement('descriptionContainer', 'd-none');
+function switchClasses(closeCard, priority) {
+    if (closeCard) {
+        elementBehaviorWhenCardClose();
+    } else {
+        elementBehaviorWhenCardEdit();
+    }
+    const buttonIds = ['btn_urgent_board', 'btn_medium_board', 'btn_low_board'];
+    if (buttonIds.every(id => getClassListLength(id) === 1)) {
+        callCorrectColoredPrioButton(priority);
+    }
+}
+
+/**
+ * element hide, show or change when close the card
+ */
+function elementBehaviorWhenCardClose() {
+    hideElement('all-buttons-prio_board'); // button view area
+    clearColoredButtons();
+    showElement('frame113'); // User Story blau
+    removeClass('frame203', 'just-cont-flex-end'); // User Story blau + X
+    removeClass('frame178', 'd-block');
+    removeClass('dateContainer', 'd-block');
+    showElement('prioTextImage'); // priority area in in Card (before Edit)
+    hideElement('descriptionContainer');
+    hideElement('titleLabel');
+    hideElement('assignedToBelow_Edit'); // Circles below Assignet to in Edit
+}
+
+/**
+ * element hide, show or change when edit the card
+ */
+function elementBehaviorWhenCardEdit() {
+    showElement('all-buttons-prio_board'); // button view area
+    clearColoredButtons();
+    hideElement('frame113'); // User Story blau
+    addClass('frame203', 'just-cont-flex-end'); // User Story blau + X
+    addClass('frame178', 'd-block');
+    addClass('dateContainer', 'd-block');
+    showElement('descriptionContainer');
+    showElement('titleLabel');
+    showElement('assignedToBelow_Edit'); // Circles below Assignet to in Edit
+}
+
+function getClassListLength(id) {
+    return document.getElementById(id).classList.length;
+}
+
+/**
+ * set all buttons on uncolored so that 
+ * last unsaved click is not shown next time
+ */
+function clearColoredButtons() {
+    removeClass('btn_urgent_board', 'button-red');
+    removeClass('btn_medium_board', 'button-orange');
+    removeClass('btn_low_board', 'button-green');
 }
 
 /**
@@ -162,7 +213,7 @@ async function saveEdit(q) {
     await pushTasks(q, newTitle, newDescription, newDate, newPriority);
     await refreshData();
     closeDetailCard();
-    switchClasses();
+    switchClasses(true);
 }
 
 function low(q, newSubtasksInput) {
@@ -288,7 +339,8 @@ function addUsersToFrame(assignedUsers, q) {
 function addContactBoardElement(i, userBoard, isAssigned, q) {
     document.getElementById('frame201').innerHTML += /*html*/ `
         <div id="contactBoard${i}" class="contactBoard" onclick="addContactBoard(${i}, ${q})">
-            <div>
+            <div style="display: flex;">
+                <div class="profileBadge" id="circleBoard_Edit_${q}_${i}"></div>
                 <span id='userNameBoard${i}'>${userBoard}</span> 
             </div>
             <img id='checkEmptyBoard${i}' src="assets/img/Check_button_empty.svg" alt="">
@@ -297,6 +349,108 @@ function addContactBoardElement(i, userBoard, isAssigned, q) {
     `;
     isAssignedBoard(i, isAssigned);
 }
+
+/**
+ * load the initials for Edit View
+ * @param {*} q - is passed as card number
+ */
+function loadInitials_Edit(q) {
+
+    for (let index = 0; index < users.length; index++) {
+        const targetElementId = `circleBoard_Edit_${q}_${index}`;
+        try {
+            document.getElementById(targetElementId).innerHTML = '';
+        } catch { return 0; }
+        const element = document.getElementById(`userNameBoard${index}`).innerHTML;
+        const UserInitials = getInitials(element);
+        drawNewCircle_Board_Edit(index, targetElementId, UserInitials, q, element);
+    }
+    // Draw Below
+    circle_BoardBelow_Edit(q);
+}
+
+/**
+ * draw circles of selcted users in this task
+ * @param {number} q - card number
+ */
+function circle_BoardBelow_Edit(q) {
+    let lastCircleDrawed = false;
+    let circlesBelowArea_Edit = document.getElementById('assignedToBelow_Edit');
+    circlesBelowArea_Edit.innerHTML = '';
+    boardLoadTasks();
+    drawCirclesForSelectedUsersBelow_Edit(q, circlesBelowArea_Edit, lastCircleDrawed);
+}
+
+/**
+ * draw circles in dependency of count
+ * 
+ * @param {number} q - card number
+ * @param {objj} circlesBelowArea_Edit - container for all circles below
+ * @param {boolean} lastCircleDrawed - already 4 circles drawed?
+ */
+async function drawCirclesForSelectedUsersBelow_Edit(q, circlesBelowArea_Edit, lastCircleDrawed) {
+    const user = (await returnBoardLoadTasks())[q]['selectAssignedTo'];
+
+    for (let index = 0; index < user.length; index++) {
+        const element = user[index];
+        const UserInitials = getInitials(element);
+        if (index < maxVisibleCirclesBelow) {
+            drawNewCircle_BoardBelow_Edit(index, circlesBelowArea_Edit, UserInitials, q, element);
+        } else {
+            onlySummedUpCircleBelow_Board_Edit(index, q, circlesBelowArea_Edit, lastCircleDrawed);
+            lastCircleDrawed = true;
+        }
+    }
+}
+
+/**
+ * 
+ * @param {number} index -  number of user in task
+ * @param {string} targetElementId - field for colored circle
+ * @param {string} UserInitials 
+ * @param {number} q - add task card number
+ * @param {string} element - rgb for color
+ */
+function drawNewCircle_Board_Edit(index, targetElementId, UserInitials, q, element) {
+    document.getElementById(targetElementId).innerHTML = /*html*/`
+            <div class="profileBadge" id="initials${index}_${q}_Edit">${UserInitials}</div>`;
+
+    document.getElementById(`initials${index}_${q}_Edit`).style.backgroundColor = returnContactColorByName(element);
+}
+
+/**
+ * 
+ * @param {number} index - user number
+ * @param {object} circlesBelowArea_Edit - area below
+ * @param {string} UserInitials 
+ * @param {number} q - card number
+ * @param {string} element - rgb for circle
+ */
+function drawNewCircle_BoardBelow_Edit(index, circlesBelowArea_Edit, UserInitials, q, element) {
+    circlesBelowArea_Edit.innerHTML += /*html*/`
+            <div class="profileBadge" id="initialsBelow${index}_${q}_Edit">${UserInitials}</div>`;
+
+    document.getElementById(`initialsBelow${index}_${q}_Edit`).style.backgroundColor = returnContactColorByName(element);
+}
+
+function onlySummedUpCircleBelow_Board_Edit(index, q, circlesBelowArea_Edit, lastCircleDrawed) {
+    if (!lastCircleDrawed) {
+        firstSummedUpCircleBelow_Board_Edit(index, q, circlesBelowArea_Edit);
+    } else {
+        furtherSummedUpCircleBelow_Board_edit(index, q);
+    }
+}
+
+function firstSummedUpCircleBelow_Board_Edit(index, q, targetElementId) {
+    targetElementId.innerHTML += /*html*/`
+    <div class="profileBadge" id="initialsBelow${maxVisibleCirclesBelow}_${q}">+${index + 1 - maxVisibleCirclesBelow}</div>
+    `
+}
+
+function furtherSummedUpCircleBelow_Board_edit(index, q) {
+    document.getElementById(`initialsBelow${maxVisibleCirclesBelow}_${q}`).innerHTML = '+' + (index + 1 - maxVisibleCirclesBelow);
+}
+// end
 
 function isAssignedBoard(i, isAssigned) {
     if (isAssigned != -1) {
@@ -330,6 +484,7 @@ async function addContactBoard(index, q) {
         tasks[q].selectAssignedTo.splice(tasks[q].selectAssignedTo.indexOf(userName), 1);
     }
     await setItem('tasks', JSON.stringify(tasks));
+    loadInitials_Edit(q);
 }
 
 function doNotClose(event) {
@@ -376,6 +531,7 @@ function closeDetailCardMobile(q) {
             element.style.display = 'none';
         }, 1500);
     }
+    switchClasses(true);
 }
 
 function touchTask(q, column) {

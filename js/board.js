@@ -40,6 +40,11 @@ async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
 
+async function returnBoardLoadTasks(){
+    allTasks = JSON.parse(await getItem('tasks'));
+    return allTasks;
+}
+
 async function refreshData() {
     await boardLoadTasks();
     await emptyContainer();
@@ -66,6 +71,7 @@ async function closeDetailCard() {
     showButton();
     visibleAssigned();
     closeContactBoard();
+    switchClasses(true);
 }
 
 
@@ -254,12 +260,12 @@ function assingAllTasks(column, cardHTML, q, category) {
     subTaskCard(q);
 }
 /**
- * function to load the initials
- * @param {*} q parameter q is passed as card number
+ * load the initials
+ * @param {*} q - is passed as card number
  */
-function loadInitials(q) {
+function loadInitials(q) {    
     const user = allTasks[q]['selectAssignedTo'];
-    const targetElementId = `frame1_${q}`;
+    const targetElementId = `frame1_${q}`;    
 
     document.getElementById(targetElementId).innerHTML = '';
 
@@ -287,7 +293,7 @@ function loadInitials(q) {
  */
 function drawNewCircle_Board(index, targetElementId, UserInitials, q, element) {
     document.getElementById(targetElementId).innerHTML += /*html*/`
-            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
+            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;        
 
     document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
 }

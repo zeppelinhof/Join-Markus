@@ -281,11 +281,58 @@ function closeContextMenu(field) {
  * @param {string} elementId - id of element container
  * @param {string} classChange - classname to add or remove
  */
-function switchClassOfElement(elementId, classChange){
+function switchClassOfElement(elementId, classChange) {
     let elementClassList = document.getElementById(elementId).classList;
     if (!elementClassList.contains(classChange)) {
-        elementClassList.add(classChange)
-    } else{
-        elementClassList.remove(classChange)
+        elementClassList.add(classChange);
+    } else {
+        elementClassList.remove(classChange);
+    }
+}
+
+/**
+ * if container visible then display: none
+ * 
+ * @param {string} elementId - id of container
+ */
+function hideElement(elementId) {
+    let elementClassList = document.getElementById(elementId).classList;
+    if (!elementClassList.contains('d-none')) {
+        elementClassList.add('d-none');
+    }
+}
+
+/**
+ * if container not visible then remove display: none
+ * @param {string} elementId  - id of container
+ */
+function showElement(elementId) {
+    let elementClassList = document.getElementById(elementId).classList;
+    if (elementClassList.contains('d-none')) {
+        elementClassList.remove('d-none');
+    }
+}
+
+/**
+ * if conatainer has not class then add class
+ * @param {string} elementId 
+ * @param {string} className - id of class
+ */
+function addClass(elementId, className) {
+    let elementClassList = document.getElementById(elementId).classList;
+    if (!elementClassList.contains(className)) {
+        elementClassList.add(className);
+    }
+}
+
+/**
+ * if conatainer has class then remove class
+ * @param {string} elementId 
+ * @param {string} className 
+ */
+function removeClass(elementId, className) {
+    let elementClassList = document.getElementById(elementId).classList;
+    if (elementClassList.contains(className)) {
+        elementClassList.remove(className);
     }
 }
