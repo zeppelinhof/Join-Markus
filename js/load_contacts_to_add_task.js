@@ -151,6 +151,10 @@ function drawContactCirclesBelow() {
     }
 }
 
+/**
+ * 
+ * see similar function in boardEdit.js
+ */
 function drawNewCircle(i) {    
     const colorStyle = returnContactColor(i);
     const user = contactsInTask[i];
@@ -160,6 +164,10 @@ function drawNewCircle(i) {
     document.getElementById(`contactCircleBelow${i}`).innerHTML = getInitials(user);
 }
 
+/**
+ * 
+ * see similar function in boardEdit.js
+ */
 function onlySummedUpCircle(i, lastCircleDrawed) {    
     if (!lastCircleDrawed) {        
         firstSummedUpCircle(i);
@@ -168,6 +176,10 @@ function onlySummedUpCircle(i, lastCircleDrawed) {
     }
 }
 
+/**
+ * 
+ * see similar function in boardEdit.js
+ */
 function firstSummedUpCircle(i) {    
     const colorStyle = returnContactColor(maxVisibleCirclesBelow);
     document.getElementById('selected-contacts-circles-below').innerHTML += /*html*/`
@@ -175,6 +187,10 @@ function firstSummedUpCircle(i) {
     `
 }
 
+/**
+ * 
+ * see similar function in boardEdit.js
+ */
 function furtherSummedUpCircle(i){
     document.getElementById(`contactCircleBelow${maxVisibleCirclesBelow}`).innerHTML = '+' + (i + 1 - maxVisibleCirclesBelow);
 }

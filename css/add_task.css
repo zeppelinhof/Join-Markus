@@ -726,7 +726,7 @@ ul {
         height: 100vh;
     }
 }
-@media(max-width: 445px){
+@media(max-width: 900px){
     .hideTextMobile{
         display: none;
     }

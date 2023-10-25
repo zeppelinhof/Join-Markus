@@ -166,6 +166,7 @@ function checkEmptyContainer() {
     clearNoTask('feedbackContainer', 'noFeedback');
     clearNoTask('DoneContainer', 'noDone');
 }
+
 /**
  * loads the content of the whole map
  * all parameters are passed from loopAllTasks
@@ -224,6 +225,11 @@ function loadColorLabel(category, q) {
     }
 }
 
+/**
+ * images for priority urgent, low, medium
+ * @param {string} priority 
+ * @returns image for priority
+ */
 function imagePriority(priority) {
     let priorityIMG = '';
 
@@ -302,6 +308,13 @@ function drawNewCircle_Board(index, targetElementId, UserInitials, q, element) {
     document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
 }
 
+/**
+ * print all further circles in one by add +1
+ * @param {number} index 
+ * @param {number} q 
+ * @param {boolean} targetElementId - where to save 
+ * @param {boolean} lastCircleDrawed - is last circle drawed?
+ */
 function onlySummedUpCircle_Board(index, q, targetElementId, lastCircleDrawed) {
     if (!lastCircleDrawed) {
         firstSummedUpCircle_Board(index, q, targetElementId);
@@ -310,12 +323,18 @@ function onlySummedUpCircle_Board(index, q, targetElementId, lastCircleDrawed) {
     }
 }
 
+/**
+ * logic for the first summed up circle
+ */
 function firstSummedUpCircle_Board(index, q, targetElementId) {
     document.getElementById(targetElementId).innerHTML += /*html*/`
     <div class="profileBadge" id="initials${maxVisibleCirclesBelow}_${q}">+${index + 1 - maxVisibleCirclesBelow}</div>
     `
 }
 
+/**
+ * print all further summed up circles in one circle
+ */
 function furtherSummedUpCircle_Board(index, q) {
     document.getElementById(`initials${maxVisibleCirclesBelow}_${q}`).innerHTML = '+' + (index + 1 - maxVisibleCirclesBelow);
 }
@@ -344,6 +363,10 @@ function openDetailCardBoard(q, title, description, category, priority, date, pr
  * @param {*} assigned 
  */
 
+/**
+ * logic when user clicks on one of the detail cards in board view
+ * @param {*} priorityIMG - image urgent, medium or low
+ */
 function openDetailCard(q, title, description, category, priority, date, priorityIMG, assigned) {
     document.getElementById('frame222').style.display = 'none';
     document.getElementById('frame204').style.display = 'block';
@@ -415,6 +438,10 @@ function loadSubtasks(q) {
     setCheckBoxState(q);
 }
 
+/**
+ * logic to check a subtask within a task
+ * @param {number} q - number of card
+ */
 function setCheckBoxState(q) {
     const subTaskState = allTasks[q]['subtaskstate'];
     for (let i = 0; i < subTaskState.length; i++) {
@@ -425,6 +452,10 @@ function setCheckBoxState(q) {
     }
 }
 
+/**
+ * delete word "subtask" before the content of subtaskstate
+ * @param {string} element 
+ */
 function updateSubTaskCheckBoxState(element) {
     const afterSubstring = element.slice("subtask".length);
     const currentState = allTasks[currentOpenCard]['subtaskstate'][afterSubstring];
@@ -445,6 +476,11 @@ function startDragging(q) {
     currentDraggedElement = q;
 }
 
+/**
+ * move one card to another column
+ * @param {string} column - e.g. in progress
+ * @param {*} q 
+ */
 async function moveTo(column, q) {
     const cardHTML = document.getElementById(`cards-${q}`);
     if (cardHTML) {
@@ -459,6 +495,12 @@ async function moveTo(column, q) {
     loopAllTasks();
 }
 
+/**
+ * if a text is tong it is cutted after x chars
+ * @param {string} text 
+ * @param {number} countLetters - how many chars to show
+ * @returns shorted text if it was too long
+ */
 function shortenString(text, countLetters){
     if(text.length>30){
         return text.slice(0,countLetters) + '...';

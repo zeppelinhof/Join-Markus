@@ -2,6 +2,9 @@ let tasks = [];
 let boardStatus = 'to do';
 let listClosed = false;
 
+/**
+ * prepare add task page by loading HTML, tasks created etc.
+ */
 async function initAddTask() {
     await includeHTML();
     await loadUsers();
@@ -262,6 +265,10 @@ function selectContactFieldInBackground(field) {
     }
 }
 
+/**
+ * logic to close the contact list with display: none
+ * @param {string} field - id of
+ */
 function closeContactList(field) {
     if (!document.getElementById(field).classList.contains('d-none')) {
         add_d_none(field);

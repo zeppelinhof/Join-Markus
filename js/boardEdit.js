@@ -33,6 +33,10 @@ function loadAllTaskNumber(q) {
     updateProgressBar(q, completedTasks);
 }
 
+/**
+ * view progress of fixed subtasks
+ * @param {*} q - number of card
+ */
 function updateProgressBar(q) {
     const subtaskState = allTasks[q]['subtaskstate'];
     const completedTasks = subtaskState.filter(status => status === 'true').length;
@@ -44,6 +48,10 @@ function updateProgressBar(q) {
     progressBar.style.width = `${percent}%`;
 }
 
+/**
+ * call by set status "to do", "inProgress" or "feedback"
+ * @param {string} columnStatus - see above
+ */
 async function addFeedback(columnStatus) {
     fillAssignedTo();
     boardStatus = columnStatus
@@ -51,11 +59,11 @@ async function addFeedback(columnStatus) {
 }
 /**
  * 
- * @param {*} q parameter of the map
- * @param {*} title Title parameters 
- * @param {*} description comment parameter
- * @param {*} date date parameter
- * @param {*} priority priority parameter
+ * @param {number} q - parameter of the map
+ * @param {string} title - Title parameters 
+ * @param {string} description - comment parameter
+ * @param {date} - date parameter
+ * @param {string} priority - priority parameter
  */
 function editButton(q, title, description, date, priority, assigned) {
     document.getElementById('editContacts').innerHTML = /*html*/ `
@@ -68,6 +76,15 @@ function editButton(q, title, description, date, priority, assigned) {
     `;
 }
 
+/**
+ * triggered when user clicks on Edit in task
+ * @param {number} q - card number
+ * @param {string} title 
+ * @param {string} description 
+ * @param {string} date 
+ * @param {string} priority 
+ * @param {string} assigned 
+ */
 function addEdit(q, title, description, date, priority, assigned) {
     hideAssigned(q, assigned);
     saveEditButton(q);
@@ -183,6 +200,11 @@ function editSubtasks(q) {
     }
 }
 
+/**
+ * edit the priority in board
+ * 
+ * @param {string} priority -
+ */
 function editPrioBoard(priority) {
     const priorities = ["urgent", "medium", "low"];
     const dropdown = document.getElementById('medium');
@@ -216,6 +238,11 @@ async function saveEdit(q) {
     switchClasses(true);
 }
 
+/**
+ * take content of edited new input
+ * @param {number} q - card number
+ * @param {object} newSubtasksInput - input text
+ */
 function low(q, newSubtasksInput) {
     const newSubtasks = newSubtasksInput.value
         .split('\n')
@@ -239,12 +266,18 @@ async function pushTasks(q, newTitle, newDescription, newDate, newPriority) {
     await setItem('tasks', JSON.stringify(tasks));
 }
 
+/**
+ * hide edit and prio button when edit is clicked. Clear save button.
+ */
 function hideButton() {
     document.getElementById('editContacts').style.display = 'none';
     document.getElementById('prioMedia').style.display = 'none';
     document.getElementById('saveContacts').style.display = '';
 }
 
+/**
+ * clear edit and prio button and hide save button when edit is clicked
+ */
 function showButton() {
     document.getElementById('saveContacts').style.display = 'none';
     document.getElementById('prioMedia').style.display = '';
@@ -304,16 +337,27 @@ function hideAssigned(q, assigned) {
     document.getElementById('frame204').style.display = 'none';
 }
 
+/**
+ * container configs for open the conatct board
+ */
 function openContactBoard() {
     document.getElementById('contactBoard3').style.display = 'none';
     document.getElementById('contactBoard1').style.display = 'block';
     document.getElementById('contactBoard4').style.display = 'block';
 }
 
+/**
+ * container configs to see assigned contacts
+ */
 function visibleAssigned() {
     document.getElementById('frame214').style.display = '';
 }
 
+/**
+ * add assigned contacts to board
+ * @param {number} q 
+ * @param {*} assigned - no use
+ */
 function fillAssignedToBoard(q, assigned) {
     document.getElementById('frame201').innerHTML = '';
     const assignedUsers = assigned.split(',');
@@ -336,6 +380,14 @@ function addUsersToFrame(assignedUsers, q) {
     }
 }
 
+/**
+ * add contact to list of contacts
+ * 
+ * @param {number} i 
+ * @param {string} userBoard 
+ * @param {number} isAssigned 
+ * @param {number} q 
+ */
 function addContactBoardElement(i, userBoard, isAssigned, q) {
     document.getElementById('frame201').innerHTML += /*html*/ `
         <div id="contactBoard${i}" class="contactBoard" onclick="addContactBoard(${i}, ${q})">
@@ -349,7 +401,6 @@ function addContactBoardElement(i, userBoard, isAssigned, q) {
     `;
 
     isAssignedBoard(i, q, userBoard, isAssigned);
-
 }
 
 /**
@@ -453,6 +504,13 @@ function drawNewCircle_BoardBelow_Edit(index, circlesBelowArea_Edit, UserInitial
     document.getElementById(`initialsBelow${index}_${q}_Edit`).style.backgroundColor = returnContactColorByName(element);
 }
 
+/**
+ * only the a summed up circle below is printed (e.g. +2)
+ * @param {number} index 
+ * @param {number} q 
+ * @param {string} circlesBelowArea_Edit - container to print contact circle
+ * @param {boolean} lastCircleDrawed 
+ */
 function onlySummedUpCircleBelow_Board_Edit(index, q, circlesBelowArea_Edit, lastCircleDrawed) {
     if (!lastCircleDrawed) {
         firstSummedUpCircleBelow_Board_Edit(index, q, circlesBelowArea_Edit);
@@ -461,17 +519,35 @@ function onlySummedUpCircleBelow_Board_Edit(index, q, circlesBelowArea_Edit, las
     }
 }
 
+/**
+ * logic for the first summed up circle below
+ * @param {number} index 
+ * @param {number} q 
+ * @param {string} targetElementId - where to print the circle
+ */
 function firstSummedUpCircleBelow_Board_Edit(index, q, targetElementId) {
     targetElementId.innerHTML += /*html*/`
     <div class="profileBadge" id="initialsBelow${maxVisibleCirclesBelow}_${q}">+${index + 1 - maxVisibleCirclesBelow}</div>
     `
 }
 
+/**
+ * logic for further summed up circle below
+ * @param {number} index 
+ * @param {number} q 
+ */
 function furtherSummedUpCircleBelow_Board_edit(index, q) {
     document.getElementById(`initialsBelow${maxVisibleCirclesBelow}_${q}`).innerHTML = '+' + (index + 1 - maxVisibleCirclesBelow);
 }
 // end
 
+/**
+ * logic to handle checked (assigned) users (checkbox)
+ * @param {number} i 
+ * @param {number} q 
+ * @param {string} userBoard 
+ * @param {boolean} isAssigned 
+ */
 function isAssignedBoard(i, q, userBoard, isAssigned) {
     if (isAssigned != -1) {
         document.getElementById(`checkFilledBoard${i}`).style.display = 'block';
@@ -485,6 +561,7 @@ function isAssignedBoard(i, q, userBoard, isAssigned) {
     document.getElementById(`circleBoard_Edit_${q}_${i}`).style.backgroundColor = returnContactColorByName(userBoard);
     document.getElementById(`circleBoard_Edit_${q}_${i}`).innerHTML = getInitials(userBoard);
 }
+
 /**
  * function to add or remove from the map
  * @param {number of the name} index 
@@ -513,6 +590,9 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
+/**
+ * close via arrow drop up the a contact
+ */
 function closeContactBoard() {
     let contactBoard5 = document.getElementById('contactBoard3');
     if (contactBoard5 && contactBoard5.style.display === 'none') {
@@ -522,6 +602,19 @@ function closeContactBoard() {
     }
 }
 
+/**
+ * logic for generate a mobile detail HTML
+ * @param {number} q 
+ * @param {string} title 
+ * @param {string} description 
+ * @param {string} category 
+ * @param {string} priority 
+ * @param {date} date 
+ * @param {string} priorityIMG 
+ * @param {number} assigned 
+ * @param {number} column 
+ * @returns 
+ */
 function generateMobileDetailHTML(q, title, description, category, priority, date, priorityIMG, assigned, column) {
     const isTodo = (column === 'to do');
     const isProgress = (column == 'inProgress');
@@ -556,6 +649,11 @@ function closeDetailCardMobile(q) {
     switchClasses(true);
 }
 
+/**
+ * touch function to open a detail card
+ * @param {number} q 
+ * @param {string} column - e.g. in progress
+ */
 function touchTask(q, column) {
     document.getElementById(`notesDetail_${q}`).style.display = 'none';
     ev = event || window.event;
