@@ -306,6 +306,9 @@ function showContentCategory() {
     categoryClosed = false;
 }
 
+/**
+ * switch configurations (behavior of containers) to show closing dropdown of category
+ */
 function closeContentCategory() {
     add_d_none('uparrow_cat');
     add_d_none('contentCategory');
@@ -313,6 +316,10 @@ function closeContentCategory() {
     categoryClosed = true;
 }
 
+/**
+ * logi when select category User Story or Technical Task
+ * @param {number} i - nr 1 or two 
+ */
 function selectCategory(i) {
     let selectedCategory = document.getElementById('selectedCategory');
     selectedCategory.innerHTML = document.getElementById('category' + i).innerHTML;

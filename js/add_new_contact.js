@@ -205,7 +205,10 @@ async function editContact() {
     await callFunctionsToEditContact(currentColorStyle);
 }
 
-
+/**
+ * call function necessary for editing contacts
+ * @param {string} currentColorStyle - rgb color
+ */
 async function callFunctionsToEditContact(currentColorStyle) {
     loadingScreen();
 
