@@ -94,6 +94,10 @@ async function saveDetailCardData() {
     await updateItem('tasks', currentOpenCard, newItem);
 }
 
+/**
+ * 
+ * @returns as string if checkbox is checked or not
+ */
 function getSubtasksCheckboxState() {
     const subtask = allTasks[currentOpenCard]['subtasks'];
     const newStates = [];
