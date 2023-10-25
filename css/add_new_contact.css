@@ -405,8 +405,8 @@
 
 .add-new-contact-button-left:hover {
     cursor: pointer;
-    color: rgb(41, 170, 227);
-    border: 2px solid rgb(41, 170, 227);
+    color: rgb(41, 170, 227);    
+    border-color: rgb(41, 170, 227);
     box-shadow: 0 4px 0 rgba(0 0 0 / 15%);
     transform: scale(1.01);
 
