@@ -347,7 +347,9 @@ function addContactBoardElement(i, userBoard, isAssigned, q) {
             <img id='checkFilledBoard${i}' src="assets/img/Check_button_filled.svg" alt="">
         </div>
     `;
-    isAssignedBoard(i, isAssigned);
+
+    isAssignedBoard(i, q, userBoard, isAssigned);
+
 }
 
 /**
@@ -365,6 +367,24 @@ function loadInitials_Edit(q) {
         const UserInitials = getInitials(element);
         drawNewCircle_Board_Edit(index, targetElementId, UserInitials, q, element);
     }
+    // Draw Below
+    circle_BoardBelow_Edit(q);
+}
+
+/**
+ * modification of circle drawing when searching users
+ * 
+ * @param {number} i - id of circle on card
+ * @param {number} q - card number
+ */
+function loadInitials_Edit_Search(i, q) {
+    const targetElementId = `circleBoard_Edit_${q}_${i}`;
+    try {
+        document.getElementById(targetElementId).innerHTML = '';
+    } catch { return 0; }
+    const element = document.getElementById(`userNameBoard${i}`).innerHTML;
+    const UserInitials = getInitials(element);
+    drawNewCircle_Board_Edit(i, targetElementId, UserInitials, q, element);
     // Draw Below
     circle_BoardBelow_Edit(q);
 }
@@ -404,7 +424,7 @@ async function drawCirclesForSelectedUsersBelow_Edit(q, circlesBelowArea_Edit, l
 }
 
 /**
- * 
+ * draw and get color for circle
  * @param {number} index -  number of user in task
  * @param {string} targetElementId - field for colored circle
  * @param {string} UserInitials 
@@ -452,7 +472,7 @@ function furtherSummedUpCircleBelow_Board_edit(index, q) {
 }
 // end
 
-function isAssignedBoard(i, isAssigned) {
+function isAssignedBoard(i, q, userBoard, isAssigned) {
     if (isAssigned != -1) {
         document.getElementById(`checkFilledBoard${i}`).style.display = 'block';
         // document.getElementById(`contactBoard${i}`).style.backgroundColor = 'rgb(246,247,248)';
@@ -462,6 +482,8 @@ function isAssignedBoard(i, isAssigned) {
         document.getElementById(`contactBoard${i}`).style.backgroundColor = '';
         document.getElementById(`checkFilledBoard${i}`).style.display = 'none';
     }
+    document.getElementById(`circleBoard_Edit_${q}_${i}`).style.backgroundColor = returnContactColorByName(userBoard);
+    document.getElementById(`circleBoard_Edit_${q}_${i}`).innerHTML = getInitials(userBoard);
 }
 /**
  * function to add or remove from the map
