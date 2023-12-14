@@ -287,6 +287,7 @@ function showButton() {
  * delete function for the selected subtask
  */
 async function deleteSubtask(q, p) {
+    debugger
     const subtasksArray = tasks[q]['subtasks'];
     const subtaskStateArray = tasks[q]['subtaskstate'];
 

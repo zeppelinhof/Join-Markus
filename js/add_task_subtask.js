@@ -37,7 +37,7 @@ function oneSelectedSubtask(){
                     <img src="assets/img/Subtasks_pencil.svg" id="pencil${subtaskNumber}"
                         onclick="editSubtask(${subtaskNumber});" class="cursor-pointer">
                     <div class="pencil-bin-separator"></div>
-                    <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtask(${subtaskNumber}) class="cursor-pointer">
+                    <img src="assets/img/Subtasks_bin.svg" onclick=deleteSubtaskInAddTask(${subtaskNumber}) class="cursor-pointer">
                     <img src="assets/img/check_black.svg" class="d-none" id="submit${subtaskNumber}" 
                         onclick="saveSubtaskChanges('rawDataChange${subtaskNumber}', 'rawData${subtaskNumber}', '${subtaskNumber}'); 
                         add_d_none('rawDataChange${subtaskNumber}'); remove_d_none('rawData${subtaskNumber}'); 
@@ -120,7 +120,7 @@ function closeEdit(x) {
  * 
  * @param {string} x - number of subtask to be delted
  */
-function deleteSubtask(x) {
+function deleteSubtaskInAddTask(x) {
     let oneSubtaskToDelete = document.getElementById(`oneSubtask${x}`);
 
     for (let i = 0; i < subtasks.length; i++) {
