@@ -97,6 +97,7 @@
     background-color: #f6f7f8;
     height: 100vh;
     width: 100%;
+    overflow-y: hidden;
 }
 
 .bodyContainer::-webkit-scrollbar {
@@ -1091,7 +1092,7 @@ input[type="search"]::-webkit-search-cancel-button {
     .bodyContainer {
         width: 100%;
         height: 100vh;
-        overflow: scroll;
+        /* overflow: scroll; */
         flex-direction: column;
     }
 
@@ -1111,6 +1112,7 @@ input[type="search"]::-webkit-search-cancel-button {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        height: calc(100vh - 500px);
     }
 
     .headlineBoard {
