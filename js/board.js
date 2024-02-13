@@ -40,7 +40,7 @@ async function boardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
 }
 
-async function returnBoardLoadTasks(){
+async function returnBoardLoadTasks() {
     allTasks = JSON.parse(await getItem('tasks'));
     return allTasks;
 }
@@ -139,12 +139,16 @@ function loopTasks(search) {
         const date = allTasks[q]['date'];
         const assigned = allTasks[q]['selectAssignedTo'];
 
-        if (title.toLowerCase().includes(search.toLowerCase())) {
+        if (containsWord(title, description, search)) {
             loadAllTask(category, title, description, column, q, priority, date, assigned);
         } else {
             checkEmptyContainer();
         }
     }
+}
+
+function containsWord(title, description, search){
+    return title.toLowerCase().includes(search.toLowerCase()) || description.toLowerCase().includes(search.toLowerCase());
 }
 /**
  * check if there are any cards in the container, if yes then the container should be hidden with the content 'no Tasks
@@ -273,9 +277,9 @@ function assingAllTasks(column, cardHTML, q, category) {
  * load the initials
  * @param {*} q - is passed as card number
  */
-function loadInitials(q) {    
+function loadInitials(q) {
     const user = allTasks[q]['selectAssignedTo'];
-    const targetElementId = `frame1_${q}`;    
+    const targetElementId = `frame1_${q}`;
 
     document.getElementById(targetElementId).innerHTML = '';
 
@@ -303,7 +307,7 @@ function loadInitials(q) {
  */
 function drawNewCircle_Board(index, targetElementId, UserInitials, q, element) {
     document.getElementById(targetElementId).innerHTML += /*html*/`
-            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;        
+            <div class="profileBadge" id="initials${index}_${q}">${UserInitials}</div>`;
 
     document.getElementById(`initials${index}_${q}`).style.backgroundColor = returnContactColorByName(element);
 }
@@ -372,7 +376,7 @@ function openDetailCard(q, title, description, category, priority, date, priorit
     document.getElementById('frame204').style.display = 'block';
     loadColorLabelDetailCard(category);
     loadAssigned(q);
-    loadSubtasks(q);    
+    loadSubtasks(q);
     document.getElementById('detailCard').style.display = '';
     document.getElementById('taskContain').innerHTML = /*html*/ `${category}`;
     document.getElementById('taskOverlayHeadline').innerHTML = /*html*/ `${shortenString(title, 40)}`;
@@ -465,15 +469,31 @@ function updateSubTaskCheckBoxState(element) {
  * Drag and Drop function
  */
 function allowDrop(ev) {
+    debugger
     ev.preventDefault();
+
+    markColumns();
 }
 
 function drop(ev, column) {
-    ev.preventDefault();
+    ev.preventDefault();    
     moveTo(column, currentDraggedElement);
+    disMarkColumns();
 }
 function startDragging(q) {
     currentDraggedElement = q;
+}
+
+function markColumns(){
+    document.getElementById('inProgressContainer').classList.add('back-color-marked-white');
+    document.getElementById('DoneContainer').classList.add('back-color-marked-white');
+    document.getElementById('toDoContainer').classList.add('back-color-marked-white');
+}
+
+function disMarkColumns(){
+    document.getElementById('inProgressContainer').classList.remove('back-color-marked-white');
+    document.getElementById('DoneContainer').classList.remove('back-color-marked-white');
+    document.getElementById('toDoContainer').classList.remove('back-color-marked-white');
 }
 
 /**
@@ -501,9 +521,9 @@ async function moveTo(column, q) {
  * @param {number} countLetters - how many chars to show
  * @returns shorted text if it was too long
  */
-function shortenString(text, countLetters){
-    if(text.length>30){
-        return text.slice(0,countLetters) + '...';
+function shortenString(text, countLetters) {
+    if (text.length > 30) {
+        return text.slice(0, countLetters) + '...';
     }
-    return text;    
+    return text;
 }
