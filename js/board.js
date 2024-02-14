@@ -130,7 +130,8 @@ function loopAllTasks() {
 }
 
 function loopTasks(search) {
-    for (let q = 0; q < allTasks.length; q++) {
+    let q = 0;
+    for (q = 0; q < allTasks.length; q++) {
         const category = allTasks[q]['category'];
         const description = allTasks[q]['description'];
         const priority = allTasks[q]['prio'];
@@ -145,9 +146,29 @@ function loopTasks(search) {
             checkEmptyContainer();
         }
     }
+    addDefaultTasks(q, search);
 }
 
-function containsWord(title, description, search){
+function addDefaultTasks(q, search) {
+    let columns = ['to do', 'inProgress', 'feedback', 'done',]
+    for (let r = 0; r < 4; r++) {
+        const category = 'User Story';
+        const description = 'tbd';
+        const priority = 'low';
+        const title = 'unvis';
+        const column = columns[r];
+        const date = '2023-01-01';
+        const assigned = ['Jaleesa Unrau'];
+
+        if (containsWord(title, description, search)) {
+            loadAllTaskDefault(category, title, description, column, r, priority, date, assigned);
+        } else {
+            checkEmptyContainer();
+        }
+    }
+}
+
+function containsWord(title, description, search) {
     return title.toLowerCase().includes(search.toLowerCase()) || description.toLowerCase().includes(search.toLowerCase());
 }
 /**
@@ -174,10 +195,10 @@ function checkEmptyContainer() {
 /**
  * loads the content of the whole map
  * all parameters are passed from loopAllTasks
+ * 
  */
 function loadAllTask(category, title, description, column, q, priority, date, assigned) {
     const priorityIMG = imagePriority(priority);
-
     const cardHTML = /*html*/ `
             <div id="cards-${q}" class="cards" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCardBoard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}', '${column}')">
                 <div class="notesDetail" id="notesDetail_${q}" style="display:none"></div>
@@ -213,6 +234,16 @@ function loadAllTask(category, title, description, column, q, priority, date, as
                         </div>
                     </div>
                 </div>
+            </div>`;
+
+    assingAllTasks(column, cardHTML, q, category);
+}
+
+function loadAllTaskDefault(category, title, description, column, q, priority, date, assigned) {
+    const priorityIMG = imagePriority(priority);
+    const cardHTML = /*html*/ `
+            <div id="cards-${q}" class="cards" style="color: lightgray" draggable="true" ondragstart="startDragging(${q})" onclick="openDetailCardBoard('${q}','${title}', '${description}', '${category}', '${priority}', '${date}', '${priorityIMG}','${assigned}', '${column}')">
+                Add element here
             </div>`;
 
     assingAllTasks(column, cardHTML, q, category);
@@ -475,7 +506,7 @@ function allowDrop(ev) {
 }
 
 function drop(ev, column) {
-    ev.preventDefault();    
+    ev.preventDefault();
     moveTo(column, currentDraggedElement);
     disMarkColumns();
 }
@@ -483,15 +514,15 @@ function startDragging(q) {
     currentDraggedElement = q;
 }
 
-function markColumns(){
+function markColumns() {
     document.getElementById('inProgressContainer').classList.add('back-color-marked-white');
     document.getElementById('DoneContainer').classList.add('back-color-marked-white');
     document.getElementById('toDoContainer').classList.add('back-color-marked-white');
     document.getElementById('feedbackContainer').classList.add('back-color-marked-white');
-    
+
 }
 
-function disMarkColumns(){
+function disMarkColumns() {
     document.getElementById('inProgressContainer').classList.remove('back-color-marked-white');
     document.getElementById('DoneContainer').classList.remove('back-color-marked-white');
     document.getElementById('toDoContainer').classList.remove('back-color-marked-white');
