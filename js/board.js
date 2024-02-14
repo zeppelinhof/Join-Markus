@@ -469,7 +469,6 @@ function updateSubTaskCheckBoxState(element) {
  * Drag and Drop function
  */
 function allowDrop(ev) {
-    debugger
     ev.preventDefault();
 
     markColumns();
@@ -488,12 +487,15 @@ function markColumns(){
     document.getElementById('inProgressContainer').classList.add('back-color-marked-white');
     document.getElementById('DoneContainer').classList.add('back-color-marked-white');
     document.getElementById('toDoContainer').classList.add('back-color-marked-white');
+    document.getElementById('feedbackContainer').classList.add('back-color-marked-white');
+    
 }
 
 function disMarkColumns(){
     document.getElementById('inProgressContainer').classList.remove('back-color-marked-white');
     document.getElementById('DoneContainer').classList.remove('back-color-marked-white');
     document.getElementById('toDoContainer').classList.remove('back-color-marked-white');
+    document.getElementById('feedbackContainer').classList.remove('back-color-marked-white');
 }
 
 /**
